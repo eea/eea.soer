@@ -29,7 +29,7 @@ class ISOERReport(IATFolder):
             vocabulary=u'SOER Report Sections',
             )
 
-    contry = Choice(
+    country = Choice(
             title=u'Country',
             description=u'Which country do you represent?',
             required=True,
