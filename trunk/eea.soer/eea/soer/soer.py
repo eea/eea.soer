@@ -1,5 +1,6 @@
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
+from Products.ATContentTypes.configuration import zconf
 from Products.ATContentTypes.content.folder import ATFolder
 from eea.soer.interfaces import ISOERReport
 from eea.soer.config import *
@@ -13,6 +14,27 @@ except ImportError:
 
 
 schema = Schema((
+
+    TextField('text',
+        required = True,
+        searchable = True,
+        primary = True,
+        storage = AnnotationStorage(migrate=True),
+        validators = ('isTidyHtmlWithCleanup',),
+        #validators = ('isTidyHtml',),
+        default_content_type = zconf.ATNewsItem.default_content_type,
+        default_output_type = 'text/x-html-safe',
+        allowable_content_types = zconf.ATNewsItem.allowed_content_types,
+        widget = RichWidget(
+            description = "",
+            description_msgid = "help_body_text",
+            label = "Body Text",
+            label_msgid = "label_body_text",
+            rows = 25,
+            i18n_domain = "plone",
+            allow_file_upload = zconf.ATDocument.allow_document_upload
+        ),
+    ),
 
     StringField(
         name='topics',

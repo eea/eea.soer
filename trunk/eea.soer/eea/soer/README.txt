@@ -46,9 +46,10 @@ expected fields:
   >>> url = report.absolute_url() + '/edit'
   >>> browser.open(url)
   >>> form = browser.getForm('soerreport-base-edit')
-  >>> for i in 'topics', 'content_type', 'sections', 'country':
+  >>> for i in 'text', 'topics', 'content_type', 'sections', 'country':
   ...     ctl = form.getControl(name=i)
   ...     print ctl.type
+  textarea
   select
   select
   select

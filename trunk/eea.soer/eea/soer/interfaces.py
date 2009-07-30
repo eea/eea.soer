@@ -1,5 +1,5 @@
 from zope.interface import Interface, Attribute
-from zope.schema import Choice, Bool, Set, List
+from zope.schema import Choice, Bool, Set, List, Text
 from Products.ATContentTypes.interface.folder import IATFolder
 
 
@@ -8,6 +8,12 @@ class IPossibleSOERContainer(Interface):
 
 
 class ISOERReport(IATFolder):
+
+    text = Text(
+            title=u'Topics',
+            description=u'Which topics does this report include',
+            required=True
+            )
     
     topics = List(
             title=u'Topics',
