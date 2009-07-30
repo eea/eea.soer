@@ -3,6 +3,8 @@ from AccessControl import ClassSecurityInfo
 from Products.ATContentTypes.content.folder import ATFolder
 from eea.soer.interfaces import ISOERReport
 from eea.soer.config import *
+from eea.soer import vocab
+from Products.ATVocabularyManager import NamedVocabulary
 try:
     from Products.LinguaPlone.public import *
 except ImportError:
@@ -20,7 +22,7 @@ schema = Schema((
             i18n_domain='eea.soer',
             format='select',
         ),
-        vocabulary=['a', 'b', 'c']
+        vocabulary=vocab.topics
     ),
 
     StringField(
@@ -31,7 +33,7 @@ schema = Schema((
             i18n_domain='eea.soer',
             format='select',
         ),
-        vocabulary=['a', 'b', 'c']
+        vocabulary=vocab.content_types
     ),
 
     StringField(
@@ -42,7 +44,7 @@ schema = Schema((
             i18n_domain='eea.soer',
             format='select',
         ),
-        vocabulary=['a', 'b', 'c']
+        vocabulary=vocab.sections
     ),
 
     StringField(
@@ -53,7 +55,7 @@ schema = Schema((
             i18n_domain='eea.soer',
             format='select',
         ),
-        vocabulary=['a', 'b', 'c']
+        vocabulary=NamedVocabulary('countries')
     ),
 
 ),

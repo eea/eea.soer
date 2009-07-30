@@ -4,6 +4,7 @@ from Products.Five import zcml
 from Products.Five import fiveconfigure
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.GenericSetup import EXTENSION, profile_registry
+from eea.soer.tests.EEAContentTypes import setupATVocabularies
 
 
 PRODUCTS = ['ATVocabularyManager', 'FiveSite', 'eea.soer']
@@ -33,4 +34,5 @@ PloneTestCase.setupPloneSite(products=PRODUCTS, extension_profiles=PROFILES)
 class SOERFunctionalTestCase(PloneTestCase.FunctionalTestCase):
     
     def afterSetUp(self):
-        pass
+        self.setRoles(['Manager'])
+        setupATVocabularies(self.portal)
