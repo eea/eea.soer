@@ -38,46 +38,54 @@ schema = Schema((
 
     StringField(
         name='topics',
+        required = True,
         widget=SelectionWidget(
             label='Topics',
             label_msgid='eea.soer_label_topics',
             i18n_domain='eea.soer',
             format='select',
         ),
-        vocabulary=vocab.topics
+        vocabulary=vocab.topics,
+        enforceVocabulary=True,
     ),
 
     StringField(
         name='content_type',
+        required = True,
         widget=SelectionWidget(
             label='Content Type',
             label_msgid='eea.soer_label_content_types',
             i18n_domain='eea.soer',
             format='select',
         ),
-        vocabulary=vocab.content_types
+        vocabulary=vocab.content_types,
+        enforceVocabulary=True,
     ),
 
     StringField(
         name='sections',
+        required = True,
         widget=SelectionWidget(
             label='Content Type',
             label_msgid='eea.soer_label_sections',
             i18n_domain='eea.soer',
             format='select',
         ),
-        vocabulary=vocab.sections
+        vocabulary=vocab.sections,
+        enforceVocabulary=True,
     ),
 
     StringField(
         name='country',
+        required = True,
         widget=SelectionWidget(
             label='Country',
             label_msgid='eea.soer_label_country',
             i18n_domain='eea.soer',
             format='select',
         ),
-        vocabulary=NamedVocabulary('countries')
+        vocabulary=NamedVocabulary('countries'),
+        enforceVocabulary=True,
     ),
 
 ),

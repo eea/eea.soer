@@ -22,36 +22,31 @@ interface:
   >>> print report
   <SOERReport at testreport>
 
+Let's fill in the add form:
 
-User Interface
---------------
+  >>> form = {
+  ...     'title': 'SV SOER Part C Report',
+  ...     'description': 'SOER Part C Country Report From Sweden',
+  ...     'text': 'The situation is serious :s',
+  ...     'topics': "Air pollution – urban and rural air quality, national and transboundary pollution, measures",
+  ...     'content_type': "Text only",
+  ...     'sections': "Why care?",
+  ...     'country': 'Sweden',
+  ... }
+  >>> report.processForm(values=form, data=1, metadata=1)
 
-SOERReports are added through a web form:
+See if properties are applied:
 
-  >>> from Products.Five.testbrowser import Browser
-  >>> from Products.PloneTestCase.setup import portal_owner, default_password
-  >>> browser = Browser()
-  >>> browser.handleErrors = False
-
-We must log in:
-
-  >>> browser.open(self.portal.absolute_url())
-  >>> browser.getControl(name='__ac_name').value = portal_owner
-  >>> browser.getControl(name='__ac_password').value = default_password
-  >>> browser.getControl(name='submit').click()
-
-Now, when looking at the form, we can verify the existance and type of the
-expected fields:
-
-  >>> url = report.absolute_url() + '/edit'
-  >>> browser.open(url)
-  >>> form = browser.getForm('soerreport-base-edit')
-  >>> for i in 'text', 'topics', 'content_type', 'sections', 'country':
-  ...     ctl = form.getControl(name=i)
-  ...     print ctl.type
-  textarea
-  select
-  select
-  select
-  select
+  >>> report.Title()
+  'SV SOER Part C Report'
+  >>> report.Description()
+  'SOER Part C Country Report From Sweden'
+  >>> report.getText()
+  '<p>The situation is serious :s</p>'
+  >>> report.getContent_type()
+  'Text only'
+  >>> report.getSections()
+  'Why care?'
+  >>> report.getCountry()
+  'Sweden'
 
