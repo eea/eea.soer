@@ -36,3 +36,9 @@ class SOERFunctionalTestCase(PloneTestCase.FunctionalTestCase):
     def afterSetUp(self):
         self.setRoles(['Manager'])
         setupATVocabularies(self.portal)
+
+        # Let's set up the folder structure. This is important since title and
+        # description is generated from it.
+
+        self.portal.invokeFactory('Folder', id='SOER')
+        self.portal.SOER.invokeFactory('Folder', id='sv')

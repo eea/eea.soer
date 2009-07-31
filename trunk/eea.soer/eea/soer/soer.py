@@ -92,6 +92,8 @@ schema = Schema((
 )
 
 schema = getattr(ATFolder, 'schema', Schema(())).copy() + schema.copy()
+schema['title'].default_method = 'gen_title'
+schema['description'].default_method = 'gen_desc'
 
 
 class SOERReport(ATFolder):
@@ -99,6 +101,16 @@ class SOERReport(ATFolder):
     implements(ISOERReport)
     schema = schema
     security = ClassSecurityInfo()
+
+    def gen_title(self):
+        lang_code = self.getPhysicalPath()[-2]
+        title = '%s SOER Part C Report' % lang_code
+        return title
+
+    def gen_desc(self):
+        lang_code = self.getPhysicalPath()[-2]
+        desc = 'SOER Part C Country Report from %s' % lang_code
+        return desc
 
 
 registerType(SOERReport, PROJECTNAME)
