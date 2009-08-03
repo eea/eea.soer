@@ -2,7 +2,7 @@ from zope.interface import implements
 from AccessControl import ClassSecurityInfo
 from Products.ATContentTypes.configuration import zconf
 from Products.ATContentTypes.content.folder import ATFolder
-from eea.soer.interfaces import ISOERReport
+from eea.soer.content.interfaces import ISOERReport
 from eea.soer.config import *
 from eea.soer import vocab
 from Products.ATVocabularyManager import NamedVocabulary
@@ -93,7 +93,9 @@ schema = Schema((
 
 schema = getattr(ATFolder, 'schema', Schema(())).copy() + schema.copy()
 schema['title'].default_method = 'gen_title'
+schema['title'].readOnly = True
 schema['description'].default_method = 'gen_desc'
+schema['description'].readOnly = True
 
 
 class SOERReport(ATFolder):

@@ -1,6 +1,6 @@
 from Products.Archetypes.atapi import *
 from Products.CMFCore import utils as cmfutils
-from eea.soer.soer import SOERReport
+from eea.soer.content.SOERReport import SOERReport
 from eea.soer.config import *
 
 
