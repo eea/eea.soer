@@ -6,7 +6,7 @@ The eea.soer package provides the SOERReport content type. You need to have
 the AddPortalContent permission to add them:
 
   >>> self.setRoles(['Manager'])
-  >>> reports = self.portal.SOER.sv
+  >>> reports = self.portal.SOER.se
   >>> id = reports.invokeFactory('SOERReport', id='testreport')
   >>> report = reports[id]
   >>> print report
@@ -15,6 +15,7 @@ the AddPortalContent permission to add them:
 Let's fill in the add form:
 
   >>> form = {
+  ...     'title': 'Swedish environment report',
   ...     'text': 'The situation is serious :s',
   ...     'topics': "Air pollution – urban and rural air quality, national and transboundary pollution, measures",
   ...     'content_type': "Text only",
@@ -23,13 +24,11 @@ Let's fill in the add form:
   ... }
   >>> report.processForm(values=form, data=1, metadata=1)
 
-When title and description is not provided, they are generated using the
-language code from the parent folder.
+When description is not provided, it's generated using the language code from
+the parent folder.
 
-  >>> report.Title()
-  'sv SOER Part C Report'
   >>> report.Description()
-  'SOER Part C Country Report from sv'
+  'SOER Part C Report from Sweden'
 
 Verify the properties of the other fields:
 

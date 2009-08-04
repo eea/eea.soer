@@ -41,4 +41,4 @@ class SOERFunctionalTestCase(PloneTestCase.FunctionalTestCase):
         # description is generated from it.
 
         self.portal.invokeFactory('Folder', id='SOER')
-        self.portal.SOER.invokeFactory('Folder', id='sv')
+        self.portal.SOER.invokeFactory('Folder', id='se')

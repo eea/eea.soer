@@ -84,7 +84,7 @@ schema = Schema((
             i18n_domain='eea.soer',
             format='select',
         ),
-        vocabulary=NamedVocabulary('countries'),
+        vocabulary=vocab.european_countries.values(),
         enforceVocabulary=True,
     ),
 
@@ -92,7 +92,6 @@ schema = Schema((
 )
 
 schema = getattr(ATFolder, 'schema', Schema(())).copy() + schema.copy()
-schema['title'].default_method = 'gen_title'
 schema['title'].readOnly = True
 schema['description'].default_method = 'gen_desc'
 schema['description'].readOnly = True
@@ -104,14 +103,9 @@ class SOERReport(ATFolder):
     schema = schema
     security = ClassSecurityInfo()
 
-    def gen_title(self):
-        lang_code = self.getPhysicalPath()[-2]
-        title = '%s SOER Part C Report' % lang_code
-        return title
-
     def gen_desc(self):
         lang_code = self.getPhysicalPath()[-2]
-        desc = 'SOER Part C Country Report from %s' % lang_code
+        desc = 'SOER Part C Report from %s' % vocab.european_countries.get(lang_code, 'Unknown Country')
         return desc
 
 

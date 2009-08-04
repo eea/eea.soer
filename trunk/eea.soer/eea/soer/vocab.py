@@ -1,3 +1,7 @@
+from Products.PloneLanguageTool.availablelanguages import countries as all_countries
+from eea.vocab import countries
+
+
 topics = [
    "Air pollution – urban and rural air quality, national and transboundary pollution, measures",
    "Climate change mitigation – GHG emissions trends and projections national measures",
@@ -21,3 +25,8 @@ sections = [
    "Policy responses",
    "Outlook to 2020",
 ]
+
+european_country_codes = countries.getCountries()
+european_countries = {}
+for i in european_country_codes:
+    european_countries[i] = all_countries[i.upper()]
