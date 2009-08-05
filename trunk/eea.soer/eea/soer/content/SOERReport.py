@@ -99,9 +99,16 @@ schema['description'].readOnly = True
 
 class SOERReport(ATFolder):
     """ """
-    implements(ISOERReport)
-    schema = schema
     security = ClassSecurityInfo()
+    __implements__ = (getattr(ATFolder,'__implements__',()),)
+    implements(ISOERReport)
+
+    meta_type = 'SOERReport'
+    portal_type = 'SOERReport'
+    allowed_content_types = ['ATImage', 'Image', 'File'] + list(getattr(ATFolder, 'allowed_content_types', []))
+    _at_rename_after_creation = True
+
+    schema = schema
 
     def gen_desc(self):
         lang_code = self.getPhysicalPath()[-2]
