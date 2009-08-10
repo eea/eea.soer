@@ -109,6 +109,7 @@ class SOERReport(ATFolder):
     _at_rename_after_creation = True
 
     schema = schema
+    content_icon = 'document_icon.gif'
 
     def gen_desc(self):
         lang_code = self.getPhysicalPath()[-2]
