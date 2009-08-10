@@ -49,4 +49,5 @@ Connected to SOERReports is a special view, creatively named soerreport_view:
 
   >>> from elementtree import ElementTree as ET
   >>> report.restrictedTraverse('soerreport_view')
+  <FSPageTemplate at /plone/soerreport_view used for /plone/SOER/se/swedish-environment-report>
 
