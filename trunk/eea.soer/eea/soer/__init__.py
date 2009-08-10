@@ -1,7 +1,18 @@
+from os.path import dirname
+from Globals import package_home
 from Products.Archetypes.atapi import *
 from Products.CMFCore import utils as cmfutils
+from Products.CMFCore.DirectoryView import registerDirectory
 from eea.soer.content.SOERReport import SOERReport
 from eea.soer.config import *
+
+
+# Register skin
+GLOBALS = globals()
+ppath = cmfutils.ProductsPath
+cmfutils.ProductsPath.append(dirname(package_home(GLOBALS)))
+registerDirectory('skins', GLOBALS)
+cmfutils.ProductsPath = ppath
 
 
 def initialize(context):

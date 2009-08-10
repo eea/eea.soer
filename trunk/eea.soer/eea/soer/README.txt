@@ -41,3 +41,12 @@ Verify the properties of the other fields:
   >>> report.getCountry()
   'Sweden'
 
+
+SOERReport View
+---------------
+
+Connected to SOERReports is a special view, creatively named soerreport_view:
+
+  >>> from elementtree import ElementTree as ET
+  >>> report.restrictedTraverse('soerreport_view')
+

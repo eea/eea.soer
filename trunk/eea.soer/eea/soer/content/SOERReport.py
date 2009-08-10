@@ -110,6 +110,7 @@ class SOERReport(ATFolder):
 
     schema = schema
     content_icon = 'document_icon.gif'
+    default_view = 'soerreport_view'
 
     def gen_desc(self):
         lang_code = self.getPhysicalPath()[-2]
