@@ -2,6 +2,7 @@ from zope.interface import implements
 from AccessControl import ClassSecurityInfo
 from Products.ATContentTypes.configuration import zconf
 from Products.ATContentTypes.content.folder import ATFolder
+from Products.ATContentTypes.content.newsitem import ATNewsItem
 from eea.soer.content.interfaces import ISOERReport
 from eea.soer.config import *
 from eea.soer import vocab
@@ -66,7 +67,7 @@ schema = Schema((
         name='sections',
         required = True,
         widget=SelectionWidget(
-            label='Content Type',
+            label='Sections',
             label_msgid='eea.soer_label_sections',
             i18n_domain='eea.soer',
             format='select',
@@ -97,7 +98,7 @@ schema['description'].default_method = 'gen_desc'
 schema['description'].readOnly = True
 
 
-class SOERReport(ATFolder):
+class SOERReport(ATFolder, ATNewsItem):
     """ """
     security = ClassSecurityInfo()
     __implements__ = (getattr(ATFolder,'__implements__',()),)

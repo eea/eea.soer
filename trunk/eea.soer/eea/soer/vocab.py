@@ -14,8 +14,7 @@ topics = [
 content_types = [
    "Text only",
    "Figures only",
-   "Indicators and figure",
-   "News feed",
+   "Indicators and figures",
 ]
 
 sections = [
