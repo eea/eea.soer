@@ -96,8 +96,8 @@ schema = Schema((
 
 schema = getattr(ATFolder, 'schema', Schema(())).copy() + schema.copy()
 schema['title'].readOnly = True
-schema['description'].default_method = 'gen_desc'
-schema['description'].readOnly = True
+schema['description'].default_method = 'default_desc'
+schema['soerCountry'].default_method = 'default_country'
 
 
 class SOERReport(ATFolder, ATNewsItem):
@@ -115,10 +115,14 @@ class SOERReport(ATFolder, ATNewsItem):
     content_icon = 'document_icon.gif'
     default_view = 'soerreport_view'
 
-    def gen_desc(self):
+    def default_desc(self):
         lang_code = self.getPhysicalPath()[-2]
         desc = 'SOER Part C Report from %s' % vocab.european_countries.get(lang_code, 'Unknown Country')
         return desc
+
+    def default_country(self):
+        lang_code = self.getPhysicalPath()[-2]
+        return vocab.european_countries.get(lang_code, '')
 
 
 registerType(SOERReport, PROJECTNAME)

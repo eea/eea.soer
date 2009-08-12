@@ -12,6 +12,22 @@ the AddPortalContent permission to add them:
   >>> print report
   <SOERReport at testreport>
 
+
+Default Values
+--------------
+
+When description is not provided, it's generated using the language code from
+the parent folder.
+
+  >>> report.getSoerCountry()
+  'Sweden'
+  >>> report.Description()
+  'SOER Part C Report from Sweden'
+
+
+Form Processing
+---------------
+
 Let's fill in the add form:
 
   >>> form = {
@@ -23,12 +39,6 @@ Let's fill in the add form:
   ...     'soerCountry': 'Sweden',
   ... }
   >>> report.processForm(values=form, data=1, metadata=1)
-
-When description is not provided, it's generated using the language code from
-the parent folder.
-
-  >>> report.Description()
-  'SOER Part C Report from Sweden'
 
 Verify the properties of the other fields:
 
