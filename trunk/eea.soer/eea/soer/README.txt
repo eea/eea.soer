@@ -17,10 +17,10 @@ Let's fill in the add form:
   >>> form = {
   ...     'title': 'Swedish environment report',
   ...     'text': 'The situation is serious :s',
-  ...     'topics': "Air pollution – urban and rural air quality, national and transboundary pollution, measures",
-  ...     'content_type': "Text only",
-  ...     'sections': "Why care?",
-  ...     'country': 'Sweden',
+  ...     'soerTopic': "Blablabla",
+  ...     'soerContentType': "Text only",
+  ...     'soerSection': "Why care?",
+  ...     'soerCountry': 'Sweden',
   ... }
   >>> report.processForm(values=form, data=1, metadata=1)
 
@@ -34,11 +34,13 @@ Verify the properties of the other fields:
 
   >>> report.getText()
   '<p>The situation is serious :s</p>'
-  >>> report.getContent_type()
+  >>> report.getSoerContentType()
   'Text only'
-  >>> report.getSections()
+  >>> report.getSoerSection()
   'Why care?'
-  >>> report.getCountry()
+  >>> report.getSoerTopic()
+  'Blablabla'
+  >>> report.getSoerCountry()
   'Sweden'
 
 
@@ -50,4 +52,35 @@ Connected to SOERReports is a special view, creatively named soerreport_view:
   >>> from elementtree import ElementTree as ET
   >>> report.restrictedTraverse('soerreport_view')
   <FSPageTemplate at /plone/soerreport_view used for /plone/SOER/se/swedish-environment-report>
+
+
+Catalog
+-------
+
+To make it possible to use eea.facetednavigation on SOERReports, we have added
+catalog indexes for topic, section, content type and country:
+
+  >>> from Products.CMFCore.utils import getToolByName
+  >>> catalog = getToolByName(self.portal, 'portal_catalog')
+  >>> report.reindexObject()
+
+  >>> query = {'portal_type': 'SOERReport'}
+  >>> catalog.searchResults(query)[0].getObject()
+  <SOERReport at /plone/SOER/se/swedish-environment-report>
+
+  >>> query = {'getSoerSection': 'Why care?'}
+  >>> catalog.searchResults(query)[0].getObject()
+  <SOERReport at /plone/SOER/se/swedish-environment-report>
+
+  >>> query = {'getSoerTopic': 'Blablabla'}
+  >>> catalog.searchResults(query)[0].getObject()
+  <SOERReport at /plone/SOER/se/swedish-environment-report>
+
+  >>> query = {'getSoerContentType': 'Text only'}
+  >>> catalog.searchResults(query)[0].getObject()
+  <SOERReport at /plone/SOER/se/swedish-environment-report>
+
+  >>> query = {'getSoerCountry': 'Sweden'}
+  >>> catalog.searchResults(query)[0].getObject()
+  <SOERReport at /plone/SOER/se/swedish-environment-report>
 

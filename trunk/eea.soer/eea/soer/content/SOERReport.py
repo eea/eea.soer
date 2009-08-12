@@ -16,6 +16,33 @@ except ImportError:
 
 schema = Schema((
 
+
+    StringField(
+        name='soerSection',
+        required = True,
+        widget=SelectionWidget(
+            label='Sections',
+            label_msgid='eea.soer_label_sections',
+            i18n_domain='eea.soer',
+            format='select',
+        ),
+        vocabulary=vocab.sections,
+        enforceVocabulary=True,
+    ),
+
+    StringField(
+        name='soerTopic',
+        required = True,
+        widget=SelectionWidget(
+            label='Topics',
+            label_msgid='eea.soer_label_topics',
+            i18n_domain='eea.soer',
+            format='select',
+        ),
+        vocabulary=vocab.topics,
+        enforceVocabulary=True,
+    ),
+
     TextField('text',
         required = True,
         searchable = True,
@@ -38,20 +65,7 @@ schema = Schema((
     ),
 
     StringField(
-        name='topics',
-        required = True,
-        widget=SelectionWidget(
-            label='Topics',
-            label_msgid='eea.soer_label_topics',
-            i18n_domain='eea.soer',
-            format='select',
-        ),
-        vocabulary=vocab.topics,
-        enforceVocabulary=True,
-    ),
-
-    StringField(
-        name='content_type',
+        name='soerContentType',
         required = True,
         widget=SelectionWidget(
             label='Content Type',
@@ -61,23 +75,11 @@ schema = Schema((
         ),
         vocabulary=vocab.content_types,
         enforceVocabulary=True,
+        index='FieldIndex:schema',
     ),
 
     StringField(
-        name='sections',
-        required = True,
-        widget=SelectionWidget(
-            label='Sections',
-            label_msgid='eea.soer_label_sections',
-            i18n_domain='eea.soer',
-            format='select',
-        ),
-        vocabulary=vocab.sections,
-        enforceVocabulary=True,
-    ),
-
-    StringField(
-        name='country',
+        name='soerCountry',
         required = True,
         widget=SelectionWidget(
             label='Country',

@@ -15,27 +15,27 @@ class ISOERReport(IATFolder):
             required=True
             )
     
-    topics = List(
-            title=u'Topics',
-            description=u'Which topics does this report include',
+    soerTopic = List(
+            title=u'Topci',
+            description=u'Which topic does this report include',
             required=True
             )
 
-    content_type = Choice(
+    soerContentType = Choice(
             title=u'Content Type',
             description=u'Which content type are you uploading?',
             required=True,
             vocabulary=u'SOER Content Types'
             )
 
-    sections = Choice(
-            title=u'Sections',
+    soerSection = Choice(
+            title=u'Section',
             description=u'Which report section are you uploading?',
             required=True,
             vocabulary=u'SOER Report Sections',
             )
 
-    country = Choice(
+    soerCountry = Choice(
             title=u'Country',
             description=u'Which country do you represent?',
             required=True,
