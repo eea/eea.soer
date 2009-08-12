@@ -91,6 +91,17 @@ schema = Schema((
         enforceVocabulary=True,
     ),
 
+    StringField(
+        name='soerFeed',
+        required = False,
+        widget=StringWidget(
+            label='RSS Feed',
+            label_msgid='eea.soer_label_feed',
+            i18n_domain='eea.soer',
+        ),
+    ),
+
+
 ),
 )
 

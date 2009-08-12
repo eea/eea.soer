@@ -1,5 +1,5 @@
 from zope.interface import Interface, Attribute
-from zope.schema import Choice, Bool, Set, List, Text
+from zope.schema import Choice, Bool, Set, List, TextLine, Text
 from Products.ATContentTypes.interface.folder import IATFolder
 
 
@@ -40,4 +40,10 @@ class ISOERReport(IATFolder):
             description=u'Which country do you represent?',
             required=True,
             vocabulary=u'SOER Report Countries',
+            )
+
+    soerFeed = TextLine(
+            title=u'Feed',
+            description=u'RSS feed link',
+            required=True,
             )
