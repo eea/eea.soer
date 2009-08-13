@@ -25,10 +25,10 @@
 </metal:document>
 
 <ul>
-    <li tal:content="here/getTopics"></li>
-    <li tal:content="here/getContent_type"></li>
-    <li tal:content="here/getSections"></li>
-    <li tal:content="here/getCountry"></li>
+    <li tal:content="here/getSoerTopic"></li>
+    <li tal:content="here/getSoerContentType"></li>
+    <li tal:content="here/getSoerSection"></li>
+    <li tal:content="here/getSoerCountry"></li>
 </ul>
 
 </tal:main-macro>
