@@ -25,9 +25,10 @@ the parent folder.
   'SOER Part C Report from Sweden'
 
 The title is generated from the topic and section combination. It's changed
-after saving/modifiying the report:
+after saving/modifiying the report. Notice how only the first portion of
+the title is being used:
 
-  >>> report.setSoerTopic('Global Warming')
+  >>> report.setSoerTopic("Global Warming - Ice Cream's Worst Nightmare?")
   >>> report.setSoerSection('There is None')
   >>> from zope.event import notify
   >>> from zope.app.event.objectevent import ObjectModifiedEvent

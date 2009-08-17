@@ -47,3 +47,6 @@ class ISOERReport(IATFolder):
             description=u'RSS feed link',
             required=True,
             )
+
+    short_topic = Attribute("Short version of the selected topic")
+    long_section = Attribute("Long version of the selected section")

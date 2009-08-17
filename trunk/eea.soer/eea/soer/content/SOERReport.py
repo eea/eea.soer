@@ -125,6 +125,17 @@ class SOERReport(ATFolder, ATNewsItem):
     content_icon = 'document_icon.gif'
     default_view = 'soerreport_view'
 
+    def short_topic(self):
+        topic = self.getSoerTopic()
+        if '-' in topic:
+            import pdb; pdb.set_trace()
+            return topic.split('-')[0]
+        return topic
+
+    def long_section(self):
+        section = self.getSoerSection()
+        return vocab.long_sections.get(section, 'Section not found')
+
     def default_desc(self):
         lang_code = self.getPhysicalPath()[-2]
         desc = 'SOER Part C Report from %s' % vocab.european_countries.get(lang_code, 'Unknown Country')
@@ -138,5 +149,5 @@ class SOERReport(ATFolder, ATNewsItem):
 registerType(SOERReport, PROJECTNAME)
 
 def gen_title(obj, evt):
-    new_title = obj.getSoerTopic() + ' - ' + obj.getSoerSection()
+    new_title = obj.short_topic() + ' - ' + obj.getSoerSection()
     obj.setTitle(new_title)
