@@ -128,7 +128,6 @@ class SOERReport(ATFolder, ATNewsItem):
     def short_topic(self):
         topic = self.getSoerTopic()
         if '-' in topic:
-            import pdb; pdb.set_trace()
             return topic.split('-')[0]
         return topic
 
