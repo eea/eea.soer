@@ -7,3 +7,5 @@ def setup_folder_structure(context):
         folder = context[id]
         title = european_countries[i]
         folder.setTitle(title)
+        folder.unmarkCreationFlag()
+        folder.reindexObject()
