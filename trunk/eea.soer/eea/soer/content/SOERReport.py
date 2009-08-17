@@ -16,6 +16,18 @@ except ImportError:
 
 schema = Schema((
 
+    StringField(
+        name='soerTopic',
+        required = True,
+        widget=SelectionWidget(
+            label='Topics',
+            label_msgid='eea.soer_label_topics',
+            i18n_domain='eea.soer',
+            format='select',
+        ),
+        vocabulary=vocab.topics,
+        enforceVocabulary=True,
+    ),
 
     StringField(
         name='soerSection',
@@ -27,19 +39,6 @@ schema = Schema((
             format='select',
         ),
         vocabulary=vocab.sections,
-        enforceVocabulary=True,
-    ),
-
-    StringField(
-        name='soerTopic',
-        required = True,
-        widget=SelectionWidget(
-            label='Topics',
-            label_msgid='eea.soer_label_topics',
-            i18n_domain='eea.soer',
-            format='select',
-        ),
-        vocabulary=vocab.topics,
         enforceVocabulary=True,
     ),
 
@@ -101,12 +100,12 @@ schema = Schema((
         ),
     ),
 
-
 ),
 )
 
 schema = getattr(ATFolder, 'schema', Schema(())).copy() + schema.copy()
 schema['title'].readOnly = True
+schema['title'].widget.visible = 0
 schema['description'].default_method = 'default_desc'
 schema['soerCountry'].default_method = 'default_country'
 
@@ -119,7 +118,7 @@ class SOERReport(ATFolder, ATNewsItem):
 
     meta_type = 'SOERReport'
     portal_type = 'SOERReport'
-    allowed_content_types = ['ATImage', 'Image', 'File'] + list(getattr(ATFolder, 'allowed_content_types', []))
+    allowed_content_types = ['ATImage', 'Image', 'Page', 'RSSFeedRecipe', 'Link']
     _at_rename_after_creation = True
 
     schema = schema
@@ -137,3 +136,7 @@ class SOERReport(ATFolder, ATNewsItem):
 
 
 registerType(SOERReport, PROJECTNAME)
+
+def gen_title(obj, evt):
+    new_title = obj.getSoerTopic() + ' - ' + obj.getSoerSection()
+    obj.setTitle(new_title)

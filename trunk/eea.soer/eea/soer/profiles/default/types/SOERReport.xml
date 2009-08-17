@@ -11,8 +11,14 @@
  <property name="factory">addSOERReport</property>
  <property name="immediate_view">edit</property>
  <property name="global_allow">True</property>
- <property name="filter_content_types">False</property>
- <property name="allowed_content_types"/>
+ <property name="filter_content_types">True</property>
+ <property name="allowed_content_types">
+  <element value="RSSFeedRecipe"/>
+  <element value="Page"/>
+  <element value="Link"/>
+  <element value="ATImage"/>
+  <element value="Image"/>
+ </property>
  <property name="allow_discussion">False</property>
  <property name="default_view">soerreport_view</property>
  <property name="view_methods">

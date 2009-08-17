@@ -5,4 +5,10 @@
   <five:registerPackage package="." initialize=".initialize" />
   <include file="profiles.zcml" />
 
+  <subscriber
+      for="eea.soer.content.interfaces.ISOERReport
+           zope.app.container.interfaces.IObjectModifiedEvent"
+      handler=".content.SOERReport.gen_title"
+      />
+
 </configure>
