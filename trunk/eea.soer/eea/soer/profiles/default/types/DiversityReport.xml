@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
-<object name="SOERReport"
+<object name="DiversityReport"
    meta_type="Factory-based Type Information with dynamic views"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <property name="title">SOERReport</property>
+ <property name="title">Diversity Report</property>
  <property
-    name="description">SOER Report</property>
+    name="description">SOER Part C Diversity Report</property>
  <property name="content_icon">document_icon.gif</property>
- <property name="content_meta_type">SOERReport</property>
+ <property name="content_meta_type">DiversityReport</property>
  <property name="product">eea.soer</property>
- <property name="factory">addSOERReport</property>
+ <property name="factory">addDiversityReport</property>
  <property name="immediate_view">edit</property>
  <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>
@@ -20,7 +20,7 @@
   <element value="Image"/>
  </property>
  <property name="allow_discussion">False</property>
- <property name="default_view">soerreport_view</property>
+ <property name="default_view">diversity_report_view</property>
  <property name="view_methods">
   <element value="folder_summary_view"/>
   <element value="folder_tabular_view"/>

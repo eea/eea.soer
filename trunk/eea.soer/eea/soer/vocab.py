@@ -51,6 +51,14 @@ content_types = [
     "Indicators and figures",
 ]
 
+diversity_questions = [
+    'What are the factors that distinguish your country from many others?',
+    'What have been the major societal developments since 1980 compared with the period 1950-1980?',
+    'What are the main drivers of environmental pressures and how do these contribute to multiple impacts on people and the natural environment?',
+    'What are the foreseen main developments in coming decades that could be expected to contribute most to future environmental pressures?',
+]
+
+
 european_country_codes = countries.getCountries()
 european_countries = {}
 for i in european_country_codes:

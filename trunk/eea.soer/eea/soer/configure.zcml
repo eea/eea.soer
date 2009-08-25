@@ -6,9 +6,21 @@
   <include file="profiles.zcml" />
 
   <subscriber
-      for="eea.soer.content.interfaces.ISOERReport
+      for="eea.soer.content.interfaces.ICommonalityReport
            zope.app.container.interfaces.IObjectModifiedEvent"
-      handler=".content.SOERReport.gen_title"
+      handler=".content.CommonalityReport.gen_title"
+      />
+
+  <subscriber
+      for="eea.soer.content.interfaces.IDiversityReport
+           zope.app.container.interfaces.IObjectModifiedEvent"
+      handler=".content.DiversityReport.gen_title"
+      />
+
+  <subscriber
+      for="eea.soer.content.interfaces.IFlexibilityReport
+           zope.app.container.interfaces.IObjectModifiedEvent"
+      handler=".content.FlexibilityReport.gen_title"
       />
 
 </configure>

@@ -16,32 +16,6 @@ except ImportError:
 
 schema = Schema((
 
-    StringField(
-        name='soerTopic',
-        required = True,
-        widget=SelectionWidget(
-            label='Topics',
-            label_msgid='eea.soer_label_topics',
-            i18n_domain='eea.soer',
-            format='select',
-        ),
-        vocabulary=vocab.topics,
-        enforceVocabulary=True,
-    ),
-
-    StringField(
-        name='soerSection',
-        required = True,
-        widget=SelectionWidget(
-            label='Sections',
-            label_msgid='eea.soer_label_sections',
-            i18n_domain='eea.soer',
-            format='select',
-        ),
-        vocabulary=vocab.sections,
-        enforceVocabulary=True,
-    ),
-
     TextField('text',
         required = True,
         searchable = True,
@@ -69,6 +43,7 @@ schema = Schema((
         widget=SelectionWidget(
             label='Content Type',
             label_msgid='eea.soer_label_content_types',
+            description=u'Please indicate what type of content this is',
             i18n_domain='eea.soer',
             format='select',
         ),
@@ -94,6 +69,7 @@ schema = Schema((
         name='soerFeed',
         required = False,
         widget=StringWidget(
+            description=u'Link to an RSS feed for this data',
             label='RSS Feed',
             label_msgid='eea.soer_label_feed',
             i18n_domain='eea.soer',
@@ -106,8 +82,8 @@ schema = Schema((
 schema = getattr(ATFolder, 'schema', Schema(())).copy() + schema.copy()
 schema['title'].readOnly = True
 schema['title'].widget.visible = 0
-schema['description'].default_method = 'default_desc'
 schema['soerCountry'].default_method = 'default_country'
+schema['soerCountry'].readOnly = True
 
 
 class SOERReport(ATFolder, ATNewsItem):
@@ -123,30 +99,7 @@ class SOERReport(ATFolder, ATNewsItem):
 
     schema = schema
     content_icon = 'document_icon.gif'
-    default_view = 'soerreport_view'
-
-    def short_topic(self):
-        topic = self.getSoerTopic()
-        if '-' in topic:
-            return topic.split('-')[0]
-        return topic
-
-    def long_section(self):
-        section = self.getSoerSection()
-        return vocab.long_sections.get(section, 'Section not found')
-
-    def default_desc(self):
-        lang_code = self.getPhysicalPath()[-2]
-        desc = 'SOER Part C Report from %s' % vocab.european_countries.get(lang_code, 'Unknown Country')
-        return desc
 
     def default_country(self):
         lang_code = self.getPhysicalPath()[-2]
         return vocab.european_countries.get(lang_code, '')
-
-
-registerType(SOERReport, PROJECTNAME)
-
-def gen_title(obj, evt):
-    new_title = obj.short_topic() + ' - ' + obj.getSoerSection()
-    obj.setTitle(new_title)
