@@ -154,17 +154,38 @@ catalog indexes for topic, section, content type and country:
   >>> dreport.reindexObject()
   >>> freport.reindexObject()
 
-  >>> query = {'portal_type': 'CommonalityReport'}
-  >>> catalog.searchResults(query)[0].getObject()
-  <CommonalityReport at /plone/SOER/se/air-pollution-why-care>
+We now have three SOERReports indexed:
+
+  >>> query = {
+  ...     'portal_type': [
+  ...         'CommonalityReport',
+  ...         'DiversityReport',
+  ...         'FlexibilityReport',
+  ...      ]
+  ... }
+  >>> for i in catalog(query):
+  ...     print i.getObject()
+  <CommonalityReport at air-pollution-why-care>
+  <DiversityReport at diversity-report-from-sweden>
+  <FlexibilityReport at flexibility-report-from-sweden>
+
+The DiversityReport and CommonalityReport share the same attribute/index to
+indicate which question is being answered:
 
   >>> query = {'getSoerSection': 'Why care?'}
   >>> catalog.searchResults(query)[0].getObject()
   <CommonalityReport at /plone/SOER/se/air-pollution-why-care>
+  >>> query = {'getSoerSection': 'Some diverse question I have to answer'}
+  >>> catalog.searchResults(query)[0].getObject()
+  <DiversityReport at /plone/SOER/se/diversity-report-from-sweden>
+
+The soerTopic attribute is only for CommonalityReports:
 
   >>> query = {'getSoerTopic': 'Air Pollution'}
   >>> catalog.searchResults(query)[0].getObject()
   <CommonalityReport at /plone/SOER/se/air-pollution-why-care>
+
+All SOERReports have the soerContentType attribute:
 
   >>> query = {'getSoerContentType': 'Text only'}
   >>> for i in catalog.searchResults(query):
@@ -172,6 +193,8 @@ catalog indexes for topic, section, content type and country:
   <CommonalityReport at air-pollution-why-care>
   <DiversityReport at diversity-report-from-sweden>
   <FlexibilityReport at flexibility-report-from-sweden>
+
+... and the soerCountry attribute:
 
   >>> query = {'getSoerCountry': 'Sweden'}
   >>> for i in catalog.searchResults(query):

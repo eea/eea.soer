@@ -35,7 +35,7 @@ class ISOERReport(IATFolder):
 class ICommonalityReport(ISOERReport):
 
     soerTopic = List(
-            title=u'Topci',
+            title=u'Topic',
             description=u'Which topic does this report include',
             required=True
             )

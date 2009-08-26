@@ -55,6 +55,7 @@ schema = Schema((
     StringField(
         name='soerCountry',
         required = True,
+        mode = 'r',
         widget=SelectionWidget(
             label='Country',
             label_msgid='eea.soer_label_country',
@@ -80,10 +81,8 @@ schema = Schema((
 )
 
 schema = getattr(ATFolder, 'schema', Schema(())).copy() + schema.copy()
-schema['title'].readOnly = True
 schema['title'].widget.visible = 0
 schema['soerCountry'].default_method = 'default_country'
-schema['soerCountry'].readOnly = True
 
 
 class SOERReport(ATFolder, ATNewsItem):
