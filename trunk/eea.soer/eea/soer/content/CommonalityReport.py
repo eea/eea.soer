@@ -62,12 +62,14 @@ class CommonalityReport(SOERReport):
     schema = schema
     default_view = 'commonality_report_view'
 
+    @property
     def short_topic(self):
         topic = self.getSoerTopic()
         if '-' in topic:
-            return topic.split('-')[0]
+            topic = topic.split('-')[0]
         return topic.strip()
 
+    @property
     def long_section(self):
         section = self.getSoerSection()
         return vocab.long_sections.get(section, 'Section not found')
@@ -81,5 +83,5 @@ class CommonalityReport(SOERReport):
 registerType(CommonalityReport, PROJECTNAME)
 
 def gen_title(obj, evt):
-    new_title = obj.short_topic() + ' - ' + obj.getSoerSection()
-    obj.setTitle(new_title)
+    t = '%s - %s (%s)' % (obj.short_topic, obj.getSoerSection(), obj.getSoerCountry())
+    obj.setTitle(t)

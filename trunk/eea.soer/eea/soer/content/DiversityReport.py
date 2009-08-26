@@ -53,9 +53,16 @@ class DiversityReport(SOERReport):
         desc = 'SOER Part C Diversity Report from %s' % vocab.european_countries.get(lang_code, 'Unknown Country')
         return desc
 
+    @property
+    def short_section(self):
+        section = self.getSoerSection()
+        if '-' in section:
+            return section.split('-')[0]
+        return section.strip()
+
 
 registerType(DiversityReport, PROJECTNAME)
 
 def gen_title(obj, evt):
-    new_title = 'Diversity Report from %s' % obj.getSoerCountry()
+    new_title = 'Diversity Report: %s (%s)' % (obj.short_section, obj.getSoerCountry())
     obj.setTitle(new_title)

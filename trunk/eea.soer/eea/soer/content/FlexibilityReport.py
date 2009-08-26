@@ -40,5 +40,5 @@ class FlexibilityReport(SOERReport):
 registerType(FlexibilityReport, PROJECTNAME)
 
 def gen_title(obj, evt):
-    new_title = 'Flexibility Report from %s' % obj.getSoerCountry()
+    new_title = 'Flexibility Report (%s)' % obj.getSoerCountry()
     obj.setTitle(new_title)
