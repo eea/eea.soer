@@ -7,7 +7,7 @@ topics = [
     "Climate change mitigation - GHG emissions trends and projections national measures",
     "Nature protection and biodiversity - protected areas, 2010 target, measures",
     "Land - CLC 1990-2006 - stocks, changes, drivers",
-    "Freshwaters – surface and ground, quality and quantity, WFD, measures",
+    "Freshwaters - surface and ground, quality and quantity, WFD, measures",
     "Waste - waste generation, treatment and prevention, measures",
 ]
 
