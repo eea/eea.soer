@@ -54,7 +54,7 @@ schema = Schema((
 
     StringField(
         name='soerCountry',
-        required = True,
+        required = False,
         mode = 'r',
         widget=SelectionWidget(
             label='Country',
@@ -83,6 +83,7 @@ schema = Schema((
 schema = getattr(ATFolder, 'schema', Schema(())).copy() + schema.copy()
 schema['title'].widget.visible = 0
 schema['soerCountry'].default_method = 'default_country'
+schema['title'].default = 'not_set_yet'
 
 
 class SOERReport(ATFolder, ATNewsItem):
