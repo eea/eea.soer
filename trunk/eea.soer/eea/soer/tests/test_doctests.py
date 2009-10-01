@@ -15,7 +15,11 @@ def test_suite():
                   optionflags=OPTIONFLAGS,
                   package='eea.soer',
                   test_class=SOERFunctionalTestCase),
-              ))
+            FunctionalDocFileSuite('catalog.txt',
+                  optionflags=OPTIONFLAGS,
+                  package='eea.soer',
+                  test_class=SOERFunctionalTestCase),
+            ))
 
 
 if __name__ == '__main__':

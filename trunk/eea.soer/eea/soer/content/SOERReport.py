@@ -1,5 +1,6 @@
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
+from Products.CMFCore.utils import getToolByName
 from Products.ATContentTypes.configuration import zconf
 from Products.ATContentTypes.content.folder import ATFolder
 from Products.ATContentTypes.content.newsitem import ATNewsItem
@@ -7,6 +8,7 @@ from eea.soer.content.interfaces import ISOERReport
 from eea.soer.config import *
 from eea.soer import vocab
 from Products.ATVocabularyManager import NamedVocabulary
+from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
 try:
     from Products.LinguaPlone.public import *
 except ImportError:
@@ -47,7 +49,7 @@ schema = Schema((
             i18n_domain='eea.soer',
             format='select',
         ),
-        vocabulary=vocab.content_types,
+        vocabulary=NamedVocabulary('eea.soer.vocab.content_types'),
         enforceVocabulary=True,
         index='FieldIndex:schema',
     ),
@@ -62,7 +64,7 @@ schema = Schema((
             i18n_domain='eea.soer',
             format='select',
         ),
-        vocabulary=vocab.european_countries.values(),
+        vocabulary=NamedVocabulary('eea.soer.vocab.european_countries'),
         enforceVocabulary=True,
     ),
 
@@ -100,6 +102,25 @@ class SOERReport(ATFolder, ATNewsItem):
     schema = schema
     content_icon = 'document_icon.gif'
 
+    def getTermTitle(self, vocab_name, term_key):
+        """Utility method to get the title form a vocabulary term"""
+        portal = getToolByName(self, 'portal_url').getPortalObject()
+        atvm = getToolByName(portal, ATVOCABULARYTOOL, None)
+        vocab = atvm.getVocabularyByName(vocab_name)
+        term = getattr(vocab, term_key, None)
+        if term == None:
+            return ''
+        return term.title;
+
+    def getSoerContentTypeName(self):
+        return self.getTermTitle('eea.soer.vocab.content_types', self.getSoerContentType())
+
+    def getSoerCountryName(self):
+        return self.getTermTitle('eea.soer.vocab.european_countries', self.getSoerCountry())
+
     def default_country(self):
-        lang_code = self.getPhysicalPath()[-2]
-        return vocab.european_countries.get(lang_code, '')
+        path = self.getPhysicalPath()
+        if len(path) >= 2:
+            country_code = path[-2]
+            return country_code
+        return ''

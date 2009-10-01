@@ -4,10 +4,9 @@ from Products.Five import zcml
 from Products.Five import fiveconfigure
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.GenericSetup import EXTENSION, profile_registry
-from eea.soer.tests.EEAContentTypes import setupATVocabularies
 
 
-PRODUCTS = ['ATVocabularyManager', 'FiveSite', 'eea.soer']
+PRODUCTS = ['ATVocabularyManager', 'FiveSite']
 PROFILES = ['eea.soer:default']
 
 
@@ -28,14 +27,14 @@ def setup_soer():
         PloneTestCase.installProduct(product)
 
 setup_soer()
-PloneTestCase.setupPloneSite(products=PRODUCTS, extension_profiles=PROFILES)
+PRODUCTS.append('eea.soer')
+PloneTestCase.setupPloneSite(products=PRODUCTS)
 
 
 class SOERFunctionalTestCase(PloneTestCase.FunctionalTestCase):
     
     def afterSetUp(self):
         self.setRoles(['Manager'])
-        setupATVocabularies(self.portal)
 
         # Let's set up the folder structure. This is important since title and
         # description is generated from it.

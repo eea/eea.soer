@@ -17,15 +17,15 @@ except ImportError:
 schema = Schema((
 
     StringField(
-        name='soerSection',
+        name='soerQuestion',
         required = True,
         widget=SelectionWidget(
-            label='Sections',
-            label_msgid='eea.soer_label_sections',
+            label='Questions',
+            label_msgid='eea.soer_label_questions',
             i18n_domain='eea.soer',
             format='select',
         ),
-        vocabulary=vocab.diversity_questions,
+        vocabulary=NamedVocabulary('eea.soer.vocab.diversity_questions'),
         enforceVocabulary=True,
     ),
 
@@ -48,21 +48,19 @@ class DiversityReport(SOERReport):
     schema = schema
     default_view = 'diversity_report_view'
 
-    def default_desc(self):
-        lang_code = self.getPhysicalPath()[-2]
-        desc = 'SOER Part C Diversity Report from %s' % vocab.european_countries.get(lang_code, 'Unknown Country')
-        return desc
+    def getLongSoerQuestion(self):
+        return vocab.long_diversity_questions[self.getSoerQuestion()]
 
-    @property
-    def short_section(self):
-        section = self.getSoerSection()
-        if '-' in section:
-            return section.split('-')[0]
-        return section.strip()
+    def default_desc(self):
+        country = self.getTermTitle('eea.soer.vocab.european_countries', self.getSoerCountry())
+        desc = 'SOER Part C Diversity Report from %s' % country
+        return desc
 
 
 registerType(DiversityReport, PROJECTNAME)
 
 def gen_title(obj, evt):
-    new_title = 'Diversity Report: %s (%s)' % (obj.short_section, obj.getSoerCountry())
-    obj.setTitle(new_title)
+    question = obj.getTermTitle('eea.soer.vocab.diversity_questions', obj.getSoerQuestion())
+    country = obj.getTermTitle('eea.soer.vocab.european_countries', obj.getSoerCountry())
+    t = 'Diversity Report: %s (%s)' % (question, country)
+    obj.setTitle(t)

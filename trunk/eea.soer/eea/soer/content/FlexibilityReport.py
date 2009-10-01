@@ -32,13 +32,14 @@ class FlexibilityReport(SOERReport):
     default_view = 'flexibility_report_view'
 
     def default_desc(self):
-        lang_code = self.getPhysicalPath()[-2]
-        desc = 'SOER Part C Flexibility Report from %s' % vocab.european_countries.get(lang_code, 'Unknown Country')
+        country = self.getTermTitle('eea.soer.vocab.european_countries', self.getSoerCountry())
+        desc = 'SOER Part C Flexibility Report from %s' % country
         return desc
 
 
 registerType(FlexibilityReport, PROJECTNAME)
 
 def gen_title(obj, evt):
-    new_title = 'Flexibility Report (%s)' % obj.getSoerCountry()
-    obj.setTitle(new_title)
+    country = obj.getTermTitle('eea.soer.vocab.european_countries', obj.getSoerCountry())
+    t = 'Flexibility Report (%s)' % country
+    obj.setTitle(t)

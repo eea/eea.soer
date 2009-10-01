@@ -1,5 +1,6 @@
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
+from Products.CMFCore.utils import getToolByName
 from Products.ATContentTypes.configuration import zconf
 from Products.ATContentTypes.content.folder import ATFolder
 from Products.ATContentTypes.content.newsitem import ATNewsItem
@@ -8,6 +9,7 @@ from eea.soer.content.SOERReport import SOERReport
 from eea.soer.config import *
 from eea.soer import vocab
 from Products.ATVocabularyManager import NamedVocabulary
+from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
 try:
     from Products.LinguaPlone.public import *
 except ImportError:
@@ -26,7 +28,7 @@ schema = Schema((
             i18n_domain='eea.soer',
             format='select',
         ),
-        vocabulary=vocab.topics,
+        vocabulary=NamedVocabulary('eea.soer.vocab.topics'),
         enforceVocabulary=True,
     ),
 
@@ -39,7 +41,7 @@ schema = Schema((
             i18n_domain='eea.soer',
             format='select',
         ),
-        vocabulary=vocab.sections,
+        vocabulary=NamedVocabulary('eea.soer.vocab.sections'),
         enforceVocabulary=True,
     ),
 
@@ -62,26 +64,23 @@ class CommonalityReport(SOERReport):
     schema = schema
     default_view = 'commonality_report_view'
 
-    @property
-    def short_topic(self):
-        topic = self.getSoerTopic()
-        if '-' in topic:
-            topic = topic.split('-')[0]
-        return topic.strip()
-
-    @property
-    def long_section(self):
-        section = self.getSoerSection()
-        return vocab.long_sections.get(section, 'Section not found')
-
     def default_desc(self):
-        lang_code = self.getPhysicalPath()[-2]
-        desc = 'SOER Part C Commonality Report from %s' % vocab.european_countries.get(lang_code, 'Unknown Country')
+        country = self.getTermTitle('eea.soer.vocab.european_countries', self.getSoerCountry())
+        desc = 'SOER Part C Commonality Report from %s' % country
         return desc
+
+    def getLongSoerSection(self):
+        return vocab.long_sections[self.getSoerSection()]
+
+    def getLongSoerTopic(self):
+        return vocab.long_topics[self.getSoerTopic()]
 
 
 registerType(CommonalityReport, PROJECTNAME)
 
 def gen_title(obj, evt):
-    t = '%s - %s (%s)' % (obj.short_topic, obj.getSoerSection(), obj.getSoerCountry())
+    topic = obj.getTermTitle('eea.soer.vocab.topics', obj.getSoerTopic())
+    section = obj.getTermTitle('eea.soer.vocab.sections', obj.getSoerSection())
+    country = obj.getTermTitle('eea.soer.vocab.european_countries', obj.getSoerCountry())
+    t = '%s - %s (%s)' % (topic, section, country)
     obj.setTitle(t)

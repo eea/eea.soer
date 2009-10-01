@@ -6,6 +6,9 @@
  <index name="getSoerSection" meta_type="FieldIndex">
   <indexed_attr value="getSoerSection"/>
  </index>
+ <index name="getSoerQuestion" meta_type="FieldIndex">
+  <indexed_attr value="getSoerQuestion"/>
+ </index>
  <index name="getSoerContentType" meta_type="FieldIndex">
   <indexed_attr value="getSoerContentType"/>
  </index>
