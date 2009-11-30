@@ -1,0 +1,26 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:five="http://namespaces.zope.org/five"
+           xmlns:browser="http://namespaces.zope.org/browser">
+
+  <five:registerPackage package="." initialize=".initialize" />
+  <include file="profiles.zcml" />
+
+  <subscriber
+      for="eea.soer.content.interfaces.ICommonalityReport
+           zope.app.container.interfaces.IObjectModifiedEvent"
+      handler=".content.CommonalityReport.gen_title"
+      />
+
+  <subscriber
+      for="eea.soer.content.interfaces.IDiversityReport
+           zope.app.container.interfaces.IObjectModifiedEvent"
+      handler=".content.DiversityReport.gen_title"
+      />
+
+  <subscriber
+      for="eea.soer.content.interfaces.IFlexibilityReport
+           zope.app.container.interfaces.IObjectModifiedEvent"
+      handler=".content.FlexibilityReport.gen_title"
+      />
+
+</configure>
