@@ -3,7 +3,7 @@ import transaction
 
 
 PROFILE = 'eea.soer:default'
-PRODUCT_DEPENDENCIES = ['ATVocabularyManager']
+PRODUCT_DEPENDENCIES = ['ATVocabularyManager', 'eea.vocab']
 
 
 def install(self, reinstall=False):
