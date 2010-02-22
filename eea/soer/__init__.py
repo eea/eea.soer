@@ -3,9 +3,7 @@ from Globals import package_home
 from Products.Archetypes.atapi import *
 from Products.CMFCore import utils as cmfutils
 from Products.CMFCore.DirectoryView import registerDirectory
-from eea.soer.content.CommonalityReport import CommonalityReport
-from eea.soer.content.DiversityReport import DiversityReport
-from eea.soer.content.FlexibilityReport import FlexibilityReport
+from eea.soer import content
 from eea.soer.config import *
 
 

@@ -5,61 +5,62 @@ from Products.ATContentTypes.interface.folder import IATFolder
 
 class ISOERReport(IATFolder):
 
-    text = Text(
-            title=u'Report Content',
-            description=u'Content of this report',
-            required=True
-            )
-    
-    soerContentType = Choice(
-            title=u'Content Type',
-            description=u'Which content type are is this?',
+    reportingCountryCode = Attribute(u'Which country do you represent?')
+
+    geoCoverage = Choice(
+            title=u'Geographical coverage',
+            description=u'The geographical (spatial) area covered by the assessment.',
             required=True,
-            vocabulary=u'SOER Content Types'
+            vocabulary=u'Geographical coverage'
             )
 
-    soerCountry = Choice(
-            title=u'Country',
-            description=u'Which country do you represent?',
-            required=True,
-            vocabulary=u'SOER Report Countries',
-            )
-
-    soerFeed = TextLine(
-            title=u'Feed',
-            description=u'RSS feed link',
-            required=True,
-            )
-
-
-class ICommonalityReport(ISOERReport):
-
-    soerTopic = List(
+    topic = List(
             title=u'Topic',
             description=u'Which topic does this report include',
             required=True
             )
 
-    soerSection = Choice(
-            title=u'Section',
+    question = Choice(
+            title=u'Question',
             description=u'Which report section are you answering to?',
             required=True,
-            vocabulary=u'SOER Report Sections',
+            vocabulary=u'SOER Questions'
             )
 
     short_topic = Attribute("Short version of the selected topic")
     long_section = Attribute("Long version of the selected section")
 
-
-class IDiversityReport(ISOERReport):
-
-    soerSection = Choice(
-            title=u'Section',
-            description=u'Which report section are you answering to?',
-            required=True,
-            vocabulary=u'SOER Diversity Sections',
+    # keyMessage
+    description = Text(
+            title=u'Key message',
+            description=u'This is a short key message for the National Story, a kind of very short summary or teaser (one/two paragraphs)',
+            required=True
             )
 
+    #assesment
+    text = Text(
+            title=u'Report assesment',
+            description=u'Content of this report',
+            required=True
+            )
+    
+    
+
+class ICommonalityReport(ISOERReport):
+    pass
+
+class IDiversityReport(ISOERReport):
+    pass
 
 class IFlexibilityReport(ISOERReport):
     pass
+
+
+class ISOERReportingCountry(Interface):
+    """ Marker interface for a folder that contains SOER reports.
+        This interface is then used to create RDF from that folder for all
+        contained reports. """
+
+    def update():
+        """ Update reports from the rdf feed url """
+    

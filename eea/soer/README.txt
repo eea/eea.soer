@@ -29,8 +29,7 @@ after saving/modifiying the report.
   >>> form = {
   ...     'text': 'The situation is serious :s',
   ...     'soerTopic': '1',
-  ...     'soerSection': '2',
-  ...     'soerContentType': '0',
+  ...     'soerQuestion': '2',
   ... }
   >>> report.processForm(values=form, data=1, metadata=1)
 
@@ -38,8 +37,6 @@ Verify the properties of the other fields:
 
   >>> report.Title()
   'Climate change mitigation - Drivers and pressures (Sweden)'
-  >>> report.getTermTitle('eea.soer.vocab.content_types', report.getSoerContentType())
-  u'Text only'
   >>> report.getText()
   '<p>The situation is serious :s</p>'
 
@@ -59,7 +56,6 @@ be answered:
 
   >>> form = {
   ...     'soerQuestion': '0',
-  ...     'soerContentType': '0',
   ...     'text': 'The situation is diverse!',
   ... }
   >>> report.processForm(values=form, data=1, metadata=1)
@@ -84,7 +80,6 @@ the titles only need to be unique to the country:
 Let's fill in the add form:
 
   >>> form = {
-  ...     'soerContentType': '0',
   ...     'text': 'The situation is flexible!',
   ... }
   >>> report.processForm(values=form, data=1, metadata=1)

@@ -7,7 +7,7 @@ catalog indexes for topic, section, content type and country. Let's start off
 by adding a couple of reports:
 
   >>> reports = self.portal.SOER.se
-  >>> _ = reports.invokeFactory('CommonalityReport', id='commonality', soerSection='0', soerTopic='0', soerContentType='0')
+  >>> _ = reports.invokeFactory('CommonalityReport', id='commonality', soerQuestion='0', soerTopic='0', soerContentType='0')
   >>> _ = reports.invokeFactory('DiversityReport', id='diversity', soerQuestion='0', soerContentType='0')
   >>> _ = reports.invokeFactory('FlexibilityReport', id='flexibility', soerContentType='0')
   >>> reports.commonality.reindexObject()
@@ -32,15 +32,6 @@ We now have a couple of SOERReports indexed:
   <DiversityReport at diversity>
   <FlexibilityReport at flexibility>
 
-All SOERReports have the soerContentType attribute:
-
-  >>> query = {'getSoerContentType': '0'}
-  >>> for i in catalog(query):
-  ...     print i.getObject()
-  <CommonalityReport at commonality>
-  <DiversityReport at diversity>
-  <FlexibilityReport at flexibility>
-
 ... and the soerCountry attribute:
 
   >>> query = {'getSoerCountry': 'se'}
@@ -56,7 +47,7 @@ The soerTopic and soerSection attribute is only for CommonalityReports:
   >>> for i in catalog(query):
   ...     print i.getObject()
   <CommonalityReport at commonality>
-  >>> query = {'getSoerSection': '0'}
+  >>> query = {'getSoerQuestion': '0'}
   >>> for i in catalog(query):
   ...     print i.getObject()
   <CommonalityReport at commonality>
