@@ -19,7 +19,7 @@ Lets load an RDF
 
   >>> _ = country.updateFeed()
   >>> for obj in country.objectValues():
-  ...    print obj.Title()
+  ...    print obj.original_url
 
 
   >>> from surf import *
@@ -30,8 +30,6 @@ Lets load an RDF
 
   >>> _ = store.load_triples(source=soerrdf)
   >>> NationalStory = session.get_class(ns.SOER['NationalStory'])
-  >>> for nst in NationalStory.all():
-  ...    print nst
 
 
 

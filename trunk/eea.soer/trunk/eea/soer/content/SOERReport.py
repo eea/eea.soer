@@ -30,7 +30,7 @@ schema = Schema((
         widget = RichWidget(
             description = "",
             description_msgid = "help_body_text",
-            label = "Body Text",
+            label = "Assessment",
             label_msgid = "label_body_text",
             rows = 25,
             i18n_domain = "plone",
@@ -100,7 +100,7 @@ schema = getattr(ATFolder, 'schema', Schema(())).copy() + schema.copy()
 schema['title'].widget.visible = { 'edit' : 0 }
 schema['title'].default = 'not_set_yet'
 schema['soerCountry'].default_method = 'default_country'
-
+schema['description'].widget.label = 'Key message'
 
 
 class SOERReport(ATFolder, ATNewsItem):
@@ -117,6 +117,8 @@ class SOERReport(ATFolder, ATNewsItem):
     schema = schema
     content_icon = 'document_icon.gif'
 
+    original_url = ''
+    
     def getTermTitle(self, vocab_name, term_key):
         """Utility method to get the title form a vocabulary term"""
         portal = getToolByName(self, 'portal_url').getPortalObject()
@@ -139,5 +141,7 @@ class SOERReport(ATFolder, ATNewsItem):
 
     def isFromFeed(self):
         """ return True if SOERCountry has a feed url """
-        return self.aq_parent.getRdfFeed() and True or False
+        if hasattr(self.aq_parent, 'getRdfFeed'):
+            return self.aq_parent.getRdfFeed() and True or False
+        return False
         

@@ -22,6 +22,7 @@ schema = Schema((
             label='Topics',
             label_msgid='eea.soer_label_topics',
             i18n_domain='eea.soer',
+            description='use any environmental term, you can find all terms at <a href="http://glossary.eea.europa.eu/">ETDS</a>'
          ),
      ),
 
@@ -32,6 +33,7 @@ schema = Schema((
             label='Question',
             label_msgid='eea.soer_label_questions',
             i18n_domain='eea.soer',
+            description='Custom question for this report',
          ),
      ),
 ),

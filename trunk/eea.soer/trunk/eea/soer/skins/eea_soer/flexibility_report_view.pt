@@ -25,7 +25,6 @@
 </metal:document>
 
 <ul>
-    <li tal:content="here/getSoerContentTypeName"></li>
     <li tal:content="here/getSoerCountryName"></li>
 </ul>
 
