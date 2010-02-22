@@ -2,8 +2,8 @@ from zope.interface import implements
 import surf
 import urllib
 from AccessControl import ClassSecurityInfo
+from Products.CMFCore.utils import getToolByName
 from Products.ATContentTypes.content.folder import ATFolder
-
 from eea.soer.content.interfaces import ISOERReportingCountry
 from eea.soer.config import *
 from eea.soer import vocab
@@ -53,6 +53,7 @@ class SOERCountry(ATFolder):
         """ update feed """
         url = self.getRdfFeed()
         if url:
+            wtool = getToolByName(self, 'portal_workflow')
             self.manage_delObjects(ids=self.objectIds())
             store = surf.Store(reader='rdflib',  writer='rdflib', rdflib_store = 'IOMemory')
             session = surf.Session(store)
@@ -98,11 +99,16 @@ class SOERCountry(ATFolder):
                         if image_data:
                             figure = report[report.invokeFactory('Image', id=fig.soer_fileName.first.strip(),
                                             image=image_data)]
+                            wtool.doActionFor(figure, 'publish', comment='Automatic feed update')
                         for dataFile in fig.soer_dataSource:
                             dataFileObj = report[report.invokeFactory('Link', id=dataFile.soer_fileName.first.strip(),
                                                                        remoteUrl=dataFile.soer_dataURL.first.strip())]
                             figure.setRelatedItems(figure.getRelatedItems().append(dataFileObj))
+                            wtool.doActionFor(dataFileObj, 'publish', comment='Automatic feed update')
 
+                report.setEffectiveDate(nstory.soer_pubDate.first.strip())
+                wtool.doActionFor(report, 'publish', comment='Automatic feed update')
+                report.original_url = nstory.subject.strip()
                 report.reindexObject()
                 
 registerType(SOERCountry, PROJECTNAME)

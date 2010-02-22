@@ -38,10 +38,10 @@ class CommonalityReport(SOERReport):
         return desc
 
     def getLongSoerQuestion(self):
-        return vocab.long_questions[self.getSoerQuestion()]
+        return vocab.long_questions.get(self.getSoerQuestion(), u'Unknown value')
 
     def getLongSoerTopic(self):
-        return vocab.long_topics[self.getSoerTopic()]
+        return vocab.long_topics.get(self.getSoerTopic(), u'Unknown value')
 
 
 registerType(CommonalityReport, PROJECTNAME)

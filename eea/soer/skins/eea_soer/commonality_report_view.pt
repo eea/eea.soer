@@ -7,10 +7,18 @@
 <metal:main metal:fill-slot="main">
 <tal:main-macro metal:define-macro="main">
 
-<tal:autoUpdated tal:condition="context/isFromFeed">
+<tal:autoUpdated tal:condition="context/isFromFeed|nothing">
           <div class="portalMessage"
-               i18n:translate="automatic_updated_report_info">
+               i18n:translate="automatic_updated_report_info" 
+	       tal:condition="not: isAnon">
                 This report is updated automatically from remote Feed. Please do not make any manual changes, they will be lost during next update.
+            </div>
+          <div class="portalMessage"
+               i18n:translate="automatic_updated_report_info" 
+	       tal:condition="isAnon">
+                This report is updated automatically from <a href="" title="" 
+		                                             tal:attributes="href context/original_url;
+							                     title context/Title">remote source</a>.
             </div>
 
 </tal:autoUpdated>
