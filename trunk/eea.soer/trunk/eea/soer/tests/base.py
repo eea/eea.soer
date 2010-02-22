@@ -1,3 +1,5 @@
+import os
+from Globals import package_home
 from Products.PloneTestCase import PloneTestCase
 from Products.PloneTestCase.layer import onsetup
 from Products.Five import zcml
@@ -9,6 +11,8 @@ from Products.GenericSetup import EXTENSION, profile_registry
 PRODUCTS = ['ATVocabularyManager', 'FiveSite']
 PROFILES = ['eea.soer:default']
 
+soerrdf = os.path.join(package_home(globals()), 'soerfeed.rdf')
+norwayrdf = os.path.join(package_home(globals()), 'norway.rdf')
 
 @onsetup
 def setup_soer():

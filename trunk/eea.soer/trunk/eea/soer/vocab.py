@@ -3,42 +3,42 @@ from eea.vocab import countries
 
 # Maps values from eea.soer.vocab.topics to their full description
 long_topics = {
-    '0': "Air pollution - urban and rural air quality, national and transboundary pollution, measures",
-    '1': "Climate change mitigation - GHG emissions trends and projections national measures",
-    '2': "Nature protection and biodiversity - protected areas, 2010 target, measures",
-    '3': "Land - CLC 1990-2006 - stocks, changes, drivers",
-    '4': "Freshwaters - surface and ground, quality and quantity, WFD, measures",
-    '5': "Waste - waste generation, treatment and prevention, measures",
+    u'air pollution': u"Air pollution - urban and rural air quality, national and transboundary pollution, measures",
+    u'climate change': u"Climate change mitigation - GHG emissions trends and projections national measures",
+    u'biodiversity': u"Nature protection and biodiversity - protected areas, 2010 target, measures",
+    u'land': u"Land - CLC 1990-2006 - stocks, changes, drivers",
+    u'freshwater': u"Freshwaters - surface and ground, quality and quantity, WFD, measures",
+    u'waste': u"Waste - waste generation, treatment and prevention, measures",
 }
 
-# Maps values from eea.soer.vocab.sections to their full description
-long_sections = {
-    '0': "Why should we care about this theme?",
-    '1': "What are the state (S) and impacts (I) related to this theme, including impacts on the natural environment and human health/human well-being, both at national level as well as in transboundary terms?",
-    '2': "Drivers and pressures, long""",
-    '3': "What is the 2020 outlook (date flexible) for the topic in question and how will this affect possiband human health/well-being?", 
-    '4': "Which responses (R) have been put in place or are planned at national level for the theme in question?",
+# Maps values from eea.soer.vocab.questions to their full description
+long_questions = {
+    u'0': u"Why should we care?",
+    u'1': u"What are the state and impacts?",
+    u'2': u"What are the related drivers and pressures?",
+    u'3': u"What is the 2020 outlook?",
+    u'4': u"What are the policy responses?",
 }
 
 # Maps values from eea.soer.vocab.diversity_questions to their full description
 long_diversity_questions = {
-    '0': 'What are the factors that distinguish your country from many others?',
-    '1': 'What have been the major societal developments since 1980 compared with the period 1950-1980?',
-    '2': 'What are the main drivers of environmental pressures and how do these contribute to multiple impacts on people and the natural environment?',
-    '3': 'What are the foreseen main developments in coming decades that could be expected to contribute most to future environmental pressures?',
+    u'0': u"What distinguishes the country?",
+    u'1': u"What are the major societal trends?",
+    u'2': u"What are the main drivers?",
+    u'3': u"What are the foreseen developments?",
 }
 
 atvocabs = {
     'eea.soer.vocab.topics': (
-        ('0', "Air pollution"),
-        ('1', "Climate change mitigation"),
-        ('2', "Nature protection and biodiversity"),
-        ('3', "Land"),
-        ('4', "Freshwaters"),
-        ('5', "Waste"),
+        (u'air pollution', "Air pollution"),
+        (u'climate change', "Climate change mitigation"),
+        (u'biodiversity', "Nature protection and biodiversity"),
+        (u'land', "Land"),
+        (u'freshwater', "Freshwaters"),
+        (u'waste', "Waste"),
     ),
 
-    'eea.soer.vocab.sections': (
+    'eea.soer.vocab.questions': (
         ('0', "Why care?"),
         ('1', "State and impacts"),
         ('2', "Drivers and pressures"),
@@ -58,6 +58,12 @@ atvocabs = {
         ('1', "Figures only"),
         ('2', "Indicators and figures"),
     ),
+    'eea.soer.vocab.geographical_coverage': (
+        ('0', "AA"),
+        ('1', "AB"),
+        ('2', "AC"),
+    ),
+
 }
 
 atvocabs['eea.soer.vocab.european_countries'] = []

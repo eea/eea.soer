@@ -16,39 +16,7 @@ except ImportError:
     # No multilingual support
     from Products.Archetypes.public import *
 
-
-schema = Schema((
-
-    StringField(
-        name='soerTopic',
-        required = True,
-        widget=SelectionWidget(
-            label='Topics',
-            label_msgid='eea.soer_label_topics',
-            i18n_domain='eea.soer',
-            format='select',
-        ),
-        vocabulary=NamedVocabulary('eea.soer.vocab.topics'),
-        enforceVocabulary=True,
-    ),
-
-    StringField(
-        name='soerSection',
-        required = True,
-        widget=SelectionWidget(
-            label='Sections',
-            label_msgid='eea.soer_label_sections',
-            i18n_domain='eea.soer',
-            format='select',
-        ),
-        vocabulary=NamedVocabulary('eea.soer.vocab.sections'),
-        enforceVocabulary=True,
-    ),
-
-),
-)
-
-schema = getattr(SOERReport, 'schema', Schema(())).copy() + schema.copy()
+schema = getattr(SOERReport, 'schema', Schema(())).copy() 
 schema['description'].default_method = 'default_desc'
 
 
@@ -69,8 +37,8 @@ class CommonalityReport(SOERReport):
         desc = 'SOER Part C Commonality Report from %s' % country
         return desc
 
-    def getLongSoerSection(self):
-        return vocab.long_sections[self.getSoerSection()]
+    def getLongSoerQuestion(self):
+        return vocab.long_questions[self.getSoerQuestion()]
 
     def getLongSoerTopic(self):
         return vocab.long_topics[self.getSoerTopic()]
@@ -80,7 +48,7 @@ registerType(CommonalityReport, PROJECTNAME)
 
 def gen_title(obj, evt):
     topic = obj.getTermTitle('eea.soer.vocab.topics', obj.getSoerTopic())
-    section = obj.getTermTitle('eea.soer.vocab.sections', obj.getSoerSection())
+    section = obj.getTermTitle('eea.soer.vocab.questions', obj.getSoerQuestion())
     country = obj.getTermTitle('eea.soer.vocab.european_countries', obj.getSoerCountry())
     t = '%s - %s (%s)' % (topic, section, country)
     obj.setTitle(t)

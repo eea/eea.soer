@@ -17,14 +17,14 @@ except ImportError:
 
 
 schema = Schema((
-
+  
+    #assesment
     TextField('text',
         required = True,
         searchable = True,
         primary = True,
         storage = AnnotationStorage(migrate=True),
         validators = ('isTidyHtmlWithCleanup',),
-        #validators = ('isTidyHtml',),
         default_content_type = zconf.ATNewsItem.default_content_type,
         default_output_type = 'text/x-html-safe',
         allowable_content_types = ('text/html',),
@@ -37,21 +37,6 @@ schema = Schema((
             i18n_domain = "plone",
             allow_file_upload = zconf.ATDocument.allow_document_upload
         ),
-    ),
-
-    StringField(
-        name='soerContentType',
-        required = True,
-        widget=SelectionWidget(
-            label='Content Type',
-            label_msgid='eea.soer_label_content_types',
-            description=u'Please indicate what type of content this is',
-            i18n_domain='eea.soer',
-            format='select',
-        ),
-        vocabulary=NamedVocabulary('eea.soer.vocab.content_types'),
-        enforceVocabulary=True,
-        index='FieldIndex:schema',
     ),
 
     StringField(
@@ -69,23 +54,50 @@ schema = Schema((
     ),
 
     StringField(
-        name='soerFeed',
+        name='geoCoverage',
         required = False,
         widget=StringWidget(
-            description=u'Link to an RSS feed for this data',
-            label='RSS Feed',
-            label_msgid='eea.soer_label_feed',
+            label='Geographical coverage',
+            label_msgid='eea.soer_label_geocoverage',
             i18n_domain='eea.soer',
         ),
+    ),
+
+
+    StringField(
+        name='soerTopic',
+        required = True,
+        widget=SelectionWidget(
+            label='Topics',
+            label_msgid='eea.soer_label_topics',
+            i18n_domain='eea.soer',
+            format='select',
+        ),
+        vocabulary=NamedVocabulary('eea.soer.vocab.topics'),
+        enforceVocabulary=True,
+    ),
+
+    StringField(
+        name='soerQuestion',
+        required = True,
+        widget=SelectionWidget(
+            label='Question',
+            label_msgid='eea.soer_label_questions',
+            i18n_domain='eea.soer',
+            format='select',
+        ),
+        vocabulary=NamedVocabulary('eea.soer.vocab.questions'),
+        enforceVocabulary=True,
     ),
 
 ),
 )
 
 schema = getattr(ATFolder, 'schema', Schema(())).copy() + schema.copy()
-schema['title'].widget.visible = 0
-schema['soerCountry'].default_method = 'default_country'
+schema['title'].widget.visible = { 'edit' : 0 }
 schema['title'].default = 'not_set_yet'
+schema['soerCountry'].default_method = 'default_country'
+
 
 
 class SOERReport(ATFolder, ATNewsItem):
@@ -96,7 +108,7 @@ class SOERReport(ATFolder, ATNewsItem):
 
     meta_type = 'SOERReport'
     portal_type = 'SOERReport'
-    allowed_content_types = ['ATImage', 'Image', 'Page', 'RSSFeedRecipe', 'Link']
+    allowed_content_types = ['Image', 'Page', 'RSSFeedRecipe', 'Link']
     _at_rename_after_creation = True
 
     schema = schema
@@ -112,9 +124,6 @@ class SOERReport(ATFolder, ATNewsItem):
             return ''
         return term.title;
 
-    def getSoerContentTypeName(self):
-        return self.getTermTitle('eea.soer.vocab.content_types', self.getSoerContentType())
-
     def getSoerCountryName(self):
         return self.getTermTitle('eea.soer.vocab.european_countries', self.getSoerCountry())
 
@@ -124,3 +133,8 @@ class SOERReport(ATFolder, ATNewsItem):
             country_code = path[-2]
             return country_code
         return ''
+
+    def isFromFeed(self):
+        """ return True if SOERCountry has a feed url """
+        return self.aq_parent.getRdfFeed() and True or False
+        

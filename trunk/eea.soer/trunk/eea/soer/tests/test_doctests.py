@@ -19,6 +19,10 @@ def test_suite():
                   optionflags=OPTIONFLAGS,
                   package='eea.soer',
                   test_class=SOERFunctionalTestCase),
+            FunctionalDocFileSuite('sense.txt',
+                  optionflags=OPTIONFLAGS,
+                  package='eea.soer',
+                  test_class=SOERFunctionalTestCase),
             ))
 
 

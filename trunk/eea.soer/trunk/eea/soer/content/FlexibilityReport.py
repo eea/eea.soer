@@ -14,7 +14,6 @@ except ImportError:
     # No multilingual support
     from Products.Archetypes.public import *
 
-
 schema = getattr(SOERReport, 'schema').copy()
 schema['description'].default_method = 'default_desc'
 

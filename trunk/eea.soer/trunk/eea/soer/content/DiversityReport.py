@@ -24,6 +24,7 @@ schema = Schema((
             label_msgid='eea.soer_label_questions',
             i18n_domain='eea.soer',
             format='select',
+            size=5,
         ),
         vocabulary=NamedVocabulary('eea.soer.vocab.diversity_questions'),
         enforceVocabulary=True,

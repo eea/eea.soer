@@ -26,7 +26,6 @@
 
 <ul>
     <li tal:content="here/getLongSoerQuestion"></li>
-    <li tal:content="here/getSoerContentTypeName"></li>
     <li tal:content="here/getSoerCountryName"></li>
 </ul>
 

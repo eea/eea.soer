@@ -7,6 +7,14 @@
 <metal:main metal:fill-slot="main">
 <tal:main-macro metal:define-macro="main">
 
+<tal:autoUpdated tal:condition="context/isFromFeed">
+          <div class="portalMessage"
+               i18n:translate="automatic_updated_report_info">
+                This report is updated automatically from remote Feed. Please do not make any manual changes, they will be lost during next update.
+            </div>
+
+</tal:autoUpdated>
+
 <metal:document use-macro="here/document_macros/macros/document">
     <tal:document metal:fill-slot="related_multimedia">
         <div id="related-portlets">
@@ -26,10 +34,11 @@
 
 <ul>
     <li tal:content="here/getLongSoerTopic"></li>
-    <li tal:content="here/getLongSoerSection"></li>
-    <li tal:content="here/getSoerContentTypeName"></li>
+    <li tal:content="here/getLongSoerQuestion"></li>
     <li tal:content="here/getSoerCountryName"></li>
 </ul>
+
+<metal:listing use-macro="here/atct_album_view/macros/listing" />
 
 </tal:main-macro>
 </metal:main>

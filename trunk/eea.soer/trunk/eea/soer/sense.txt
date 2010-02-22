@@ -1,0 +1,37 @@
+======================
+SENSE input and output
+====================== 
+
+SENSE is a sub project of SOER PART-C which has a goal to enable information
+sharing between countries using RDF. The content shared is the PART-C of SOER
+and is intended as first stage to put more data online and be able to update it
+continuesly.
+
+All content as part of eea.soer can be imported and exported as `SOER Feed <https://svn.eionet.europa.eu/projects/Zope/wiki/SOERFeedSpec>`_.
+
+  >>> self.setRoles(['Manager'])
+  >>> soer = self.portal.SOER
+  >>> country = soer[soer.invokeFactory('SOERCountry', id='no')]
+  >>> from eea.soer.tests.base import norwayrdf
+  >>> country.setRdfFeed(norwayrdf)
+    
+Lets load an RDF
+
+  >>> _ = country.updateFeed()
+  >>> for obj in country.objectValues():
+  ...    print obj.Title()
+
+
+  >>> from surf import *
+  >>> store = Store(reader='rdflib',  writer='rdflib', rdflib_store = 'IOMemory')
+  >>> session = Session(store)
+  >>> ns.register(SOER="http://www.eea.europa.eu/soer/1.0#")
+
+
+  >>> _ = store.load_triples(source=soerrdf)
+  >>> NationalStory = session.get_class(ns.SOER['NationalStory'])
+  >>> for nst in NationalStory.all():
+  ...    print nst
+
+
+
