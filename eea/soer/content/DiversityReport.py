@@ -14,28 +14,11 @@ except ImportError:
     # No multilingual support
     from Products.Archetypes.public import *
 
-schema = Schema((
-
-    StringField(
-        name='soerQuestion',
-        required = True,
-        widget=SelectionWidget(
-            label='Questions',
-            label_msgid='eea.soer_label_questions',
-            i18n_domain='eea.soer',
-            format='select',
-            size=5,
-        ),
-        vocabulary=NamedVocabulary('eea.soer.vocab.diversity_questions'),
-        enforceVocabulary=True,
-    ),
-
-),
-)
-
-schema = getattr(SOERReport, 'schema').copy() + schema
+schema = getattr(SOERReport, 'schema').copy() 
 schema['description'].default_method = 'default_desc'
-
+schema['soerTopic'].widget.visible = { 'edit' : 0 }
+schema['soerTopic'].default=u'country introduction'
+schema['soerQuestion'].vocabulary=NamedVocabulary('eea.soer.vocab.diversity_questions')
 
 class DiversityReport(SOERReport):
     """ """

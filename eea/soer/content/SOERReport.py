@@ -15,7 +15,6 @@ except ImportError:
     # No multilingual support
     from Products.Archetypes.public import *
 
-
 schema = Schema((
   
     #assesment
@@ -56,11 +55,15 @@ schema = Schema((
     StringField(
         name='geoCoverage',
         required = False,
-        widget=StringWidget(
+        widget=SelectionWidget(
             label='Geographical coverage',
             label_msgid='eea.soer_label_geocoverage',
             i18n_domain='eea.soer',
+            format='select',
         ),
+        vocabulary=NamedVocabulary('eea.soer.vocab.geo_coverage'),
+        enforceVocabulary=True,
+
     ),
 
 

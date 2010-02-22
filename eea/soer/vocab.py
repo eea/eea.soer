@@ -1,5 +1,6 @@
 from Products.PloneLanguageTool.availablelanguages import countries as all_countries
 from eea.vocab import countries
+import surf
 
 # Maps values from eea.soer.vocab.topics to their full description
 long_topics = {
@@ -71,3 +72,14 @@ european_country_codes = countries.getCountries()
 for i in european_country_codes:
     country_name = all_countries[i.upper()]
     atvocabs['eea.soer.vocab.european_countries'].append((i, country_name))
+
+
+geostore = surf.Store(reader='rdflib',  writer='rdflib', rdflib_store = 'IOMemory')
+geosession = surf.Session(geostore)
+surf.ns.register(ROD="http://rod.eionet.europa.eu/schema.rdf#")
+geostore.load_triples(source="http://rod.eionet.europa.eu/countries")        
+atvocabs['eea.soer.vocab.geo_coverage'] = []
+Locality = geosession.get_class(surf.ns.ROD['Locality'])
+
+for loc in Locality.all():
+    atvocabs['eea.soer.vocab.geo_coverage'].append((loc.rod_loccode.first.strip(), loc.rdfs_label.first.strip()))
