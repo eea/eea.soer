@@ -1,61 +1,32 @@
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.eea.europa.eu/soer/1.0#">
-  <NationalStory rdf:about="http://www.miljostatus.no/en/NotMade/#A" xml:lang="en">
-    <geoCoverage>NO</geoCoverage>
-    <topic>country introduction</topic>
-    <question>What distinguishes the country?</question>
-    <pubDate>2008-03-07</pubDate>
-    <keyMessage>
-      Text not yet written
-    </keyMessage>
-    <assessment>
-      <![CDATA[Text not yet written]]>
-    </assessment>
-  </NationalStory>
+<?xml version="1.0" encoding="utf-8"?> 
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+         xmlns="http://www.eea.europa.eu/soer/1.0#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	 xmlns:cc='http://creativecommons.org/ns#'
+	 xmlns:dc='http://purl.org/dc/elements/1.1/'
+         xmlns:dcq='http://purl.org/dc/terms/'>
+<channel rdf:about="">
+  <organisationName>National Institute for the Protection and Environmental Research</organisationName>
+  <organisationName xml:lang="it">Istituto Superiore per la Protezione e la Ricerca Ambientale</organisationName>
+  <reportingCountryCode rdf:resource="http://rod.eionet.europa.eu/spatial/19" />
+  <organisationURL>http://www.isprambiente.it</organisationURL>
+  <organisationContactURL xml:lang="it">http://www.isprambiente.it/site/it-IT/Servizi_del_sito/Contatti</organisationContactURL>
+  <cc:License rdf:about="http://creativecommons.org/licenses/by/2.5/">
+    <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+    <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+    <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+    <cc:requires rdf:resource="http://creativecommons.org/ns#Attribution"/>
+    <cc:requires rdf:resource="http://creativecommons.org/ns#Notice"/>
+    <dcq:hasVersion>2.5</dcq:hasVersion>
+    <cc:legalcode rdf:resource="http://creativecommons.org/licenses/by/2.5/legalcode"/>
+  </cc:License>
 
-  <NationalStory rdf:about="http://www.miljostatus.no/en/NotMade/#B" xml:lang="en">
-    <geoCoverage>NO</geoCoverage>
-    <topic>country introduction</topic>
-    <question>What are the major societal trends?</question>
-    <pubDate>2008-03-07</pubDate>
-    <keyMessage>
-      Text not yet written
-    </keyMessage>
-    <assessment>
-      <![CDATA[Text not yet written]]>
-    </assessment>
-  </NationalStory>
-
-  <NationalStory rdf:about="http://www.miljostatus.no/en/NotMade/#C" xml:lang="en">
-    <geoCoverage>NO</geoCoverage>
-    <topic>country introduction</topic>
-    <question>What are the main drivers?</question>
-    <pubDate>2008-03-07</pubDate>
-    <keyMessage>
-      Text not yet written
-    </keyMessage>
-    <assessment>
-      <![CDATA[Text not yet written]]>
-    </assessment>
-  </NationalStory>
-
-  <NationalStory rdf:about="http://www.miljostatus.no/en/NotMade/#D" xml:lang="en">
-    <geoCoverage>NO</geoCoverage>
-    <topic>country introduction</topic>
-    <question>What are the foreseen developments?</question>
-    <pubDate>2008-03-07</pubDate>
-    <keyMessage>
-      Text not yet written
-    </keyMessage>
-    <assessment>
-      <![CDATA[Text not yet written]]>
-    </assessment>
-  </NationalStory>
-  
-  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#A" xml:lang="en">
-    <geoCoverage>NO</geoCoverage>
+  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#A" xml:lang="en"
+                 rdfs:comment="A standard NationalStory with two figures">
     <topic>air pollution</topic>
     <question>Why should we care?</question>
-    <pubDate>2008-03-07</pubDate>
+    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <description>Why Norway cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
     </keyMessage>
@@ -65,94 +36,100 @@
 <P>From 1995 to 2001 the number of people in Oslo exposed to levels exceeding the national targets for particulate matter and nitrogen dioxide were reduced by respectively 31 per cent and 77 per cent.</P>
 <P>The figures below show the number of exceedances of the limit value and the national target for particulate matter (PM10) and nitrogen dioxide&nbsp;in Norwegian towns. </P>]]>
     </assessment>
+    <pubDate>2008-03-07</pubDate>
+    <modified>2008-03-07</modified>
     <evaluation>FV</evaluation>
+    <keyword>air</keyword>
+    <keyword>air pollution concentrations</keyword>
+    <keyword>human health</keyword>
+    <eeaIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
     <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07eng.gif"/>
     <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07_eng.gif"/>
   </NationalStory>
 
-  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#B" xml:lang="en">
-    <geoCoverage>NO</geoCoverage>
+  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#B" xml:lang="en"
+                 rdfs:comment="A NationalStory with no Figures and no published assessment in a core set of indicatior at EEA.">
     <topic>air pollution</topic>
-    <question>What are the state and impacts?</question>
-    <pubDate>2008-03-07</pubDate>
+    <question>Why should we care?</question>
+    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <description>Why Norway cares about air pollution and the status of air pollution.</description>
     <keyMessage>
-      The health risks associated with the various substances which make up local air pollution depend on the levels of concentrations and exposure time.
+      (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
     </keyMessage>
     <assessment>
-      <![CDATA[<P>In the largest towns, current knowledge indicates that nitrogen dioxide and particulate matter pose the most serious risks to health. These substances result in a higher frequency of various types of respiratory complaints. Particulate matter can also cause cardiovascular disease and death. </P>
-<P>SO2 can result in lung disease both in people who suffer from asthma and in otherwise healthy people. Benzene and other aromatic compounds, for example PAHs, may be carcinogenic. Carbon monoxide reduces the capacity of the blood to transport oxygen and can cause headaches, nausea and problems for heart patients. Lead levels are no longer a serious problem today, but lead can affect the nervous system, reproduction, and the formation of haemoglobin in the body, and can cause cancer.</P>
-<H3>Plants and animals</H3>
-<P>Local air pollution may affect the health of animals and plants. NO2 and SO2 both contribute to acidification and eutrophication of lakes and rivers. CO and NO2 also contribute to the formation of ground-level ozone, which can damage vegetation and various types of materials. SO2 is also corrosive and erodes buildings and historical monuments.</P>]]>
+      <![CDATA[<P>Modelling calculations for 2003, carried out by the Norwegian Institute for Air Research, show that a number of people are exposed to local air pollution in the capital and largest city Oslo, and in two other major towns, Trondheim and Bergen. Almost half of the population in Oslo were exposed to levels of particulate matter that exceeded the national target for 2010. In Trondheim (population 155 000) more than 8 000 people were exposed. In Bergen (population 240 000) similar figures were less than 3 000 people.</P>
+<P>Calculations also show that about 7 000, 3 200 and 700 people are exposed to levels exceeding the national target for nitrogen dioxide in Oslo, Trondheim and Bergen respectively. More than 25 per cent of the population in Oslo is exposed to levels exceeding the national target for benzene. In other towns the level of benzene is low.&nbsp;</P>
+<P>From 1995 to 2001 the number of people in Oslo exposed to levels exceeding the national targets for particulate matter and nitrogen dioxide were reduced by respectively 31 per cent and 77 per cent.</P>
+<P>The figures below show the number of exceedances of the limit value and the national target for particulate matter (PM10) and nitrogen dioxide&nbsp;in Norwegian towns. </P>]]>
     </assessment>
+    <pubDate>2008-03-07</pubDate>
+    <modified>2008-03-07</modified>
     <evaluation>FV</evaluation>
+    <keyword>air</keyword>
+    <keyword>air pollution concentrations</keyword>
+    <keyword>human health</keyword>
+    <eeaIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/" />
+    <dataSource rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-08eng.xml"/>
   </NationalStory>
 
-  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#C" xml:lang="en">
-    <geoCoverage>NO</geoCoverage>
+
+  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#C" xml:lang="en"
+                 rdfs:comment="A NationalStory divded into two indicators. This is the first.">
     <topic>air pollution</topic>
     <question>What are the related drivers and pressures?</question>
-    <pubDate>2008-03-07</pubDate>
+    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <description>Why Norway cares about air pollution and the status of air pollution.</description>
     <keyMessage>
-      Road traffic, domestic heating, long-range pollution and industry are all sources of local air pollution. Important factors influencing the emission trends from these sources include:
+      Ozone precursor emissions decreasing, but NEC reduction target out of reach
     </keyMessage>
     <assessment>
-      <![CDATA[<UL>
-<LI>The siting of industrial installations and settlement patterns. This influences the demand for transport. </LI>
-<LI>The size of people’s homes. This influences the demand for heating </LI>
-<LI>Road-building. This increases the demand for transport. </LI>
-<LI>Car ownership (mobility), energy use and economic growth governs consumption.<BR></LI></UL>
-<P>Developments in the transport sector are largely driven by economic and structural trends. For example, general economic growth, growing international trade, land use patterns and rising private consumption all result in a larger volume of transport.</P>]]>
+      <![CDATA[Ozone precursor (NOx and VOC) emissions, expressed in TOFP (Total Ozone Formation Potential) units decreased by 40% between 1990 and 2007. Because the different ozone precursors have a different share in the tropospheric ozone formation, the photochemically relevant sum of the precursors is expressed in TOFP units. Besides NOx and VOC, CO and CH4 also play a role in the photochemical ozone formation reactions. There role however is less important and the TOFP used here is only the relevant sum of NOx and VOC.]]>
     </assessment>
+    <pubDate>2008-03-07</pubDate>
+    <modified>2008-03-07</modified>
     <evaluation>FV</evaluation>
+    <keyword>air</keyword>
+    <keyword>ozone</keyword>
+    <keyword>air pollution concentrations</keyword>
+    <keyword>human health</keyword>
+    <eeaIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07_eng.gif"/>
   </NationalStory>
 
-  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#D" xml:lang="en">
-    <geoCoverage>NO</geoCoverage>
+  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#C" xml:lang="en"
+                 rdfs:comment="A NationalStory divded into two indicators. This is the second indicator belonging to the one above.Common criteria is the topic and question..">
     <topic>air pollution</topic>
-    <question>What are the policy responses?</question>
-    <pubDate>2008-03-07</pubDate>
+    <question>What are the related drivers and pressures?</question>
+    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <description>Why Norway cares about air pollution and the status of air pollution.</description>
     <keyMessage>
-      Road traffic is the dominant source of local air pollution. Wood-burning also makes a substantial contribution to the concentration levels of particulate matter in the winter months. On cold days in areas where there are large numbers of wood-burning stoves, this can be the dominant source of particulate matter. Other important sources are industrial emissions and long-range transport of pollution from other European countries.
-    </keyMessage>
-    <evaluation>FV</evaluation>
-  </NationalStory>
-
-  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#E" xml:lang="en">
-    <geoCoverage>NO</geoCoverage>
-    <topic>air pollution</topic>
-    <question>What is the 2020 outlook?</question>
-    <pubDate>2008-03-07</pubDate>
-    <keyMessage>
-      Statutory limit values for particulate matter, nitrogen dioxide, sulphur dioxide, benzene, carbon monoxide and lead are set out in the Norwegian Regulations relating to pollution control. The limit values must not be exceeded after 2005 and 2010. The regulation is based on EU directives for local air pollution.
+      Primary and precursor PM10 emissions decreasing slowly
     </keyMessage>
     <assessment>
-      <![CDATA[<P>In order to improve air quality certain air quality guidelines for a number of pollutants have been drawn up, as well as targets for air quality: </P>
-<P>The Norwegian Pollution Control Authority (SFT) and the National Institute of Public Health have drawn up recommended air quality guidelines for a number of pollutants. These are based on the results of international research, and indicate the levels at which adverse health effects may begin to appear. </P>
-<P>National targets for air quality have also been drawn up for several pollutants. These are based on socio-economic considerations as well as considerations of public health, and are to be achieved by 2005 or 2010.</P>
-<H3>Measures to reduce emissions from road traffic and vehicles</H3>
-<P>Measures to reduce emissions from road traffic are divided into two categories: those designed to reduce the volume of traffic and those designed to reduce emissions.</P>
-<H4>Measures to reduce traffic </H4>
-<P>Measures to reduce traffic are most effective if several instruments are used in combination – for instance a combination of road pricing and parking restrictions together with improvements of public transport. Another approach is to make more active use of the Planning and Building Act when siting commercial and industrial activities and housing. This can help to reduce overall transport needs and encourage a changeover to more environmentally friendly forms of transport. The National Policy Guidelines for coordinated land use and transport planning can be used to achieve these goals.&nbsp;&nbsp;</P>
-<H4>Measures to reduce emissions from vehicles</H4>
-<P>These include measures to reduce emissions of exhaust gasses from vehicles and to reduce the number of vehicles fitted with studded tyres in winter. Studded tires are a major source of road dust. Emission standards for road vehicles are becoming more stringent, and the quality of both petrol and diesel is being improved. Emissions from road traffic can also be reduced by a changeover to alternative types of fuel, such as gas, bio diesel, hydrogen or electricity.&nbsp; </P>
-<H3>Measures to reduce emissions from woodburning stoves</H3>
-<P>From 1 July 1998 new woodburning stoves that are sold must meet legal standards for emissions of particulate matter. To encourage the replacement of old, polluting stoves with new stoves that generate lower emissions some local authorities have introduced a scheme of partial refunds. The scheme has been introduced both in Oslo and in Bergen.</P>
-<H3>Measures to reduce long-range pollution</H3>
-<P>Long-range air pollution is being reduced through international agreements and EU directives. These include the Convention on Long-range Transboundary Air Pollution, the EU directive on emissions to air from large combustion plants and a new directive that sets maximum limits for emissions to air of various substances. <BR></P>]]>
+      <![CDATA[Recent studies have demonstrated that almost 50% of the total measured PM10 in Belgium is secundary aerosol (sulphates, nitrates). The AFP (Aerosol Formation Potential) emissions (blue bars), this is the weighted sum of the NH3, SO2 and NOx emissions based on their aerosol formation potential, have decreased by 23 % in 2007 since 2000.  The primary PM10 emissions (green bars) decreased by 28% in 2007 since 2000. The total (=sum of primary and secundary) PM10 emissions were more than 20% lower in 2007 compared to 2000.]]>
     </assessment>
+    <pubDate>2008-03-07</pubDate>
+    <modified>2008-03-07</modified>
     <evaluation>FV</evaluation>
+    <keyword>air</keyword>
+    <keyword>ozone</keyword>
+    <keyword>air pollution concentrations</keyword>
+    <keyword>human health</keyword>
+    <eeaIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07eng.gif"/>
   </NationalStory>
 
-  <Figure rdf:about="http://www.miljostatus.no/PageFiles/1069/pm10_04-07eng.gif">
-    <mediaType>application/xml</mediaType>
-    <fileName>Hazapm10_04-07eng.xml</fileName>
+
+  <Figure rdf:about="http://www.miljostatus.no/PageFiles/1069/pm10_04-07eng-high-resolution.gif">
+    <mediaType>image/gif</mediaType>
+    <fileName>pm10_04-07eng-high-resolution.gif</fileName>
     <dataSource rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07eng.xml"/>
   </Figure>
 
-  <Figure rdf:about="http://www.miljostatus.no/PageFiles/1069/no2_04-07_eng.gif">
-    <mediaType>application/xml</mediaType>
-    <fileName>Hazapm10_04-08eng.xml</fileName>
-    <dataSource rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-08eng.xml"/>
+  <Figure rdf:about="http://www.miljostatus.no/PageFiles/1069/no2_04-07_eng-high-resolution.gif">
+    <mediaType>image/gif</mediaType>
+    <fileName>no2_04-07_eng-high-resolution.gif</fileName>
+    <dataSource rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-08eng.xls"/>
   </Figure>
 
   <DataFile rdf:about="http://www.miljostatus.no/PageFiles/1069/pm10_04-07eng.xml">
@@ -161,9 +138,33 @@
     <dataURL>http://www.miljostatus.no/PageFiles/1069/pm10_04-07eng.xml</dataURL>
   </DataFile>
 
-  <DataFile rdf:about="http://www.miljostatus.no/PageFiles/1069/pm10_04-08eng.xml">
-    <mediaType>application/xml</mediaType>
-    <fileName>Hazapm10_04-10eng.xml</fileName>
-    <dataURL>http://www.miljostatus.no/PageFiles/1069/pm10_04-08eng.xml</dataURL>
+  <DataFile rdf:about="http://www.miljostatus.no/PageFiles/1069/pm10_04-08eng.xls"
+            rdfs:comment="This data file is based on some other data">
+    <mediaType>application/ms-excel</mediaType>
+    <fileName>/pm10_04-08eng.xls</fileName>
+    <dataURL>http://www.miljostatus.no/PageFiles/1069/pm10_04-09eng.xml</dataURL>
   </DataFile>
+
+  <DataFile rdf:about="http://www.miljostatus.no/PageFiles/1069/pm10_04-09eng.xml">
+    <mediaType>application/xml</mediaType>
+    <fileName>pm10_04-09eng.xml</fileName>
+    <dataURL>http://www.miljostatus.no/PageFiles/1069/pm10_04-09eng.xml</dataURL>
+  </DataFile>
+
+
+  <Figure rdf:about="http://www.miljostatus.no/PageFiles/1069/map-high-resolution.gif"
+          rdfs:comments="This is a map which is an image and data it self.">
+    <mediaType>image/gif</mediaType>
+    <fileName>map.gif</fileName>
+    <dataSource rdf:resource="http://www.miljostatus.no/PageFiles/1069/map.gif2"/>
+  </Figure>
+
+  <DataFile rdf:about="http://www.miljostatus.no/PageFiles/1069/map.gif2"
+          rdfs:comments="This is the data for the map above, which is the same file as above.">
+    <mediaType>image/gif</mediaType>
+    <fileName>map.gif</fileName>
+    <dataURL>http://www.miljostatus.no/PageFiles/1069/map-high-resolution.gif</dataURL>
+  </DataFile>
+
+ </channel>
 </rdf:RDF>
