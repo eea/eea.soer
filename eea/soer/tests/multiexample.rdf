@@ -1,26 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?> 
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-         xmlns="http://www.eea.europa.eu/soer/1.0#"
+<rdf:RDF xmlns="http://www.eea.europa.eu/soer/1.0#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-	 xmlns:cc='http://creativecommons.org/ns#'
-	 xmlns:dc='http://purl.org/dc/elements/1.1/'
-         xmlns:dcq='http://purl.org/dc/terms/'>
+         xmlns:cc="http://creativecommons.org/ns#"
+	 xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:dcq="http://purl.org/dc/terms/">
 <channel rdf:about="">
   <organisationName>National Institute for the Protection and Environmental Research</organisationName>
   <organisationName xml:lang="it">Istituto Superiore per la Protezione e la Ricerca Ambientale</organisationName>
   <reportingCountryCode rdf:resource="http://rod.eionet.europa.eu/spatial/19" />
   <organisationURL>http://www.isprambiente.it</organisationURL>
   <organisationContactURL xml:lang="it">http://www.isprambiente.it/site/it-IT/Servizi_del_sito/Contatti</organisationContactURL>
-  <cc:License rdf:about="http://creativecommons.org/licenses/by/2.5/">
-    <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
-    <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
-    <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
-    <cc:requires rdf:resource="http://creativecommons.org/ns#Attribution"/>
-    <cc:requires rdf:resource="http://creativecommons.org/ns#Notice"/>
-    <dcq:hasVersion>2.5</dcq:hasVersion>
-    <cc:legalcode rdf:resource="http://creativecommons.org/licenses/by/2.5/legalcode"/>
-  </cc:License>
-
+  <cc:License rdf:resource="http://creativecommons.org/licenses/by/2.5/" />
+</channel>
   <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#A" xml:lang="en"
                  rdfs:comment="A standard NationalStory with two figures">
     <topic>air pollution</topic>
@@ -43,8 +35,8 @@
     <keyword>air pollution concentrations</keyword>
     <keyword>human health</keyword>
     <eeaIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
-    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07eng.gif"/>
-    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07_eng.gif"/>
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif"/>
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif"/>
   </NationalStory>
 
   <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#B" xml:lang="en"
@@ -93,7 +85,7 @@
     <keyword>air pollution concentrations</keyword>
     <keyword>human health</keyword>
     <eeaIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
-    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07_eng.gif"/>
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif"/>
   </NationalStory>
 
   <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#C" xml:lang="en"
@@ -116,17 +108,18 @@
     <keyword>air pollution concentrations</keyword>
     <keyword>human health</keyword>
     <eeaIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
-    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07eng.gif"/>
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif"/>
   </NationalStory>
 
-
-  <Figure rdf:about="http://www.miljostatus.no/PageFiles/1069/pm10_04-07eng-high-resolution.gif">
+  <Figure rdf:about="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif"
+          rdfs:comment="Link to the highest possible resolution of the image.">
     <mediaType>image/gif</mediaType>
     <fileName>pm10_04-07eng-high-resolution.gif</fileName>
     <dataSource rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07eng.xml"/>
   </Figure>
 
-  <Figure rdf:about="http://www.miljostatus.no/PageFiles/1069/no2_04-07_eng-high-resolution.gif">
+  <Figure rdf:about="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif"
+          rdfs:comment="Link to the highest possible resolution of the image.">
     <mediaType>image/gif</mediaType>
     <fileName>no2_04-07_eng-high-resolution.gif</fileName>
     <dataSource rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-08eng.xls"/>
@@ -141,7 +134,7 @@
   <DataFile rdf:about="http://www.miljostatus.no/PageFiles/1069/pm10_04-08eng.xls"
             rdfs:comment="This data file is based on some other data">
     <mediaType>application/ms-excel</mediaType>
-    <fileName>/pm10_04-08eng.xls</fileName>
+    <fileName>pm10_04-08eng.xls</fileName>
     <dataURL>http://www.miljostatus.no/PageFiles/1069/pm10_04-09eng.xml</dataURL>
   </DataFile>
 
@@ -166,5 +159,4 @@
     <dataURL>http://www.miljostatus.no/PageFiles/1069/map-high-resolution.gif</dataURL>
   </DataFile>
 
- </channel>
 </rdf:RDF>
