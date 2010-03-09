@@ -12,15 +12,14 @@ All content as part of eea.soer can be imported and exported as `SOER Feed <http
   >>> self.setRoles(['Manager'])
   >>> soer = self.portal.SOER
   >>> country = soer[soer.invokeFactory('SOERCountry', id='no')]
-  >>> from eea.soer.tests.base import norwayrdf
-  >>> country.setRdfFeed(norwayrdf)
+  >>> from eea.soer.tests.base import examplerdf
+  >>> country.setRdfFeed(examplerdf)
     
 Lets load an RDF
 
   >>> _ = country.updateFeed()
-  >>> for obj in country.objectValues():
-  ...    print obj.original_url
-
+  >>> len(country.objectValues())
+  3
 
   >>> from surf import *
   >>> store = Store(reader='rdflib',  writer='rdflib', rdflib_store = 'IOMemory')
@@ -28,8 +27,145 @@ Lets load an RDF
   >>> ns.register(SOER="http://www.eea.europa.eu/soer/1.0#")
 
 
-  >>> _ = store.load_triples(source=soerrdf)
-  >>> NationalStory = session.get_class(ns.SOER['NationalStory'])
-
-
+  >>> _ = store.load_triples(source=examplerdf)
+  >>> graph = store.reader.graph
+  >>> print graph.serialize(format = "pretty-xml")
+  <?xml version="1.0" encoding="utf-8"?>
+  <rdf:RDF
+    xmlns='http://www.eea.europa.eu/soer/1.0#'
+    xmlns:cc='http://creativecommons.org/ns#'
+    xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+    xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#'
+  >
+    <Figure rdf:about="http://www.miljostatus.no/PageFiles/1069/map-high-resolution.gif">
+      <mediaType>image/gif</mediaType>
+      <dataSource>
+        <DataFile rdf:about="http://www.miljostatus.no/PageFiles/1069/map.gif2">
+          <mediaType>image/gif</mediaType>
+          <fileName>map.gif</fileName>
+          <dataURL>http://www.miljostatus.no/PageFiles/1069/map-high-resolution.gif</dataURL>
+          <rdfs:comments>This is the data for the map above, which is the same file as above.</rdfs:comments>
+        </DataFile>
+      </dataSource>
+      <fileName>map.gif</fileName>
+      <rdfs:comments>This is a map which is an image and data it self.</rdfs:comments>
+    </Figure>
+    <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#B">
+      <description xml:lang="en">Why Norway cares about air pollution and the status of air pollution.</description>
+      <eeaIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/"/>
+      <question xml:lang="en">Why should we care?</question>
+      <keyMessage xml:lang="en">
+        (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
+      </keyMessage>
+      <pubDate xml:lang="en">2008-03-07</pubDate>
+      <keyword xml:lang="en">air pollution concentrations</keyword>
+      <keyword xml:lang="en">human health</keyword>
+      <keyword xml:lang="en">air</keyword>
+      <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28"/>
+      <modified xml:lang="en">2008-03-07</modified>
+      <evaluation xml:lang="en">FV</evaluation>
+      <dataSource rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-08eng.xml"/>
+      <assessment xml:lang="en"><![CDATA[
+        <P>Modelling calculations for 2003, carried out by the Norwegian Institute for Air Research, show that a number of people are exposed to local air pollution in the capital and largest city Oslo, and in two other major towns, Trondheim and Bergen. Almost half of the population in Oslo were exposed to levels of particulate matter that exceeded the national target for 2010. In Trondheim (population 155 000) more than 8 000 people were exposed. In Bergen (population 240 000) similar figures were less than 3 000 people.</P>
+  <P>Calculations also show that about 7 000, 3 200 and 700 people are exposed to levels exceeding the national target for nitrogen dioxide in Oslo, Trondheim and Bergen respectively. More than 25 per cent of the population in Oslo is exposed to levels exceeding the national target for benzene. In other towns the level of benzene is low.&nbsp;</P>
+  <P>From 1995 to 2001 the number of people in Oslo exposed to levels exceeding the national targets for particulate matter and nitrogen dioxide were reduced by respectively 31 per cent and 77 per cent.</P>
+  <P>The figures below show the number of exceedances of the limit value and the national target for particulate matter (PM10) and nitrogen dioxide&nbsp;in Norwegian towns. </P>
+      ]]></assessment>
+      <rdfs:comment xml:lang="en">A NationalStory with no Figures and no published assessment in a core set of indicatior at EEA.</rdfs:comment>
+      <topic xml:lang="en">air pollution</topic>
+    </NationalStory>
+    <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#C">
+      <description xml:lang="en">Why Norway cares about air pollution and the status of air pollution.</description>
+      <eeaIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/"/>
+      <question xml:lang="en">What are the related drivers and pressures?</question>
+      <keyMessage xml:lang="en">
+        Primary and precursor PM10 emissions decreasing slowly
+      </keyMessage>
+      <keyMessage xml:lang="en">
+        Ozone precursor emissions decreasing, but NEC reduction target out of reach
+      </keyMessage>
+      <pubDate xml:lang="en">2008-03-07</pubDate>
+      <keyword xml:lang="en">air pollution concentrations</keyword>
+      <keyword xml:lang="en">human health</keyword>
+      <keyword xml:lang="en">ozone</keyword>
+      <keyword xml:lang="en">air</keyword>
+      <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28"/>
+      <modified xml:lang="en">2008-03-07</modified>
+      <evaluation xml:lang="en">FV</evaluation>
+      <hasFigure>
+        <Figure rdf:about="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif">
+          <mediaType>image/gif</mediaType>
+          <fileName>no2_04-07_eng-high-resolution.gif</fileName>
+          <dataSource rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-08eng.xls"/>
+          <rdfs:comment>Link to the highest possible resolution of the image.</rdfs:comment>
+        </Figure>
+      </hasFigure>
+      <hasFigure>
+        <Figure rdf:about="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif">
+          <mediaType>image/gif</mediaType>
+          <fileName>pm10_04-07eng-high-resolution.gif</fileName>
+          <dataSource rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07eng.xml"/>
+          <rdfs:comment>Link to the highest possible resolution of the image.</rdfs:comment>
+        </Figure>
+      </hasFigure>
+      <assessment xml:lang="en">
+        Ozone precursor (NOx and VOC) emissions, expressed in TOFP (Total Ozone Formation Potential) units decreased by 40% between 1990 and 2007. Because the different ozone precursors have a different share in the tropospheric ozone formation, the photochemically relevant sum of the precursors is expressed in TOFP units. Besides NOx and VOC, CO and CH4 also play a role in the photochemical ozone formation reactions. There role however is less important and the TOFP used here is only the relevant sum of NOx and VOC.
+      </assessment>
+      <assessment xml:lang="en">
+        Recent studies have demonstrated that almost 50% of the total measured PM10 in Belgium is secundary aerosol (sulphates, nitrates). The AFP (Aerosol Formation Potential) emissions (blue bars), this is the weighted sum of the NH3, SO2 and NOx emissions based on their aerosol formation potential, have decreased by 23 % in 2007 since 2000.  The primary PM10 emissions (green bars) decreased by 28% in 2007 since 2000. The total (=sum of primary and secundary) PM10 emissions were more than 20% lower in 2007 compared to 2000.
+      </assessment>
+      <rdfs:comment xml:lang="en">A NationalStory divded into two indicators. This is the second indicator belonging to the one above.Common criteria is the topic and question..</rdfs:comment>
+      <rdfs:comment xml:lang="en">A NationalStory divded into two indicators. This is the first.</rdfs:comment>
+      <topic xml:lang="en">air pollution</topic>
+    </NationalStory>
+    <channel rdf:about="file:///Users/sasha/dev/eea-buildout/extras/eea.soer/eea/soer/tests/multiexample.rdf">
+      <organisationContactURL xml:lang="it">http://www.isprambiente.it/site/it-IT/Servizi_del_sito/Contatti</organisationContactURL>
+      <cc:License rdf:resource="http://creativecommons.org/licenses/by/2.5/"/>
+      <organisationURL>http://www.isprambiente.it</organisationURL>
+      <organisationName>National Institute for the Protection and Environmental Research</organisationName>
+      <organisationName xml:lang="it">Istituto Superiore per la Protezione e la Ricerca Ambientale</organisationName>
+      <reportingCountryCode rdf:resource="http://rod.eionet.europa.eu/spatial/19"/>
+    </channel>
+    <DataFile rdf:about="http://www.miljostatus.no/PageFiles/1069/pm10_04-09eng.xml">
+      <mediaType>application/xml</mediaType>
+      <fileName>pm10_04-09eng.xml</fileName>
+      <dataURL>http://www.miljostatus.no/PageFiles/1069/pm10_04-09eng.xml</dataURL>
+    </DataFile>
+    <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#A">
+      <description xml:lang="en">Why Norway cares about air pollution and the status of air pollution.</description>
+      <eeaIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/"/>
+      <question xml:lang="en">Why should we care?</question>
+      <keyMessage xml:lang="en">
+        (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
+      </keyMessage>
+      <pubDate xml:lang="en">2008-03-07</pubDate>
+      <keyword xml:lang="en">air pollution concentrations</keyword>
+      <keyword xml:lang="en">human health</keyword>
+      <keyword xml:lang="en">air</keyword>
+      <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28"/>
+      <modified xml:lang="en">2008-03-07</modified>
+      <evaluation xml:lang="en">FV</evaluation>
+      <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif"/>
+      <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif"/>
+      <assessment xml:lang="en"><![CDATA[
+        <P>Modelling calculations for 2003, carried out by the Norwegian Institute for Air Research, show that a number of people are exposed to local air pollution in the capital and largest city Oslo, and in two other major towns, Trondheim and Bergen. Almost half of the population in Oslo were exposed to levels of particulate matter that exceeded the national target for 2010. In Trondheim (population 155 000) more than 8 000 people were exposed. In Bergen (population 240 000) similar figures were less than 3 000 people.</P>
+  <P>Calculations also show that about 7 000, 3 200 and 700 people are exposed to levels exceeding the national target for nitrogen dioxide in Oslo, Trondheim and Bergen respectively. More than 25 per cent of the population in Oslo is exposed to levels exceeding the national target for benzene. In other towns the level of benzene is low.&nbsp;</P>
+  <P>From 1995 to 2001 the number of people in Oslo exposed to levels exceeding the national targets for particulate matter and nitrogen dioxide were reduced by respectively 31 per cent and 77 per cent.</P>
+  <P>The figures below show the number of exceedances of the limit value and the national target for particulate matter (PM10) and nitrogen dioxide&nbsp;in Norwegian towns. </P>
+      ]]></assessment>
+      <rdfs:comment xml:lang="en">A standard NationalStory with two figures</rdfs:comment>
+      <topic xml:lang="en">air pollution</topic>
+    </NationalStory>
+    <DataFile rdf:about="http://www.miljostatus.no/PageFiles/1069/pm10_04-07eng.xml">
+      <mediaType>application/xml</mediaType>
+      <fileName>Hazapm10_04-09eng.xml</fileName>
+      <dataURL>http://www.miljostatus.no/PageFiles/1069/pm10_04-07eng.xml</dataURL>
+    </DataFile>
+    <DataFile rdf:about="http://www.miljostatus.no/PageFiles/1069/pm10_04-08eng.xls">
+      <mediaType>application/ms-excel</mediaType>
+      <fileName>pm10_04-08eng.xls</fileName>
+      <rdfs:comment>This data file is based on some other data</rdfs:comment>
+      <dataURL>http://www.miljostatus.no/PageFiles/1069/pm10_04-09eng.xml</dataURL>
+    </DataFile>
+  </rdf:RDF>
 
