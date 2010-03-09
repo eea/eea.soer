@@ -12,7 +12,7 @@ PRODUCTS = ['ATVocabularyManager', 'FiveSite']
 PROFILES = ['eea.soer:default']
 
 soerrdf = os.path.join(package_home(globals()), 'soerfeed.rdf')
-norwayrdf = os.path.join(package_home(globals()), 'multiexample.rdf')
+examplerdf = os.path.join(package_home(globals()), 'multiexample.rdf')
 
 @onsetup
 def setup_soer():
