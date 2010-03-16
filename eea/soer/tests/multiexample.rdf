@@ -2,7 +2,6 @@
 <rdf:RDF xmlns="http://www.eea.europa.eu/soer/1.0#"
          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-         xmlns:cc="http://creativecommons.org/ns#"
 	 xmlns:dc="http://purl.org/dc/elements/1.1/"
          xmlns:dcq="http://purl.org/dc/terms/">
 <channel rdf:about="">
@@ -11,7 +10,7 @@
   <reportingCountryCode rdf:resource="http://rod.eionet.europa.eu/spatial/19" />
   <organisationURL>http://www.isprambiente.it</organisationURL>
   <organisationContactURL xml:lang="it">http://www.isprambiente.it/site/it-IT/Servizi_del_sito/Contatti</organisationContactURL>
-  <cc:License rdf:resource="http://creativecommons.org/licenses/by/2.5/" />
+  <license rdf:resource="http://creativecommons.org/licenses/by/2.5/" />
 </channel>
   <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#A" xml:lang="en"
                  rdfs:comment="A standard NationalStory with two figures">
