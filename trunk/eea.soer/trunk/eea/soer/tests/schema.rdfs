@@ -111,7 +111,7 @@ URL to a contact page of the reporting organisation of this feed.</rdfs:comment>
   <rdfs:domain rdf:resource="#channel"/>
   <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/license" />
   <rdfs:comment xml:lang="en">(Required)
-URL to a license. 
+URL to a license. </rdfs:comment>
 </rdf:Property>
 
 
