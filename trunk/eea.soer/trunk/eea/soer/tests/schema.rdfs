@@ -16,8 +16,8 @@
   <owl:versionInfo xml:lang="en">V 1.0, draft</owl:versionInfo>
   <dcterms:license rdf:resource="http://creativecommons.org/licenses/by/2.5/" />
   <rdfs:comment xml:lang="en">SENSE: Shared European National State of the 
-Environment ontolgy provides the vocabulary for sharing National stories from
-SOER report PART C. 
+Environment ontology provides the vocabulary for sharing National storie/Indicatorss for
+SOER report. 
 
 SENSE ontology allows describing the relationship between (1) National Story, 
 (2) indicators, (3) geographical coverage, (4) data source
@@ -25,7 +25,7 @@ SENSE ontology allows describing the relationship between (1) National Story,
 Full Example https://svn.eionet.europa.eu/projects/Zope/browser/trunk/eea.soer/trunk/eea/soer/tests/multiexample.rdf
 All usescases of RDF (not full reports/content) shows how the RDF would look for the different usecases of
 
-    * normal National Story with link to a core set of indicator
+    * normal National Story with link to a European indicator
     * National Story based on multiple indicators
     * National Story without figures
     * Figure that is a map which is also the data for it self.
