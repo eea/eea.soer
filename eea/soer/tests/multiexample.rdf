@@ -33,7 +33,7 @@
     <keyword>air</keyword>
     <keyword>air pollution concentrations</keyword>
     <keyword>human health</keyword>
-    <eeaIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
+    <relatedEuropeanIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
     <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif"/>
     <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif"/>
   </NationalStory>
@@ -59,7 +59,7 @@
     <keyword>air</keyword>
     <keyword>air pollution concentrations</keyword>
     <keyword>human health</keyword>
-    <eeaIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/" />
+    <relatedEuropeanIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/" />
     <dataSource rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-08eng.xml"/>
   </NationalStory>
 
@@ -83,11 +83,11 @@
     <keyword>ozone</keyword>
     <keyword>air pollution concentrations</keyword>
     <keyword>human health</keyword>
-    <eeaIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
+    <relatedEuropeanIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
     <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif"/>
   </NationalStory>
 
-  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#C" xml:lang="en"
+  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#D" xml:lang="en"
                  rdfs:comment="A NationalStory divded into two indicators. This is the second indicator belonging to the one above.Common criteria is the topic and question..">
     <topic>air pollution</topic>
     <question>What are the related drivers and pressures?</question>
@@ -106,7 +106,7 @@
     <keyword>ozone</keyword>
     <keyword>air pollution concentrations</keyword>
     <keyword>human health</keyword>
-    <eeaIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
+    <relatedEuropeanIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
     <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif"/>
   </NationalStory>
 
