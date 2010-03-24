@@ -66,6 +66,7 @@ class SOERCountry(ATFolder):
                 question = nstory.soer_question.first.strip()
                 questions = dict([[v,k] for k,v in vocab.long_diversity_questions.items()])
                 questions.update(dict([[v,k] for k,v in vocab.long_questions.items()]))
+                portal_type = 'FlexibilityReport'
                 if topic == u'country introduction':
                     portal_type = 'DiversityReport'                                            
                 elif topic in [u'air pollution', u'freshwater', u'climate change',
@@ -74,8 +75,7 @@ class SOERCountry(ATFolder):
                         portal_type = 'CommonalityReport'
                     elif question in vocab.long_diversity_questions.values():
                         portal_type = 'DiversityReport'                        
-                else:
-                    portal_type = 'FlexibilityReport'                                            
+                
                 report = self[self.invokeFactory(portal_type, id='temp_report',
                                                  soerTopic=topic,
                                                  soerQuestion=questions[question])]
@@ -99,6 +99,8 @@ class SOERCountry(ATFolder):
                         if image_data:
                             figure = report[report.invokeFactory('Image', id=fig.soer_fileName.first.strip(),
                                             image=image_data)]
+                            figure.setTitle(fig.soer_caption.first.strip())
+                            figure.setDescription(fig.soer_description.first.strip())                            
                             wtool.doActionFor(figure, 'publish', comment='Automatic feed update')
                         for dataFile in fig.soer_dataSource:
                             dataFileObj = report[report.invokeFactory('Link', id=dataFile.soer_fileName.first.strip(),

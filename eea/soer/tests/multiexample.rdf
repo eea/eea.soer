@@ -64,8 +64,29 @@
   </NationalStory>
 
 
+  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/" xml:lang="en"
+                 rdfs:comment="A NationalStory divded into two indicators. This is the main part.">
+    <topic>air pollution</topic>
+    <question>What are the related drivers and pressures?</question>
+    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <description>Why Norway cares about air pollution and the status of air pollution.</description>
+    <keyMessage>
+      Ozone precursor emissions decreasing, but NEC reduction target out of reach
+    </keyMessage>
+    <assessment>
+      <![CDATA[Ozone precursor (NOx and VOC) emissions, expressed in TOFP (Total Ozone Formation Potential) units decreased by 40% between 1990 and 2007. Because the different ozone precursors have a different share in the tropospheric ozone formation, the photochemically relevant sum of the precursors is expressed in TOFP units. Besides NOx and VOC, CO and CH4 also play a role in the photochemical ozone formation reactions. There role however is less important and the TOFP used here is only the relevant sum of NOx and VOC.]]>
+    </assessment>
+    <pubDate>2008-03-07</pubDate>
+    <modified>2008-03-07</modified>
+    <evaluation>FV</evaluation>
+    <keyword>air</keyword>
+    <keyword>ozone</keyword>
+    <keyword>air pollution concentrations</keyword>
+    <keyword>human health</keyword>
+  </NationalStory>
+  
   <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#C" xml:lang="en"
-                 rdfs:comment="A NationalStory divded into two indicators. This is the first.">
+                 rdfs:comment="A NationalStory divded into two indicators. This is the first indicator.">
     <topic>air pollution</topic>
     <question>What are the related drivers and pressures?</question>
     <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
@@ -114,6 +135,8 @@
           rdfs:comment="Link to the highest possible resolution of the image.">
     <mediaType>image/gif</mediaType>
     <fileName>pm10_04-07eng-high-resolution.gif</fileName>
+    <caption>Figure caption</caption>
+    <description>Figure description</description>
     <dataSource rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07eng.xml"/>
   </Figure>
 
@@ -121,6 +144,8 @@
           rdfs:comment="Link to the highest possible resolution of the image.">
     <mediaType>image/gif</mediaType>
     <fileName>no2_04-07_eng-high-resolution.gif</fileName>
+    <caption>Figure caption</caption>
+    <description>Figure description</description>
     <dataSource rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-08eng.xls"/>
   </Figure>
 
@@ -148,6 +173,8 @@
           rdfs:comments="This is a map which is an image and data it self.">
     <mediaType>image/gif</mediaType>
     <fileName>map.gif</fileName>
+    <caption>Figure caption</caption>
+    <description>Figure description</description>
     <dataSource rdf:resource="http://www.miljostatus.no/PageFiles/1069/map.gif2"/>
   </Figure>
 
