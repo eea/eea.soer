@@ -19,7 +19,7 @@ def test_suite():
                   optionflags=OPTIONFLAGS,
                   package='eea.soer',
                   test_class=SOERFunctionalTestCase),
-            FunctionalDocFileSuite('sense.txt',
+            FunctionalDocFileSuite('plone2rdf.txt',
                   optionflags=OPTIONFLAGS,
                   package='eea.soer',
                   test_class=SOERFunctionalTestCase),

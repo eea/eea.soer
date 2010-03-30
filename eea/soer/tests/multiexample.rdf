@@ -41,7 +41,7 @@
   <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#B" xml:lang="en"
                  rdfs:comment="A NationalStory with no Figures and no published assessment in a core set of indicatior at EEA.">
     <topic>air pollution</topic>
-    <question>Why should we care?</question>
+    <question>What are the state and impacts?</question>
     <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
     <description>Why Norway cares about air pollution and the status of air pollution.</description>
     <keyMessage>

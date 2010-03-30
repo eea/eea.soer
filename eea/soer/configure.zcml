@@ -23,4 +23,6 @@
       handler=".content.FlexibilityReport.gen_title"
       />
 
+  <adapter factory=".sense.NationalStory2Surf" />
+  <adapter factory=".sense.Figure2Surf" />
 </configure>
