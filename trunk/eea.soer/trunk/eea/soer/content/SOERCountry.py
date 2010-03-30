@@ -89,8 +89,8 @@ class SOERCountry(ATFolder):
                 
                 report.setDescription(nstory.soer_keyMessage.first.strip())
                 report.setGeoCoverage(nstory.soer_geoCoverage.first.strip())
-                report._renameAfterCreation(check_auto_id=False)
-
+                newId = report._renameAfterCreation(check_auto_id=False)
+                report = self[newId]
                 if nstory.soer_hasFigure:
                     for fig in nstory.soer_hasFigure:
                         # read figure
@@ -102,6 +102,8 @@ class SOERCountry(ATFolder):
                             figure.setTitle(fig.soer_caption.first.strip())
                             figure.setDescription(fig.soer_description.first.strip())                            
                             wtool.doActionFor(figure, 'publish', comment='Automatic feed update')
+                            figure.reindexObject()
+                            print "IMAGE data"
                         for dataFile in fig.soer_dataSource:
                             dataFileObj = report[report.invokeFactory('Link', id=dataFile.soer_fileName.first.strip(),
                                                                        remoteUrl=dataFile.soer_dataURL.first.strip())]
