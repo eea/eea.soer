@@ -103,7 +103,6 @@ class SOERCountry(ATFolder):
                             figure.setDescription(fig.soer_description.first.strip())                            
                             wtool.doActionFor(figure, 'publish', comment='Automatic feed update')
                             figure.reindexObject()
-                            print "IMAGE data"
                         for dataFile in fig.soer_dataSource:
                             dataFileObj = report[report.invokeFactory('Link', id=dataFile.soer_fileName.first.strip(),
                                                                        remoteUrl=dataFile.soer_dataURL.first.strip())]
