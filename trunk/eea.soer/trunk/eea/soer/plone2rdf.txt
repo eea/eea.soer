@@ -1,0 +1,62 @@
+======================
+SENSE input and output
+====================== 
+
+SENSE is a sub project of SOER PART-C which has a goal to enable information
+sharing between countries using RDF. The content shared is the PART-C of SOER
+and is intended as first stage to put more data online and be able to update it
+continuesly.
+
+All content as part of eea.soer can be imported and exported as `SOER Feed <https://svn.eionet.europa.eu/projects/Zope/wiki/SOERFeedSpec>`_.
+
+  >>> self.setRoles(['Manager'])
+  >>> soer = self.portal.SOER
+  >>> country = soer[soer.invokeFactory('SOERCountry', id='no')]
+  >>> from eea.soer.tests.base import examplerdf
+  >>> country.setRdfFeed(examplerdf)
+    
+Lets load an RDF
+
+  >>> import surf
+  >>> from eea.soer import sense
+  >>> surf.ns.register(SOER="http://www.eea.europa.eu/soer/1.0#")
+  >>> store = surf.Store(reader='rdflib',  writer='rdflib', rdflib_store = 'IOMemory')
+  >>> session = surf.Session(store)
+  >>> session.auto_persist = True
+  >>> session.auto_load = True
+  >>> session.enable_logging = True
+  
+  >>> _ = country.updateFeed()
+
+Plone to RDF
+
+
+  >>> obj = country['air-pollution-why-care-norway']
+  >>> at2SurfObj = sense.IArchetype2Surf(obj)
+  >>> ns = at2SurfObj.save(session)
+  >>> session.commit()
+
+  >>> ns.subject
+  rdflib.URIRef('http://nohost/plone/SOER/no/air-pollution-why-care-norway')
+
+Serialization
+  >>> store.reader.graph.bind('','http://www.eea.europa.eu/soer/1.0#', override=True)
+  >>> graph = store.reader.graph
+  >>> print graph.serialize(format = "pretty-xml")
+    <?xml version="1.0" encoding="utf-8"?>
+    <rdf:RDF
+      xmlns='http://www.eea.europa.eu/soer/1.0#'
+      xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+    >
+      <NationalStory rdf:about="http://nohost/plone/SOER/no/air-pollution-why-care-norway">
+        <hasFigure>
+	...
+        </hasFigure>
+        <hasFigure>
+	...
+        </hasFigure>
+      </NationalStory>
+    </rdf:RDF>
+
+
+
