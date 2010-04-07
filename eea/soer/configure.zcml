@@ -24,5 +24,6 @@
       />
 
   <adapter factory=".sense.NationalStory2Surf" />
-  <adapter factory=".sense.Figure2Surf" />
+  <adapter factory=".sense.Image2Surf" />
+  <adapter factory=".sense.Link2Surf" />
 </configure>
