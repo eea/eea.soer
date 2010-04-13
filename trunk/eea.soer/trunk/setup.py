@@ -30,6 +30,7 @@ setup(name='eea.soer',
           'uuid',
           'surf',
           'surf.rdflib',
+          'eea.vocab',
       ],
       entry_points="""
       # -*- Entry points: -*-
