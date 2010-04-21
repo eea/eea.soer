@@ -27,10 +27,8 @@ setup(name='eea.soer',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'uuid',
-          'surf',
-          'surf.rdflib',
           'eea.vocab',
+          'eea.rdfmarshaller',
       ],
       entry_points="""
       # -*- Entry points: -*-

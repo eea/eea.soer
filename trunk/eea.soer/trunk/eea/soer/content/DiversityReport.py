@@ -16,9 +16,9 @@ except ImportError:
 
 schema = getattr(SOERReport, 'schema').copy() 
 schema['description'].default_method = 'default_desc'
-schema['soerTopic'].widget.visible = { 'edit' : 0 }
-schema['soerTopic'].default=u'country introduction'
-schema['soerQuestion'].vocabulary=NamedVocabulary('eea.soer.vocab.diversity_questions')
+schema['topic'].widget.visible = { 'edit' : 0 }
+schema['topic'].default=u'country introduction'
+schema['question'].vocabulary=NamedVocabulary('eea.soer.vocab.diversity_questions')
 
 class DiversityReport(SOERReport):
     """ """
@@ -33,7 +33,7 @@ class DiversityReport(SOERReport):
     default_view = 'diversity_report_view'
 
     def getLongSoerQuestion(self):
-        return vocab.long_diversity_questions[self.getSoerQuestion()]
+        return vocab.long_diversity_questions[self.getQuestion()]
 
     def default_desc(self):
         country = self.getTermTitle('eea.soer.vocab.european_countries', self.getSoerCountry())
@@ -44,7 +44,7 @@ class DiversityReport(SOERReport):
 registerType(DiversityReport, PROJECTNAME)
 
 def gen_title(obj, evt):
-    question = obj.getTermTitle('eea.soer.vocab.diversity_questions', obj.getSoerQuestion())
+    question = obj.getTermTitle('eea.soer.vocab.diversity_questions', obj.getQuestion())
     country = obj.getTermTitle('eea.soer.vocab.european_countries', obj.getSoerCountry())
     t = 'Diversity Report: %s (%s)' % (question, country)
     obj.setTitle(t)

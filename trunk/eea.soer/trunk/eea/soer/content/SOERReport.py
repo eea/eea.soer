@@ -6,7 +6,6 @@ from Products.ATContentTypes.content.folder import ATFolder
 from Products.ATContentTypes.content.newsitem import ATNewsItem
 from eea.soer.content.interfaces import ISOERReport
 from eea.soer.config import *
-from eea.soer import vocab
 from Products.ATVocabularyManager import NamedVocabulary
 from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
 try:
@@ -17,6 +16,27 @@ except ImportError:
 
 schema = Schema((
   
+    #keyMessage
+    TextField('keyMessage',
+        required = False,
+        searchable = True,
+        primary = False,
+        storage = AnnotationStorage(migrate=True),
+        validators = ('isTidyHtmlWithCleanup',),
+        default_content_type = zconf.ATNewsItem.default_content_type,
+        default_output_type = 'text/x-html-safe',
+        allowable_content_types = ('text/html',),
+        widget = RichWidget(
+            description = "",
+            description_msgid = "help_body_text",
+            label = "Key message",
+            label_msgid = "label_body_text",
+            rows = 5,
+            i18n_domain = "plone",
+            allow_file_upload = False,
+        ),
+    ),
+
     #assesment
     TextField('text',
         required = True,
@@ -68,7 +88,7 @@ schema = Schema((
 
 
     StringField(
-        name='soerTopic',
+        name='topic',
         required = True,
         widget=SelectionWidget(
             label='Topics',
@@ -81,7 +101,7 @@ schema = Schema((
     ),
 
     StringField(
-        name='soerQuestion',
+        name='question',
         required = True,
         widget=SelectionWidget(
             label='Question',
@@ -93,15 +113,24 @@ schema = Schema((
         enforceVocabulary=True,
     ),
 
+    StringField(
+        name='evaluation',
+        required=0,
+        searchable=0,
+        default='',
+        widget=StringWidget(
+            lagel='Evaluation',
+            label_msgid='label_evaluation',
+            description='This is a two letter value which indicates quickly what the evaluation and trend is.',
+            visible={'view' : 'invisible'},
+        ),
+    ),
 ),
 )
 
 schema = getattr(ATFolder, 'schema', Schema(())).copy() + schema.copy()
-schema['title'].widget.visible = { 'edit' : 0 }
 schema['title'].default = 'not_set_yet'
 schema['soerCountry'].default_method = 'default_country'
-schema['description'].widget.label = 'Key message'
-
 
 class SOERReport(ATFolder, ATNewsItem):
     """ """
@@ -111,7 +140,7 @@ class SOERReport(ATFolder, ATNewsItem):
 
     meta_type = 'SOERReport'
     portal_type = 'SOERReport'
-    allowed_content_types = ['Image', 'Page', 'RSSFeedRecipe', 'Link']
+    allowed_content_types = ['Image', 'Page', 'RSSFeedRecipe', 'Link', 'RelatedIndicatorLink']
     _at_rename_after_creation = True
 
     schema = schema

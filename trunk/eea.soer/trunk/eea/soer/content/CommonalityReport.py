@@ -38,17 +38,17 @@ class CommonalityReport(SOERReport):
         return desc
 
     def getLongSoerQuestion(self):
-        return vocab.long_questions.get(self.getSoerQuestion(), u'Unknown value')
+        return vocab.long_questions.get(self.getQuestion(), u'Unknown value')
 
     def getLongSoerTopic(self):
-        return vocab.long_topics.get(self.getSoerTopic(), u'Unknown value')
+        return vocab.long_topics.get(self.getTopic(), u'Unknown value')
 
 
 registerType(CommonalityReport, PROJECTNAME)
 
 def gen_title(obj, evt):
-    topic = obj.getTermTitle('eea.soer.vocab.topics', obj.getSoerTopic())
-    section = obj.getTermTitle('eea.soer.vocab.questions', obj.getSoerQuestion())
+    topic = obj.getTermTitle('eea.soer.vocab.topics', obj.getTopic())
+    section = obj.getTermTitle('eea.soer.vocab.questions', obj.getQuestion())
     country = obj.getTermTitle('eea.soer.vocab.european_countries', obj.getSoerCountry())
     t = '%s - %s (%s)' % (topic, section, country)
     obj.setTitle(t)

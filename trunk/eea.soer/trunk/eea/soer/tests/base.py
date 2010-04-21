@@ -8,7 +8,7 @@ from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.GenericSetup import EXTENSION, profile_registry
 
 
-PRODUCTS = ['ATVocabularyManager', 'FiveSite']
+PRODUCTS = ['ATVocabularyManager', 'FiveSite', 'eea.rdfmarshaller']
 PROFILES = ['eea.soer:default']
 
 soerrdf = os.path.join(package_home(globals()), 'soerfeed.rdf')
@@ -20,10 +20,12 @@ def setup_soer():
     import Products.Five
     import Products.FiveSite
     import eea.soer
+    import eea.rdfmarshaller
     zcml.load_config('meta.zcml', Products.Five)
     zcml.load_config('configure.zcml', Products.Five)
     zcml.load_config('configure.zcml', Products.FiveSite)
     zcml.load_config('configure.zcml', eea.soer)
+    zcml.load_config('configure.zcml', eea.rdfmarshaller)
     fiveconfigure.debug_mode = False
 
     PloneTestCase.installProduct('Five')
