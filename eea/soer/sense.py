@@ -1,8 +1,7 @@
 import surf
 import rdflib
-from zope.interface import implements
+from zope.interface import implements, directlyProvides
 from zope.component import adapts, queryMultiAdapter
-from zope import schema
 from eea.soer import vocab
 from eea.soer.interfaces import ISoerRDF2Surf, INationalStory
 from eea.soer.content.interfaces import ISOERReport, IReportingCountry
@@ -98,6 +97,8 @@ class NationalStory2Surf(object):
                     resource.soer_hasFigure.append(surfObj.at2surf())
                 elif fig.portal_type == 'Link':
                     resource.soer_dataSource.append(surfObj.at2surf())
+                elif fig.portal_type == 'RelatedIndicatorLink':
+                    resource.soer_relatedEuropeanIndicator.append(rdflib.URIRef(fig.absolute_url()))
         resource.save()
         return resource
 
@@ -225,7 +226,6 @@ class Link2Surf(object):
         resource.save()
         return resource
     
-
 class SoerRDF2Surf(object):
     """ read a rdf and verify that the feed is correct before content is updated
         in Plone. """
@@ -240,3 +240,5 @@ class SoerRDF2Surf(object):
         NationalStory = self.session.get_class(surf.ns.SOER['NationalStory'])
         for nstory in NationalStory.all():
             yield ISOERReport(nstory)
+
+        

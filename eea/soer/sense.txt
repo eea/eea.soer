@@ -34,8 +34,8 @@ Plone to RDF
 
   >>> NationalStory = session.get_class(surf.ns.SOER['NationalStory'])
   >>> obj = country['air-pollution-why-care-norway']
-  >>> obj.invokeFactory('RelatedIndicatorLink', id='indi1')
-  >>> foo = obj.indi1.setTitle('Related indicator')
+  >>> foo = obj.invokeFactory('RelatedIndicatorLink', id='indi1')
+  >>> obj.indi1.setTitle('Related indicator')
 
   >>> from Products.Marshall.registry import getComponent
   >>> marshaller = getComponent('surfrdf')
