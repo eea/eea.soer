@@ -26,4 +26,10 @@
   <adapter factory=".sense.NationalStory2Surf" />
   <adapter factory=".sense.Image2Surf" />
   <adapter factory=".sense.Link2Surf" />
+  <adapter factory=".sense.Surf2SOERReport" />
+  <adapter factory=".sense.SoerRDF2Surf" 
+           for="*" />
+  <adapter factory=".sense.GetATSchema4SurfObj" />
+  <adapter factory=".sense.ReportingCountry2Surf" />
+
 </configure>

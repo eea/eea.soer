@@ -1,9 +1,8 @@
 from zope.interface import Interface, Attribute
 from zope.schema import Choice, Bool, Set, List, TextLine, Text
-from Products.ATContentTypes.interface.folder import IATFolder
 
 
-class ISOERReport(IATFolder):
+class ISOERReport(Interface):
 
     reportingCountryCode = Attribute(u'Which country do you represent?')
 
@@ -30,15 +29,21 @@ class ISOERReport(IATFolder):
     short_topic = Attribute("Short version of the selected topic")
     long_section = Attribute("Long version of the selected section")
 
-    # keyMessage
     description = Text(
             title=u'Key message',
             description=u'This is a short key message for the National Story, a kind of very short summary or teaser (one/two paragraphs)',
             required=True
             )
 
+    # keyMessage
+    keyMessage = Text(
+            title=u'Key message',
+            description=u'This is a short key message for the National Story, a kind of very short summary or teaser (one/two paragraphs)',
+            required=True
+            )
+
     #assesment
-    text = Text(
+    assessment = Text(
             title=u'Report assesment',
             description=u'Content of this report',
             required=True
@@ -56,8 +61,8 @@ class IFlexibilityReport(ISOERReport):
     pass
 
 
-class ISOERReportingCountry(Interface):
-    """ Marker interface for a folder that contains SOER reports.
+class IReportingCountry(Interface):
+    """ For a folder that contains SOER reports.
         This interface is then used to create RDF from that folder for all
         contained reports. """
 

@@ -16,6 +16,7 @@
   <element value="RSSFeedRecipe"/>
   <element value="Page"/>
   <element value="Link"/>
+  <element value="RelatedIndicatorLink"/>
   <element value="ATImage"/>
   <element value="Image"/>
  </property>

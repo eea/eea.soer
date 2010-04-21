@@ -19,25 +19,30 @@ Lets load an RDF
 
   >>> import surf
   >>> from eea.soer import sense
-  >>> surf.ns.register(SOER="http://www.eea.europa.eu/soer/1.0#")
   >>> store = surf.Store(reader='rdflib',  writer='rdflib', rdflib_store = 'IOMemory')
   >>> session = surf.Session(store, mapping={surf.ns.SOER.NationalStory : sense.NationalStory} )
-  >>> session.auto_persist = True
-  >>> session.auto_load = True
-  >>> session.enable_logging = True
+  >>> store.load_triples(source=examplerdf)
+  True
 
-
+  >>> NationalStory = session.get_class(surf.ns.SOER['NationalStory'])  
+  >>> from eea.soer.interfaces import ISoerRDF2Surf
+  >>> surfrdf = ISoerRDF2Surf(examplerdf)
   
-  >>> _ = country.updateFeed()
-  IMAGE data
-  IMAGE data
-  IMAGE data
-  IMAGE data
+  >>> _ = country.updateFromFeed()
 
 Plone to RDF
 
   >>> NationalStory = session.get_class(surf.ns.SOER['NationalStory'])
   >>> obj = country['air-pollution-why-care-norway']
+  >>> obj.invokeFactory('RelatedIndicatorLink', id='indi1')
+  >>> foo = obj.indi1.setTitle('Related indicator')
+
+  >>> from Products.Marshall.registry import getComponent
+  >>> marshaller = getComponent('surfrdf')
+  >>> content_type, length, data = marshaller.marshall(country)
+  >>> from pprint import pprint
+  >>> print data
+
   >>> ns = NationalStory(obj.absolute_url())
   >>> ns.bind_namespaces(['SOER'])
   >>> ns.session = session
