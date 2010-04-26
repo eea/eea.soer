@@ -7,7 +7,8 @@
 <metal:main metal:fill-slot="main">
 <tal:main-macro metal:define-macro="main">
 
-<tal:autoUpdated tal:condition="context/isFromFeed|nothing">
+<metal:isFromFeed define-macro="isFromFeed">
+  <tal:autoUpdated tal:condition="context/isFromFeed|nothing">
           <div class="portalMessage"
                i18n:translate="automatic_updated_report_info" 
 	       tal:condition="not: isAnon">
@@ -20,9 +21,8 @@
 		                                             tal:attributes="href context/original_url;
 							                     title context/Title">remote source</a>.
             </div>
-
-</tal:autoUpdated>
-
+  </tal:autoUpdated>
+</metal:isFromFeed>
 <metal:document use-macro="here/document_macros/macros/document">
     <tal:document metal:fill-slot="related_multimedia">
         <div id="related-portlets">
@@ -46,7 +46,10 @@
     <li tal:content="here/getSoerCountryName"></li>
 </ul>
 
-<metal:listing use-macro="here/atct_album_view/macros/listing" />
+<div metal:define-macro="figures-album" class="map-photo-album">
+  <h4 id="fancy-edse">Figures</h4>
+  <metal:listing use-macro="here/atct_album_view/macros/listing" />
+</div>
 
 </tal:main-macro>
 </metal:main>
