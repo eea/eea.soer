@@ -27,7 +27,8 @@ Lets load an RDF
   >>> NationalStory = session.get_class(surf.ns.SOER['NationalStory'])  
   >>> from eea.soer.interfaces import ISoerRDF2Surf
   >>> surfrdf = ISoerRDF2Surf(examplerdf)
-  
+  >>> print surfrdf.status()
+   
   >>> _ = country.updateFromFeed()
 
 Plone to RDF

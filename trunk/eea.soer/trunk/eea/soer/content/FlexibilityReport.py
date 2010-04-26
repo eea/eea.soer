@@ -16,7 +16,7 @@ except ImportError:
 
 schema = Schema((
         StringField(
-        name='soerTopic',
+        name='topic',
         required = True,
         widget=StringWidget(
             label='Topics',
@@ -27,7 +27,7 @@ schema = Schema((
      ),
 
     StringField(
-        name='soerQuestion',
+        name='question',
         required = True,
         widget=StringWidget(
             label='Question',

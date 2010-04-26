@@ -24,8 +24,7 @@ class GetATSchema4SurfObj(object):
         return SOERReport.schema
 
     def fieldNames(self):
-        for field in self.schema.fields():
-            yield field.getName()
+        return [field.getName() for field in self.schema.fields() ] + ['relatedEuropeanIndicator']
             
 
 class ReportingCountry2Surf(object):
@@ -50,7 +49,7 @@ class ReportingCountry2Surf(object):
         for obj in self.context.objectValues():
             atsurf = queryMultiAdapter((obj, self.session), interface=IArchetype2Surf)
             atsurf.at2surf()
-        
+            
 class NationalStory2Surf(object):
     """ adapter from eea.soer report AT types to surf resource and RDF """
     implements(IArchetype2Surf)
@@ -133,7 +132,8 @@ class Surf2SOERReport(object):
     adapts(INationalStory)
 
     index_map = { 'text' : 'assessment',
-                  'effective' : 'pubDate'}
+                  'effective' : 'pubDate',
+                  'subject' : 'keyword'}
     
     def __init__(self, context):
         self.context = context
@@ -148,6 +148,8 @@ class Surf2SOERReport(object):
                 setattr(self, fname, field.first.strip().encode('utf8'))
             else:
                 setattr(self, fname, '')
+        setattr(self, 'subject', context.subject)
+        
     @property
     def portal_type(self):
         portal_type = 'FlexibilityReport'
@@ -165,15 +167,24 @@ class Surf2SOERReport(object):
         context = self.context
         if context.soer_hasFigure:
             for fig in context.soer_hasFigure:
-                try:
-                    yield { 'url' : fig.subject.strip(),
-                            'fileName' : fig.soer_fileName.first.strip(),
-                            'caption' : fig.soer_caption.first.strip(),
-                            'description' : fig.soer_description.first.strip() }
-                except:
-                    continue
+                    result =  { 'url' : fig.subject.strip(),
+                                'fileName' : fig.soer_fileName.first.strip(),
+                                'caption' : fig.soer_caption.first.strip(),
+                                'description' : fig.soer_description.first.strip() }
+                    if fig.soer_mediaType.first is not None:
+                        result['mediaType'] = fig.soer_mediaType.first.strip()
+                    if fig.soer_dataSource.first is not None:
+                        result['dataSource'] = fig.soer_dataSource.first
+                    yield result
                         
-        
+    def dataSource(self):
+        context = self.context
+        if context.soer_dataSource:
+            for dataSrc in context.soer_dataSource:
+                yield { 'url' : dataSrc.subject.strip(),
+                        'fileName' : dataSrc.soer_fileName.first.strip(),
+                        'dataURL' : dataSrc.soer_dataURL.first.strip() }
+                
 class Image2Surf(object):
     """ Resource axtension for """
     implements(IArchetype2Surf)
@@ -241,4 +252,67 @@ class SoerRDF2Surf(object):
         for nstory in NationalStory.all():
             yield ISOERReport(nstory)
 
-        
+    nsFormating = "%20s %6s %9s %5s %7s %8s %8s %10s %6s %5s\n"
+    figFormating = "%20s %6s %9s %5s %7s\n"
+    def status(self):
+        result = ""
+        NationalStory = self.session.get_class(surf.ns.SOER['NationalStory'])
+        result += self.nsFormating % (' ', 'Topic','Question', 'Desc','KeyMsg','Assesment','KeyWord','Indicator','Figure','Data')
+        for nstory in NationalStory.all():
+            nstory = ISOERReport(nstory)
+            result += self._checkNationalStory(nstory)
+            for fig in nstory.hasFigure():
+                result += self._checkFigure(fig)
+            for dataSrc in nstory.dataSource():
+                result += self._checkDataSource(dataSrc)
+                
+        return result
+
+    def _checkChannel(self, channel):
+        pass
+    
+    def _checkNationalStory(self, nstory):
+        subjectSize = len(nstory.subject)
+        if subjectSize > 20:
+            subject = nstory.subject[subjectSize-20:]
+        result = self.nsFormating % ('NationalStory',
+                                    chk(nstory.topic),
+                                    chk(nstory.question),
+                                    chk(nstory.description),
+                                    chk(nstory.keyMessage),
+                                    chk(nstory.assessment),
+                                    chk(nstory.keyword),
+                                    chk(nstory.relatedEuropeanIndicator),
+                                    chk(nstory.hasFigure),
+                                    chk(nstory.dataSource)
+                                    )
+        return result
+
+    def _checkFigure(self, fig):
+        subjectSize = len(fig['url'])
+        if subjectSize > 20:
+            subject = fig['url'][subjectSize-20:]
+        result = self.figFormating % ('Figure',
+                                    chk(fig['mediaType']),
+                                    chk(fig['caption']),
+                                    chk(fig['description']),
+                                    chk(fig['dataSource'])
+                                    )
+        return result
+    
+    def _checkDataSource(self, dataSrc):
+        subjectSize = len(dataSrc['url'])
+        if subjectSize > 20:
+            subject = dataSrc['url'][subjectSize-20:]
+        result = self.figFormating % ('DataSrcure','','',
+                                    chk(dataSrc['fileName']),
+                                    chk(dataSrc['dataURL'])
+                                    )
+        return result
+
+
+    
+
+
+def chk(context):
+    return context and 'OK' or 'Miss'
