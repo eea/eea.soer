@@ -20,22 +20,16 @@
         </div>
 
         <div class="visualClear"></div>
-
-        <a href=""
-           class="link-parent"
-           tal:define="parent_url python:here.navigationParent(here, template_id)"
-           tal:condition="parent_url"
-           tal:attributes="href parent_url"
-           i18n:translate="go_to_parent_url">
-        Up one level
-        </a>
-
-        <p class="documentDescription"
-           tal:content="here/Description"
-           tal:condition="here/Description">
-            Description
-        </p>
- 
+  <metal:top-macro define-macro="topinfo">
+<table style="width:100%"><tr><td style="width: 100%">
+ <img src="norway-info.png" alt="norway info" />
+ </td><td style="padding: 1em 0 1em 1em"><dl class="portlet" >
+ <dt class="portletHeader">Location</dt>
+ <dd class="portletItem">
+    <img src="200px-Europe-Norway.svg.png" title="Norway" /></dd>
+</dl></td>
+</tr></table>
+ </metal:top-macro>
     <div class="content-column-one">
         <metal:listingmacro define-macro="listing">
         <tal:foldercontents define="contentFilter contentFilter|request/contentFilter|nothing;
@@ -182,11 +176,33 @@
  
  
    <div class="content-column-two">
-        <tal:articles define="specific nocall:context/mapsandgraphs|nothing;
-	                      feeds specific/@@smartfolder_portlets|nothing"
-   	              repeat="portlet feeds">
-        <metal:macro use-macro="here/portlet_themes_common/macros/portlet" />
-        </tal:articles>
+       <dl class="portlet">
+	 <dt class="portletHeader">Air pollution</dt>
+	 <dt class="portletItem">Why care?</dt>
+	 <dd class="portletItem"><img src="http://themes.eea.europa.eu/images/neutral" title="neutral" /></dd>
+	 <dt class="portletItem">Drivers and pressures?</dt>
+	 <dd class="portletItem"><img src="http://themes.eea.europa.eu/images/good" title="good" /></dd>
+	 <dt class="portletItem">State and impacts?</dt>
+	 <dd class="portletItem"><img src="http://themes.eea.europa.eu/images/neutral" title="neutral" /></dd>
+	 <dt class="portletItem">Outlook 2020?</dt>
+	 <dd class="portletItem"><img src="http://themes.eea.europa.eu/images/poor" title="poor" /></dd>
+	 <dt class="portletItem">Policy responses?</dt>
+	 <dd class="portletItem"><img src="http://themes.eea.europa.eu/images/neutral" title="neutral" /></dd>
+	</dl>
+
+       <dl class="portlet">
+	 <dt class="portletHeader">Climate change</dt>
+	 <dt class="portletItem">Why care?</dt>
+	 <dd class="portletItem"></dd>
+	 <dt class="portletItem">Drivers and pressures?</dt>
+	 <dd class="portletItem"></dd>
+	 <dt class="portletItem">State and impacts?</dt>
+	 <dd class="portletItem"></dd>
+	 <dt class="portletItem">Outlook 2020?</dt>
+	 <dd class="portletItem"></dd>
+	 <dt class="portletItem">Policy responses?</dt>
+	 <dd class="portletItem"></dd>
+	</dl>
 
    </div>
         <metal:subtopics use-macro="here/atct_topic_view/macros/folderlisting_macro" />

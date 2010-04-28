@@ -32,4 +32,12 @@
   <adapter factory=".sense.GetATSchema4SurfObj" />
   <adapter factory=".sense.ReportingCountry2Surf" />
 
+  <class class="eea.soer.content.SOERCountry.SOERCountry">
+    <implements interface="eea.facetednavigation.interfaces.IPossibleFacetedNavigable" />
+  </class>
+
+  <utility
+        name="eea.facetednavigation.SoerCountryFacetedNavigable"
+        factory=".faceted.FolderFacetedNavigableDescriptor" />
+
 </configure>

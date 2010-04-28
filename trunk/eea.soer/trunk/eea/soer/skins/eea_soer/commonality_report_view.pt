@@ -39,6 +39,7 @@
         </div>
     </tal:document>
 </metal:document>
+<p tal:replace="structure context/getKeyMessage|nothing" />
 
 <ul>
     <li tal:content="here/getLongSoerTopic"></li>
