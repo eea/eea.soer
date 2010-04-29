@@ -2,7 +2,10 @@
            xmlns:five="http://namespaces.zope.org/five"
            xmlns:browser="http://namespaces.zope.org/browser">
 
+  <include package="eea.rdfmarshaller" />
   <five:registerPackage package="." initialize=".initialize" />
+  
+  <include package=".browser" />
   <include file="profiles.zcml" />
 
   <subscriber
