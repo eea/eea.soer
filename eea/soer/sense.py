@@ -48,7 +48,8 @@ class ReportingCountry2Surf(object):
     def at2surf(self):
         for obj in self.context.objectValues():
             atsurf = queryMultiAdapter((obj, self.session), interface=IArchetype2Surf)
-            atsurf.at2surf()
+            if atsurf is not None:
+                atsurf.at2surf()
             
 class NationalStory2Surf(object):
     """ adapter from eea.soer report AT types to surf resource and RDF """

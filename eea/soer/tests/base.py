@@ -24,8 +24,9 @@ def setup_soer():
     zcml.load_config('meta.zcml', Products.Five)
     zcml.load_config('configure.zcml', Products.Five)
     zcml.load_config('configure.zcml', Products.FiveSite)
-    zcml.load_config('configure.zcml', eea.soer)
     zcml.load_config('configure.zcml', eea.rdfmarshaller)
+    zcml.load_config('configure.zcml', eea.soer)
+
     fiveconfigure.debug_mode = False
 
     PloneTestCase.installProduct('Five')
