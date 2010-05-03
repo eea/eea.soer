@@ -73,10 +73,6 @@ the raw data behind the image/figure.</rdfs:comment>
 </rdfs:Class>
 
 
-<!-- Begin: Property Declarations -->
-   3. organisationURL: URL to the reporting organisations.
-   4. organisationContactURL: URL to a contact page of the reporting organisations. 
-
 <rdf:Property rdf:ID="reportingCountryCode">
   <rdfs:label xml:lang="en">Reporting country code</rdfs:label>
   <rdfs:domain rdf:resource="#channel"/>
@@ -184,9 +180,11 @@ and regions covered, for example
 <rdf:Property rdf:ID="description">
   <rdfs:label xml:lang="en">Description</rdfs:label>
   <rdfs:domain rdf:resource="#NationalStory"/>
+  <rdfs:domain rdf:resource="#Figure"/>
   <rdfs:comment xml:lang="en">(Required)
-Short summary used in search results and listings, max 3 lines. This field can
-only use plain text, no html or formatting.</rdfs:comment>
+For NationalStory a Short summary used in search results and listings, max 3 lines. This field can
+only use plain text, no html or formatting.
+For Figure a short note/description. Used in search results/listings.</rdfs:comment>
 </rdf:Property>
 
 <rdf:Property rdf:ID="keyMessage">
@@ -289,13 +287,6 @@ of this DataFile. This is used for traceability of the data.</rdfs:comment>
   <rdfs:domain rdf:resource="#Figure"/>
   <rdfs:comment xml:lang="en">(Required)
 Figure title/caption.</rdfs:comment>
-</rdf:Property>
-
-<rdf:Property rdf:ID="description">
-  <rdfs:label xml:lang="en">Description</rdfs:label>
-  <rdfs:domain rdf:resource="#Figure"/>
-  <rdfs:comment xml:lang="en">(Required)
-Short figure note/description. Used in search results/listings.</rdfs:comment>
 </rdf:Property>
 
 <rdf:Property rdf:ID="mediaType">
