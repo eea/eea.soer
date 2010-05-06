@@ -5,14 +5,140 @@
 	 xmlns:dc="http://purl.org/dc/elements/1.1/"
          xmlns:dcq="http://purl.org/dc/terms/">
 <channel rdf:about="">
-  <organisationName>National Institute for the Protection and Environmental Research</organisationName>
+  <organisationName>State of the Environment Norway</organisationName>
   <organisationName xml:lang="it">Istituto Superiore per la Protezione e la Ricerca Ambientale</organisationName>
-  <reportingCountryCode rdf:resource="http://rod.eionet.europa.eu/spatial/19" />
-  <organisationURL>http://www.isprambiente.it</organisationURL>
+  <reportingCountryCode rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+  <organisationURL>http://www.environment.no</organisationURL>
+  <organisationLogoURL>http://www.environment.no/lib/img/miljostatus-logo-eng.gif</organisationLogoURL>
   <organisationContactURL xml:lang="it">http://www.isprambiente.it/site/it-IT/Servizi_del_sito/Contatti</organisationContactURL>
   <license rdf:resource="http://creativecommons.org/licenses/by/2.5/" />
 </channel>
   <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#A" xml:lang="en"
+                 rdfs:comment="A standard NationalStory with two figures">
+    <topic>freshwater</topic>
+    <question>Why should we care?</question>
+    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <description>Why Norway cares about air pollution and the status of air pollution.</description>
+    <keyMessage>
+      (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
+    </keyMessage>
+    <assessment>
+      <![CDATA[<P>Modelling calculations for 2003, carried out by the Norwegian Institute for Air Research, show that a number of people are exposed to local air pollution in the capital and largest city Oslo, and in two other major towns, Trondheim and Bergen. Almost half of the population in Oslo were exposed to levels of particulate matter that exceeded the national target for 2010. In Trondheim (population 155 000) more than 8 000 people were exposed. In Bergen (population 240 000) similar figures were less than 3 000 people.</P>
+<P>Calculations also show that about 7 000, 3 200 and 700 people are exposed to levels exceeding the national target for nitrogen dioxide in Oslo, Trondheim and Bergen respectively. More than 25 per cent of the population in Oslo is exposed to levels exceeding the national target for benzene. In other towns the level of benzene is low.&nbsp;</P>
+<P>From 1995 to 2001 the number of people in Oslo exposed to levels exceeding the national targets for particulate matter and nitrogen dioxide were reduced by respectively 31 per cent and 77 per cent.</P>
+<P>The figures below show the number of exceedances of the limit value and the national target for particulate matter (PM10) and nitrogen dioxide&nbsp;in Norwegian towns. </P>]]>
+    </assessment>
+    <pubDate>2008-03-07</pubDate>
+    <modified>2008-03-07</modified>
+    <evaluation>FV</evaluation>
+    <keyword>air</keyword>
+    <keyword>air pollution concentrations</keyword>
+    <keyword>human health</keyword>
+    <relatedEuropeanIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif"/>
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif"/>
+  </NationalStory>
+  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#AA" xml:lang="en"
+                 rdfs:comment="A standard NationalStory with two figures">
+    <topic>waste</topic>
+    <question>What are the main drivers?</question>
+    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <description>Why Norway cares about air pollution and the status of air pollution.</description>
+    <keyMessage>
+      (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
+    </keyMessage>
+    <assessment>
+      <![CDATA[<P>Modelling calculations for 2003, carried out by the Norwegian Institute for Air Research, show that a number of people are exposed to local air pollution in the capital and largest city Oslo, and in two other major towns, Trondheim and Bergen. Almost half of the population in Oslo were exposed to levels of particulate matter that exceeded the national target for 2010. In Trondheim (population 155 000) more than 8 000 people were exposed. In Bergen (population 240 000) similar figures were less than 3 000 people.</P>
+<P>Calculations also show that about 7 000, 3 200 and 700 people are exposed to levels exceeding the national target for nitrogen dioxide in Oslo, Trondheim and Bergen respectively. More than 25 per cent of the population in Oslo is exposed to levels exceeding the national target for benzene. In other towns the level of benzene is low.&nbsp;</P>
+<P>From 1995 to 2001 the number of people in Oslo exposed to levels exceeding the national targets for particulate matter and nitrogen dioxide were reduced by respectively 31 per cent and 77 per cent.</P>
+<P>The figures below show the number of exceedances of the limit value and the national target for particulate matter (PM10) and nitrogen dioxide&nbsp;in Norwegian towns. </P>]]>
+    </assessment>
+    <pubDate>2008-03-07</pubDate>
+    <modified>2008-03-07</modified>
+    <evaluation>FV</evaluation>
+    <keyword>air</keyword>
+    <keyword>air pollution concentrations</keyword>
+    <keyword>human health</keyword>
+    <relatedEuropeanIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif"/>
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif"/>
+  </NationalStory>
+  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#AAA" xml:lang="en"
+                 rdfs:comment="A standard NationalStory with two figures">
+    <topic>air pollution</topic>
+    <question>Why should we care?</question>
+    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <description>Why Norway cares about air pollution and the status of air pollution.</description>
+    <keyMessage>
+      (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
+    </keyMessage>
+    <assessment>
+      <![CDATA[<P>Modelling calculations for 2003, carried out by the Norwegian Institute for Air Research, show that a number of people are exposed to local air pollution in the capital and largest city Oslo, and in two other major towns, Trondheim and Bergen. Almost half of the population in Oslo were exposed to levels of particulate matter that exceeded the national target for 2010. In Trondheim (population 155 000) more than 8 000 people were exposed. In Bergen (population 240 000) similar figures were less than 3 000 people.</P>
+<P>Calculations also show that about 7 000, 3 200 and 700 people are exposed to levels exceeding the national target for nitrogen dioxide in Oslo, Trondheim and Bergen respectively. More than 25 per cent of the population in Oslo is exposed to levels exceeding the national target for benzene. In other towns the level of benzene is low.&nbsp;</P>
+<P>From 1995 to 2001 the number of people in Oslo exposed to levels exceeding the national targets for particulate matter and nitrogen dioxide were reduced by respectively 31 per cent and 77 per cent.</P>
+<P>The figures below show the number of exceedances of the limit value and the national target for particulate matter (PM10) and nitrogen dioxide&nbsp;in Norwegian towns. </P>]]>
+    </assessment>
+    <pubDate>2008-03-07</pubDate>
+    <modified>2008-03-07</modified>
+    <evaluation>FV</evaluation>
+    <keyword>air</keyword>
+    <keyword>air pollution concentrations</keyword>
+    <keyword>human health</keyword>
+    <relatedEuropeanIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif"/>
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif"/>
+  </NationalStory>
+  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#AAAA" xml:lang="en"
+                 rdfs:comment="A standard NationalStory with two figures">
+    <topic>land</topic>
+    <question>Why should we care?</question>
+    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <description>Why Norway cares about air pollution and the status of air pollution.</description>
+    <keyMessage>
+      (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
+    </keyMessage>
+    <assessment>
+      <![CDATA[<P>Modelling calculations for 2003, carried out by the Norwegian Institute for Air Research, show that a number of people are exposed to local air pollution in the capital and largest city Oslo, and in two other major towns, Trondheim and Bergen. Almost half of the population in Oslo were exposed to levels of particulate matter that exceeded the national target for 2010. In Trondheim (population 155 000) more than 8 000 people were exposed. In Bergen (population 240 000) similar figures were less than 3 000 people.</P>
+<P>Calculations also show that about 7 000, 3 200 and 700 people are exposed to levels exceeding the national target for nitrogen dioxide in Oslo, Trondheim and Bergen respectively. More than 25 per cent of the population in Oslo is exposed to levels exceeding the national target for benzene. In other towns the level of benzene is low.&nbsp;</P>
+<P>From 1995 to 2001 the number of people in Oslo exposed to levels exceeding the national targets for particulate matter and nitrogen dioxide were reduced by respectively 31 per cent and 77 per cent.</P>
+<P>The figures below show the number of exceedances of the limit value and the national target for particulate matter (PM10) and nitrogen dioxide&nbsp;in Norwegian towns. </P>]]>
+    </assessment>
+    <pubDate>2008-03-07</pubDate>
+    <modified>2008-03-07</modified>
+    <evaluation>FV</evaluation>
+    <keyword>air</keyword>
+    <keyword>air pollution concentrations</keyword>
+    <keyword>human health</keyword>
+    <relatedEuropeanIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif"/>
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif"/>
+  </NationalStory>
+  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#A5" xml:lang="en"
+                 rdfs:comment="A standard NationalStory with two figures">
+    <topic>air pollution</topic>
+    <question>Why should we care?</question>
+    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <description>Why Norway cares about air pollution and the status of air pollution.</description>
+    <keyMessage>
+      (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
+    </keyMessage>
+    <assessment>
+      <![CDATA[<P>Modelling calculations for 2003, carried out by the Norwegian Institute for Air Research, show that a number of people are exposed to local air pollution in the capital and largest city Oslo, and in two other major towns, Trondheim and Bergen. Almost half of the population in Oslo were exposed to levels of particulate matter that exceeded the national target for 2010. In Trondheim (population 155 000) more than 8 000 people were exposed. In Bergen (population 240 000) similar figures were less than 3 000 people.</P>
+<P>Calculations also show that about 7 000, 3 200 and 700 people are exposed to levels exceeding the national target for nitrogen dioxide in Oslo, Trondheim and Bergen respectively. More than 25 per cent of the population in Oslo is exposed to levels exceeding the national target for benzene. In other towns the level of benzene is low.&nbsp;</P>
+<P>From 1995 to 2001 the number of people in Oslo exposed to levels exceeding the national targets for particulate matter and nitrogen dioxide were reduced by respectively 31 per cent and 77 per cent.</P>
+<P>The figures below show the number of exceedances of the limit value and the national target for particulate matter (PM10) and nitrogen dioxide&nbsp;in Norwegian towns. </P>]]>
+    </assessment>
+    <pubDate>2008-03-07</pubDate>
+    <modified>2008-03-07</modified>
+    <evaluation>FV</evaluation>
+    <keyword>air</keyword>
+    <keyword>air pollution concentrations</keyword>
+    <keyword>human health</keyword>
+    <relatedEuropeanIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif"/>
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif"/>
+  </NationalStory>
+  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#A6" xml:lang="en"
                  rdfs:comment="A standard NationalStory with two figures">
     <topic>air pollution</topic>
     <question>Why should we care?</question>

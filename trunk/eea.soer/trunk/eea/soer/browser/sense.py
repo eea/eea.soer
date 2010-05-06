@@ -11,6 +11,5 @@ class RDFExport(object):
     def __call__(self):
         marshaller = getComponent('surfrdf')
         content_type, length, data = marshaller.marshall(self.context)
-        self.request.response.setHeader('Content-Disposition',
-                 'attachment; filename="sense-%s.rdf"' % self.context.getId())
+        self.request.response.setHeader('Content-Type','application/rdf+xml; charset=utf-8')
         return data

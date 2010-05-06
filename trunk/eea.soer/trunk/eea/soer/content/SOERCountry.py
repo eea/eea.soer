@@ -58,7 +58,7 @@ class SOERCountry(ATFolder):
             soer = sense.SoerRDF2Surf(url)
             wtool = getToolByName(self, 'portal_workflow')
             self.manage_delObjects(ids=self.objectIds())
-            
+
             for nstory in soer.nationalStories():
                 questions = dict([[v,k] for k,v in vocab.long_diversity_questions.items()])
                 questions.update(dict([[v,k] for k,v in vocab.long_questions.items()]))

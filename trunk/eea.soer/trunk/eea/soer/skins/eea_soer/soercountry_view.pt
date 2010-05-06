@@ -19,17 +19,65 @@
             Document actions (print, sendto etc)
         </div>
 
+       
         <div class="visualClear"></div>
-  <metal:top-macro define-macro="topinfo">
-<table style="width:100%"><tr><td style="width: 100%">
- <img src="norway-info.png" alt="norway info" />
- </td><td style="padding: 1em 0 1em 1em"><dl class="portlet" >
- <dt class="portletHeader">Location</dt>
- <dd class="portletItem">
-    <img src="200px-Europe-Norway.svg.png" title="Norway" /></dd>
-</dl></td>
-</tr></table>
- </metal:top-macro>
+	<metal:top-macro define-macro="topinfo">
+	  <div class="header">
+	    <dl id="channel-portlet" class="portlet" >
+	      <dt class="portletHeader">	
+		<a href="" title="" class="websource-box fancybox"
+		   tal:attributes="href string:#channelSource;
+				   title string:Channel source">Channel</a>
+               <div class="hiddenStructure">
+                   <div id="channelSource" class="websource-info" >
+                      <img src="miljostatus-logo-eng.gif" />
+                      <br clear="all" />
+                      <dl>
+                         <dt>Organisation name</dt>
+                         <dd>Organisation name</dd>
+                         <dt>Reportin country</dt>
+                         <dd>Norway</dd>
+                         <dt>Organisation website</dt>
+                         <dd><a href="" title="">Organisation website</a></dd>
+                         <dt>Contact link</dt>
+                         <dd><a href="" title="">Contact link</a></dd>
+                         <dt>Last updated</dt>
+                         <dd>2010-05-07</dd>
+                         <dt>Content license</dt>
+                         <dd><a href="" title="">CC By 2.5</a></dd>
+		      </dl>
+                    </div>
+                </div>
+		Content provider</dt>
+	      <dd class="portletItem">
+		<img src="miljostatus-logo-eng.gif" /></dd>
+	    </dl>
+	    <dl id="location-portlet" class="portlet" >
+	      <dt class="portletHeader">	
+		<a href="" title="" class="websource-box fancybox"
+		   tal:attributes="href string:#locationSource;
+				   title string:Location">Source</a>
+               <div class="hiddenStructure">
+                   <div id="locationSource" class="websource-info">
+                      <dl>
+                         <dt>Reporting country</dt>
+                         <dd>Norway</dd>
+		      </dl>
+                  </div>
+                </div>
+		Location</dt>
+	      <dd class="portletItem">
+		<img src="200px-Europe-Norway.svg.png" title="Norway" /></dd>
+	    </dl>
+
+            <div class="documentDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pharetra sodales ligula sed elementum. Suspendisse et egestas est.</div>
+            <div><p> Proin orci lacus, vestibulum porta interdum ac, rutrum a leo. Morbi adipiscing tortor nec erat rhoncus feugiat. Pellentesque quis neque et nunc ultricies rutrum. Etiam lacus leo, luctus ut egestas id, suscipit vitae mauris. Integer fringilla diam ac turpis semper fringilla id id dui. Proin eget suscipit est. Donec imperdiet eros ac sem tristique sodales.</p>
+                 <p>Quisque pharetra mattis erat sed bibendum. Nam quam tellus, interdum eu mollis a, porttitor sit amet ipsum. </p></div>
+
+	  </div>
+	</metal:top-macro>
+        <div class="visualClear"></div>
+
     <div class="content-column-one">
         <metal:listingmacro define-macro="listing">
         <tal:foldercontents define="contentFilter contentFilter|request/contentFilter|nothing;
@@ -41,7 +89,6 @@
                             folderContents python: (over_limit and folderContents[:limit_display]) or folderContents;
                             batch folderContents">
         <tal:listing condition="folderContents">
-
             <!-- Navigation -->
             <div metal:use-macro="here/batch_macros/macros/navigation" />
 
@@ -176,34 +223,6 @@
  
  
    <div class="content-column-two">
-       <dl class="portlet">
-	 <dt class="portletHeader">Air pollution</dt>
-	 <dt class="portletItem">Why care?</dt>
-	 <dd class="portletItem"><img src="http://themes.eea.europa.eu/images/neutral" title="neutral" /></dd>
-	 <dt class="portletItem">Drivers and pressures?</dt>
-	 <dd class="portletItem"><img src="http://themes.eea.europa.eu/images/good" title="good" /></dd>
-	 <dt class="portletItem">State and impacts?</dt>
-	 <dd class="portletItem"><img src="http://themes.eea.europa.eu/images/neutral" title="neutral" /></dd>
-	 <dt class="portletItem">Outlook 2020?</dt>
-	 <dd class="portletItem"><img src="http://themes.eea.europa.eu/images/poor" title="poor" /></dd>
-	 <dt class="portletItem">Policy responses?</dt>
-	 <dd class="portletItem"><img src="http://themes.eea.europa.eu/images/neutral" title="neutral" /></dd>
-	</dl>
-
-       <dl class="portlet">
-	 <dt class="portletHeader">Climate change</dt>
-	 <dt class="portletItem">Why care?</dt>
-	 <dd class="portletItem"></dd>
-	 <dt class="portletItem">Drivers and pressures?</dt>
-	 <dd class="portletItem"></dd>
-	 <dt class="portletItem">State and impacts?</dt>
-	 <dd class="portletItem"></dd>
-	 <dt class="portletItem">Outlook 2020?</dt>
-	 <dd class="portletItem"></dd>
-	 <dt class="portletItem">Policy responses?</dt>
-	 <dd class="portletItem"></dd>
-	</dl>
-
    </div>
         <metal:subtopics use-macro="here/atct_topic_view/macros/folderlisting_macro" />
     </metal:main-macro>
