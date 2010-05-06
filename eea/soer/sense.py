@@ -237,7 +237,7 @@ class Link2Surf(object):
         resource.soer_fileName = self.context.getId()
         resource.save()
         return resource
-    
+
 class SoerRDF2Surf(object):
     """ read a rdf and verify that the feed is correct before content is updated
         in Plone. """
@@ -248,6 +248,10 @@ class SoerRDF2Surf(object):
         self.session = surf.Session(self.store, mapping={surf.ns.SOER.NationalStory : NationalStory} )
         self.store.load_triples(source=url)        
 
+    def channel(self):
+        channel = self.session.get_class(surf.ns.SOER['channel']).all().one()
+        return {'organisationName' : channel.soer_organisationName }
+        
     def nationalStories(self):
         NationalStory = self.session.get_class(surf.ns.SOER['NationalStory'])
         for nstory in NationalStory.all():

@@ -27,7 +27,6 @@ Lets load an RDF
   >>> NationalStory = session.get_class(surf.ns.SOER['NationalStory'])  
   >>> from eea.soer.interfaces import ISoerRDF2Surf
   >>> surfrdf = ISoerRDF2Surf(examplerdf)
-
    
   >>> _ = country.updateFromFeed()
 
@@ -41,7 +40,7 @@ Plone to RDF
   >>> from Products.Marshall.registry import getComponent
   >>> marshaller = getComponent('surfrdf')
   >>> content_type, length, data = marshaller.marshall(country)
-  >>> print country.unrestrictedTraverse('/@@senserdf')
+  >>> print country.unrestrictedTraverse('/@@rdf')
   
   >>> ns = NationalStory(obj.absolute_url())
   >>> ns.bind_namespaces(['SOER'])

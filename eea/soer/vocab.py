@@ -23,10 +23,10 @@ long_questions = {
 
 # Maps values from eea.soer.vocab.diversity_questions to their full description
 long_diversity_questions = {
-    u'0': u"What distinguishes the country?",
-    u'1': u"What are the major societal trends?",
-    u'2': u"What are the main drivers?",
-    u'3': u"What are the foreseen developments?",
+    u'10': u"What distinguishes the country?",
+    u'11': u"What are the major societal trends?",
+    u'12': u"What are the main drivers?",
+    u'13': u"What are the foreseen developments?",
 }
 
 atvocabs = {
@@ -48,11 +48,12 @@ atvocabs = {
     ),
 
     'eea.soer.vocab.diversity_questions': (
-        ('0', 'Factors'),
-        ('1', 'Societal developments'),
-        ('2', 'Main drivers'),
-        ('3', 'Main developments'),
+        ('10', 'Factors'),
+        ('11', 'Societal developments'),
+        ('12', 'Main drivers'),
+        ('13', 'Main developments'),
     ),
+
 
     'eea.soer.vocab.content_types': (
         ('0', "Text only"),
@@ -66,6 +67,9 @@ atvocabs = {
     ),
 
 }
+
+atvocabs['eea.soer.vocab.all_questions'] = atvocabs['eea.soer.vocab.diversity_questions'] + atvocabs['eea.soer.vocab.questions']
+
 
 atvocabs['eea.soer.vocab.european_countries'] = []
 european_country_codes = countries.getCountries()

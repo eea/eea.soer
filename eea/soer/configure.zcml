@@ -5,7 +5,6 @@
   <include package="eea.rdfmarshaller" />
   <five:registerPackage package="." initialize=".initialize" />
   
-  <include package=".browser" />
   <include file="profiles.zcml" />
 
   <subscriber
