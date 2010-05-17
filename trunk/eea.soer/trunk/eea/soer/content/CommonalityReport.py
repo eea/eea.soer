@@ -28,7 +28,7 @@ class CommonalityReport(SOERReport):
 
     meta_type = 'CommonalityReport'
     portal_type = 'CommonalityReport'
-
+    
     schema = schema
     default_view = 'commonality_report_view'
 
