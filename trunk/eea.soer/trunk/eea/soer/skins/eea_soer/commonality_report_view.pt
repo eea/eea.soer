@@ -140,7 +140,7 @@
              <h3 tal:content="obj_title">Image title</h3>
 	     <div class="documentDescription"
 	          tal:content="desc_or_title">Image description Proin orci lacus, vestibulum porta interdum ac, rutrum a leo. Morbi adipiscing tortor nec erat rhoncus feugiat.</div>
-		  <dl tal:condition=">
+		  <dl tal:condition="dataSource">
 		    <dt>Data source</dt>
 		    <dd><a href="">pm10_04-08eng.xls</a></dd>
 		    <dd><a href="">pm10_04-07eng.xls</a></dd>
