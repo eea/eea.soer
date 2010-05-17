@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <rdf:RDF xmlns="http://www.eea.europa.eu/soer/1.0#"
+         xmlns:soer="http://www.eea.europa.eu/soer/1.0#"
          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	 xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -13,7 +14,7 @@
   <organisationContactURL xml:lang="it">http://www.isprambiente.it/site/it-IT/Servizi_del_sito/Contatti</organisationContactURL>
   <license rdf:resource="http://creativecommons.org/licenses/by/2.5/" />
 </channel>
-  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#A" xml:lang="en"
+  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-freshwater/#A" xml:lang="en"
                  rdfs:comment="A standard NationalStory with two figures">
     <topic>freshwater</topic>
     <question>Why should we care?</question>
@@ -30,7 +31,7 @@
     </assessment>
     <pubDate>2008-03-07</pubDate>
     <modified>2008-03-07</modified>
-    <evaluation>FV</evaluation>
+    <evaluation rdf:resource="http://www.eea.europa.eu/soer/evaluations#FV">FV</evaluation> 
     <keyword>air</keyword>
     <keyword>air pollution concentrations</keyword>
     <keyword>human health</keyword>
@@ -38,7 +39,7 @@
     <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif"/>
     <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif"/>
   </NationalStory>
-  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#AA" xml:lang="en"
+  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-waste" xml:lang="en"
                  rdfs:comment="A standard NationalStory with two figures">
     <topic>waste</topic>
     <question>What are the main drivers?</question>
@@ -55,7 +56,7 @@
     </assessment>
     <pubDate>2008-03-07</pubDate>
     <modified>2008-03-07</modified>
-    <evaluation>FV</evaluation>
+    <evaluation rdf:resource="http://www.eea.europa.eu/soer/evaluations#FV">FV</evaluation> 
     <keyword>air</keyword>
     <keyword>air pollution concentrations</keyword>
     <keyword>human health</keyword>
@@ -80,32 +81,7 @@
     </assessment>
     <pubDate>2008-03-07</pubDate>
     <modified>2008-03-07</modified>
-    <evaluation>FV</evaluation>
-    <keyword>air</keyword>
-    <keyword>air pollution concentrations</keyword>
-    <keyword>human health</keyword>
-    <relatedEuropeanIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
-    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif"/>
-    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif"/>
-  </NationalStory>
-  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#AAAA" xml:lang="en"
-                 rdfs:comment="A standard NationalStory with two figures">
-    <topic>land</topic>
-    <question>Why should we care?</question>
-    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
-    <description>Why Norway cares about air pollution and the status of air pollution.</description>
-    <keyMessage>
-      (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
-    </keyMessage>
-    <assessment>
-      <![CDATA[<P>Modelling calculations for 2003, carried out by the Norwegian Institute for Air Research, show that a number of people are exposed to local air pollution in the capital and largest city Oslo, and in two other major towns, Trondheim and Bergen. Almost half of the population in Oslo were exposed to levels of particulate matter that exceeded the national target for 2010. In Trondheim (population 155 000) more than 8 000 people were exposed. In Bergen (population 240 000) similar figures were less than 3 000 people.</P>
-<P>Calculations also show that about 7 000, 3 200 and 700 people are exposed to levels exceeding the national target for nitrogen dioxide in Oslo, Trondheim and Bergen respectively. More than 25 per cent of the population in Oslo is exposed to levels exceeding the national target for benzene. In other towns the level of benzene is low.&nbsp;</P>
-<P>From 1995 to 2001 the number of people in Oslo exposed to levels exceeding the national targets for particulate matter and nitrogen dioxide were reduced by respectively 31 per cent and 77 per cent.</P>
-<P>The figures below show the number of exceedances of the limit value and the national target for particulate matter (PM10) and nitrogen dioxide&nbsp;in Norwegian towns. </P>]]>
-    </assessment>
-    <pubDate>2008-03-07</pubDate>
-    <modified>2008-03-07</modified>
-    <evaluation>FV</evaluation>
+    <evaluation rdf:resource="http://www.eea.europa.eu/soer/evaluations#FV">FV</evaluation> 
     <keyword>air</keyword>
     <keyword>air pollution concentrations</keyword>
     <keyword>human health</keyword>
@@ -130,7 +106,32 @@
     </assessment>
     <pubDate>2008-03-07</pubDate>
     <modified>2008-03-07</modified>
-    <evaluation>FV</evaluation>
+    <evaluation rdf:resource="http://www.eea.europa.eu/soer/evaluations#FV">FV</evaluation> 
+    <keyword>air</keyword>
+    <keyword>air pollution concentrations</keyword>
+    <keyword>human health</keyword>
+    <relatedEuropeanIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif"/>
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif"/>
+  </NationalStory>
+  <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-land/#AAAA" xml:lang="en"
+                 rdfs:comment="A standard NationalStory with two figures">
+    <topic>land</topic>
+    <question>Why should we care?</question>
+    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <description>Why Norway cares about air pollution and the status of air pollution.</description>
+    <keyMessage>
+      (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
+    </keyMessage>
+    <assessment>
+      <![CDATA[<P>Modelling calculations for 2003, carried out by the Norwegian Institute for Air Research, show that a number of people are exposed to local air pollution in the capital and largest city Oslo, and in two other major towns, Trondheim and Bergen. Almost half of the population in Oslo were exposed to levels of particulate matter that exceeded the national target for 2010. In Trondheim (population 155 000) more than 8 000 people were exposed. In Bergen (population 240 000) similar figures were less than 3 000 people.</P>
+<P>Calculations also show that about 7 000, 3 200 and 700 people are exposed to levels exceeding the national target for nitrogen dioxide in Oslo, Trondheim and Bergen respectively. More than 25 per cent of the population in Oslo is exposed to levels exceeding the national target for benzene. In other towns the level of benzene is low.&nbsp;</P>
+<P>From 1995 to 2001 the number of people in Oslo exposed to levels exceeding the national targets for particulate matter and nitrogen dioxide were reduced by respectively 31 per cent and 77 per cent.</P>
+<P>The figures below show the number of exceedances of the limit value and the national target for particulate matter (PM10) and nitrogen dioxide&nbsp;in Norwegian towns. </P>]]>
+    </assessment>
+    <pubDate>2008-03-07</pubDate>
+    <modified>2008-03-07</modified>
+    <evaluation rdf:resource="http://www.eea.europa.eu/soer/evaluations#FV">FV</evaluation> 
     <keyword>air</keyword>
     <keyword>air pollution concentrations</keyword>
     <keyword>human health</keyword>
@@ -155,7 +156,7 @@
     </assessment>
     <pubDate>2008-03-07</pubDate>
     <modified>2008-03-07</modified>
-    <evaluation>FV</evaluation>
+    <evaluation rdf:resource="http://www.eea.europa.eu/soer/evaluations#FV">FV</evaluation> 
     <keyword>air</keyword>
     <keyword>air pollution concentrations</keyword>
     <keyword>human health</keyword>
@@ -181,7 +182,7 @@
     </assessment>
     <pubDate>2008-03-07</pubDate>
     <modified>2008-03-07</modified>
-    <evaluation>FV</evaluation>
+    <evaluation rdf:resource="http://www.eea.europa.eu/soer/evaluations#FV">FV</evaluation> 
     <keyword>air</keyword>
     <keyword>air pollution concentrations</keyword>
     <keyword>human health</keyword>
@@ -191,6 +192,7 @@
 
 
   <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/" xml:lang="en"
+                 soer:sortOrder="0"
                  rdfs:comment="A NationalStory divded into two indicators. This is the main part.">
     <topic>air pollution</topic>
     <question>What are the related drivers and pressures?</question>
@@ -204,7 +206,7 @@
     </assessment>
     <pubDate>2008-03-07</pubDate>
     <modified>2008-03-07</modified>
-    <evaluation>FV</evaluation>
+    <evaluation rdf:resource="http://www.eea.europa.eu/soer/evaluations#FV">FV</evaluation> 
     <keyword>air</keyword>
     <keyword>ozone</keyword>
     <keyword>air pollution concentrations</keyword>
@@ -212,6 +214,7 @@
   </NationalStory>
   
   <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#C" xml:lang="en"
+                 soer:sortOrder="1"
                  rdfs:comment="A NationalStory divded into two indicators. This is the first indicator.">
     <topic>air pollution</topic>
     <question>What are the related drivers and pressures?</question>
@@ -225,7 +228,7 @@
     </assessment>
     <pubDate>2008-03-07</pubDate>
     <modified>2008-03-07</modified>
-    <evaluation>FV</evaluation>
+    <evaluation rdf:resource="http://www.eea.europa.eu/soer/evaluations#FV">FV</evaluation> 
     <keyword>air</keyword>
     <keyword>ozone</keyword>
     <keyword>air pollution concentrations</keyword>
@@ -235,6 +238,7 @@
   </NationalStory>
 
   <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-air-pollution/#D" xml:lang="en"
+                 soer:sortOrder="2"
                  rdfs:comment="A NationalStory divded into two indicators. This is the second indicator belonging to the one above.Common criteria is the topic and question..">
     <topic>air pollution</topic>
     <question>What are the related drivers and pressures?</question>
@@ -248,7 +252,7 @@
     </assessment>
     <pubDate>2008-03-07</pubDate>
     <modified>2008-03-07</modified>
-    <evaluation>FV</evaluation>
+    <evaluation rdf:resource="http://www.eea.europa.eu/soer/evaluations#FV">FV</evaluation> 
     <keyword>air</keyword>
     <keyword>ozone</keyword>
     <keyword>air pollution concentrations</keyword>
@@ -258,9 +262,9 @@
   </NationalStory>
 
   <Figure rdf:about="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif"
-          rdfs:comment="Link to the highest possible resolution of the image.">
+          rdfs:comment="Link to the highest possible resolution of the image."
+	  soer:fileName="pm10_04-07eng-high-resolution.gif">
     <mediaType>image/gif</mediaType>
-    <fileName>pm10_04-07eng-high-resolution.gif</fileName>
     <caption>Figure caption</caption>
     <description>Figure description</description>
     <dataSource rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07eng.xml"/>

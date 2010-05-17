@@ -19,6 +19,7 @@
   <element value="RelatedIndicatorLink"/>
   <element value="ATImage"/>
   <element value="Image"/>
+  <element value="DiversityReport"/>
  </property>
  <property name="allow_discussion">False</property>
  <property name="default_view">diversity_report_view</property>
