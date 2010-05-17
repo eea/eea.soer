@@ -1,0 +1,16 @@
+<html>
+
+<body>
+
+<form action="testFeed">
+
+<label>Link to your feed</label>
+<input type="text" name="url" size="40"/>
+
+<label>Your country code</label>
+<input type="text" name="countryCode" size="3"/>
+
+<input type="submit"/>
+</form>
+</body>
+</html>
