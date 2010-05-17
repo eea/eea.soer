@@ -1,9 +1,10 @@
 /* <dtml-with base_properties> (do not remove this :) */
 /* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
 
+.photoAlbumEntry,
 .header .portletHeader {
     position: relative;
-    padding: 5px 0;
+
 }
 
 .websource-box {
@@ -22,6 +23,7 @@
     right: 0;
     padding: 0;
     overflow: hidden;
+    border: 0 ! important;
 }
 
 .websource-box:hover {
@@ -49,6 +51,7 @@
 .tileItem {
     position: relative;
 } 
+
 
 .image-source a {
     position: relative;
