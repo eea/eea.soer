@@ -90,15 +90,17 @@ class NationalStory2Surf(object):
         resource.soer_topic = context.getTopic()
         resource.soer_assessment = context.getText()
         resource.soer_hasFigure = []
-        for fig in context.objectValues():
-            surfObj = queryMultiAdapter((fig,session), interface=IArchetype2Surf)
+        for obj in context.objectValues():
+            surfObj = queryMultiAdapter((obj,session), interface=IArchetype2Surf)
             if surfObj is not None:
-                if fig.portal_type == 'Image':
+                if obj.portal_type == 'Image':
                     resource.soer_hasFigure.append(surfObj.at2surf())
-                elif fig.portal_type == 'Link':
+                elif obj.portal_type == 'Link':
                     resource.soer_dataSource.append(surfObj.at2surf())
-                elif fig.portal_type == 'RelatedIndicatorLink':
-                    resource.soer_relatedEuropeanIndicator.append(rdflib.URIRef(fig.absolute_url()))
+                elif obj.portal_type == 'RelatedIndicatorLink':
+                    resource.soer_relatedEuropeanIndicator.append(rdflib.URIRef(obj.absolute_url()))
+                else:
+                    surfObj.at2surf()
         resource.save()
         return resource
 
@@ -133,7 +135,7 @@ class Surf2SOERReport(object):
     adapts(INationalStory)
 
     index_map = { 'text' : 'assessment',
-                  'effective' : 'pubDate',
+                  'effectiveDate' : 'pubDate',
                   'subject' : 'keyword'}
     
     def __init__(self, context):
@@ -168,15 +170,22 @@ class Surf2SOERReport(object):
         context = self.context
         if context.soer_hasFigure:
             for fig in context.soer_hasFigure:
-                    result =  { 'url' : fig.subject.strip(),
-                                'fileName' : fig.soer_fileName.first.strip(),
-                                'caption' : fig.soer_caption.first.strip(),
-                                'description' : fig.soer_description.first.strip() }
-                    if fig.soer_mediaType.first is not None:
-                        result['mediaType'] = fig.soer_mediaType.first.strip()
-                    if fig.soer_dataSource.first is not None:
-                        result['dataSource'] = fig.soer_dataSource.first
-                    yield result
+                fileName = fig.soer_fileName.first and str(fig.soer_fileName.first) or 'tempfile'
+                result =  { 'url' : fig.subject.strip(),
+                            'fileName' : fileName,
+                            'caption' : str(fig.soer_caption.first),
+                            'description' : str(fig.soer_description.first) }
+
+                if fig.soer_mediaType.first is not None:
+                    result['mediaType'] = fig.soer_mediaType.first.strip()
+                if fig.soer_dataSource.first is not None:
+                    dataSrc = fig.soer_dataSource.first
+                    fileName = dataSrc.soer_fileName.first and str(dataSrc.soer_fileName.first) or 'tempfile'
+                    result['dataSource'] = { 'url' : dataSrc.subject.strip(),
+                                             'fileName' : fileName,
+                                             'dataURL' : dataSrc.soer_dataURL.first.strip() }
+                
+                yield result
                         
     def dataSource(self):
         context = self.context
@@ -210,7 +219,7 @@ class Image2Surf(object):
         resource.soer_description = context.Description()
         resource.soer_dataSource = []
         for dataFile in context.getRelatedItems():
-            resource.soer_dataSource.append(dataFile.absolute_url())
+            resource.soer_dataSource.append(rdflib.URIRef(dataFile.absolute_url()))
         resource.save()
         return resource
     
@@ -250,24 +259,30 @@ class SoerRDF2Surf(object):
 
     def channel(self):
         channel = self.session.get_class(surf.ns.SOER['channel']).all().one()
-        return {'organisationName' : channel.soer_organisationName }
+        return {'organisationName' : channel.soer_organisationName,
+                'organisationURL'  : channel.soer_organisationURL,
+                'organisationContactURL'  : channel.soer_organisationContactURL,
+                'organisationLogoURL' : channel.soer_organisationLogoURL}
         
     def nationalStories(self):
         NationalStory = self.session.get_class(surf.ns.SOER['NationalStory'])
-        for nstory in NationalStory.all():
+        for nstory in NationalStory.all().order():
             yield ISOERReport(nstory)
 
-    nsFormating = "%20s %6s %9s %5s %7s %8s %8s %10s %6s %5s\n"
-    figFormating = "%20s %6s %9s %5s %7s\n"
+    nsFormating = "\n%s\n%20s %6s %9s %5s %7s %8s %8s %10s %6s %5s\n"
+    figFormating = "%s\n%20s %6s %9s %5s %7s\n"
     def status(self):
         result = ""
         NationalStory = self.session.get_class(surf.ns.SOER['NationalStory'])
-        result += self.nsFormating % (' ', 'Topic','Question', 'Desc','KeyMsg','Assesment','KeyWord','Indicator','Figure','Data')
-        for nstory in NationalStory.all():
+        DataFile = self.session.get_class(surf.ns.SOER['DataFile'])
+        result += self.nsFormating % (' ',' ', 'Topic','Question', 'Desc','KeyMsg','Assesment','KeyWord','Indicator','Figure','Data')
+        for nstory in NationalStory.all().order():
             nstory = ISOERReport(nstory)
             result += self._checkNationalStory(nstory)
             for fig in nstory.hasFigure():
                 result += self._checkFigure(fig)
+                if fig['dataSource']:
+                    result += self._checkDataSource(fig['dataSource'])
             for dataSrc in nstory.dataSource():
                 result += self._checkDataSource(dataSrc)
                 
@@ -280,7 +295,8 @@ class SoerRDF2Surf(object):
         subjectSize = len(nstory.subject)
         if subjectSize > 20:
             subject = nstory.subject[subjectSize-20:]
-        result = self.nsFormating % ('NationalStory',
+        result = self.nsFormating % ( nstory.subject,
+                                    'NationalStory',
                                     chk(nstory.topic),
                                     chk(nstory.question),
                                     chk(nstory.description),
@@ -297,7 +313,8 @@ class SoerRDF2Surf(object):
         subjectSize = len(fig['url'])
         if subjectSize > 20:
             subject = fig['url'][subjectSize-20:]
-        result = self.figFormating % ('Figure',
+        result = self.figFormating % (fig['url'],
+                                      'Figure',
                                     chk(fig['mediaType']),
                                     chk(fig['caption']),
                                     chk(fig['description']),
@@ -309,7 +326,8 @@ class SoerRDF2Surf(object):
         subjectSize = len(dataSrc['url'])
         if subjectSize > 20:
             subject = dataSrc['url'][subjectSize-20:]
-        result = self.figFormating % ('DataSrcure','','',
+        result = self.figFormating % (dataSrc['url'],
+                                      'DataSource','','',
                                     chk(dataSrc['fileName']),
                                     chk(dataSrc['dataURL'])
                                     )

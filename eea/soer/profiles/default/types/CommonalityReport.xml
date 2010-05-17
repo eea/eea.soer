@@ -19,6 +19,7 @@
   <element value="RelatedIndicatorLink"/>
   <element value="ATImage"/>
   <element value="Image"/>
+  <element value="CommonalityReport"/>
  </property>
  <property name="allow_discussion">False</property>
  <property name="default_view">commonality_report_view</property>

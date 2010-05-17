@@ -8,6 +8,7 @@ from eea.soer.content.interfaces import ISOERReport
 from eea.soer.config import *
 from Products.ATVocabularyManager import NamedVocabulary
 from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
+from Products.CMFPlone.PloneBatch import Batch
 try:
     from Products.LinguaPlone.public import *
 except ImportError:
@@ -140,7 +141,6 @@ class SOERReport(ATFolder, ATNewsItem):
 
     meta_type = 'SOERReport'
     portal_type = 'SOERReport'
-    allowed_content_types = ['Image', 'Page', 'RSSFeedRecipe', 'Link', 'RelatedIndicatorLink']
     _at_rename_after_creation = True
 
     schema = schema
@@ -164,10 +164,21 @@ class SOERReport(ATFolder, ATNewsItem):
     def default_country(self):
         path = self.getPhysicalPath()
         if len(path) >= 2:
-            country_code = path[-2]
+            if self.aq_parent.portal_type == self.portal_type:
+                country_code = path[-3]
+            else:
+                country_code = path[-2]
             return country_code
         return ''
 
+    def figures(self):
+        """ return figures for listing at the bottom of the report """
+        assessment = self.getText()
+        return Batch([fig  for fig in self.getFolderContents(contentFilter={'portal_type' : 'Image'}) 
+                      if fig.getURL() not in assessment ],
+                     10)
+
+                
     def isFromFeed(self):
         """ return True if SOERCountry has a feed url """
         if hasattr(self.aq_parent, 'getRdfFeed'):

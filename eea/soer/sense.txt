@@ -12,8 +12,7 @@ All content as part of eea.soer can be imported and exported as `SOER Feed <http
   >>> self.setRoles(['Manager'])
   >>> soer = self.portal.SOER
   >>> country = soer[soer.invokeFactory('SOERCountry', id='no')]
-  >>> from eea.soer.tests.base import examplerdf
-  >>> country.setRdfFeed(examplerdf)
+  >>> from eea.soer.tests.base import examplerdf, evalrdf
     
 Lets load an RDF
 
@@ -24,24 +23,37 @@ Lets load an RDF
   >>> store.load_triples(source=examplerdf)
   True
 
-  >>> NationalStory = session.get_class(surf.ns.SOER['NationalStory'])  
-  >>> from eea.soer.interfaces import ISoerRDF2Surf
-  >>> surfrdf = ISoerRDF2Surf(examplerdf)
-   
+  >>> print examplerdf
+
+  >>> country.setRdfFeed(examplerdf)
   >>> _ = country.updateFromFeed()
 
+Lets try our evaluation vocabulary
+
+  >>> store.load_triples(source=evalrdf)
+  True
+  >>> Evaluation = session.get_class(surf.ns.SOEREVALUATION['Evaluation'])
+  >>> for i in Evaluation.all().order():
+  ...   print i.subject
+  http://www.eea.europa.eu/soer/evaluations#FV
+  http://www.eea.europa.eu/soer/evaluations#U1
+  http://www.eea.europa.eu/soer/evaluations#U1+
+  http://www.eea.europa.eu/soer/evaluations#U1-
+  http://www.eea.europa.eu/soer/evaluations#U2
+  http://www.eea.europa.eu/soer/evaluations#U2+
+  http://www.eea.europa.eu/soer/evaluations#U2-
+  http://www.eea.europa.eu/soer/evaluations#XX
+
 Plone to RDF
+
+  >>> from zope.component import getMultiAdapter
+  >>> print getMultiAdapter((country, country.REQUEST), name = u'rdf')()
 
   >>> NationalStory = session.get_class(surf.ns.SOER['NationalStory'])
   >>> obj = country['air-pollution-why-care-norway']
   >>> foo = obj.invokeFactory('RelatedIndicatorLink', id='indi1')
   >>> obj.indi1.setTitle('Related indicator')
 
-  >>> from Products.Marshall.registry import getComponent
-  >>> marshaller = getComponent('surfrdf')
-  >>> content_type, length, data = marshaller.marshall(country)
-  >>> print country.unrestrictedTraverse('/@@rdf')
-  
   >>> ns = NationalStory(obj.absolute_url())
   >>> ns.bind_namespaces(['SOER'])
   >>> ns.session = session
