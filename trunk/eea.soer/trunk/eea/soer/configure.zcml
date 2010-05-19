@@ -3,6 +3,8 @@
            xmlns:browser="http://namespaces.zope.org/browser">
 
   <include package="eea.rdfmarshaller" />
+  <include package="plone.i18n.locales" />
+
   <five:registerPackage package="." initialize=".initialize" />
   
   <include file="profiles.zcml" />
@@ -25,6 +27,12 @@
       handler=".content.FlexibilityReport.gen_title"
       />
 
+  <subscriber
+      for="eea.soer.content.interfaces.IReportingCountry
+           zope.app.container.interfaces.IObjectModifiedEvent"
+      handler=".content.SOERCountry.updateFromFeed"
+      />
+
   <adapter factory=".sense.NationalStory2Surf" />
   <adapter factory=".sense.Image2Surf" />
   <adapter factory=".sense.Link2Surf" />
@@ -41,5 +49,9 @@
   <utility
         name="eea.facetednavigation.SoerCountryFacetedNavigable"
         factory=".faceted.FolderFacetedNavigableDescriptor" />
+
+  <utility
+        name="eea.facetednavigation.SoerCountryFacetedHeritor"
+        factory=".faceted.FolderFacetedHeritorDescriptor" />
 
 </configure>

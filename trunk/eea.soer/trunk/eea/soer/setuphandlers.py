@@ -1,4 +1,9 @@
+from plone.i18n.locales.interfaces import ICountryAvailability
+
+from zope.component import queryUtility
 from Products.CMFCore.utils import getToolByName
+from eea.soer.vocab import atvocabs as vocabs
+from eea.vocab import countries
 
 def reindexSoerReports(context):
     portal = context.getSite()
@@ -6,6 +11,15 @@ def reindexSoerReports(context):
     result = catalog.searchResults({'object_provides': 'eea.soer.content.interfaces.ISOERReport', 'Language': 'all'})
     for i in result:
         i.getObject().reindexObject()
+
+def setupCountriesVocabulary(context):
+    vocabs['eea.soer.vocab.european_countries'] = []
+    util = queryUtility(ICountryAvailability)
+    all_countries = util.getCountries()
+    european_country_codes = countries.getCountries()
+    for i in european_country_codes:
+        country_name = all_countries[i][u'name']
+        vocabs['eea.soer.vocab.european_countries'].append((i, country_name))
 
 def setupATVocabularies(context):
     """ Installs all AT-based Vocabularies """
@@ -15,10 +29,8 @@ def setupATVocabularies(context):
     atvm = getToolByName(portal, ATVOCABULARYTOOL, None)
     if atvm is None:
         return
-
-    from eea.soer.vocab import atvocabs as vocabs
+    setupCountriesVocabulary(context)
     for vkey in vocabs.keys():
-
         if hasattr(atvm, vkey):
             continue
         
@@ -28,3 +40,6 @@ def setupATVocabularies(context):
         simple = atvm.getVocabularyByName(vkey)
         for (key, val) in vocabs[vkey]:
             simple.addTerm(key, val)
+
+
+

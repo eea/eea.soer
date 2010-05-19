@@ -1,4 +1,6 @@
-from Products.PloneLanguageTool.availablelanguages import countries as all_countries
+from plone.i18n.locales.interfaces import ICountryAvailability
+
+from zope.component import queryUtility
 from eea.vocab import countries
 import surf
 
@@ -71,11 +73,6 @@ atvocabs = {
 atvocabs['eea.soer.vocab.all_questions'] = atvocabs['eea.soer.vocab.diversity_questions'] + atvocabs['eea.soer.vocab.questions']
 
 
-atvocabs['eea.soer.vocab.european_countries'] = []
-european_country_codes = countries.getCountries()
-for i in european_country_codes:
-    country_name = all_countries[i.upper()]
-    atvocabs['eea.soer.vocab.european_countries'].append((i, country_name))
 
 
 geostore = surf.Store(reader='rdflib',  writer='rdflib', rdflib_store = 'IOMemory')
