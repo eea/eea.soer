@@ -29,6 +29,9 @@ setup(name='eea.soer',
           'setuptools',
           'eea.vocab',
           'eea.rdfmarshaller',
+          'eea.facetednavigation',
+          'eea.faceted.inheritance',          
+          'Products.ATVocabularyManager',
       ],
       entry_points="""
       # -*- Entry points: -*-

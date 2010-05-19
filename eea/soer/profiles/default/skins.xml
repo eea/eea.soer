@@ -16,7 +16,7 @@
    of your product (on the filesystem) as Filesystem Directory Views within the
    portal_skins tool, so that they become usable as skin layers. -->
  <object name="eea_soer" meta_type="Filesystem Directory View"
-     directory="soer/skins/eea_soer"/>
+     directory="eea.soer:skins/eea_soer"/>
  <skin-path name="EEADesign2006">
   <layer name="eea_soer" insert-after="custom"/>
  </skin-path>
