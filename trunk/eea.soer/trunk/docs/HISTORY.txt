@@ -1,7 +1,11 @@
 Changelog
 =========
 
-0.2 - Unreleased
+0.3 - unrelease
+---------------
+
+
+0.2 - 2010-05-19
 ----------------
 
 * Geographical coverage values are fetched from http://rod.eionet.europa.eu/countries [vincisas]
