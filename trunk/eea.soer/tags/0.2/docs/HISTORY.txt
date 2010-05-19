@@ -1,0 +1,16 @@
+Changelog
+=========
+
+0.2 - Unreleased
+----------------
+
+* Geographical coverage values are fetched from http://rod.eionet.europa.eu/countries [vincisas]
+* Schema updated to `SOER RDF spec <https://svn.eionet.europa.eu/projects/Zope/wiki/SOERFeedSpec>`_ [vincisas]
+* Plone 3 compatibility [vincisas]
+* import and export with eea.rdfmarshaller [vincisas]
+
+0.1 - 2010-01-15
+----------------
+
+* Initial release
+

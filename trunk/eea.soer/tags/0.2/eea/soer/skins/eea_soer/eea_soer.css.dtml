@@ -1,0 +1,66 @@
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+.photoAlbumEntry,
+.header .portletHeader {
+    position: relative;
+
+}
+
+.websource-box {
+    background: transparent url('tag_green_right.png') no-repeat 100% 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 25px 0 0;
+    overflow: hidden;
+    text-indent:-999px;
+}
+
+.imagesource-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0 ! important;
+}
+
+.websource-box:hover {
+    text-indent: 0;
+}
+
+.header .portlet {
+    vertical-align:baseline;
+    position: relative;
+    overflow: hidden; 
+    float: right;
+    clear: right;
+    width: 200px;
+    margin: 0 0 10px 10px; 
+}
+
+.header .body {
+    padding: 10px;
+}
+
+.header #channel-portlet img {
+    width: 200px;
+}
+
+.tileItem {
+    position: relative;
+} 
+
+
+.image-source a {
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 400px;
+}
+.websource-info {
+}
+
+/* </dtml-with> */
+
