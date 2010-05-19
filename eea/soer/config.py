@@ -1,4 +1,4 @@
-from Products.CMFCore.CMFCorePermissions import AddPortalContent
+from Products.CMFCore.permissions import AddPortalContent
 import surf
 
 surf.ns.register(SOER="http://www.eea.europa.eu/soer/1.0#")
