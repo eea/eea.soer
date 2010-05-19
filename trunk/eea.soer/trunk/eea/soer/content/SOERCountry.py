@@ -14,6 +14,7 @@ try:
 except ImportError:
     # No multilingual support
     from Products.Archetypes.public import *
+from Products.CMFPlone.log import log
 
 
 schema = Schema((
@@ -102,7 +103,10 @@ class SOERCountry(ATFolder):
                         if fig['fileName'] == 'tempfile':
                             newId = figure._renameAfterCreation(check_auto_id=False)
                             figure = report[newId]
-                        wtool.doActionFor(figure, 'publish', comment='Automatic feed update')
+                        try:
+                            wtool.doActionFor(figure, 'publish', comment='Automatic feed update')
+                        except:
+                            log('Failed to publish %s' % figure.absolute_url())
                         if fig.get('dataSource', None) is not None:
                             dataSrc = fig['dataSource']
                             dataLink = report[report.invokeFactory('Link', id=dataSrc['fileName'],
@@ -112,7 +116,10 @@ class SOERCountry(ATFolder):
 
                         
                 report.setEffectiveDate(nstory.pubDate)
-                wtool.doActionFor(report, 'publish', comment='Automatic feed update')
+                try:
+                    wtool.doActionFor(report, 'publish', comment='Automatic feed update')
+                except:
+                    log('Failed to publish %s' % figure.absolute_url())                
                 report.original_url = nstory.subject.strip()
                 report.reindexObject()
 
