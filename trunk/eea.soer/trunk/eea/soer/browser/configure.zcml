@@ -9,4 +9,12 @@
     permission="zope.Public"
     />
 
+  <browser:page
+    for="*"
+    name="soerReportView"
+    class=".report.ReportView"
+    permission="zope.Public"
+    allowed_interface="..interfaces.IReportView"
+    />
+
 </configure>

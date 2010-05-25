@@ -4,6 +4,7 @@ from zope.component import queryUtility
 from Products.CMFCore.utils import getToolByName
 from eea.soer.vocab import atvocabs as vocabs
 from eea.vocab import countries
+from eea.soer import transform
 
 def reindexSoerReports(context):
     portal = context.getSite()
@@ -21,6 +22,22 @@ def setupCountriesVocabulary(context):
         country_name = all_countries[i][u'name']
         vocabs['eea.soer.vocab.european_countries'].append((i, country_name))
 
+def setupTransform(context):
+    portal = context.getSite()
+    ptr = getToolByName(portal, 'portal_transforms')
+    if 'image_with_source' not in ptr.objectIds():
+        ptr.registerTransform(transform.register())
+
+def hideFromNavigation(context):
+    portal = context.getSite()
+    props = getToolByName(portal, 'portal_properties')
+    portalTypes = ['CommonalityReport', 'FlexibilityReport', 'DiversityReport', 'RelatedIndicatorLink']
+    hidden =  list(props.navtree_properties.metaTypesNotToList)
+    for t in portalTypes:
+        if t not in hidden:
+            hidden.append(t)
+    props.navtree_properties.manage_changeProperties(metaTypesNotToList=hidden)
+    
 def setupATVocabularies(context):
     """ Installs all AT-based Vocabularies """
 
@@ -41,5 +58,6 @@ def setupATVocabularies(context):
         for (key, val) in vocabs[vkey]:
             simple.addTerm(key, val)
 
-
-
+    setupTransform(context)
+    hideFromNavigation(context)
+    

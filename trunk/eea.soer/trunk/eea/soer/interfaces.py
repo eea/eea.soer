@@ -20,3 +20,9 @@ class INationalStory2AT(ISurf2AT):
 class ISoerRDF2Surf(Interface):
     """ read a rdf and verify that the feed is correct before content is updated
         in Plone. """
+
+class IReportView(Interface):
+    """ report view for templates """
+
+    def redirectIfSubReport():
+        """ redirect to the parent report """

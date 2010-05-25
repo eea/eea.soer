@@ -1,6 +1,6 @@
 import surf
 import rdflib
-from zope.interface import implements, directlyProvides
+from zope.interface import implements
 from zope.component import adapts, queryMultiAdapter
 from eea.soer import vocab
 from eea.soer.interfaces import ISoerRDF2Surf, INationalStory
@@ -10,6 +10,7 @@ from DateTime import DateTime
 from Products.Archetypes import interfaces as atinterfaces
 from Products.ATContentTypes.interface.image import IATImage
 from Products.ATContentTypes.interface.link import IATLink
+from Products.CMFPlone import log
 from eea.rdfmarshaller.interfaces import IArchetype2Surf, ISurfSession
 
 class GetATSchema4SurfObj(object):
@@ -147,7 +148,9 @@ class Surf2SOERReport(object):
         for fname in  atinterfaces.ISchema(context).fieldNames():
             fname = self.index_map.get(fname, fname)
             field = getattr(context, 'soer_%s' % fname)
-            if field.first is not None:
+            if fname in ['keyword']:
+                setattr(self, fname, [ value.strip().encode('utf8') for value in field ])
+            elif field.first is not None:
                 setattr(self, fname, field.first.strip().encode('utf8'))
             else:
                 setattr(self, fname, '')
@@ -169,8 +172,14 @@ class Surf2SOERReport(object):
     def hasFigure(self):
         context = self.context
         if context.soer_hasFigure:
+            i = 0
             for fig in context.soer_hasFigure:
-                fileName = fig.soer_fileName.first and str(fig.soer_fileName.first) or 'tempfile'
+                try:
+                    fileName = fig.soer_fileName.first and str(fig.soer_fileName.first) or 'tempfile'
+                except:
+                    log.log('Figure resource without information %s' % fig, severity=log.logging.WARN)
+                    continue
+                
                 result =  { 'url' : fig.subject.strip(),
                             'fileName' : fileName,
                             'caption' : str(fig.soer_caption.first),
@@ -180,11 +189,17 @@ class Surf2SOERReport(object):
                     result['mediaType'] = fig.soer_mediaType.first.strip()
                 if fig.soer_dataSource.first is not None:
                     dataSrc = fig.soer_dataSource.first
-                    fileName = dataSrc.soer_fileName.first and str(dataSrc.soer_fileName.first) or 'tempfile'
-                    result['dataSource'] = { 'url' : dataSrc.subject.strip(),
-                                             'fileName' : fileName,
-                                             'dataURL' : dataSrc.soer_dataURL.first.strip() }
-                
+                    if not isinstance(dataSrc, rdflib.URIRef):
+                        fileName = dataSrc.soer_fileName.first and str(dataSrc.soer_fileName.first) or 'tempfile'
+                        result['dataSource'] = { 'url' : dataSrc.subject.strip(),
+                                                 'fileName' : fileName,
+                                                 'dataURL' : dataSrc.soer_dataURL.first.strip() }
+                    else:
+                        result['dataSource'] = { 'url' : str(dataSrc),
+                                                 'fileName' : fileName,
+                                                 'dataURL' : str(dataSrc) }
+                        log.log('Data source without information %s' % dataSrc, severity=log.logging.WARN)
+                                                 
                 yield result
                         
     def dataSource(self):
@@ -194,6 +209,12 @@ class Surf2SOERReport(object):
                 yield { 'url' : dataSrc.subject.strip(),
                         'fileName' : dataSrc.soer_fileName.first.strip(),
                         'dataURL' : dataSrc.soer_dataURL.first.strip() }
+
+    def relatedIndicator(self):
+        context = self.context
+        if context.soer_relatedEuropeanIndicator:
+            return [ str(indicator) for indicator in context.soer_relatedEuropeanIndicator ]
+        return []
                 
 class Image2Surf(object):
     """ Resource axtension for """
@@ -258,12 +279,18 @@ class SoerRDF2Surf(object):
         self.store.load_triples(source=url)        
 
     def channel(self):
-        channel = self.session.get_class(surf.ns.SOER['channel']).all().one()
-        return {'organisationName' : channel.soer_organisationName,
-                'organisationURL'  : channel.soer_organisationURL,
-                'organisationContactURL'  : channel.soer_organisationContactURL,
-                'organisationLogoURL' : channel.soer_organisationLogoURL}
-        
+        channel = self.session.get_class(surf.ns.SOER['channel']).all()
+        if channel:
+            channel = channel.one()
+            result = {'organisationName' : channel.soer_organisationName.first.strip(),
+                      'organisationURL'  : channel.soer_organisationURL.first.strip(),
+                      'organisationContactURL'  : channel.soer_organisationContactURL.first.strip(),
+                      'organisationLogoURL' : channel.soer_organisationLogoURL.first.strip(),
+                      'license' : channel.soer_license.first.strip(),
+                      'updated' : DateTime() }
+            print result
+            return result
+    
     def nationalStories(self):
         NationalStory = self.session.get_class(surf.ns.SOER['NationalStory'])
         for nstory in NationalStory.all().order():
