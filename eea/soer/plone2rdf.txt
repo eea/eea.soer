@@ -36,6 +36,24 @@ Plone to RDF
   ...   ns = at2SurfObj.save(session)
   >>> session.commit()
 
+
+
+
+Verify a RDF
+
+                              Topic Question Desc KeyMsg Assesment KeyWord Indicator Figure Data 
+  NS(http://nohost/no/foo)    t1    q1        x           x         2                 1
+  NS(http://nohost/no/foo#a)  t1    q1        x    x      x         2                 2
+
+                                media caption desc data
+  Fig(http://nohost/no/foo/fig)
+
+                                 media name url
+  Data(http://nohost/no/foo/fig)
+
+
+
+
 Serialization
   >>> store.reader.graph.bind('','http://www.eea.europa.eu/soer/1.0#', override=True)
   >>> graph = store.reader.graph
