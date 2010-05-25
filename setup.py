@@ -27,6 +27,7 @@ setup(name='eea.soer',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'BeautifulSoup',
           'eea.vocab',
           'eea.rdfmarshaller',
           'eea.facetednavigation',

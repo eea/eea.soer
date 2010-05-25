@@ -6,7 +6,7 @@
 	 xmlns:dc="http://purl.org/dc/elements/1.1/"
          xmlns:dcq="http://purl.org/dc/terms/">
 <channel rdf:about="">
-  <organisationName>State of the Environment Norway</organisationName>
+  <organisationName>State of the Environment Sweden</organisationName>
   <organisationName xml:lang="it">Istituto Superiore per la Protezione e la Ricerca Ambientale</organisationName>
   <reportingCountryCode rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
   <organisationURL>http://www.environment.no</organisationURL>
@@ -19,7 +19,7 @@
     <topic>freshwater</topic>
     <question>Why should we care?</question>
     <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
-    <description>Why Norway cares about air pollution and the status of air pollution.</description>
+    <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
     </keyMessage>
@@ -44,7 +44,7 @@
     <topic>waste</topic>
     <question>What are the main drivers?</question>
     <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
-    <description>Why Norway cares about air pollution and the status of air pollution.</description>
+    <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
     </keyMessage>
@@ -69,7 +69,7 @@
     <topic>air pollution</topic>
     <question>Why should we care?</question>
     <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
-    <description>Why Norway cares about air pollution and the status of air pollution.</description>
+    <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
     </keyMessage>
@@ -94,7 +94,7 @@
     <topic>air pollution</topic>
     <question>Why should we care?</question>
     <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
-    <description>Why Norway cares about air pollution and the status of air pollution.</description>
+    <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
     </keyMessage>
@@ -119,7 +119,7 @@
     <topic>land</topic>
     <question>Why should we care?</question>
     <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
-    <description>Why Norway cares about air pollution and the status of air pollution.</description>
+    <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
     </keyMessage>
@@ -144,7 +144,7 @@
     <topic>air pollution</topic>
     <question>Why should we care?</question>
     <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
-    <description>Why Norway cares about air pollution and the status of air pollution.</description>
+    <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
     </keyMessage>
@@ -160,7 +160,7 @@
     <keyword>air</keyword>
     <keyword>air pollution concentrations</keyword>
     <keyword>human health</keyword>
-    <relatedEuropeanIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
+    <relatedEuropeanIndicator rdf:resource="http://themes.eea.europa.eu/IMS/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/view_content" />
     <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif"/>
     <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif"/>
   </NationalStory>
@@ -170,7 +170,7 @@
     <topic>air pollution</topic>
     <question>What are the state and impacts?</question>
     <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
-    <description>Why Norway cares about air pollution and the status of air pollution.</description>
+    <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
     </keyMessage>
@@ -197,7 +197,7 @@
     <topic>air pollution</topic>
     <question>What are the related drivers and pressures?</question>
     <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
-    <description>Why Norway cares about air pollution and the status of air pollution.</description>
+    <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       Ozone precursor emissions decreasing, but NEC reduction target out of reach
     </keyMessage>
@@ -219,12 +219,12 @@
     <topic>air pollution</topic>
     <question>What are the related drivers and pressures?</question>
     <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
-    <description>Why Norway cares about air pollution and the status of air pollution.</description>
+    <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       Ozone precursor emissions decreasing, but NEC reduction target out of reach
     </keyMessage>
     <assessment>
-      <![CDATA[Ozone precursor (NOx and VOC) emissions, expressed in TOFP (Total Ozone Formation Potential) units decreased by 40% between 1990 and 2007. Because the different ozone precursors have a different share in the tropospheric ozone formation, the photochemically relevant sum of the precursors is expressed in TOFP units. Besides NOx and VOC, CO and CH4 also play a role in the photochemical ozone formation reactions. There role however is less important and the TOFP used here is only the relevant sum of NOx and VOC.]]>
+      <![CDATA[<p>#C Ozone precursor (NOx and VOC) emissions, expressed in TOFP (Total Ozone Formation Potential) <img src="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif" />units decreased by 40% between 1990 and 2007. Because the different ozone precursors have a different share in the tropospheric ozone formation, the photochemically relevant sum of the precursors is expressed in TOFP units. Besides NOx and VOC, CO and CH4 also play a role in the photochemical ozone formation reactions. There role however is less important and the TOFP used here is only the relevant sum of NOx and VOC.</p>]]>
     </assessment>
     <pubDate>2008-03-07</pubDate>
     <modified>2008-03-07</modified>
@@ -243,12 +243,12 @@
     <topic>air pollution</topic>
     <question>What are the related drivers and pressures?</question>
     <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
-    <description>Why Norway cares about air pollution and the status of air pollution.</description>
+    <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       Primary and precursor PM10 emissions decreasing slowly
     </keyMessage>
     <assessment>
-      <![CDATA[Recent studies have demonstrated that almost 50% of the total measured PM10 in Belgium is secundary aerosol (sulphates, nitrates). The AFP (Aerosol Formation Potential) emissions (blue bars), this is the weighted sum of the NH3, SO2 and NOx emissions based on their aerosol formation potential, have decreased by 23 % in 2007 since 2000.  The primary PM10 emissions (green bars) decreased by 28% in 2007 since 2000. The total (=sum of primary and secundary) PM10 emissions were more than 20% lower in 2007 compared to 2000.]]>
+      <![CDATA[#D Recent studies have demonstrated that almost 50% of the total measured PM10 in Belgium is secundary aerosol (sulphates, nitrates). The AFP (Aerosol Formation Potential) emissions (blue bars), this is the weighted sum of the NH3, SO2 and NOx emissions based on their aerosol formation potential, have decreased by 23 % in 2007 since 2000.  The primary PM10 emissions (green bars) decreased by 28% in 2007 since 2000. The total (=sum of primary and secundary) PM10 emissions were more than 20% lower in 2007 compared to 2000.]]>
     </assessment>
     <pubDate>2008-03-07</pubDate>
     <modified>2008-03-07</modified>

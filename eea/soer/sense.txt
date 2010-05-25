@@ -22,9 +22,6 @@ Lets load an RDF
   >>> session = surf.Session(store, mapping={surf.ns.SOER.NationalStory : sense.NationalStory} )
   >>> store.load_triples(source=examplerdf)
   True
-
-  >>> print examplerdf
-
   >>> country.setRdfFeed(examplerdf)
   >>> _ = country.updateFromFeed()
 
@@ -48,6 +45,7 @@ Plone to RDF
 
   >>> from zope.component import getMultiAdapter
   >>> print getMultiAdapter((country, country.REQUEST), name = u'rdf')()
+  ...
 
   >>> NationalStory = session.get_class(surf.ns.SOER['NationalStory'])
   >>> obj = country['air-pollution-why-care-norway']

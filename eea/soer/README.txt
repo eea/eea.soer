@@ -28,8 +28,8 @@ after saving/modifiying the report.
 
   >>> form = {
   ...     'text': 'The situation is serious :s',
-  ...     'soerTopic': '1',
-  ...     'soerQuestion': '2',
+  ...     'topic': '1',
+  ...     'question': '2',
   ... }
   >>> report.processForm(values=form, data=1, metadata=1)
 
@@ -55,7 +55,7 @@ The diversity report have a few sections specified in a vocabulary that has to
 be answered:
 
   >>> form = {
-  ...     'soerQuestion': '0',
+  ...     'question': '0',
   ...     'text': 'The situation is diverse!',
   ... }
   >>> report.processForm(values=form, data=1, metadata=1)

@@ -1,5 +1,6 @@
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
+from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 from Products.ATContentTypes.configuration import zconf
 from Products.ATContentTypes.content.folder import ATFolder
@@ -131,6 +132,8 @@ schema = Schema((
 
 schema = getattr(ATFolder, 'schema', Schema(())).copy() + schema.copy()
 schema['title'].default = 'not_set_yet'
+schema['title'].required = 0
+schema['title'].widget.visible = {'edit' : 'invisible'}
 schema['soerCountry'].default_method = 'default_country'
 
 class SOERReport(ATFolder, ATNewsItem):
@@ -159,7 +162,11 @@ class SOERReport(ATFolder, ATNewsItem):
         return term.title;
 
     def getSoerCountryName(self):
-        return self.getTermTitle('eea.soer.vocab.european_countries', self.getSoerCountry())
+        country_code = self.getSoerCountry()
+        if len(country_code) > 2:
+            # country folder id is probably named with full name
+            return country_code
+        return self.getTermTitle('eea.soer.vocab.european_countries', country_code)
 
     def default_country(self):
         path = self.getPhysicalPath()
@@ -175,13 +182,28 @@ class SOERReport(ATFolder, ATNewsItem):
         """ return figures for listing at the bottom of the report """
         assessment = self.getText()
         return Batch([fig  for fig in self.getFolderContents(contentFilter={'portal_type' : 'Image'}) 
-                      if fig.getURL() not in assessment ],
+                      if fig.getURL(1) not in assessment ],
                      10)
 
-                
+    def indicators(self):
+        """ return indicators """
+        return self.getFolderContents(contentFilter={'portal_type': 'RelatedIndicatorLink'}, full_objects=True)
+    
+    def subReports(self):
+        """ return reports inside this report (multiple indicator base report) """ 
+        return self.getFolderContents(contentFilter={'portal_type' : self.portal_type}, full_objects=True)
+    
     def isFromFeed(self):
         """ return True if SOERCountry has a feed url """
         if hasattr(self.aq_parent, 'getRdfFeed'):
             return self.aq_parent.getRdfFeed() and True or False
         return False
         
+
+    def absolute_url(self, *args):
+        return super(SOERReport, self).absolute_url(*args)
+        parent = aq_inner(self).aq_parent
+        if parent.portal_type == self.portal_type:
+            # we are subfolder lets fake url
+            return '%s#%s' % (parent.absolute_url(*args), self.getId())
+
