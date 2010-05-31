@@ -137,9 +137,7 @@
         obj brain/getObject;
         obj_title python:obj.pretty_title_or_id();
         desc_or_title python:brain.Description or obj_title;
-        urlview obj/@@url;
-        listing_url urlview/listing_url;
-        is_video python:'p4a.video.interfaces.IVideoEnhanced' in brain.object_provides;
+        is_video nothing;
 	source python:'#imagesourc%s' % obj.UID();
 	dataSources obj/getRelatedItems">
       <div class="hiddenStructure">
