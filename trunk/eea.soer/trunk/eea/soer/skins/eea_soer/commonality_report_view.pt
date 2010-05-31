@@ -159,9 +159,34 @@
               tal:attributes="href report/original_url">Original link</a>
         </div>
      </div>
-        <metal:entry use-macro="context/atct_albumentry/macros/entry" />
-      </tal:entry>
-    </tal:images>
+     <tal:externalalbumentry tal:define="albumentry nocall:context/atct_albumentry|nothing">
+       <tal:wehaveexternal tal:condition="nocall:albumentry">
+          <metal:entry use-macro="context/atct_albumentry/macros/entry" />
+       </tal:wehaveexternal>
+       <tal:nomacro tal:condition="python:not albumentry">
+	<metal:entry define-macro="entry">
+        <div tal:define="css python:brain.is_folderish and 'photoAlbumEntry photoAlbumFolder' or 'photoAlbumEntry'"
+  	     tal:attributes="class css">
+             <a tal:attributes="
+	        href source|listing_url;
+		class python:test(is_video, 'thickbox', 'fancybox');
+		title python:desc_or_title">
+	      <span class="photoAlbumEntryWrapper">
+	        <img class="imagesource-box" src="tag_green_right.png" tal:condition="source|nothing"
+          	      tal:attributes="src python:'%s/tag_green_right.png' % portal_url" alt="Source" />
+                <img style="border: none" tal:attributes="
+		      title python:desc_or_title;
+		      alt obj/pretty_title_or_id;
+		      src string:${obj/absolute_url}/image_thumb"/>
+             </span>
+             <span class="photoAlbumEntryTitle" tal:content="obj/pretty_title_or_id" />
+          </a>
+       </div>
+       </metal:entry>
+     </tal:nomacro>
+   </tal:externalalbumentry>
+   </tal:entry>
+  </tal:images>
 </tal:figures>
 
         <div class="visualClear"></div>
