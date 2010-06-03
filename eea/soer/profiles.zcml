@@ -11,4 +11,12 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <genericsetup:registerProfile
+      name="plone3"
+      title="eea.soer in clean Plone 3"
+      directory="profiles/noteea"
+      description="Extension profile for eea.soer for Plone3 and outside EEA website"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
 </configure>

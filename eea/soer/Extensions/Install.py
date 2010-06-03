@@ -20,3 +20,8 @@ def install(self, reinstall=False):
     portal_setup.runAllImportSteps()
     product_name = PROFILE.split(':')[0]
     qi.notifyInstalled(product_name)
+
+    migrationTool = getToolByName(self, 'portal_migration')
+    if migrationTool.getInstanceVersionTuple()[0] >= 3:
+         portal_setup.runAllImportStepsFromProfile('profile-eea.soer:plone3')
+
