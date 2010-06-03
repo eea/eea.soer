@@ -41,6 +41,15 @@ Lets try our evaluation vocabulary
   http://www.eea.europa.eu/soer/evaluations#U2-
   http://www.eea.europa.eu/soer/evaluations#XX
 
+
+Lets test geo coverage vocabulary
+
+  >>> from zope.app.schema.vocabulary import IVocabularyFactory
+  >>> from zope.component import getUtility
+  >>> geovocab = getUtility(IVocabularyFactory, name=u"eea.soer.vocab.NUTSRegions")
+  >>> for bv in geovocab():
+  ...    print bv.title
+
 Plone to RDF
 
   >>> from zope.component import getMultiAdapter
