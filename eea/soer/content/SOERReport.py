@@ -1,7 +1,10 @@
 from zope.interface import implements
+from zope.component import getUtility
+from zope.app.schema.vocabulary import IVocabularyFactory
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
+from Products.Archetypes.utils import DisplayList
 from Products.ATContentTypes.configuration import zconf
 from Products.ATContentTypes.content.folder import ATFolder
 from Products.ATContentTypes.content.newsitem import ATNewsItem
@@ -83,7 +86,7 @@ schema = Schema((
             i18n_domain='eea.soer',
             format='select',
         ),
-        vocabulary=NamedVocabulary('eea.soer.vocab.geo_coverage'),
+        vocabulary="getGeoCoverageVocabulary",
         enforceVocabulary=True,
 
     ),
@@ -168,6 +171,10 @@ class SOERReport(ATFolder, ATNewsItem):
             return country_code
         return self.getTermTitle('eea.soer.vocab.european_countries', country_code)
 
+    def getGeoCoverageVocabulary(self, content_instance=None, field=None):
+        vocab =  getUtility(IVocabularyFactory, name=u"eea.soer.vocab.NUTSRegions")(self)
+        return DisplayList([(t.value, t.title) for t in vocab ])
+    
     def default_country(self):
         path = self.getPhysicalPath()
         if len(path) >= 2:
