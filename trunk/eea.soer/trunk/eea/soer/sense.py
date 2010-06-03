@@ -12,6 +12,7 @@ from Products.ATContentTypes.interface.image import IATImage
 from Products.ATContentTypes.interface.link import IATLink
 from Products.CMFPlone import log
 from eea.rdfmarshaller.interfaces import IArchetype2Surf, ISurfSession
+from eea.rdfmarshaller import marshaller
 
 class GetATSchema4SurfObj(object):
     implements(atinterfaces.ISchema)
@@ -26,80 +27,62 @@ class GetATSchema4SurfObj(object):
 
     def fieldNames(self):
         return [field.getName() for field in self.schema.fields() ] + ['relatedEuropeanIndicator']
-            
 
-class ReportingCountry2Surf(object):
+class Soer2Surf(marshaller.ATCT2Surf):
+    """ base class for adapters """
+    prefix= u'soer'
+
+    @property
+    def namespace(self):
+        return surf.ns.SOER
+
+
+class ReportingCountry2Surf(Soer2Surf):
     """ adapter from eea.soer report AT types to surf resource and RDF """
     implements(IArchetype2Surf)
     adapts(IReportingCountry, ISurfSession)
 
-
-    def __init__(self, context, session):
-        self.context = context
-        self.session = session
-        
-    @property
-    def namespace(self):
-        return surf.ns.SOER
-
-    @property
-    def prefix(self):
-        return ''
-    
     def at2surf(self):
+        super(ReportingCountry2Surf, self).at2surf()
         for obj in self.context.objectValues():
             atsurf = queryMultiAdapter((obj, self.session), interface=IArchetype2Surf)
             if atsurf is not None:
                 atsurf.at2surf()
-            
-class NationalStory2Surf(object):
+                
+class NationalStory2Surf(Soer2Surf):
     """ adapter from eea.soer report AT types to surf resource and RDF """
     implements(IArchetype2Surf)
     adapts(ISOERReport, ISurfSession)
 
+    portalType = 'NationalStory'
+
     def __init__(self, context, session):
-        self.context = context
-        self.session = session
-        
-    @property
-    def namespace(self):
-        return surf.ns.SOER
-
-    @property
-    def prefix(self):
-        return 'soer'
+        super(NationalStory2Surf, self).__init__(context, session)
+        self.field_map = dict([('text', 'assessment'),
+                      ('subject', 'keyword'),
+                      ])
+        self.blacklist_map = Soer2Surf.blacklist_map + [key for key in Soer2Surf.dc_map.keys()] + ['relatedItems', 'question', 'geoCoverage', 'id']
     
-    @property
-    def subject(self):
-        return self.context.absolute_url()
-
     def at2surf(self):
+        resource = super(NationalStory2Surf, self).at2surf()
         context = self.context
-        session = self.session
-        NationalStoryClass = session.get_class(surf.ns.SOER['NationalStory'])
-        resource = NationalStoryClass(self.subject)
-        resource.session = session
         question = context.getQuestion()
         if context.portal_type == 'DiversityReport':
             question = vocab.long_diversity_questions[context.getQuestion()]
         elif context.portal_type == 'CommonalityReport':
             question = vocab.long_questions[context.getQuestion()]
         resource.soer_question = question
-        resource.soer_description = context.Description()
-        resource.soer_keyMessage = context.getKeyMessage()
         resource.soer_geoCoverage = rdflib.URIRef(context.getGeoCoverage())
-        resource.soer_topic = context.getTopic()
-        resource.soer_assessment = context.getText()
         resource.soer_hasFigure = []
         for obj in context.objectValues():
-            surfObj = queryMultiAdapter((obj,session), interface=IArchetype2Surf)
+            surfObj = queryMultiAdapter((obj,self.session), interface=IArchetype2Surf)
             if surfObj is not None:
                 if obj.portal_type == 'Image':
                     resource.soer_hasFigure.append(surfObj.at2surf())
                 elif obj.portal_type == 'Link':
                     resource.soer_dataSource.append(surfObj.at2surf())
                 elif obj.portal_type == 'RelatedIndicatorLink':
-                    resource.soer_relatedEuropeanIndicator.append(rdflib.URIRef(obj.absolute_url()))
+                    resource.soer_relatedEuropeanIndicator.append(rdflib.URIRef(obj.getRemoteUrl()))
                 else:
                     surfObj.at2surf()
         resource.save()
@@ -216,57 +199,42 @@ class Surf2SOERReport(object):
             return [ str(indicator) for indicator in context.soer_relatedEuropeanIndicator ]
         return []
                 
-class Image2Surf(object):
+class Image2Surf(Soer2Surf):
     """ Resource axtension for """
     implements(IArchetype2Surf)
     adapts(IATImage, ISurfSession)
 
+    portalType = u'Figure'
+
     def __init__(self, context, session):
-        self.context = context
-        self.session = session
-    
-    @property
-    def subject(self):
-        return self.context.absolute_url()
+        super(Image2Surf, self).__init__(context, session)
+        self.field_map = Soer2Surf.field_map
+        self.field_map.update( dict([('id', 'fileName'),
+                                     ('title', 'caption'),
+                                     ('relatedItems', 'dataSource'),
+                                     ]))
+        self.blacklist_map = Soer2Surf.blacklist_map + [key for key in Soer2Surf.dc_map.keys()
+                                          if key not in ('title', 'description')]  + ['relatedItems','image']
+        self.dc_map = {} # we don't want Dublin Core right now
 
-    def at2surf(self):
-        context = self.context
-        session = self.session
-        FigureClass = session.get_class(surf.ns.SOER['Figure'])
-        resource = FigureClass(self.subject)
-        resource.session = session
-        resource.soer_fileName = self.context.getId()
-        resource.soer_capiton = context.Title()
-        resource.soer_description = context.Description()
-        resource.soer_dataSource = []
-        for dataFile in context.getRelatedItems():
-            resource.soer_dataSource.append(rdflib.URIRef(dataFile.absolute_url()))
-        resource.save()
-        return resource
     
 
-class Link2Surf(object):
+class Link2Surf(Soer2Surf):
     """ Resource axtension for """
     implements(IArchetype2Surf)
     adapts(IATLink, ISurfSession)
 
-    def __init__(self, context, session):
-        self.context = context
-        self.session = session
+    portalType = u'DataFile'
     
-    @property
-    def subject(self):
-        return self.context.absolute_url()
+    def __init__(self, context, session):
+        super(Link2Surf, self).__init__(context, session)
+        self.field_map = Soer2Surf.field_map
+        self.field_map.update( dict([('id', 'fileName'),
+                                     ('remoteUrl', 'dataURL'),
+                                     ]))
+        self.blacklist_map = Soer2Surf.blacklist_map + Soer2Surf.dc_map.keys()
+        self.dc_map = {} # we don't want Dublin Core right now
 
-    def at2surf(self):
-        context = self.context
-        session = self.session
-        DataFileClass = session.get_class(surf.ns.SOER['DataFile'])
-        resource = DataFileClass(self.subject)
-        resource.session = session
-        resource.soer_fileName = self.context.getId()
-        resource.save()
-        return resource
 
 class SoerRDF2Surf(object):
     """ read a rdf and verify that the feed is correct before content is updated
@@ -288,7 +256,6 @@ class SoerRDF2Surf(object):
                       'organisationLogoURL' : channel.soer_organisationLogoURL.first.strip(),
                       'license' : channel.soer_license.first.strip(),
                       'updated' : DateTime() }
-            print result
             return result
     
     def nationalStories(self):
