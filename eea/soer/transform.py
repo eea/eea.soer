@@ -71,8 +71,8 @@ class ImageSource:
         implements(ITransform)
     __implements__ = itransform
     __name__ = "image_with_source"
-    inputs = ('text/x-html-captioned',)
-    output = "text/x-html-captioned"
+    inputs = ('text/x-html-safe',)
+    output = "text/x-html-safe"
     
     def __init__(self, name=None):
         self.config_metadata = {
