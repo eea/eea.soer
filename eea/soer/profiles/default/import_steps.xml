@@ -7,10 +7,10 @@
   <dependency step="catalog"/>
     Install AT Vocabularies
  </import-step>
- <import-step id="reindex_soer_reports"
+ <import-step id="soerVarious"
               version="20090929-01"
-              handler="eea.soer.setuphandlers.reindexSoerReports"
-              title="eea.soer: Reindex SOER Reports">
-    Reindex SOER Reports
+              handler="eea.soer.setuphandlers.setupVarious"
+              title="eea.soer: Setup various">
+     eea.soer Setup various
  </import-step>
 </import-steps>
