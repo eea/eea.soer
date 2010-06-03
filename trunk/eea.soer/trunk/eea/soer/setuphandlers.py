@@ -58,6 +58,7 @@ def setupATVocabularies(context):
         for (key, val) in vocabs[vkey]:
             simple.addTerm(key, val)
 
+def setupVarious(context):
     setupTransform(context)
     hideFromNavigation(context)
-    
+
