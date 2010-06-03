@@ -1,7 +1,8 @@
-from plone.i18n.locales.interfaces import ICountryAvailability
-
-from zope.component import queryUtility
-from eea.vocab import countries
+from zope.app.schema.vocabulary import IVocabularyFactory
+from zope.interface import implements
+from zope.schema.vocabulary import SimpleVocabulary
+from zope.schema.vocabulary import SimpleTerm
+from eea.cache import cache
 import surf
 
 # Maps values from eea.soer.vocab.topics to their full description
@@ -42,45 +43,76 @@ atvocabs = {
     ),
 
     'eea.soer.vocab.questions': (
-        ('0', "Why care?"),
-        ('1', "State and impacts"),
-        ('2', "Drivers and pressures"),
-        ('3', "Policy responses"),
-        ('4', "Outlook to 2020"),
+        (u'0', "Why care?"),
+        (u'1', "State and impacts"),
+        (u'2', "Drivers and pressures"),
+        (u'3', "Outlook to 2020"),
+        (u'4', "Policy responses"),
     ),
 
     'eea.soer.vocab.diversity_questions': (
-        ('10', 'Factors'),
-        ('11', 'Societal developments'),
-        ('12', 'Main drivers'),
-        ('13', 'Main developments'),
-    ),
-
-
-    'eea.soer.vocab.content_types': (
-        ('0', "Text only"),
-        ('1', "Figures only"),
-        ('2', "Indicators and figures"),
-    ),
-    'eea.soer.vocab.geographical_coverage': (
-        ('0', "AA"),
-        ('1', "AB"),
-        ('2', "AC"),
+        (u'10', 'Factors'),
+        (u'11', 'Societal developments'),
+        (u'12', 'Main drivers'),
+        (u'13', 'Main developments'),
     ),
 
 }
 
 atvocabs['eea.soer.vocab.all_questions'] = atvocabs['eea.soer.vocab.diversity_questions'] + atvocabs['eea.soer.vocab.questions']
 
-
-
-
 geostore = surf.Store(reader='rdflib',  writer='rdflib', rdflib_store = 'IOMemory')
 geosession = surf.Session(geostore)
 surf.ns.register(ROD="http://rod.eionet.europa.eu/schema.rdf#")
-geostore.load_triples(source="http://rod.eionet.europa.eu/countries")        
+#geostore.load_triples(source="http://rod.eionet.europa.eu/countries")        
 atvocabs['eea.soer.vocab.geo_coverage'] = []
 Locality = geosession.get_class(surf.ns.ROD['Locality'])
 
-for loc in Locality.all():
+surf.ns.register(NUTS="http://rdfdata.eionet.europa.eu/ramon/ontology/")
+
+for loc in Locality.all().order():
     atvocabs['eea.soer.vocab.geo_coverage'].append((loc.rod_loccode.first.strip(), loc.rdfs_label.first.strip()))
+
+
+
+
+class NUTSRegions(object):
+    """ All regions """
+
+    implements(IVocabularyFactory)
+
+    def __init__(self):
+        #        geostore.load_triples(source="http://rdfdata.eionet.europa.eu/ramon/send_all")
+        # use local file to speed up for now
+        from eea.soer.tests.base import nutsrdf
+        geostore.load_triples(source=nutsrdf)
+        
+    def __call__(self, context=None):
+        NUTSRegion = geosession.get_class(surf.ns.NUTS['NUTSRegion'])
+        vocabulary = []
+        indent = u''
+        parent = []
+        for region in NUTSRegion.all().order():
+            current = region.subject.strip()
+            if region.nuts_partOf.first:
+                if region.nuts_partOf.first.subject.strip() not in parent:
+                    indent += u'.'
+                    parent.append(region.nuts_partOf.first.subject.strip())
+                else:
+                    while region.nuts_partOf.first.subject.strip() != parent[-1]:
+                        parent = parent[:-1]
+                        indent = indent[:-1]
+                    
+            elif len(parent) > 0:
+                indent = u''
+                parent = []
+            title = u'%s %s' % (indent, region.nuts_name.first.strip())
+            vocabulary.append(SimpleTerm(region.subject.strip(),
+                                         token=region.nuts_code.first.strip(),
+                                         title=title))
+        return SimpleVocabulary(vocabulary)
+
+
+
+VocabularyFactory = NUTSRegions()
+
