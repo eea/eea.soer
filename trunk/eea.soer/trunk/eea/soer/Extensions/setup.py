@@ -6,7 +6,7 @@ def setup_folder_structure(context):
     european_countries = vocab['eea.soer.vocab.european_countries']
     for country_code in european_countries.keys():
         print 'Creating folder with id %s and title %s' % (country_code, european_countries[country_code].title)
-        folder = context[context.invokeFactory('Folder', id=country_code)]
+        folder = context[context.invokeFactory('SOERCountry', id=country_code)]
         folder.setTitle(european_countries[country_code].title)
         folder.unmarkCreationFlag()
         folder.reindexObject()
