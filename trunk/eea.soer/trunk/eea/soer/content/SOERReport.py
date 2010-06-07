@@ -172,8 +172,27 @@ class SOERReport(ATFolder, ATNewsItem):
         return self.getTermTitle('eea.soer.vocab.european_countries', country_code)
 
     def getGeoCoverageVocabulary(self, content_instance=None, field=None):
-        vocab =  getUtility(IVocabularyFactory, name=u"eea.soer.vocab.NUTSRegions")(self)
-        return DisplayList([(t.value, t.title) for t in vocab ])
+        vocab =  getUtility(IVocabularyFactory, name=u"eea.soer.vocab.NUTSRegions")
+        indent = u''
+        parent = []
+        displayList = DisplayList()
+        for region in vocab.resources():
+            current = region.subject.strip()
+            if region.nuts_partOf.first:
+                if region.nuts_partOf.first.subject.strip() not in parent:
+                    indent += u'.'
+                    parent.append(region.nuts_partOf.first.subject.strip())
+                else:
+                    while region.nuts_partOf.first.subject.strip() != parent[-1]:
+                        parent = parent[:-1]
+                        indent = indent[:-1]
+                    
+            elif len(parent) > 0:
+                indent = u''
+                parent = []
+            title = u'%s %s' % (indent, region.nuts_name.first.strip())
+            displayList.add(current, title)
+        return displayList
     
     def default_country(self):
         path = self.getPhysicalPath()

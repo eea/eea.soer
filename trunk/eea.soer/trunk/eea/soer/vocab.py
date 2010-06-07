@@ -2,7 +2,6 @@ from zope.app.schema.vocabulary import IVocabularyFactory
 from zope.interface import implements
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
-from eea.cache import cache
 import surf
 
 # Maps values from eea.soer.vocab.topics to their full description
@@ -90,29 +89,18 @@ class NUTSRegions(object):
     def __call__(self, context=None):
         NUTSRegion = geosession.get_class(surf.ns.NUTS['NUTSRegion'])
         vocabulary = []
-        indent = u''
-        parent = []
         for region in NUTSRegion.all().order():
-            current = region.subject.strip()
-            if region.nuts_partOf.first:
-                if region.nuts_partOf.first.subject.strip() not in parent:
-                    indent += u'.'
-                    parent.append(region.nuts_partOf.first.subject.strip())
-                else:
-                    while region.nuts_partOf.first.subject.strip() != parent[-1]:
-                        parent = parent[:-1]
-                        indent = indent[:-1]
-                    
-            elif len(parent) > 0:
-                indent = u''
-                parent = []
-            title = u'%s %s' % (indent, region.nuts_name.first.strip())
             vocabulary.append(SimpleTerm(region.subject.strip(),
                                          token=region.nuts_code.first.strip(),
-                                         title=title))
+                                         title=region.nuts_name.first.strip()))
         return SimpleVocabulary(vocabulary)
 
-
-
+    def resources(self):
+        NUTSRegion = geosession.get_class(surf.ns.NUTS['NUTSRegion'])
+        return NUTSRegion.all().order()
+    
+    
+    
+    
 VocabularyFactory = NUTSRegions()
 
