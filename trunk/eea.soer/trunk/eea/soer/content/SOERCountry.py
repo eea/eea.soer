@@ -100,6 +100,11 @@ class SOERCountry(ATFolder):
                     reports[(nstory.topic, nstory.question)] = report
                 else:
                     report = parentReport[newId]
+                    if hasattr(nstory,'sortOrder'):
+                        parentReport.moveObjectToPosition(newId, int(nstory.sortOrder))
+                    else:
+                        parentReport.moveObjectsToTop(ids=[newId])
+                        
                 assessment = nstory.assessment
                 for fig in nstory.hasFigure():
                     log('Fetching Figure: %s' % fig['url'])
