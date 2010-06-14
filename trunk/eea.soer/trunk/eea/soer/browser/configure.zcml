@@ -17,4 +17,12 @@
     allowed_interface="..interfaces.IReportView"
     />
 
+  <browser:page
+    for="eea.soer.content.interfaces.IReportingCountry"
+    name="soerCountryView"
+    class=".country.CountryView"
+    permission="zope.Public"
+    allowed_interface="..interfaces.ICountryView"
+    />
+
 </configure>

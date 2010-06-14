@@ -7,17 +7,18 @@
 
     <div metal:fill-slot="main">
     <metal:main-macro define-macro="main">
-        <h1 tal:content="object_title" class="documentFirstHeading">
+        <div class="visualClear"></div>
+	<metal:top-macro define-macro="topinfo"
+                      tal:define="view context/soerCountryView;
+                                  intro view/countryIntroduction">
+        <h2 tal:content="intro/Title" class="documentFirstHeading">
             Title or id
-        </h1>
+        </h2>
 
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
-
        
-        <div class="visualClear"></div>
-	<metal:top-macro define-macro="topinfo">
 	  <div class="header">
 	    <dl id="channel-portlet" class="portlet" 
 	        tal:define="channel context/channel|nothing"
@@ -81,7 +82,7 @@
 
             <div class="documentDescription" tal:content="context/Description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pharetra sodales ligula sed elementum. Suspendisse et egestas est.</div>
 
-            <div tal:condition="nothing"><p> Proin orci lacus, vestibulum porta interdum ac, rutrum a leo. Morbi adipiscing tortor nec erat rhoncus feugiat. Pellentesque quis neque et nunc ultricies rutrum. Etiam lacus leo, luctus ut egestas id, suscipit vitae mauris. Integer fringilla diam ac turpis semper fringilla id id dui. Proin eget suscipit est. Donec imperdiet eros ac sem tristique sodales.</p>
+            <div tal:condition="nocall:intro" tal:content="structure python:intro.CookedBody(stx_level=2)"><p> Proin orci lacus, vestibulum porta interdum ac, rutrum a leo. Morbi adipiscing tortor nec erat rhoncus feugiat. Pellentesque quis neque et nunc ultricies rutrum. Etiam lacus leo, luctus ut egestas id, suscipit vitae mauris. Integer fringilla diam ac turpis semper fringilla id id dui. Proin eget suscipit est. Donec imperdiet eros ac sem tristique sodales.</p>
                  <p>Quisque pharetra mattis erat sed bibendum. Nam quam tellus, interdum eu mollis a, porttitor sit amet ipsum. </p></div>
 
 	  </div>

@@ -41,12 +41,12 @@
   </NationalStory>
   <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-waste" xml:lang="en"
                  rdfs:comment="A standard NationalStory with two figures">
-    <topic>waste</topic>
+    <topic>country introduction</topic>
     <question>What are the main drivers?</question>
     <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
-    <description>Why Sweden cares about air pollution and the status of air pollution.</description>
+    <description>Little about Swedens environment</description>
     <keyMessage>
-      (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
+      
     </keyMessage>
     <assessment>
       <![CDATA[<P>Modelling calculations for 2003, carried out by the Norwegian Institute for Air Research, show that a number of people are exposed to local air pollution in the capital and largest city Oslo, and in two other major towns, Trondheim and Bergen. Almost half of the population in Oslo were exposed to levels of particulate matter that exceeded the national target for 2010. In Trondheim (population 155 000) more than 8 000 people were exposed. In Bergen (population 240 000) similar figures were less than 3 000 people.</P>
