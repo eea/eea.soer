@@ -26,3 +26,8 @@ class IReportView(Interface):
 
     def redirectIfSubReport():
         """ redirect to the parent report """
+
+class ICountryView(Interface):
+
+    def countryIntroduction():
+        """ return the 'country introduction' report. It is a DiversityReport with topic 'country introduction' """
