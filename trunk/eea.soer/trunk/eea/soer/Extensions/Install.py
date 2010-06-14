@@ -23,5 +23,6 @@ def install(self, reinstall=False):
 
     migrationTool = getToolByName(self, 'portal_migration')
     if migrationTool.getInstanceVersionTuple()[0] >= 3:
-         portal_setup.runAllImportStepsFromProfile('profile-eea.soer:plone3')
+        portal_setup.runAllImportStepsFromProfile('profile-eea.soer:plone3')
+         
 
