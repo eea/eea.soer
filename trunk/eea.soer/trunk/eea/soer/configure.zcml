@@ -34,12 +34,12 @@
       handler=".content.SOERCountry.updateFromFeed"
       />
 
-  <adapter factory=".sense.NationalStory2Surf" />
-  <adapter factory=".sense.Image2Surf" />
-  <adapter factory=".sense.Link2Surf" />
+  <adapter factory=".marshaller.ReportingCountry2Surf" />
+  <adapter factory=".marshaller.NationalStory2Surf" />
+  <adapter factory=".marshaller.Image2Surf" />
+  <adapter factory=".marshaller.Link2Surf" />
   <adapter factory=".sense.Surf2SOERReport" />
   <adapter factory=".sense.GetATSchema4SurfObj" />
-  <adapter factory=".sense.ReportingCountry2Surf" />
 
   <class class="eea.soer.content.SOERCountry.SOERCountry">
     <implements interface="eea.facetednavigation.interfaces.IPossibleFacetedNavigable" />
