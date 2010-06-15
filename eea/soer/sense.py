@@ -151,14 +151,14 @@ class SoerRDF2Surf(object):
         self.store.load_triples(source=url)        
 
     def channel(self):
-        channel = self.session.get_class(surf.ns.SOER['channel']).all()
+        channel = self.session.get_class(surf.ns.SOER['Channel']).all()
         if channel:
             channel = channel.one()
-            result = {'organisationName' : channel.soer_organisationName.first.strip(),
-                      'organisationURL'  : channel.soer_organisationURL.first.strip(),
-                      'organisationContactURL'  : channel.soer_organisationContactURL.first.strip(),
-                      'organisationLogoURL' : channel.soer_organisationLogoURL.first.strip(),
-                      'license' : channel.soer_license.first.strip(),
+            result ={'organisationName' : channel.soer_organisationName.first and channel.soer_organisationName.first.strip() or '',
+                      'organisationURL'  : channel.soer_organisationURL.first and channel.soer_organisationURL.first.strip() or '',
+                      'organisationContactURL'  : channel.soer_organisationContactURL.first and channel.soer_organisationContactURL.first.strip() or '',
+                      'organisationLogoURL' : channel.soer_organisationLogoURL.first and channel.soer_organisationLogoURL.first.strip() or '',
+                      'license' : channel.soer_license.first and channel.soer_license.first.strip() or '',
                       'updated' : DateTime() }
             return result
     
