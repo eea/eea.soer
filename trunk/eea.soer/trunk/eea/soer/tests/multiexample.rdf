@@ -5,7 +5,7 @@
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	 xmlns:dc="http://purl.org/dc/elements/1.1/"
          xmlns:dcq="http://purl.org/dc/terms/">
-<channel rdf:about="">
+<Channel rdf:about="">
   <organisationName>State of the Environment Sweden</organisationName>
   <organisationName xml:lang="it">Istituto Superiore per la Protezione e la Ricerca Ambientale</organisationName>
   <reportingCountryCode rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
@@ -13,7 +13,7 @@
   <organisationLogoURL>http://www.environment.no/lib/img/miljostatus-logo-eng.gif</organisationLogoURL>
   <organisationContactURL xml:lang="it">http://www.isprambiente.it/site/it-IT/Servizi_del_sito/Contatti</organisationContactURL>
   <license rdf:resource="http://creativecommons.org/licenses/by/2.5/" />
-</channel>
+</Channel>
   <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-freshwater/#A" xml:lang="en"
                  rdfs:comment="A standard NationalStory with two figures">
     <topic>freshwater</topic>
