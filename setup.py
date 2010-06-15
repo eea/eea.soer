@@ -28,6 +28,7 @@ setup(name='eea.soer',
       install_requires=[
           'setuptools',
           'BeautifulSoup',
+          'eea.jquery',
           'eea.vocab',
           'eea.rdfmarshaller',
           'eea.facetednavigation',
