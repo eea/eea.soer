@@ -60,20 +60,27 @@ class SOERCountry(ATFolder):
             reports = {}
             soer = sense.SoerRDF2Surf(url)
             self.channel = channel = soer.channel()
-            if channel['organisationLogoURL']:
+            if channel and channel.get('organisationLogoURL',None):
                 image = urllib2.urlopen(channel['organisationLogoURL'])
                 image_data = image.read()
                 if image_data:
-                    logo = self[self.invokeFactory('Image', id='logo',
-                                                   image=image_data)]
-                    try:
-                        wtool.doActionFor(logo, 'publish', comment='Automatic feed update')
-                    except:
-                        log('Failed to publish %s' % logo.absolute_url())
+                    if not hasattr(self, 'logo'):
+                        logo = self[self.invokeFactory('Image', id='logo',
+                                                       image=image_data)]
+                        try: 
+                            wtool.doActionFor(logo, 'publish', comment='Automatic feed update')
+                        except:
+                            log('Failed to publish %s' % logo.absolute_url())
+                    else:
+                        logo = self['logo']
+                        logo.setImage(image_data)
                     
                     
             wtool = getToolByName(self, 'portal_workflow')
-            self.manage_delObjects(ids=self.objectIds())
+            oldContentIds = [ oId for oId, obj in self.objectItems()
+                              if obj.portal_type not in ['Image','RSSFeedRecipe']]
+            log('Deleting %s' % oldContentIds)
+            self.manage_delObjects(ids=oldContentIds)
             parentReport = None
             for nstory in soer.nationalStories():
                 questions = dict([[v,k] for k,v in vocab.long_diversity_questions.items()])
@@ -147,13 +154,10 @@ class SOERCountry(ATFolder):
                         continue
                     soup = BeautifulSoup(urllib2.urlopen(indicatorUrl))
                     
-                    
-                    try:
-                        indicator = report[report.invokeFactory('RelatedIndicatorLink', id='indicator%s' % i,
-                                                       remoteUrl=indicatorUrl,
-                                                       title=soup.title.string.encode('utf8'))]
-                    except:
-                        import pdb; pdb.set_trace()
+                    indicator = report[report.invokeFactory('RelatedIndicatorLink', id='indicator%s' % i,
+                                                            remoteUrl=indicatorUrl,
+                                                            title=soup.title.string.encode('utf8'))]
+
                     try:
                         wtool.doActionFor(indicator, 'publish', comment='Automatic feed update')
                     except:
