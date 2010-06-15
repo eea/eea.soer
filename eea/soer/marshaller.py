@@ -29,7 +29,7 @@ class ReportingCountry2Surf(Soer2Surf):
         resource.bind_namespaces([self.prefix])
         resource.session = self.session
         props = getToolByName(self.context, 'portal_properties').soer_properties
-        for propName in ['organisationName', 'organisationURL', 'organisationLogoURL']:
+        for propName in ['organisationName', 'organisationURL', 'organisationContactURL', 'organisationLogoURL']:
             value = props.getProperty(propName, None)
             if value is not None:
                 setattr(resource, '%s_%s' % (self.prefix, propName), value)
@@ -111,9 +111,9 @@ class Image2Surf(Soer2Surf):
                                      ('relatedItems', 'dataSource'),
                                      ]))
         self.blacklist_map = Soer2Surf.blacklist_map + [key for key in Soer2Surf.dc_map.keys()
-                                          if key not in ('title', 'description')]  + ['relatedItems','image']
+                                          if key not in ('title', 'description')]  + ['image']
         self.dc_map = {} # we don't want Dublin Core right now
-
+        
     
 
 class Link2Surf(Soer2Surf):
