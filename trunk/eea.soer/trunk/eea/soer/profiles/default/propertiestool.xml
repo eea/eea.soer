@@ -6,6 +6,8 @@
      type="string">EEA</property>
   <property name="organisationURL"
      type="string">http://www.eea.europa.eu/soer/</property>
+  <property name="organisationContactURL"
+     type="string">http://www.eea.europa.eu/address.html</property>
   <property name="organisationLogoURL"
      type="string">http://www.eea.europa.eu/about-us/documents/logos/eealogo.gif</property>
   <property name="license"
