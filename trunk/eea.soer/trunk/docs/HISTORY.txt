@@ -1,8 +1,15 @@
 Changelog
 =========
 
-0.3 - unrelease
----------------
+0.3 - 2010-06-15
+----------------
+
+* Plone 3 fixes [vincisas]
+* Report and Country views [vincisas]
+* Import and Export RDF roundtrip [vincisas]
+* Default country map from EEA getmap service [vincsas]
+* Schema added for evaluation, questions [vincisas]
+
 
 
 0.2 - 2010-05-19
