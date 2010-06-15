@@ -27,7 +27,11 @@
    tal:define="report nocall:report|nocall:context">
   <tal:autoUpdated tal:condition="report/isFromFeed|nothing">
 	  <div class="header">
-            <dl class="portlet portlet-rss">
+            <tal:channel define="cView context/@@soerCountryView;
+                                 channel cView/channel">
+               <metal:channel use-macro="context/soercountry_view/macros/channel"/>
+            </tal:channel>
+            <dl class="portlet portlet-rss" tal:condition="nothing">
 	      <dt class="portletHeader">
 		Related topics
 	      </dt>
@@ -159,11 +163,6 @@
               tal:attributes="href report/original_url">Original link</a>
         </div>
      </div>
-     <tal:externalalbumentry tal:define="albumentry nocall:context/atct_albumentry|nothing">
-       <tal:wehaveexternal tal:condition="nocall:albumentry">
-          <metal:entry use-macro="context/atct_albumentry/macros/entry" />
-       </tal:wehaveexternal>
-       <tal:nomacro tal:condition="python:not albumentry">
 	<metal:entry define-macro="entry">
         <div tal:define="css python:brain.is_folderish and 'photoAlbumEntry photoAlbumFolder' or 'photoAlbumEntry'"
   	     tal:attributes="class css">
@@ -183,8 +182,6 @@
           </a>
        </div>
        </metal:entry>
-     </tal:nomacro>
-   </tal:externalalbumentry>
    </tal:entry>
   </tal:images>
 </tal:figures>
@@ -211,6 +208,11 @@
 </metal:reportContent>
 
 <metal:subReports tal:repeat="report context/subReports">
+  <tal:editLink condition="not: isAnon">
+      <a href="" title=""
+         tal:attributes="href python:'%s/edit' % report.absolute_url();
+                         title report/Title"
+         i18n:translate="label_edit_sub_report">Edit sub report</a></tal:editLink>
   <metal:subReport use-macro="report/commonality_report_view/macros/reportContent" />
 </metal:subReports>
 

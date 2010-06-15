@@ -18,7 +18,7 @@
     />
 
   <browser:page
-    for="eea.soer.content.interfaces.IReportingCountry"
+    for="*"
     name="soerCountryView"
     class=".country.CountryView"
     permission="zope.Public"

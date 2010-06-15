@@ -7,6 +7,8 @@ class CountryView(object):
     implements(ICountryView)
 
     def __init__(self, context, request):
+        while context.portal_type != 'SOERCountry':
+            context = context.aq_parent
         self.context = context
         self.request = request
 
@@ -18,4 +20,7 @@ class CountryView(object):
                          'getSoerTopic' : 'country introduction' } )
         if res:
             return res[0].getObject()
+        
+    def channel(self):
+        return getattr(self.context, 'channel', None)
         
