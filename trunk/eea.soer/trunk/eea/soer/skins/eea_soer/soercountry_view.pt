@@ -10,8 +10,8 @@
         <div class="visualClear"></div>
 	<metal:top-macro define-macro="topinfo"
                       tal:define="view context/soerCountryView;
-                                  intro view/countryIntroduction">
-        <h2 tal:content="intro/Title" class="documentFirstHeading">
+                                  intro view/countryIntroduction;">
+        <h2 tal:content="intro/Title|context/Title" class="documentFirstHeading">
             Title or id
         </h2>
 
@@ -20,8 +20,8 @@
         </div>
        
 	  <div class="header">
-	    <dl id="channel-portlet" class="portlet" 
-	        tal:define="channel context/channel|nothing"
+	    <dl id="channel-portlet" class="portlet" metal:define-macro="channel"
+	        tal:define="channel channel|view/channel|nothing"
 		tal:condition="channel">
 	      <dt class="portletHeader">	
 		<a href="" title="" class="websource-box fancybox"
@@ -70,14 +70,14 @@
                          <dd tal:content="context/Title">Norway</dd>
 			 <dd class="portletItem">
             		   <img src="" title="" 
-                                tal:attributes="src python:'%s-500px.png' % context.getId()" /></dd>
+                                tal:attributes="src python:'%s_map.png' % context.getId()" /></dd>
 		      </dl>
                   </div>
                 </div>
 		Location</dt>
 	      <dd class="portletItem">
 		<img src="" title="" 
-                  tal:attributes="src python:'%s-200px.png' % context.getId()" /></dd>
+                  tal:attributes="src python:'%s_map.png/image_mini' % context.getId()" /></dd>
 	    </dl>
 
             <div class="documentDescription" tal:content="context/Description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pharetra sodales ligula sed elementum. Suspendisse et egestas est.</div>

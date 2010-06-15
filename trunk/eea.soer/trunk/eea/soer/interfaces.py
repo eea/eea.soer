@@ -31,3 +31,7 @@ class ICountryView(Interface):
 
     def countryIntroduction():
         """ return the 'country introduction' report. It is a DiversityReport with topic 'country introduction' """
+
+
+    def channel():
+        """ return channel info """
