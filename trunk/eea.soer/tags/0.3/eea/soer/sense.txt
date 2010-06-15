@@ -1,0 +1,76 @@
+======================
+SENSE input and output
+====================== 
+
+SENSE is a sub project of SOER PART-C which has a goal to enable information
+sharing between countries using RDF. The content shared is the PART-C of SOER
+and is intended as first stage to put more data online and be able to update it
+continuesly.
+
+All content as part of eea.soer can be imported and exported as `SOER Feed <https://svn.eionet.europa.eu/projects/Zope/wiki/SOERFeedSpec>`_.
+
+  >>> self.setRoles(['Manager'])
+  >>> soer = self.portal.SOER
+  >>> country = soer[soer.invokeFactory('SOERCountry', id='no')]
+  >>> from eea.soer.tests.base import examplerdf, evalrdf
+    
+Lets load an RDF
+
+  >>> import surf
+  >>> from eea.soer import sense
+  >>> store = surf.Store(reader='rdflib',  writer='rdflib', rdflib_store = 'IOMemory')
+  >>> session = surf.Session(store, mapping={surf.ns.SOER.NationalStory : sense.NationalStory} )
+  >>> store.load_triples(source=examplerdf)
+  True
+  >>> country.setRdfFeed(examplerdf)
+  >>> _ = country.updateFromFeed()
+
+Lets try our evaluation vocabulary
+
+  >>> store.load_triples(source=evalrdf)
+  True
+  >>> Evaluation = session.get_class(surf.ns.SOEREVALUATION['Evaluation'])
+  >>> for i in Evaluation.all().order():
+  ...   print i.subject
+  http://www.eea.europa.eu/soer/evaluations#FV
+  http://www.eea.europa.eu/soer/evaluations#U1
+  http://www.eea.europa.eu/soer/evaluations#U1+
+  http://www.eea.europa.eu/soer/evaluations#U1-
+  http://www.eea.europa.eu/soer/evaluations#U2
+  http://www.eea.europa.eu/soer/evaluations#U2+
+  http://www.eea.europa.eu/soer/evaluations#U2-
+  http://www.eea.europa.eu/soer/evaluations#XX
+
+
+Lets test geo coverage vocabulary
+
+  >>> from zope.app.schema.vocabulary import IVocabularyFactory
+  >>> from zope.component import getUtility
+  >>> geovocab = getUtility(IVocabularyFactory, name=u"eea.soer.vocab.NUTSRegions")
+  >>> len(geovocab())
+  1779
+
+  >>> NationalStory = session.get_class(surf.ns.SOER['NationalStory'])
+  >>> obj = country['air-pollution-why-care-norway']
+  >>> indi1 = obj[obj.invokeFactory('RelatedIndicatorLink', id='indi1')]
+  >>> indi1.setTitle('Related indicator')
+  >>> indi1.setRemoteUrl('http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/')
+
+  >>> ns = NationalStory(obj.absolute_url())
+  >>> ns.bind_namespaces(['SOER'])
+  >>> ns.session = session
+  >>> ns.subject
+  rdflib.URIRef('http://nohost/plone/SOER/no/air-pollution-why-care-norway')
+  >>> ns.save()
+  >>> session.commit()
+
+Serialization
+
+  >>> from zope.component import getMultiAdapter
+  >>> rdfdata = getMultiAdapter((country, country.REQUEST), name=u'rdf')()
+  >>> from StringIO import StringIO
+  >>> rdfio = StringIO(rdfdata)
+  >>> seCountry = soer[soer.invokeFactory('SOERCountry', id='se')]  
+  >>> seCountry.setRdfFeed(rdfio)
+  >>> _ = seCountry.updateFromFeed()
+  >>> seCountry.objectIds()

@@ -1,0 +1,62 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:five="http://namespaces.zope.org/five"
+           xmlns:browser="http://namespaces.zope.org/browser">
+
+  <include package="eea.rdfmarshaller" />
+  <include package="plone.i18n.locales" />
+
+  <five:registerPackage package="." initialize=".initialize" />
+  
+  <include package=".browser" />
+  <include file="profiles.zcml" />
+
+  <subscriber
+      for="eea.soer.content.interfaces.ICommonalityReport
+           zope.app.container.interfaces.IObjectModifiedEvent"
+      handler=".content.CommonalityReport.gen_title"
+      />
+
+  <subscriber
+      for="eea.soer.content.interfaces.IDiversityReport
+           zope.app.container.interfaces.IObjectModifiedEvent"
+      handler=".content.DiversityReport.gen_title"
+      />
+
+  <subscriber
+      for="eea.soer.content.interfaces.IFlexibilityReport
+           zope.app.container.interfaces.IObjectModifiedEvent"
+      handler=".content.FlexibilityReport.gen_title"
+      />
+
+  <subscriber
+      for="eea.soer.content.interfaces.IReportingCountry
+           zope.app.container.interfaces.IObjectModifiedEvent"
+      handler=".content.SOERCountry.updateFromFeed"
+      />
+
+  <adapter factory=".marshaller.ReportingCountry2Surf" />
+  <adapter factory=".marshaller.NationalStory2Surf" />
+  <adapter factory=".marshaller.Image2Surf" />
+  <adapter factory=".marshaller.Link2Surf" />
+  <adapter factory=".sense.Surf2SOERReport" />
+  <adapter factory=".sense.GetATSchema4SurfObj" />
+
+  <class class="eea.soer.content.SOERCountry.SOERCountry">
+    <implements interface="eea.facetednavigation.interfaces.IPossibleFacetedNavigable" />
+  </class>
+
+  <utility
+        name="eea.facetednavigation.SoerCountryFacetedNavigable"
+        factory=".faceted.FolderFacetedNavigableDescriptor" />
+
+  <utility
+        name="eea.facetednavigation.SoerCountryFacetedHeritor"
+        factory=".faceted.FolderFacetedHeritorDescriptor" />
+
+  <utility
+    component=".vocab.VocabularyFactory"
+    name="eea.soer.vocab.NUTSRegions"
+    />
+
+
+</configure>
