@@ -193,7 +193,10 @@ class SOERReport(ATFolder, ATNewsItem):
             title = u'%s %s' % (indent, region.nuts_name.first.strip())
             displayList.add(current, title)
         return displayList
-    
+
+    def getGeographicCoverage(self):
+        return self.getGeoCoverage()
+        
     def default_country(self):
         path = self.getPhysicalPath()
         if len(path) >= 2:
@@ -233,3 +236,5 @@ class SOERReport(ATFolder, ATNewsItem):
             # we are subfolder lets fake url
             return '%s#%s' % (parent.absolute_url(*args), self.getId())
 
+
+        

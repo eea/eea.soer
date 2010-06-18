@@ -51,12 +51,14 @@ class SOERCountry(ATFolder):
     _at_rename_after_creation = True
 
     schema = schema
-
+    _v_feedUpdating = False
+    
     security.declareProtected(ADD_CONTENT_PERMISSION, 'updateFromFeed')
     def updateFromFeed(self):
         """ update feed """
         url = self.getRdfFeed()
         if url:
+            self._v_feedUpdating = True
             reports = {}
             soer = sense.SoerRDF2Surf(url)
             self.channel = channel = soer.channel()
@@ -96,7 +98,7 @@ class SOERCountry(ATFolder):
                     report = self[self.invokeFactory(nstory.portal_type, id='temp_report',
                                                  topic=nstory.topic,
                                                  question=questions.get(nstory.question, ''))]
-
+                
                 report.setDescription(nstory.description)
                 report.setKeyMessage(nstory.keyMessage)
                 report.setGeoCoverage(nstory.geoCoverage)
@@ -171,8 +173,12 @@ class SOERCountry(ATFolder):
                     log('Failed to publish %s' % report.absolute_url())                
                 report.original_url = nstory.subject.strip()
                 report.reindexObject()
-
-def updateFromFeed(obj, event):
-    pass
+        obj._v_feedUpdating = False
+        
+def soerCountryUpdated(obj, event):
+    if obj.getRdfFeed() and not obj._v_feedUpdating:
+        obj.updateFromFeed()
+        
     
+
 registerType(SOERCountry, PROJECTNAME)
