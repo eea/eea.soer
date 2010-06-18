@@ -1,5 +1,15 @@
-from Products.CMFCore.utils import getToolByName
+import os
 import urllib2
+from zope.component import getUtility
+from Globals import package_home
+from Products.CMFCore.utils import getToolByName
+from eea.soer.config import GLOBALS
+from eea.facetednavigation.browser.app.exportimport import FacetedExportImport
+from p4a.subtyper.interfaces import ISubtyper
+
+facetedMain = os.path.join(package_home(GLOBALS), 'Extensions', 'faceted-main.xml')
+facetedCountry = open(os.path.join(package_home(GLOBALS), 'Extensions', 'faceted-country.xml'),'r').read()
+
 
 def setup_folder_structure(context):
     vocab = getToolByName(context, 'portal_vocabularies')
@@ -20,5 +30,12 @@ def setup_folder_structure(context):
             mapimage.unmarkCreationFlag()
             mapimage.setTitle('Map of %s' % european_countries[country_code].title)
             mapimage.setDescription('Map of %s from %s' % (european_countries[country_code].title, mapurl))
+
         folder.unmarkCreationFlag()
         folder.reindexObject()
+
+        subtyper = getUtility(ISubtyper)
+        subtyper.change_type(folder, 'eea.facetednavigation.FolderFacetedNavigable')
+
+        faceted = FacetedExportImport(folder, folder.REQUEST)
+        faceted.import_xml(import_file=facetedCountry.replace('<element value="se"/>','<element value="%s"/>' % country_code))
