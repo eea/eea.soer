@@ -61,8 +61,11 @@ class NationalStory2Surf(Soer2Surf):
         super(NationalStory2Surf, self).__init__(context, session)
         self.field_map = dict([('text', 'assessment'),
                       ('subject', 'keyword'),
+                      ('modification_date', 'modified'),
+                      ('effectiveDate','pubDate'),
                       ])
-        self.blacklist_map = Soer2Surf.blacklist_map + [key for key in Soer2Surf.dc_map.keys()] + ['relatedItems', 'question', 'geoCoverage', 'id']
+
+        self.blacklist_map = Soer2Surf.blacklist_map + ['relatedItems', 'question', 'geoCoverage', 'id']
     
     def at2surf(self, subReport=False):
         resource = super(NationalStory2Surf, self).at2surf()
