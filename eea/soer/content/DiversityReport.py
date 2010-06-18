@@ -46,7 +46,7 @@ registerType(DiversityReport, PROJECTNAME)
 def gen_title(obj, evt):
     country = obj.getTermTitle('eea.soer.vocab.european_countries', obj.getSoerCountry())
     if obj.getTopic() == 'country introduction':
-        obj.setTitle('Country introduction - %s' % country)
+        obj.setTitle('Country introduction (%s)' % country)
     else:
         question = obj.getTermTitle('eea.soer.vocab.diversity_questions', obj.getQuestion())
         t = 'Diversity Report: %s (%s)' % (question, country)
