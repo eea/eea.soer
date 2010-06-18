@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.4 - unreleased
+0.4 - 2010-06-18
 ----------------
 
 * Country view fix for Plone 3 [vincisas]
