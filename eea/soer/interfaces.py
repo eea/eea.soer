@@ -27,11 +27,20 @@ class IReportView(Interface):
     def redirectIfSubReport():
         """ redirect to the parent report """
 
+    def getTopics():
+        """ return links for related topics """
+
+    def getGeoCoverageMapUrl():
+        """ return to aut generated map """
+        
 class ICountryView(Interface):
 
     def countryIntroduction():
         """ return the 'country introduction' report. It is a DiversityReport with topic 'country introduction' """
 
-
     def channel():
         """ return channel info """
+
+    def getMapUrl():
+        """ return url to the map """
+

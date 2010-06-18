@@ -8,7 +8,7 @@
 <Channel rdf:about="">
   <organisationName>State of the Environment Sweden</organisationName>
   <organisationName xml:lang="it">Istituto Superiore per la Protezione e la Ricerca Ambientale</organisationName>
-  <reportingCountryCode rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+  <reportingCountryCode rdf:resource="http://rdfdata.eionet.europa.eu/ramon/nuts/se" />
   <organisationURL>http://www.environment.no</organisationURL>
   <organisationLogoURL>http://www.environment.no/lib/img/miljostatus-logo-eng.gif</organisationLogoURL>
   <organisationContactURL xml:lang="it">http://www.isprambiente.it/site/it-IT/Servizi_del_sito/Contatti</organisationContactURL>
@@ -18,7 +18,7 @@
                  rdfs:comment="A standard NationalStory with two figures">
     <topic>freshwater</topic>
     <question>Why should we care?</question>
-    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <geoCoverage rdf:resource="http://rdfdata.eionet.europa.eu/ramon/nuts/SE" />
     <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
@@ -43,16 +43,16 @@
                  rdfs:comment="A standard NationalStory with two figures">
     <topic>country introduction</topic>
     <question>What are the main drivers?</question>
-    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <geoCoverage rdf:resource="http://rdfdata.eionet.europa.eu/ramon/nuts/SE" />
     <description>Little about Swedens environment</description>
     <keyMessage>
       
     </keyMessage>
     <assessment>
-      <![CDATA[<P>Modelling calculations for 2003, carried out by the Norwegian Institute for Air Research, show that a number of people are exposed to local air pollution in the capital and largest city Oslo, and in two other major towns, Trondheim and Bergen. Almost half of the population in Oslo were exposed to levels of particulate matter that exceeded the national target for 2010. In Trondheim (population 155 000) more than 8 000 people were exposed. In Bergen (population 240 000) similar figures were less than 3 000 people.</P>
-<P>Calculations also show that about 7 000, 3 200 and 700 people are exposed to levels exceeding the national target for nitrogen dioxide in Oslo, Trondheim and Bergen respectively. More than 25 per cent of the population in Oslo is exposed to levels exceeding the national target for benzene. In other towns the level of benzene is low.&nbsp;</P>
-<P>From 1995 to 2001 the number of people in Oslo exposed to levels exceeding the national targets for particulate matter and nitrogen dioxide were reduced by respectively 31 per cent and 77 per cent.</P>
-<P>The figures below show the number of exceedances of the limit value and the national target for particulate matter (PM10) and nitrogen dioxide&nbsp;in Norwegian towns. </P>]]>
+      &lt;p&gt;Modelling calculations for 2003, carried out by the Norwegian Institute for Air Research, show that a number of people are exposed to local air pollution in the capital and largest city Oslo, and in two other major towns, Trondheim and Bergen. Almost half of the population in Oslo were exposed to levels of particulate matter that exceeded the national target for 2010. In Trondheim (population 155 000) more than 8 000 people were exposed. In Bergen (population 240 000) similar figures were less than 3 000 people.&lt;/p&gt;
+&lt;p&gt;Calculations also show that about 7 000, 3 200 and 700 people are exposed to levels exceeding the national target for nitrogen dioxide in Oslo, Trondheim and Bergen respectively. More than 25 per cent of the population in Oslo is exposed to levels exceeding the national target for benzene. In other towns the level of benzene is low. &lt;/p&gt;
+&lt;p&gt;From 1995 to 2001 the number of people in Oslo exposed to levels exceeding the national targets for particulate matter and nitrogen dioxide were reduced by respectively 31 per cent and 77 per cent.&lt;/p&gt;
+&lt;p&gt;The figures below show the number of exceedances of the limit value and the national target for particulate matter (PM10) and nitrogen dioxide in Norwegian towns. &lt;/p&gt;
     </assessment>
     <pubDate>2008-03-07</pubDate>
     <modified>2008-03-07</modified>
@@ -68,7 +68,7 @@
                  rdfs:comment="A standard NationalStory with two figures">
     <topic>air pollution</topic>
     <question>Why should we care?</question>
-    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <geoCoverage rdf:resource="http://rdfdata.eionet.europa.eu/ramon/nuts/SE" />
     <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
@@ -93,7 +93,7 @@
                  rdfs:comment="A standard NationalStory with two figures">
     <topic>air pollution</topic>
     <question>Why should we care?</question>
-    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <geoCoverage rdf:resource="http://rdfdata.eionet.europa.eu/ramon/nuts/SE" />
     <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
@@ -118,7 +118,7 @@
                  rdfs:comment="A standard NationalStory with two figures">
     <topic>land</topic>
     <question>Why should we care?</question>
-    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <geoCoverage rdf:resource="http://rdfdata.eionet.europa.eu/ramon/nuts/SE" />
     <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
@@ -143,7 +143,7 @@
                  rdfs:comment="A standard NationalStory with two figures">
     <topic>air pollution</topic>
     <question>Why should we care?</question>
-    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <geoCoverage rdf:resource="http://rdfdata.eionet.europa.eu/ramon/nuts/SE" />
     <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
@@ -169,7 +169,7 @@
                  rdfs:comment="A NationalStory with no Figures and no published assessment in a core set of indicatior at EEA.">
     <topic>air pollution</topic>
     <question>What are the state and impacts?</question>
-    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <geoCoverage rdf:resource="http://rdfdata.eionet.europa.eu/ramon/nuts/SE" />
     <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       (PM10 and PM2.5) and nitrogen dioxide are the most important components of local air pollution. Other components such as sulphur dioxide, ground-level ozone, carbon monoxide, polycyclic aromatic hydrocarbons and benzene can also contribute to poor local air quality.
@@ -196,7 +196,7 @@
                  rdfs:comment="A NationalStory divded into two indicators. This is the main part.">
     <topic>air pollution</topic>
     <question>What are the related drivers and pressures?</question>
-    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <geoCoverage rdf:resource="http://rdfdata.eionet.europa.eu/ramon/nuts/SE" />
     <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       Ozone precursor emissions decreasing, but NEC reduction target out of reach
@@ -218,7 +218,7 @@
                  rdfs:comment="A NationalStory divded into two indicators. This is the first indicator.">
     <topic>air pollution</topic>
     <question>What are the related drivers and pressures?</question>
-    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <geoCoverage rdf:resource="http://rdfdata.eionet.europa.eu/ramon/nuts/SE" />
     <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       Ozone precursor emissions decreasing, but NEC reduction target out of reach
@@ -242,7 +242,7 @@
                  rdfs:comment="A NationalStory divded into two indicators. This is the second indicator belonging to the one above.Common criteria is the topic and question..">
     <topic>air pollution</topic>
     <question>What are the related drivers and pressures?</question>
-    <geoCoverage rdf:resource="http://rod.eionet.europa.eu/spatial/28" />
+    <geoCoverage rdf:resource="http://rdfdata.eionet.europa.eu/ramon/nuts/SE" />
     <description>Why Sweden cares about air pollution and the status of air pollution.</description>
     <keyMessage>
       Primary and precursor PM10 emissions decreasing slowly

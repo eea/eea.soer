@@ -6,7 +6,7 @@
 
 <metal:main metal:fill-slot="main"
             tal:define="view context/@@soerReportView;
-	                foo view/redirectIfSubReport">
+	    	       foo view/redirectIfSubReport">
 
 <tal:main-macro metal:define-macro="main">
 
@@ -24,9 +24,23 @@
 
 
 <metal:isFromFeed define-macro="isFromFeed"
-   tal:define="report nocall:report|nocall:context">
-  <tal:autoUpdated tal:condition="report/isFromFeed|nothing">
+   tal:define="report nocall:report|nocall:context;
+               view view|report/@@soerReportView;">
 	  <div class="header">
+	    <dl id="themes-portlet" class="portlet" >
+	      <dt class="portletHeader">	
+	        Topic</dt>
+	      <dd class="portletItem" tal:repeat="topic view/getTopics">
+		<a href="" tal:attributes="href topic/url;
+                                           title topic/title;">
+                  <img src="" alt=""
+		     tal:attributes="src topic/image;
+		                     alt topic/title" />
+	        <tal:topictitle
+	             tal:content="topic/title">topic</tal:topictitle></a></dd>
+	    </dl>
+
+  <tal:autoUpdated tal:condition="report/isFromFeed|nothing">
             <tal:channel define="cView context/@@soerCountryView;
                                  channel cView/channel">
                <metal:channel use-macro="context/soercountry_view/macros/channel"/>
@@ -93,29 +107,35 @@
                          <dd tal:content="report/getGeoCoverage">Norway</dd>
 			 <dd>
 			   <a href=""
-			      tal:attributes="href report/getGeoCoverage">
+			      tal:attributes="href python:'http://cr.eionet.europa.eu/references.action?search=&amp;uri=%s' % report.getGeoCoverage()">
        			    <img src="" title="" 
-			         tal:attributes="src python:'%s-500px.png' % context.getSoerCountry()" /></a></dd>
+			         tal:attributes="src view/getGeoCoverageMapUrl" /></a></dd>
 		      </dl>
                   </div>
                 </div>
 		Geocoverage</dt>
 	      <dd class="portletItem">
-		<img src="" title="" 
-                  tal:attributes="src python:'%s-200px.png' % context.getSoerCountry()" /></dd>
+		<img src="" title="" width="200"
+                  tal:attributes="src view/getGeoCoverageMapUrl" /></dd>
 	    </dl>
 
-	  </div>
   </tal:autoUpdated>
+	  </div>
 </metal:isFromFeed>
 
 <metal:reportContent define-macro="reportContent"
-                    tal:define="report nocall:report|nocall:context;
+                    tal:define="subreport nocall:report|nothing;
+		                report nocall:report|nocall:context;
 		                text python: report.CookedBody(stx_level=2)">
 
+        <blockquote class="keymessage" 
+	    tal:omit-tag="not: report/getKeyMessage"
+	    tal:attributes="class python:subreport and 'keymessage' or 'quote-left';">
+	    <p tal:replace="structure report/getKeyMessage|nothing" />
+        </blockquote>
         <p class="documentDescription"
            tal:content="report/Description"
-           tal:condition="report/Description">
+           tal:condition="python:report.Description() and not subreport">
             Description
         </p>
         <p tal:condition="python: not text and is_editable"
@@ -130,8 +150,6 @@
                                                    'text/x-rst', ), 'stx', 'plain soerAssessment')">
             <div tal:replace="structure text" />
         </div>
-
-<p tal:replace="structure report/getKeyMessage|nothing" />
 
 <tal:figures tal:define="folderContents report/figures"
              tal:condition="folderContents">

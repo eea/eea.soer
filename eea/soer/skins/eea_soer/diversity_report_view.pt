@@ -10,11 +10,6 @@
 <metal:isFromFeed use-macro="context/commonality_report_view/macros/isFromFeed" />
 <metal:reportContent  use-macro="context/commonality_report_view/macros/reportContent" />
 
-<ul>
-    <li tal:content="here/getLongSoerQuestion"></li>
-    <li tal:content="here/getSoerCountryName"></li>
-</ul>
-
 </tal:main-macro>
 </metal:main>
 
