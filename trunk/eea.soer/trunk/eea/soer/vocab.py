@@ -73,6 +73,10 @@ for loc in Locality.all().order():
     atvocabs['eea.soer.vocab.geo_coverage'].append((loc.rod_loccode.first.strip(), loc.rdfs_label.first.strip()))
 
 
+# geostore.load_triples(source="http://rdfdata.eionet.europa.eu/ramon/send_all")
+# use local file to speed up for now
+from eea.soer.tests.base import nutsrdf
+geostore.load_triples(source=nutsrdf)
 
 
 class NUTSRegions(object):
@@ -80,12 +84,6 @@ class NUTSRegions(object):
 
     implements(IVocabularyFactory)
 
-    def __init__(self):
-        #        geostore.load_triples(source="http://rdfdata.eionet.europa.eu/ramon/send_all")
-        # use local file to speed up for now
-        from eea.soer.tests.base import nutsrdf
-        geostore.load_triples(source=nutsrdf)
-        
     def __call__(self, context=None):
         NUTSRegion = geosession.get_class(surf.ns.NUTS['NUTSRegion'])
         vocabulary = []
@@ -99,8 +97,8 @@ class NUTSRegions(object):
         NUTSRegion = geosession.get_class(surf.ns.NUTS['NUTSRegion'])
         return NUTSRegion.all().order()
     
-    
-    
+    def getCode(self, subject):
+        NUTSRegion = geosession.get_class(surf.ns.NUTS['NUTSRegion'])
+        return NUTSRegion(subject).nuts_code.first.strip()
     
 VocabularyFactory = NUTSRegions()
-

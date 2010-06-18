@@ -9,19 +9,17 @@
     <metal:main-macro define-macro="main">
         <div class="visualClear"></div>
 	<metal:top-macro define-macro="topinfo"
-                      tal:define="view context/soerCountryView;
-                                  intro view/countryIntroduction;">
-        <h2 tal:content="intro/Title|context/Title" class="documentFirstHeading">
+                      tal:define="view context/@@soerCountryView;
+                                  intro view/countryIntroduction;
+ 				  channel view/channel;">
+        <h1 tal:content="intro/Title|nothing" class="documentFirstHeading"
+            tal:condition="intro">
             Title or id
-        </h2>
+        </h1>
 
-        <div metal:use-macro="here/document_actions/macros/document_actions">
-            Document actions (print, sendto etc)
-        </div>
-       
 	  <div class="header">
 	    <dl id="channel-portlet" class="portlet" metal:define-macro="channel"
-	        tal:define="channel channel|view/channel|nothing"
+	        tal:define="channel channel|nothing"
 		tal:condition="channel">
 	      <dt class="portletHeader">	
 		<a href="" title="" class="websource-box fancybox"
@@ -31,13 +29,13 @@
                    <div id="channelSource" class="websource-info" >
                       <img src=""
 		           tal:attributes="src channel/organisationLogoURL|nothing;
-			                   alt channel/organisationName" />
+			                   alt channel/organisationName|nothing" />
                       <br clear="all" />
                       <dl>
                          <dt>Organisation name</dt>
                          <dd tal:content="channel/organisationName">Organisation name</dd>
                          <dt>Reportin country</dt>
-                         <dd tal:content="context/getSourCountry|context/Title">Norway</dd>
+                         <dd tal:content="context/getSoerCountryName|context/Title">Norway</dd>
                          <dt>Organisation website</dt>
                          <dd><a href="" title=""
 			        tal:attributes="href channel/organisationURL">Organisation website</a></dd>
@@ -62,7 +60,8 @@
 	      <dt class="portletHeader">	
 		<a href="" title="" class="websource-box fancybox"
 		   tal:attributes="href string:#locationSource;
-				   title string:Location">Source</a>
+				   title string:Reporting country"
+                   i18n:attributes="title">Source</a>
                <div class="hiddenStructure">
                    <div id="locationSource" class="websource-info">
                       <dl>
@@ -70,14 +69,14 @@
                          <dd tal:content="context/Title">Norway</dd>
 			 <dd class="portletItem">
             		   <img src="" title="" 
-                                tal:attributes="src python:'%s_map.png' % context.getId()" /></dd>
+                                tal:attributes="src view/getMapUrl" /></dd>
 		      </dl>
                   </div>
                 </div>
-		Location</dt>
+		<tal i18n:translate="Reporting country">Reporting country</tal></dt>
 	      <dd class="portletItem">
-		<img src="" title="" 
-                  tal:attributes="src python:'%s_map.png/image_mini' % context.getId()" /></dd>
+		<img src="" title="" width="200"
+                  tal:attributes="src view/getMapUrl" /></dd>
 	    </dl>
 
             <div class="documentDescription" tal:content="context/Description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pharetra sodales ligula sed elementum. Suspendisse et egestas est.</div>

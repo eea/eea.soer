@@ -67,5 +67,10 @@
     float: left;
     clear: right;
 }
+
+#content blockquote.keymessage {
+    width: auto;
+    margin: 1em;
+}
 /* </dtml-with> */
 
