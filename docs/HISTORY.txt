@@ -4,6 +4,10 @@ Changelog
 0.4 - unreleased
 ----------------
 
+* Country view fix for Plone 3 [vincisas]
+* keywords, publication and modification dates were not exported in rdf [vincisas]
+* added default facetedconfigurations for Part-C and countries. [vincisas]
+
 0.3 - 2010-06-15
 ----------------
 
