@@ -99,6 +99,9 @@ class NUTSRegions(object):
     
     def getCode(self, subject):
         NUTSRegion = geosession.get_class(surf.ns.NUTS['NUTSRegion'])
-        return NUTSRegion(subject).nuts_code.first.strip()
+        region = NUTSRegion(subject).nuts_code.first
+        if region:
+            return region.strip()
+        return ''
     
 VocabularyFactory = NUTSRegions()

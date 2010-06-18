@@ -25,7 +25,7 @@
 
 <metal:isFromFeed define-macro="isFromFeed"
    tal:define="report nocall:report|nocall:context;
-               view view|report/@@soerReportView;">
+               view report/@@soerReportView;">
 	  <div class="header">
 	    <dl id="themes-portlet" class="portlet" >
 	      <dt class="portletHeader">	
