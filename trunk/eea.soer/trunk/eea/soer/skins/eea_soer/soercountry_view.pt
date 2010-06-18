@@ -56,7 +56,7 @@
 		       tal:attributes="src channel/organisationLogoURL|nothing;
 			                   alt channel/organisationName" /></dd>
 	    </dl>
-	    <dl id="location-portlet" class="portlet">
+	    <dl id="location-portlet" class="portlet" tal:condition="nocall:intro">
 	      <dt class="portletHeader">	
 		<a href="" title="" class="websource-box fancybox"
 		   tal:attributes="href string:#locationSource;
