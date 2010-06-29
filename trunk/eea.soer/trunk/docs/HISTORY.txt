@@ -1,8 +1,11 @@
 Changelog
 =========
 
-0.5 - unreleased
-----------------
+0.4.1 - 2010-06-29
+------------------
+
+* fixed bug in creating new Soer Country [vincisas]
+* Harmonized titles for reports, country name within () [vincisas]
 
 0.4 - 2010-06-18
 ----------------
