@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<import-steps>
+ <import-step id="setup_at_vocabularies"
+              version="20090929-01"
+              handler="eea.soer.setuphandlers.setupATVocabularies"
+              title="eea.soer: Setup AT Vocabularies">
+  <dependency step="catalog"/>
+    Install AT Vocabularies
+ </import-step>
+ <import-step id="soerVarious"
+              version="20090929-01"
+              handler="eea.soer.setuphandlers.setupVarious"
+              title="eea.soer: Setup various">
+     eea.soer Setup various
+ </import-step>
+</import-steps>

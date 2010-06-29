@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<object name="portal_properties" meta_type="Plone Properties Tool">
+ <object name="soer_properties" meta_type="Plone Property Sheet">
+  <property name="title">SOER channel properties</property>
+  <property name="organisationName"
+     type="string">EEA</property>
+  <property name="organisationURL"
+     type="string">http://www.eea.europa.eu/soer/</property>
+  <property name="organisationContactURL"
+     type="string">http://www.eea.europa.eu/address.html</property>
+  <property name="organisationLogoURL"
+     type="string">http://www.eea.europa.eu/about-us/documents/logos/eealogo.gif</property>
+  <property name="license"
+     type="string">http://creativecommons.org/licenses/by/2.5/</property>
+ </object>
+</object>
