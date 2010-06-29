@@ -173,7 +173,7 @@ class SOERCountry(ATFolder):
                     log('Failed to publish %s' % report.absolute_url())                
                 report.original_url = nstory.subject.strip()
                 report.reindexObject()
-        obj._v_feedUpdating = False
+        self._v_feedUpdating = False
         
 def soerCountryUpdated(obj, event):
     if obj.getRdfFeed() and not obj._v_feedUpdating:
