@@ -1,3 +1,5 @@
+import sys
+import traceback
 from zope.interface import implements
 import surf
 import urllib2 
@@ -62,6 +64,8 @@ class SOERCountry(ATFolder):
             reports = {}
             soer = sense.SoerRDF2Surf(url)
             self.channel = channel = soer.channel()
+            wtool = getToolByName(self, 'portal_workflow')
+                        
             if channel and channel.get('organisationLogoURL',None):
                 image = urllib2.urlopen(channel['organisationLogoURL'])
                 image_data = image.read()
@@ -69,16 +73,13 @@ class SOERCountry(ATFolder):
                     if not hasattr(self, 'logo'):
                         logo = self[self.invokeFactory('Image', id='logo',
                                                        image=image_data)]
-                        try: 
+                        if 'publish' in wtool.getActionsFor(logo):
                             wtool.doActionFor(logo, 'publish', comment='Automatic feed update')
-                        except:
-                            log('Failed to publish %s' % logo.absolute_url())
                     else:
                         logo = self['logo']
                         logo.setImage(image_data)
                     
                     
-            wtool = getToolByName(self, 'portal_workflow')
             oldContentIds = [ oId for oId, obj in self.objectItems()
                               if obj.portal_type not in ['Image','RSSFeedRecipe']]
             log('Deleting %s' % oldContentIds)
@@ -134,10 +135,8 @@ class SOERCountry(ATFolder):
                         if fig['fileName'] == 'tempfile':
                             newId = figure._renameAfterCreation(check_auto_id=False)
                             figure = report[newId]
-                        try:
+                        if 'publish' in wtool.getActionsFor(figure):
                             wtool.doActionFor(figure, 'publish', comment='Automatic feed update')
-                        except:
-                            log('Failed to publish %s' % figure.absolute_url())
 
                         if fig['url'] in assessment.decode('utf8'):
                             assessment = assessment.replace(fig['url'], 'resolveuid/%s' % figure.UID())
@@ -154,23 +153,20 @@ class SOERCountry(ATFolder):
                     if not indicatorUrl.startswith('http'):
                         # FIXME need to find out which indicator url it si for i.e CSI 018
                         continue
-                    soup = BeautifulSoup(urllib2.urlopen(indicatorUrl))
+                    url = urllib2.urlopen(indicatorUrl)
+                    soup = BeautifulSoup(url)
                     
                     indicator = report[report.invokeFactory('RelatedIndicatorLink', id='indicator%s' % i,
-                                                            remoteUrl=indicatorUrl,
-                                                            title=soup.title.string.encode('utf8'))]
+                                                                 remoteUrl=indicatorUrl,
+                                                                 title=soup.title.string.encode('utf8'))]
 
-                    try:
+                    if 'publish' in wtool.getActionsFor(indicator):
                         wtool.doActionFor(indicator, 'publish', comment='Automatic feed update')
-                    except:
-                        log('Failed to publish %s' % indicator.absolute_url())                
                     
                 report.setText(assessment, format='text/html')
                 report.setEffectiveDate(nstory.pubDate)
-                try:
+                if 'publish' in wtool.getActionsFor(report):
                     wtool.doActionFor(report, 'publish', comment='Automatic feed update')
-                except:
-                    log('Failed to publish %s' % report.absolute_url())                
                 report.original_url = nstory.subject.strip()
                 report.reindexObject()
         self._v_feedUpdating = False

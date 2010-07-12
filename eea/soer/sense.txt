@@ -50,6 +50,7 @@ Lets test geo coverage vocabulary
   >>> len(geovocab())
   1779
   >>> geovocab.getCode('http://rdfdata.eionet.europa.eu/ramon/nuts/SE')
+  u'SE'
 
   >>> NationalStory = session.get_class(surf.ns.SOER['NationalStory'])
   >>> obj = country['air-pollution-why-care-norway']
