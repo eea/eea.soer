@@ -6,9 +6,10 @@ To make it possible to use eea.facetednavigation on SOER reports, we have added
 catalog indexes for topic, section, content type and country. Let's start off
 by adding a couple of reports:
 
-  >>> reports = self.portal.SOER.se
+  >>> soer = self.portal.SOER
+  >>> reports = soer[soer.invokeFactory('SOERCountry', id='se')]
   >>> _ = reports.invokeFactory('CommonalityReport', id='commonality', question='0', topic='0', soerContentType='0')
-  >>> _ = reports.invokeFactory('DiversityReport', id='diversity', question='0', soerContentType='0')
+  >>> _ = reports.invokeFactory('DiversityReport', id='diversity', question='10', soerContentType='0')
   >>> _ = reports.invokeFactory('FlexibilityReport', id='flexibility', soerContentType='0')
   >>> reports.commonality.reindexObject()
   >>> reports.flexibility.reindexObject()
@@ -52,9 +53,10 @@ The soerTopic and soerSection attribute is only for CommonalityReports:
   ...     print i.getObject()
   <CommonalityReport at commonality>
 
-The soerQuestion index is for DiversityReports:
+All questions have unique id since they are all indexed in the soerQuestion
+index.
 
-  >>> query = {'getSoerQuestion': '0'}
+  >>> query = {'getSoerQuestion': '10'}
   >>> for i in catalog(query):
   ...     print i.getObject()
   <DiversityReport at diversity>

@@ -13,7 +13,8 @@ We'll start by looking at the Commonality Report. It's designed to answer
 questions divided into topics with sections:
 
   >>> self.setRoles(['Manager'])
-  >>> reports = self.portal.SOER.se
+  >>> soer = self.portal.SOER
+  >>> reports = soer[soer.invokeFactory('SOERCountry', id='se')]
   >>> id = reports.invokeFactory('CommonalityReport', id='commonality')
   >>> report = reports[id]
 
@@ -28,8 +29,8 @@ after saving/modifiying the report.
 
   >>> form = {
   ...     'text': 'The situation is serious :s',
-  ...     'topic': '1',
-  ...     'question': '2',
+  ...     'topic': u'climate change',
+  ...     'question': u'2',
   ... }
   >>> report.processForm(values=form, data=1, metadata=1)
 
@@ -55,8 +56,9 @@ The diversity report have a few sections specified in a vocabulary that has to
 be answered:
 
   >>> form = {
-  ...     'question': '0',
-  ...     'text': 'The situation is diverse!',
+  ...     'question': u'10',
+  ...     'text': u'The situation is diverse!',
+  ...     'topic': u'any topic',
   ... }
   >>> report.processForm(values=form, data=1, metadata=1)
   >>> report.Title()
