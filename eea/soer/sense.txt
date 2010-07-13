@@ -75,4 +75,5 @@ Serialization
   >>> seCountry = soer[soer.invokeFactory('SOERCountry', id='se')]  
   >>> seCountry.setRdfFeed(rdfio)
   >>> _ = seCountry.updateFromFeed()
-  >>> seCountry.objectIds()
+  >>> seCountry.objectIds().sort() == country.objectIds().sort()
+  True

@@ -8,7 +8,7 @@
     Install AT Vocabularies
  </import-step>
  <import-step id="soerVarious"
-              version="20090929-01"
+              version="20100713-01"
               handler="eea.soer.setuphandlers.setupVarious"
               title="eea.soer: Setup various">
      eea.soer Setup various
