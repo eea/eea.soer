@@ -1,8 +1,10 @@
 Changelog
 =========
 
-0.5 - unreleased
-----------------
+0.4.2 - 2010-07-13
+------------------
+
+* updated the final terminology of types and topics #3492 [vincisas]
 
 0.4.1 - 2010-06-29
 ------------------
