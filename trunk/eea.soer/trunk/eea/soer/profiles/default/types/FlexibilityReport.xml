@@ -2,7 +2,7 @@
 <object name="FlexibilityReport"
    meta_type="Factory-based Type Information with dynamic views"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <property name="title">Flexibility Report</property>
+ <property name="title">National and regional story</property>
  <property
     name="description">SOER Part C Flexibility Report</property>
  <property name="content_icon">document_icon.gif</property>

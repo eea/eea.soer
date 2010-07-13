@@ -2,7 +2,7 @@
 <object name="CommonalityReport"
    meta_type="Factory-based Type Information with dynamic views"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <property name="title">Commonality Report</property>
+ <property name="title">Common environmental theme</property>
  <property
     name="description">SOER Part C Commonality Report</property>
  <property name="content_icon">document_icon.gif</property>

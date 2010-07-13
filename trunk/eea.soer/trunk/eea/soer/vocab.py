@@ -36,8 +36,8 @@ atvocabs = {
         (u'air pollution', "Air pollution"),
         (u'climate change', "Climate change mitigation"),
         (u'biodiversity', "Nature protection and biodiversity"),
-        (u'land', "Land"),
-        (u'freshwater', "Freshwaters"),
+        (u'land', "Land use"),
+        (u'freshwater', "Freshwater"),
         (u'waste', "Waste"),
     ),
 

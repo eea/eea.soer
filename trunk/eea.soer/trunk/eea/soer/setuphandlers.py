@@ -41,6 +41,13 @@ def hideFromNavigation(context):
 def setupATVocabularies(context):
     """ Installs all AT-based Vocabularies """
 
+    if context.readDataFile('eeasoer.txt') is None:
+        return
+    
+    # if we have eeasoer_vocabularies.txt vocabularies are replaced
+    # used when vocabularies need to be upgraded
+    replace = bool(context.readDataFile('eeasoer_vocabularies.txt'))
+    
     from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
     portal = context.getSite()
     atvm = getToolByName(portal, ATVOCABULARYTOOL, None)
@@ -49,7 +56,9 @@ def setupATVocabularies(context):
     setupCountriesVocabulary(context)
     for vkey in vocabs.keys():
         if hasattr(atvm, vkey):
-            continue
+            if not replace:
+                continue
+            atvm.manage_delObjects(ids=[vkey])
         
         print "adding vocabulary %s" % vkey
         
@@ -59,6 +68,9 @@ def setupATVocabularies(context):
             simple.addTerm(key, val)
 
 def setupVarious(context):
+    # only run this step if we are in eea.dataservice profile
+    if context.readDataFile('eeasoer.txt') is None:
+        return
     setupTransform(context)
     hideFromNavigation(context)
 

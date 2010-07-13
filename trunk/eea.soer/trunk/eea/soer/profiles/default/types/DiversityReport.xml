@@ -2,7 +2,7 @@
 <object name="DiversityReport"
    meta_type="Factory-based Type Information with dynamic views"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <property name="title">Diversity Report</property>
+ <property name="title">Country profile</property>
  <property
     name="description">SOER Part C Diversity Report</property>
  <property name="content_icon">document_icon.gif</property>
