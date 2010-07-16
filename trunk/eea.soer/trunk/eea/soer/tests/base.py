@@ -11,10 +11,10 @@ from Products.GenericSetup import EXTENSION, profile_registry
 PRODUCTS = ['ATVocabularyManager', 'FiveSite', 'eea.rdfmarshaller']
 PROFILES = ['eea.soer:default']
 
-soerrdf = os.path.join(package_home(globals()), 'soerfeed.rdf')
-examplerdf = os.path.join(package_home(globals()), 'multiexample.rdf')
-evalrdf = os.path.join(package_home(globals()), 'evaluations.rdf')
-nutsrdf = os.path.join(package_home(globals()), 'nuts.rdf')
+soerrdf = 'file://%s' % os.path.join(package_home(globals()), 'soerfeed.rdf')
+examplerdf = 'file://%s' % os.path.join(package_home(globals()), 'multiexample.rdf')
+evalrdf = 'file://%s' % os.path.join(package_home(globals()), 'evaluations.rdf')
+nutsrdf = 'file://%s' % os.path.join(package_home(globals()), 'nuts.rdf')
 
 @onsetup
 def setup_soer():
