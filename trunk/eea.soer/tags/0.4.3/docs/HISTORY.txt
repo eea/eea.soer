@@ -1,0 +1,50 @@
+Changelog
+=========
+
+0.4.3 - 2010-07-16
+------------------
+
+* rereleasing with the missing profiles/default/*.txt files [vincisas]
+
+0.4.2 - 2010-07-13
+------------------
+
+* updated the final terminology of types and topics #3492 [vincisas]
+
+0.4.1 - 2010-06-29
+------------------
+
+* fixed bug in creating new Soer Country [vincisas]
+* Harmonized titles for reports, country name within () [vincisas]
+
+0.4 - 2010-06-18
+----------------
+
+* Country view fix for Plone 3 [vincisas]
+* keywords, publication and modification dates were not exported in rdf [vincisas]
+* added default facetedconfigurations for Part-C and countries. [vincisas]
+
+0.3 - 2010-06-15
+----------------
+
+* Plone 3 fixes [vincisas]
+* Report and Country views [vincisas]
+* Import and Export RDF roundtrip [vincisas]
+* Default country map from EEA getmap service [vincsas]
+* Schema added for evaluation, questions [vincisas]
+
+
+
+0.2 - 2010-05-19
+----------------
+
+* Geographical coverage values are fetched from http://rod.eionet.europa.eu/countries [vincisas]
+* Schema updated to `SOER RDF spec <https://svn.eionet.europa.eu/projects/Zope/wiki/SOERFeedSpec>`_ [vincisas]
+* Plone 3 compatibility [vincisas]
+* import and export with eea.rdfmarshaller [vincisas]
+
+0.1 - 2010-01-15
+----------------
+
+* Initial release
+
