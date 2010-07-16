@@ -1,8 +1,10 @@
 Changelog
 =========
 
-0.5 - unreleased
-----------------
+0.4.3 - 2010-07-16
+------------------
+
+* rereleasing with the missing profiles/default/*.txt files [vincisas]
 
 0.4.2 - 2010-07-13
 ------------------
