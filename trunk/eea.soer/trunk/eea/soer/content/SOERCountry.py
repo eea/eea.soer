@@ -153,12 +153,18 @@ class SOERCountry(ATFolder):
                     if not indicatorUrl.startswith('http'):
                         # FIXME need to find out which indicator url it si for i.e CSI 018
                         continue
-                    url = urllib2.urlopen(indicatorUrl)
-                    soup = BeautifulSoup(url)
+                    title = u'Related indicator'
+                    try:
+                        url = urllib2.urlopen(indicatorUrl)
+                        soup = BeautifulSoup(url)
+                        title = soup.title.string.encode('utf8').strip()
+                    except:
+                        # we failed to get the title of the indicator, use 'Related Indicator'
+                        pass
                     
                     indicator = report[report.invokeFactory('RelatedIndicatorLink', id='indicator%s' % i,
                                                                  remoteUrl=indicatorUrl,
-                                                                 title=soup.title.string.encode('utf8'))]
+                                                                 title=title)]
 
                     if 'publish' in wtool.getActionsFor(indicator):
                         wtool.doActionFor(indicator, 'publish', comment='Automatic feed update')

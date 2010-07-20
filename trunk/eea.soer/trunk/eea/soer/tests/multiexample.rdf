@@ -35,7 +35,7 @@
     <keyword>air</keyword>
     <keyword>air pollution concentrations</keyword>
     <keyword>human health</keyword>
-    <relatedEuropeanIndicator rdf:resource="http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
+    <relatedEuropeanIndicator rdf:resource="http://themes2.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
     <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif"/>
     <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif"/>
   </NationalStory>
