@@ -25,6 +25,14 @@ Lets load an RDF
   >>> country.setRdfFeed(examplerdf)
   >>> _ = country.updateFromFeed()
 
+Check that our broken related indicator has a default title.
+
+  >>> for b in self.portal.portal_catalog(portal_type='RelatedIndicatorLink'):
+  ...   if 'themes2' in b.getObject().getRemoteUrl():
+  ...    b.Title == 'Related indicator'
+  ...    break
+  True
+
 Lets try our evaluation vocabulary
 
   >>> store.load_triples(source=evalrdf)
@@ -77,3 +85,30 @@ Serialization
   >>> _ = seCountry.updateFromFeed()
   >>> seCountry.objectIds().sort() == country.objectIds().sort()
   True
+
+Check links that we imported from our export if they are the same:
+
+  >>> store2 = surf.Store(reader='rdflib',  writer='rdflib', rdflib_store = 'IOMemory')
+  >>> session2 = surf.Session(store, mapping={surf.ns.SOER.NationalStory : sense.NationalStory} )
+  >>> store2.load_triples(source=StringIO(rdfdata))
+  True
+
+  >>> DataFile = session.get_class(surf.ns.SOER['DataFile'])
+  >>> originalDataFileUrls = [data.soer_dataURL.first.strip() for data in DataFile.all().order()]
+
+Check if datafile urls are the same as originally imported.
+
+  >>> DataFile = session2.get_class(surf.ns.SOER['DataFile'])
+  >>> exportedUrls = [data.soer_dataURL.first.strip() for data in DataFile.all().order()]
+  >>> originalDataFileUrls == exportedUrls
+  True
+
+Check if image sources have correct data sources.
+
+  >>> Figure = session.get_class(surf.ns.SOER['Figure'])
+  >>> originalUrls = [fig.soer_dataSource.first.soer_dataURL.first.strip() for fig in Figure.all().order()]
+  >>> Figure = session2.get_class(surf.ns.SOER['Figure'])
+  >>> exportedUrls = [fig.soer_dataSource.first.soer_dataURL.first.strip() for fig in Figure.all().order()]
+  >>> originalUrls == exportedUrls
+  True
+
