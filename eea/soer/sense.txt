@@ -12,6 +12,7 @@ All content as part of eea.soer can be imported and exported as `SOER Feed <http
   >>> self.setRoles(['Manager'])
   >>> soer = self.portal.SOER
   >>> country = soer[soer.invokeFactory('SOERCountry', id='no')]
+  >>> country.setLanguage('en')
   >>> from eea.soer.tests.base import examplerdf, evalrdf
     
 Lets load an RDF
@@ -78,7 +79,7 @@ Serialization
 
   >>> from zope.component import getMultiAdapter
   >>> rdfdata = getMultiAdapter((country, country.REQUEST), name=u'rdf')()
-  >>> from StringIO import StringIO
+  >>> from StringIO import StringIO  
   >>> rdfio = StringIO(rdfdata)
   >>> seCountry = soer[soer.invokeFactory('SOERCountry', id='se')]  
   >>> seCountry.setRdfFeed(rdfio)

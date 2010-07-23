@@ -28,11 +28,12 @@ class ReportingCountry2Surf(Soer2Surf):
         resource = self.session.get_class(self.namespace['Channel'])(self.subject)
         resource.bind_namespaces([self.prefix])
         resource.session = self.session
+        language = self.context.Language()
         props = getToolByName(self.context, 'portal_properties').soer_properties
         for propName in ['organisationName', 'organisationURL', 'organisationContactURL', 'organisationLogoURL']:
             value = props.getProperty(propName, None)
             if value is not None:
-                setattr(resource, '%s_%s' % (self.prefix, propName), value)
+                setattr(resource, '%s_%s' % (self.prefix, propName), (value, language))
                 
         # rdf:resource values
         for propName in ['license']:                
@@ -70,12 +71,13 @@ class NationalStory2Surf(Soer2Surf):
     def at2surf(self, subReport=False):
         resource = super(NationalStory2Surf, self).at2surf()
         context = self.context
+        language = context.Language()
         question = context.getQuestion()
         if context.portal_type == 'DiversityReport':
             question = vocab.long_diversity_questions[context.getQuestion()]
         elif context.portal_type == 'CommonalityReport':
             question = vocab.long_questions[context.getQuestion()]
-        resource.soer_question = question
+        resource.soer_question = (question, language)
         resource.soer_geoCoverage = rdflib.URIRef(context.getGeoCoverage())
         resource.soer_hasFigure = []
         if subReport:
@@ -88,7 +90,7 @@ class NationalStory2Surf(Soer2Surf):
                 elif obj.portal_type == 'Link':
                     resource.soer_dataSource.append(surfObj.at2surf())
                 elif obj.portal_type == 'RelatedIndicatorLink':
-                    resource.soer_relatedEuropeanIndicator.append(rdflib.URIRef(obj.getRemoteUrl()))
+                    resource.soer_relatedEuropeanIndicator.append((rdflib.URIRef(obj.getRemoteUrl()), language))
                 else:
                     # current resource has the sort order 0 since it is parent to the other reports
                     resource.soer_sortOrder = 0

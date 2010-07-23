@@ -1,5 +1,6 @@
 import os
 import urllib2
+from Acquisition import aq_base
 from zope.component import getUtility
 from Globals import package_home
 from Products.CMFCore.utils import getToolByName
@@ -14,8 +15,12 @@ facetedCountry = open(os.path.join(package_home(GLOBALS), 'Extensions', 'faceted
 def setup_folder_structure(context):
     vocab = getToolByName(context, 'portal_vocabularies')
     european_countries = vocab['eea.soer.vocab.european_countries']
+    subtyper = getUtility(ISubtyper)
+    subtyper.change_type(context, 'eea.facetednavigation.FolderFacetedNavigable')
+    faceted = FacetedExportImport(context, context.REQUEST)
+    faceted.import_xml(import_file=facetedMain)
     for country_code in european_countries.keys():
-        if hasattr(context, country_code):
+        if hasattr(aq_base(context), country_code):
             continue
         mapurl = u'http://map.eea.europa.eu/getmap.asp?Fullextent=1&imagetype=3&size=W600&PredefShade=GreenRed&Q=%s:2'
         print 'Creating folder with id %s and title %s' % (country_code, european_countries[country_code].title)
@@ -34,8 +39,8 @@ def setup_folder_structure(context):
         folder.unmarkCreationFlag()
         folder.reindexObject()
 
-        subtyper = getUtility(ISubtyper)
         subtyper.change_type(folder, 'eea.facetednavigation.FolderFacetedNavigable')
 
         faceted = FacetedExportImport(folder, folder.REQUEST)
         faceted.import_xml(import_file=facetedCountry.replace('<element value="se"/>','<element value="%s"/>' % country_code))
+    
