@@ -60,6 +60,7 @@ class SOERCountry(ATFolder):
         """ update feed """
         url = self.getRdfFeed()
         if url:
+            language = self.Language() or 'en'
             self._v_feedUpdating = True
             reports = {}
             soer = sense.SoerRDF2Surf(url)
@@ -99,7 +100,7 @@ class SOERCountry(ATFolder):
                     report = self[self.invokeFactory(nstory.portal_type, id='temp_report',
                                                  topic=nstory.topic,
                                                  question=questions.get(nstory.question, ''))]
-                
+                report.setLanguage(language)
                 report.setDescription(nstory.description)
                 report.setKeyMessage(nstory.keyMessage)
                 report.setGeoCoverage(nstory.geoCoverage)
@@ -145,7 +146,9 @@ class SOERCountry(ATFolder):
                             dataLink = report[report.invokeFactory('Link', id=dataSrc['fileName'],
                                                                    title=dataSrc['fileName'],
                                                         remoteUrl=dataSrc['dataURL'])]
+                            dataLink.setLanguage(language)
                             figure.setRelatedItems([dataLink])
+                        figure.setLanguage(language)
                         figure.reindexObject()
                 i = 0
                 for indicatorUrl in nstory.relatedIndicator():

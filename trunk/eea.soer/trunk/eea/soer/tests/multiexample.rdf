@@ -6,7 +6,7 @@
 	 xmlns:dc="http://purl.org/dc/elements/1.1/"
          xmlns:dcq="http://purl.org/dc/terms/">
 <Channel rdf:about="">
-  <organisationName>State of the Environment Sweden</organisationName>
+  <organisationName xml:lang="en">State of the Environment Sweden</organisationName>
   <organisationName xml:lang="it">Istituto Superiore per la Protezione e la Ricerca Ambientale</organisationName>
   <reportingCountryCode rdf:resource="http://rdfdata.eionet.europa.eu/ramon/nuts/se" />
   <organisationURL>http://www.environment.no</organisationURL>

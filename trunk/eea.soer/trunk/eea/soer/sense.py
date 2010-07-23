@@ -10,6 +10,13 @@ from DateTime import DateTime
 from Products.Archetypes import interfaces as atinterfaces
 from Products.CMFPlone import log
 
+def getSingleValue(value, language=u"en"):
+    for v in value:
+        if isinstance(v, rdflib.Literal) and v.language == language:
+            return v
+    return value.first or ''
+
+
 class GetATSchema4SurfObj(object):
     implements(atinterfaces.ISchema)
     adapts(INationalStory)
@@ -138,7 +145,6 @@ class Surf2SOERReport(object):
         if context.soer_relatedEuropeanIndicator:
             return [ str(indicator) for indicator in context.soer_relatedEuropeanIndicator ]
         return []
-                
 
 class SoerRDF2Surf(object):
     """ read a rdf and verify that the feed is correct before content is updated
@@ -154,11 +160,11 @@ class SoerRDF2Surf(object):
         channel = self.session.get_class(surf.ns.SOER['Channel']).all()
         if channel:
             channel = channel.one()
-            result ={'organisationName' : channel.soer_organisationName.first and channel.soer_organisationName.first.strip() or '',
-                      'organisationURL'  : channel.soer_organisationURL.first and channel.soer_organisationURL.first.strip() or '',
-                      'organisationContactURL'  : channel.soer_organisationContactURL.first and channel.soer_organisationContactURL.first.strip() or '',
-                      'organisationLogoURL' : channel.soer_organisationLogoURL.first and channel.soer_organisationLogoURL.first.strip() or '',
-                      'license' : channel.soer_license.first and channel.soer_license.first.strip() or '',
+            result ={'organisationName' : getSingleValue(channel.soer_organisationName),
+                      'organisationURL'  : getSingleValue(channel.soer_organisationURL),
+                      'organisationContactURL'  : getSingleValue(channel.soer_organisationContactURL),
+                      'organisationLogoURL' : getSingleValue(channel.soer_organisationLogoURL),
+                      'license' : getSingleValue(channel.soer_license),
                       'updated' : DateTime() }
             return result
     
