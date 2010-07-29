@@ -55,8 +55,12 @@
         factory=".faceted.FolderFacetedHeritorDescriptor" />
 
   <utility
-    component=".vocab.VocabularyFactory"
+    component=".vocab.NUTSVocabularyFactory"
     name="eea.soer.vocab.NUTSRegions"
+    />
+  <utility
+    component=".vocab.EvalVocabularyFactory"
+    name="eea.soer.vocab.Evaluation"
     />
 
   
