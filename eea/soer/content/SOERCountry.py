@@ -105,6 +105,7 @@ class SOERCountry(ATFolder):
                 report.setKeyMessage(nstory.keyMessage)
                 report.setGeoCoverage(nstory.geoCoverage)
                 report.setSubject(nstory.keyword)
+                report.setEvaluation(nstory.evaluation)
                 newId = report._renameAfterCreation(check_auto_id=False)
                 if parentReport is None:
                     parentReport = report = self[newId]
