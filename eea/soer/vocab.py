@@ -68,6 +68,7 @@ atvocabs['eea.soer.vocab.geo_coverage'] = []
 Locality = geosession.get_class(surf.ns.ROD['Locality'])
 
 surf.ns.register(NUTS="http://rdfdata.eionet.europa.eu/ramon/ontology/")
+surf.ns.register(EVALUATION="http://www.eea.europa.eu/soer/rdfs/evaluation/1.0#")
 
 for loc in Locality.all().order():
     atvocabs['eea.soer.vocab.geo_coverage'].append((loc.rod_loccode.first.strip(), loc.rdfs_label.first.strip()))
@@ -75,8 +76,9 @@ for loc in Locality.all().order():
 
 # geostore.load_triples(source="http://rdfdata.eionet.europa.eu/ramon/send_all")
 # use local file to speed up for now
-from eea.soer.tests.base import nutsrdf
+from eea.soer.tests.base import nutsrdf, evalrdf
 geostore.load_triples(source=nutsrdf)
+geostore.load_triples(source=evalrdf)
 
 
 class NUTSRegions(object):
@@ -84,24 +86,55 @@ class NUTSRegions(object):
 
     implements(IVocabularyFactory)
 
+    @property
+    def rdfClass(self):
+        return geosession.get_class(surf.ns.NUTS['NUTSRegion'])
+
+    @property
+    def namespace(self):
+        return u'nuts'
+    
     def __call__(self, context=None):
-        NUTSRegion = geosession.get_class(surf.ns.NUTS['NUTSRegion'])
+        RdfClass = self.rdfClass
         vocabulary = []
-        for region in NUTSRegion.all().order():
-            vocabulary.append(SimpleTerm(region.subject.strip(),
-                                         token=region.nuts_code.first.strip(),
-                                         title=region.nuts_name.first.strip()))
+        prefix = self.namespace + u'_%s'
+        for i in RdfClass.all().order():
+            vocabulary.append(SimpleTerm(i.subject.strip(),
+                                         token=getattr(i, prefix % 'code').first.strip(),
+                                         title=getattr(i, prefix % 'name').first.strip()))
         return SimpleVocabulary(vocabulary)
 
     def resources(self):
-        NUTSRegion = geosession.get_class(surf.ns.NUTS['NUTSRegion'])
-        return NUTSRegion.all().order()
+        return self.rdfClass.all().order()
     
     def getCode(self, subject):
-        NUTSRegion = geosession.get_class(surf.ns.NUTS['NUTSRegion'])
-        region = NUTSRegion(subject).nuts_code.first
+        region = self.rdfClass(subject).nuts_code.first
         if region:
             return region.strip()
-        return ''
+        return u''
+
+NUTSVocabularyFactory = NUTSRegions()
+
+class Evaluations(NUTSRegions):
+    """ Evaluations vocabulary """
     
-VocabularyFactory = NUTSRegions()
+    implements(IVocabularyFactory)
+
+
+    @property
+    def rdfClass(self):
+        return geosession.get_class(surf.ns.EVALUATION['Evaluation'])
+
+    @property
+    def namespace(self):
+        return u'evaluation'
+
+    def getCode(self, subject):
+        Evaluation = self.rdfClass
+        evaluation = Evaluation(subject).evaluation_code.first
+        if evaluation:
+            return evaluation.strip()
+        return u''
+
+EvalVocabularyFactory = Evaluations()
+

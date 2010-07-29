@@ -61,6 +61,12 @@ Lets test geo coverage vocabulary
   >>> geovocab.getCode('http://rdfdata.eionet.europa.eu/ramon/nuts/SE')
   u'SE'
 
+  >>> evalvocab = getUtility(IVocabularyFactory, name=u"eea.soer.vocab.Evaluation")
+  >>> len(evalvocab())
+  8
+  >>> evalvocab.getCode('http://www.eea.europa.eu/soer/evaluations#U2-')
+  u'U2-'
+
   >>> NationalStory = session.get_class(surf.ns.SOER['NationalStory'])
   >>> obj = country['air-pollution-why-care-norway']
   >>> indi1 = obj[obj.invokeFactory('RelatedIndicatorLink', id='indi1')]

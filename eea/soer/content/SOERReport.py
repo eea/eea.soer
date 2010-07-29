@@ -123,12 +123,14 @@ schema = Schema((
         required=0,
         searchable=0,
         default='',
-        widget=StringWidget(
+        widget=SelectionWidget(
             lagel='Evaluation',
             label_msgid='label_evaluation',
             description='This is a two letter value which indicates quickly what the evaluation and trend is.',
             visible={'view' : 'invisible'},
+            format='select',
         ),
+        vocabulary='getEvaluationVocabulary',
     ),
 ),
 )
@@ -197,6 +199,10 @@ class SOERReport(ATFolder, ATNewsItem):
     def getGeographicCoverage(self):
         return self.getGeoCoverage()
         
+    def getEvaluationVocabulary(self, content_instance=None, field=None):
+        vocab = getUtility(IVocabularyFactory, name=u"eea.soer.vocab.Evaluation")
+        return DisplayList([(t.value, t.title) for t in vocab(self) ]) 
+    
     def default_country(self):
         path = self.getPhysicalPath()
         if len(path) >= 2:
