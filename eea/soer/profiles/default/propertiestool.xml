@@ -13,4 +13,21 @@
   <property name="license"
      type="string">http://creativecommons.org/licenses/by/2.5/</property>
  </object>
+ <object name="rdfmarshaller_properties" meta_type="Plone Property Sheet">
+  <property name="figure_blacklist" type="lines">
+    <element value="creation_date" />
+    <element value="modification_date" />
+    <element value="creators" />
+    <element value="subject" />
+    <element value="effectiveDate" />
+    <element value="expirationDate" />
+    <element value="constrainTypesMode" />
+    <element value="locallyAllowedTypes" />
+    <element value="immediatelyAddableTypes" />
+    <element value="language" />
+    <element value="allowDiscussion" />
+    <element value="image" />
+  </property>
+ </object>
+
 </object>

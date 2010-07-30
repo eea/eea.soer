@@ -9,7 +9,7 @@ from Products.GenericSetup import EXTENSION, profile_registry
 
 
 PRODUCTS = ['ATVocabularyManager', 'FiveSite', 'eea.rdfmarshaller']
-PROFILES = ['eea.soer:default']
+PROFILES = ['eea.soer:default', 'eea.rdfmarshaller:default']
 
 soerrdf = 'file://%s' % os.path.join(package_home(globals()), 'soerfeed.rdf')
 examplerdf = 'file://%s' % os.path.join(package_home(globals()), 'multiexample.rdf')
@@ -37,7 +37,7 @@ def setup_soer():
 
 setup_soer()
 PRODUCTS.append('eea.soer')
-PloneTestCase.setupPloneSite(products=PRODUCTS)
+PloneTestCase.setupPloneSite(products=PRODUCTS, extension_profiles=PROFILES)
 
 
 class SOERFunctionalTestCase(PloneTestCase.FunctionalTestCase):
