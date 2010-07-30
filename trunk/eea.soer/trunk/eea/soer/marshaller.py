@@ -66,7 +66,9 @@ class NationalStory2Surf(Soer2Surf):
                       ('effectiveDate','pubDate'),
                       ])
 
-        self.blacklist_map = Soer2Surf.blacklist_map + ['relatedItems', 'question', 'geoCoverage', 'id']
+    @property
+    def blacklist_map(self):
+        return super(NationalStory2Surf, self).blacklist_map + ['relatedItems', 'question', 'geoCoverage', 'id']
     
     def at2surf(self, subReport=False):
         resource = super(NationalStory2Surf, self).at2surf()
@@ -115,11 +117,9 @@ class Image2Surf(Soer2Surf):
                                      ('title', 'caption'),
                                      ('relatedItems', 'dataSource'),
                                      ]))
-        self.blacklist_map = Soer2Surf.blacklist_map + [key for key in Soer2Surf.dc_map.keys()
-                                          if key not in ('title', 'description')]  + ['image']
         self.dc_map = {} # we don't want Dublin Core right now
         
-    
+
 
 class Link2Surf(Soer2Surf):
     """ Resource axtension for """
@@ -134,6 +134,8 @@ class Link2Surf(Soer2Surf):
         self.field_map.update( dict([('id', 'fileName'),
                                      ('remoteUrl', 'dataURL'),
                                      ]))
-        self.blacklist_map = Soer2Surf.blacklist_map + Soer2Surf.dc_map.keys()
         self.dc_map = {} # we don't want Dublin Core right now
 
+    @property
+    def blacklist_map(self):
+        return  super(Link2Surf, self).blacklist_map + Soer2Surf.dc_map.keys()
