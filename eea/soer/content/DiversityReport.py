@@ -4,7 +4,7 @@ from Products.ATContentTypes.configuration import zconf
 from Products.ATContentTypes.content.folder import ATFolder
 from Products.ATContentTypes.content.newsitem import ATNewsItem
 from eea.soer.content.interfaces import IDiversityReport
-from eea.soer.content.SOERReport import SOERReport
+from eea.soer.content.SOERReport import schema as  SOERReportSchema, SOERReport
 from eea.soer.config import *
 from eea.soer import vocab
 from Products.ATVocabularyManager import NamedVocabulary
@@ -13,12 +13,26 @@ try:
 except ImportError:
     # No multilingual support
     from Products.Archetypes.public import *
+schema = Schema((
+        StringField(
+        name='topic',
+        required = False,
+        default=u'country introduction',
+        widget=StringWidget(
+            label='Topics',
+            label_msgid='eea.soer_label_topics',
+            i18n_domain='eea.soer',
+            visible={'view' : 'invisible',
+                     'edit' : 'invisible'},
+            description='country introduction'
+         ),
+     ),
+),)
 
-schema = getattr(SOERReport, 'schema').copy() 
+schema = SOERReportSchema.copy() + schema
 schema['description'].default_method = 'default_desc'
-schema['topic'].widget.visible = { 'edit' : 0 }
-schema['topic'].default=u'country introduction'
 schema['question'].vocabulary=NamedVocabulary('eea.soer.vocab.diversity_questions')
+
 
 class DiversityReport(SOERReport):
     """ """
