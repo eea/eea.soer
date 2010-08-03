@@ -2,7 +2,7 @@ from Products.CMFCore.utils import getToolByName
 import transaction
 
 
-PROFILE = 'eea.soer:default'
+PROFILES = [ 'eea.rdfmarshaller:default', 'eea.soer:default']
 PRODUCT_DEPENDENCIES = ['ATVocabularyManager', 'eea.vocab']
 
 
@@ -16,10 +16,11 @@ def install(self, reinstall=False):
             qi.installProduct(i)
             transaction.savepoint()
     portal_setup = getToolByName(self, 'portal_setup')
-    portal_setup.setImportContext('profile-%s' % PROFILE)
-    portal_setup.runAllImportSteps()
-    product_name = PROFILE.split(':')[0]
-    qi.notifyInstalled(product_name)
+    for profile in PROFILES:
+        portal_setup.setImportContext('profile-%s' % profile)
+        portal_setup.runAllImportSteps()
+        product_name = profile.split(':')[0]
+        qi.notifyInstalled(product_name)
 
     migrationTool = getToolByName(self, 'portal_migration')
     if migrationTool.getInstanceVersionTuple()[0] >= 3:
