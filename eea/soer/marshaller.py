@@ -3,10 +3,9 @@ import rdflib
 from zope.interface import implements
 from zope.component import adapts, queryMultiAdapter
 from Products.CMFCore.utils import getToolByName
-from Products.ATContentTypes.interface.image import IATImage
-from Products.ATContentTypes.interface.link import IATLink
 from eea.soer import vocab
 from eea.soer.content.interfaces import ISOERReport, IReportingCountry
+from eea.soer.content.interfaces import ISoerFigure, ISoerDataFile
 from eea.rdfmarshaller.interfaces import IArchetype2Surf, ISurfSession
 from eea.rdfmarshaller import marshaller
 
@@ -106,7 +105,7 @@ class NationalStory2Surf(Soer2Surf):
 class Image2Surf(Soer2Surf):
     """ Resource axtension for """
     implements(IArchetype2Surf)
-    adapts(IATImage, ISurfSession)
+    adapts(ISoerFigure, ISurfSession)
 
     portalType = u'Figure'
 
@@ -124,7 +123,7 @@ class Image2Surf(Soer2Surf):
 class Link2Surf(Soer2Surf):
     """ Resource axtension for """
     implements(IArchetype2Surf)
-    adapts(IATLink, ISurfSession)
+    adapts(ISoerDataFile, ISurfSession)
 
     portalType = u'DataFile'
     

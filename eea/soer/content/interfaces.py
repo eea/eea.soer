@@ -69,3 +69,10 @@ class IReportingCountry(Interface):
     def updateFromFeed():
         """ Update reports from the rdf feed url """
     
+
+class ISoerFigure(Interface):
+    """ Marker interface for Images inside a SOER report """
+
+class ISoerDataFile(Interface):
+    """ Marker interface for Links inside a SOER report """
+

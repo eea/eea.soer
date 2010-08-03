@@ -1,4 +1,4 @@
-from zope.interface import implements
+from zope.interface import implements, directlyProvides
 from zope.component import getUtility
 from zope.app.schema.vocabulary import IVocabularyFactory
 from AccessControl import ClassSecurityInfo
@@ -9,6 +9,7 @@ from Products.ATContentTypes.configuration import zconf
 from Products.ATContentTypes.content.folder import ATFolder
 from Products.ATContentTypes.content.newsitem import ATNewsItem
 from eea.soer.content.interfaces import ISOERReport
+from eea.soer.content.interfaces import ISoerFigure, ISoerDataFile
 from eea.soer.config import *
 from Products.ATVocabularyManager import NamedVocabulary
 from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
@@ -243,4 +244,11 @@ class SOERReport(ATFolder, ATNewsItem):
             return '%s#%s' % (parent.absolute_url(*args), self.getId())
 
 
-        
+
+def soerImageAdded(obj, event):
+    if ISOERReport.providedBy(obj.aq_parent):
+        directlyProvides(obj, ISoerFigure)
+
+def soerLinkAdded(obj, event):
+    if ISOERReport.providedBy(obj.aq_parent):
+        directlyProvides(obj, ISoerDataFile)
