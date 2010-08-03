@@ -10,7 +10,6 @@
   
   <include package=".browser" />
   <include file="profiles.zcml" />
-
   <subscriber
       for="eea.soer.content.interfaces.ICommonalityReport
            zope.app.container.interfaces.IObjectModifiedEvent"
@@ -34,6 +33,19 @@
            zope.app.container.interfaces.IObjectModifiedEvent"
       handler=".content.SOERCountry.soerCountryUpdated"
       />
+
+  <subscriber
+      for="Products.ATContentTypes.interface.link.IATLink
+           zope.app.container.interfaces.IObjectAddedEvent"
+      handler=".content.SOERReport.soerLinkAdded"
+      />
+
+  <subscriber
+      for="Products.ATContentTypes.interface.image.IATImage
+           zope.app.container.interfaces.IObjectAddedEvent"
+      handler=".content.SOERReport.soerImageAdded"
+      />
+
 
   <adapter factory=".marshaller.ReportingCountry2Surf" />
   <adapter factory=".marshaller.NationalStory2Surf" />
