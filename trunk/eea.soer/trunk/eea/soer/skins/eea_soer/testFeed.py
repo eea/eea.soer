@@ -8,8 +8,10 @@
 ##title=create a soer country and test the feed
 ##
 
+countryCode = countryCode.lower()
+
 if countryCode in context.objectIds():
-    country = context[countryCode]
+   country = context[countryCode]
 else:
    context.invokeFactory('SOERCountry', id=countryCode)
    country = context[countryCode]
