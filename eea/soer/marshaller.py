@@ -12,7 +12,8 @@ from eea.rdfmarshaller import marshaller
 class Soer2Surf(marshaller.ATCT2Surf):
     """ base class for adapters """
     prefix= u'soer'
-
+    field_map = {}
+    
     @property
     def namespace(self):
         return surf.ns.SOER
@@ -43,7 +44,7 @@ class ReportingCountry2Surf(Soer2Surf):
         resource.save()
         return resource
             
-    def at2surf(self):
+    def at2surf(self, **kwargs):
         self.channel()
         for obj in self.context.objectValues():
             atsurf = queryMultiAdapter((obj, self.session), interface=IArchetype2Surf)
@@ -69,7 +70,7 @@ class NationalStory2Surf(Soer2Surf):
     def blacklist_map(self):
         return super(NationalStory2Surf, self).blacklist_map + ['relatedItems', 'question', 'geoCoverage', 'id']
     
-    def at2surf(self, subReport=False):
+    def at2surf(self, subReport=False, **kwargs):
         resource = super(NationalStory2Surf, self).at2surf()
         context = self.context
         language = context.Language()
@@ -111,7 +112,6 @@ class Image2Surf(Soer2Surf):
 
     def __init__(self, context, session):
         super(Image2Surf, self).__init__(context, session)
-        self.field_map = Soer2Surf.field_map
         self.field_map.update( dict([('id', 'fileName'),
                                      ('title', 'caption'),
                                      ('relatedItems', 'dataSource'),
@@ -129,7 +129,6 @@ class Link2Surf(Soer2Surf):
     
     def __init__(self, context, session):
         super(Link2Surf, self).__init__(context, session)
-        self.field_map = Soer2Surf.field_map
         self.field_map.update( dict([('id', 'fileName'),
                                      ('remoteUrl', 'dataURL'),
                                      ]))
