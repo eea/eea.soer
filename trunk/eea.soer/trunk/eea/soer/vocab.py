@@ -74,7 +74,7 @@ for loc in Locality.all().order():
     atvocabs['eea.soer.vocab.geo_coverage'].append((loc.rod_loccode.first.strip(), loc.rdfs_label.first.strip()))
 
 
-# geostore.load_triples(source="http://rdfdata.eionet.europa.eu/ramon/send_all")
+#geostore.load_triples(source="http://rdfdata.eionet.europa.eu/ramon/send_all")
 # use local file to speed up for now
 from eea.soer.tests.base import nutsrdf, evalrdf
 geostore.load_triples(source=nutsrdf)
@@ -99,10 +99,14 @@ class NUTSRegions(object):
         vocabulary = []
         prefix = self.namespace + u'_%s'
         for i in RdfClass.all().order():
-            vocabulary.append(SimpleTerm(i.subject.strip(),
+            url = i.subject.strip()
+            # we only want NUTS2008 list to have unique entires
+            if url.startswith('http://rdfdata.eionet.europa.eu/ramon/nuts2008/'):
+                vocabulary.append(SimpleTerm(url,
                                          token=getattr(i, prefix % 'code').first.strip(),
                                          title=getattr(i, prefix % 'name').first.strip()))
         return SimpleVocabulary(vocabulary)
+
 
     def resources(self):
         return self.rdfClass.all().order()
@@ -115,7 +119,7 @@ class NUTSRegions(object):
 
 NUTSVocabularyFactory = NUTSRegions()
 
-class Evaluations(NUTSRegions):
+class Evaluations(object):
     """ Evaluations vocabulary """
     
     implements(IVocabularyFactory)
@@ -128,6 +132,17 @@ class Evaluations(NUTSRegions):
     @property
     def namespace(self):
         return u'evaluation'
+
+    def __call__(self, context=None):
+        RdfClass = self.rdfClass
+        vocabulary = []
+        prefix = self.namespace + u'_%s'
+        for i in RdfClass.all().order():
+            url = i.subject.strip()
+            vocabulary.append(SimpleTerm(url,
+                                         token=getattr(i, prefix % 'code').first.strip(),
+                                         title=getattr(i, prefix % 'name').first.strip()))
+        return SimpleVocabulary(vocabulary)
 
     def getCode(self, subject):
         Evaluation = self.rdfClass
