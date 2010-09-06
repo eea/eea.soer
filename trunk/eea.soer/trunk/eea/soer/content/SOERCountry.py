@@ -49,7 +49,7 @@ class SOERCountry(ATFolder):
     meta_type = 'SOERCountry'
     portal_type = 'SOERCountry'
     allowed_content_types = ['Image', 'CommonalityReport', 'DiversityReport',
-                             'FlexibilityReport','Link']
+                             'FlexibilityReport','DataSourceLink']
     _at_rename_after_creation = True
 
     schema = schema
@@ -144,7 +144,7 @@ class SOERCountry(ATFolder):
                             assessment = assessment.replace(fig['url'], 'resolveuid/%s' % figure.UID())
                         if fig.get('dataSource', None) is not None:
                             dataSrc = fig['dataSource']
-                            dataLink = report[report.invokeFactory('Link', id=dataSrc['fileName'],
+                            dataLink = report[report.invokeFactory('DataSourceLink', id=dataSrc['fileName'],
                                                                    title=dataSrc['fileName'],
                                                         remoteUrl=dataSrc['dataURL'])]
                             dataLink.setLanguage(language)
