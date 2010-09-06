@@ -103,18 +103,27 @@ class NUTSRegions(object):
             # we only want NUTS2008 list to have unique entires
             if url.startswith('http://rdfdata.eionet.europa.eu/ramon/nuts2008/'):
                 vocabulary.append(SimpleTerm(url,
-                                         token=getattr(i, prefix % 'code').first.strip(),
+                                         token=u'nutscode_%s' % getattr(i, prefix % 'code').first.strip(),
+                                         title=getattr(i, prefix % 'name').first.strip()))
+        for i in self.countries():
+            url = i.subject.strip()
+            vocabulary.append(SimpleTerm(url,
+                                         token=u'countrycode_%s' % getattr(i, prefix % 'code').first.strip(),
                                          title=getattr(i, prefix % 'name').first.strip()))
         return SimpleVocabulary(vocabulary)
 
 
     def resources(self):
         return self.rdfClass.all().order()
+
+    def countries(self):
+        return geosession.get_class(surf.ns.NUTS['CountryCode']).all().order()
     
     def getCode(self, subject):
-        region = self.rdfClass(subject).nuts_code.first
-        if region:
-            return region.strip()
+        for rdfClass in [ surf.ns.NUTS['CountryCode'], surf.ns.NUTS['NUTSRegion']]:
+            region = geosession.get_resource(subject, rdfClass)
+            if region is not None:
+                return region.nuts_code.first.strip()
         return u''
 
 NUTSVocabularyFactory = NUTSRegions()
