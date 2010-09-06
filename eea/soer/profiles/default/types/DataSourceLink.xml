@@ -2,7 +2,7 @@
 <object name="DataSourceLink"
    meta_type="Factory-based Type Information with dynamic views"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <property name="title">Link to related Indicator</property>
+ <property name="title">Link to datasoruce</property>
  <property
     name="description">A link to an internal or external resource.</property>
  <property name="content_icon">link_icon.gif</property>

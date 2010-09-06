@@ -89,7 +89,8 @@ class NationalStory2Surf(Soer2Surf):
             if surfObj is not None:
                 if obj.portal_type == 'Image':
                     resource.soer_hasFigure.append(surfObj.at2surf())
-                elif obj.portal_type == 'Link':
+                elif obj.portal_type in ['DataSourceLink', 'Link']:
+                    # we allowed normal links as data source pre 0.5
                     resource.soer_dataSource.append(surfObj.at2surf())
                 elif obj.portal_type == 'RelatedIndicatorLink':
                     resource.soer_relatedEuropeanIndicator.append((rdflib.URIRef(obj.getRemoteUrl()), language))
