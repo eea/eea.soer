@@ -181,6 +181,9 @@ class SOERReport(ATFolder, ATNewsItem):
         displayList = DisplayList()
         for region in vocab.resources():
             current = region.subject.strip()
+            if not current.startswith('http://rdfdata.eionet.europa.eu/ramon/nuts2008/'):
+                continue
+            
             if region.nuts_partOf.first:
                 if region.nuts_partOf.first.subject.strip() not in parent:
                     indent += u'.'
@@ -195,6 +198,11 @@ class SOERReport(ATFolder, ATNewsItem):
                 parent = []
             title = u'%s %s' % (indent, region.nuts_name.first.strip())
             displayList.add(current, title)
+        displayList.add(u'countries', u'-- Countries --')
+        for region in vocab.countries():
+            current = region.subject.strip()
+            displayList.add(current, region.nuts_name.first.strip())
+
         return displayList
 
     def getGeographicCoverage(self):

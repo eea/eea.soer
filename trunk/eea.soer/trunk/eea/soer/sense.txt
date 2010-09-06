@@ -56,11 +56,16 @@ Lets test geo coverage vocabulary
   >>> from zope.app.schema.vocabulary import IVocabularyFactory
   >>> from zope.component import getUtility
   >>> geovocab = getUtility(IVocabularyFactory, name=u"eea.soer.vocab.NUTSRegions")
-  >>> len(geovocab())
-  1779
-  >>> geovocab.getCode('http://rdfdata.eionet.europa.eu/ramon/nuts/SE')
+  >>> geovocabulary = geovocab()
+  >>> len(geovocabulary)
+  1819
+  >>> geovocab.getCode(u'http://rdfdata.eionet.europa.eu/ramon/nuts/SE')
   u'SE'
-
+  >>> geovocab.getCode(u'http://rdfdata.eionet.europa.eu/ramon/countries/RS')
+  u'RS'
+  >>> geovocabulary.getTermByToken(u'countrycode_RS').value
+  u'http://rdfdata.eionet.europa.eu/ramon/countries/RS'
+  
   >>> evalvocab = getUtility(IVocabularyFactory, name=u"eea.soer.vocab.Evaluation")
   >>> len(evalvocab())
   8
