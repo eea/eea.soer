@@ -25,4 +25,10 @@
     allowed_interface="..interfaces.ICountryView"
     />
 
+  <browser:page
+    for="*"
+    name="initSoerCountries"
+    class=".setup.Countries"
+    permission="cmf.ManagePortal"
+  />
 </configure>
