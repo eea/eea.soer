@@ -151,7 +151,8 @@
             <div tal:replace="structure text" />
         </div>
 
-<tal:figures tal:define="folderContents report/figures"
+<tal:figures tal:define="folderContents report/figures;
+                         singleFigure python:len(folderContents) == 1"
              tal:condition="folderContents">
     <h4 id="fancy-edse">Figures</h4> 
     <tal:images tal:repeat="brain folderContents">
@@ -182,7 +183,8 @@
         </div>
      </div>
 	<metal:entry define-macro="entry">
-        <div tal:define="css python:brain.is_folderish and 'photoAlbumEntry photoAlbumFolder' or 'photoAlbumEntry'"
+        <div tal:define="css python:brain.is_folderish and 'photoAlbumEntry photoAlbumFolder' or 'photoAlbumEntry';
+                         css python:singleFigure and css + ' photoAlbumEntryPreview' or css"
   	     tal:attributes="class css">
              <a tal:attributes="
 	        href source|listing_url;
@@ -191,10 +193,18 @@
 	      <span class="photoAlbumEntryWrapper">
 	        <img class="imagesource-box" src="tag_green_right.png" tal:condition="source|nothing"
           	      tal:attributes="src python:'%s/tag_green_right.png' % portal_url" alt="Source" />
+               <tal:multiplefigures condition="not: singleFigure">
                 <img style="border: none" tal:attributes="
 		      title python:desc_or_title;
 		      alt obj/pretty_title_or_id;
 		      src string:${obj/absolute_url}/image_thumb"/>
+               </tal:multiplefigures>
+               <tal:singlefigure condition="singleFigure">
+                <img style="border: none" tal:attributes="
+		      title python:desc_or_title;
+		      alt obj/pretty_title_or_id;
+		      src string:${obj/absolute_url}/image_preview"/>
+               </tal:singlefigure>
              </span>
              <span class="photoAlbumEntryTitle" tal:content="obj/pretty_title_or_id" />
           </a>
