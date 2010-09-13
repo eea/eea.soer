@@ -122,7 +122,7 @@ class NUTSRegions(object):
     def getCode(self, subject):
         for rdfClass in [ surf.ns.NUTS['CountryCode'], surf.ns.NUTS['NUTSRegion']]:
             region = geosession.get_resource(subject, rdfClass)
-            if region is not None:
+            if region is not None and region.nuts_code.first is not None:
                 return region.nuts_code.first.strip()
         return u''
 

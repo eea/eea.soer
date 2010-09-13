@@ -29,12 +29,6 @@
       />
 
   <subscriber
-      for="eea.soer.content.interfaces.IReportingCountry
-           zope.app.container.interfaces.IObjectModifiedEvent"
-      handler=".content.SOERCountry.soerCountryUpdated"
-      />
-
-  <subscriber
       for="Products.ATContentTypes.interface.link.IATLink
            zope.app.container.interfaces.IObjectAddedEvent"
       handler=".content.SOERReport.soerLinkAdded"
