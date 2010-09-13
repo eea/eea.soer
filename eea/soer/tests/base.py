@@ -49,3 +49,11 @@ class SOERFunctionalTestCase(PloneTestCase.FunctionalTestCase):
         # description is generated from it.
 
         self.portal.invokeFactory('Folder', id='SOER')
+
+    def enableDebugLog(self):
+        """ Enable context.plone_log() output from Python scripts """
+        import sys ,logging
+        from Products.CMFPlone.log import logger
+        logger.root.setLevel(logging.INFO)
+        logger.root.addHandler(logging.StreamHandler(sys.stdout))
+
