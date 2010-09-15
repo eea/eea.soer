@@ -7,6 +7,9 @@ Changelog
 * evaluations were not imported #3500 [vincisas]
 * evaluation vocabulary is used in Plone editing [vincisas]
 * blacklist is configurable through ZMI in properties_tool/rdfmarshaller_properties [vincisas]
+* Generated titles used old content type names. Fixes #3635 [vincisas]
+* Multiple feed support added, #3494 [vincisas]
+* Added country names that were not in NUTS selection to the geo coverage field #3600 [vincisas]
 
 0.4.3 - 2010-07-16
 ------------------
