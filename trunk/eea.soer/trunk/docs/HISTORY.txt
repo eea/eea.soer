@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.5 - unreleased
+0.5 - 2010-10-15
 ----------------
 
 * evaluations were not imported #3500 [vincisas]
