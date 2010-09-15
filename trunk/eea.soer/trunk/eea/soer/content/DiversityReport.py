@@ -51,7 +51,7 @@ class DiversityReport(SOERReport):
 
     def default_desc(self):
         country = self.getTermTitle('eea.soer.vocab.european_countries', self.getSoerCountry())
-        desc = 'SOER Part C Diversity Report from %s' % country
+        desc = 'SOER Part C Country profile from %s' % country
         return desc
 
 
@@ -63,5 +63,5 @@ def gen_title(obj, evt):
         obj.setTitle('Country introduction (%s)' % country)
     else:
         question = obj.getTermTitle('eea.soer.vocab.diversity_questions', obj.getQuestion())
-        t = 'Diversity Report: %s (%s)' % (question, country)
+        t = 'Country profile: %s (%s)' % (question, country)
         obj.setTitle(t)

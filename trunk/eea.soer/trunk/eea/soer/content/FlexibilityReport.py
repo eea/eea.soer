@@ -56,7 +56,7 @@ class FlexibilityReport(SOERReport):
 
     def default_desc(self):
         country = self.getTermTitle('eea.soer.vocab.european_countries', self.getSoerCountry())
-        desc = 'SOER Part C Flexibility Report from %s' % country
+        desc = 'SOER Part C National and regional story from %s' % country
         return desc
 
 
@@ -64,5 +64,5 @@ registerType(FlexibilityReport, PROJECTNAME)
 
 def gen_title(obj, evt):
     country = obj.getTermTitle('eea.soer.vocab.european_countries', obj.getSoerCountry())
-    t = 'Flexibility Report (%s)' % country
+    t = 'National and regional story (%s)' % country
     obj.setTitle(t)

@@ -138,6 +138,6 @@ Lets add two more feeds to the country folder and update from them too.
   >>> for report in country.objectIds():
   ...   if report not in oldIds and report != 'feed1':
   ...	  print report
-  flexibility-report-norway
-  >>> country['flexibility-report-norway'].getKeyMessage()
+  national-and-regional-story-norway
+  >>> country['national-and-regional-story-norway'].getKeyMessage()
   '<p>High concentrations of tropospheric ozone and its precursors<br />(e.g. NOx and NMVOC) have shown to adversely affect the human respiratory system,<br />cause eye, nose, and throat irritations and increase hospital admissions.<br />Tropospheric ozone also damages crops and other vegetation.</p>'
