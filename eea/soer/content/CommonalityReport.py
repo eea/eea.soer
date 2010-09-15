@@ -34,7 +34,7 @@ class CommonalityReport(SOERReport):
 
     def default_desc(self):
         country = self.getTermTitle('eea.soer.vocab.european_countries', self.getSoerCountry())
-        desc = 'SOER Part C Commonality Report from %s' % country
+        desc = 'SOER Part C Common environmental theme from %s' % country
         return desc
 
     def getLongSoerQuestion(self):

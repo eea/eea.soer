@@ -22,7 +22,7 @@ When description is not provided, it's generated using the language code from
 the parent folder.
 
   >>> report.Description()
-  'SOER Part C Commonality Report from Sweden'
+  'SOER Part C Common environmental theme from Sweden'
 
 The title is generated from the topic and section combination. It's changed
 after saving/modifiying the report.
@@ -62,9 +62,9 @@ be answered:
   ... }
   >>> report.processForm(values=form, data=1, metadata=1)
   >>> report.Title()
-  'Diversity Report: Factors (Sweden)'
+  'Country profile: Factors (Sweden)'
   >>> report.Description()
-  'SOER Part C Diversity Report from Sweden'
+  'SOER Part C Country profile from Sweden'
   >>> report.getText()
   '<p>The situation is diverse!</p>'
 
@@ -86,9 +86,9 @@ Let's fill in the add form:
   ... }
   >>> report.processForm(values=form, data=1, metadata=1)
   >>> report.Title()
-  'Flexibility Report (Sweden)'
+  'National and regional story (Sweden)'
   >>> report.Description()
-  'SOER Part C Flexibility Report from Sweden'
+  'SOER Part C National and regional story from Sweden'
   >>> report.getText()
   '<p>The situation is flexible!</p>'
 
