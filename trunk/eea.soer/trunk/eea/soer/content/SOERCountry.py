@@ -161,10 +161,12 @@ class SOERCountry(ATFolder):
                         assessment = assessment.replace(fig['url'], 'resolveuid/%s' % figure.UID())
                     if fig.get('dataSource', None) is not None:
                         dataSrc = fig['dataSource']
-                        dataLink = report[report.invokeFactory('DataSourceLink', id=dataSrc['fileName'],
+                        dataLink = report[report.invokeFactory('DataSourceLink', id='tmpdatalink',
                                                                title=dataSrc['fileName'],
                                                     remoteUrl=dataSrc['dataURL'])]
                         dataLink.setLanguage(language)
+                        newId = dataLink._renameAfterCreation(check_auto_id=False)
+                        dataLink = report[newId]                        
                         figure.setRelatedItems([dataLink])
                     figure.setLanguage(language)
                     figure.reindexObject()

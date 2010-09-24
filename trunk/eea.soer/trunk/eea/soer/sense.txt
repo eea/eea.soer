@@ -94,7 +94,7 @@ Serialization
   >>> rdfio = StringIO(rdfdata)
   >>> seCountry = soer[soer.invokeFactory('SOERCountry', id='se')]  
   >>> seCountry.setRdfFeed(rdfio)
-  >>> _ = seCountry.updateFromFeed()
+  >>> seCountry.updateFromFeed()
   >>> seCountry.objectIds().sort() == country.objectIds().sort()
   True
 
