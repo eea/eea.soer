@@ -47,6 +47,8 @@ class NationalStory(object):
     def update(self, country):
         questions = dict([[v,k] for k,v in vocab.long_diversity_questions.items()])
         questions.update(dict([[v,k] for k,v in vocab.long_questions.items()]))
+        # old labels before https://svn.eionet.europa.eu/projects/Zope/ticket/3685
+        questions.update(dict([[v,k] for k,v in vocab.old_long_questions.items()]))            
         
         report = country[country.invokeFactory(self.portal_type, id='temp_report',
                                          soerTopic=self.getTopic(),
@@ -93,9 +95,9 @@ class Surf2SOERReport(object):
             portal_type = 'DiversityReport'                                            
         elif self.topic in [u'air pollution', u'freshwater', u'climate change',
                             u'land', u'waste', u'biodiversity']:
-            if self.question in vocab.long_questions.values():
+            if self.question in vocab.long_questions.values() + vocab.old_long_questions.values():
                 portal_type = 'CommonalityReport'
-            elif self.question in vocab.long_diversity_questions.values():
+            elif self.question in vocab.long_diversity_questions.values() + vocab.old_long_diversity_questions.values():
                 portal_type = 'DiversityReport'                        
         return portal_type
 
