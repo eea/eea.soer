@@ -15,12 +15,28 @@ long_topics = {
 }
 
 # Maps values from eea.soer.vocab.questions to their full description
-long_questions = {
+old_long_questions = {
     u'0': u"Why should we care?",
     u'1': u"What are the state and impacts?",
     u'2': u"What are the related drivers and pressures?",
     u'3': u"What is the 2020 outlook?",
     u'4': u"What are the policy responses?",
+}
+
+old_long_diversity_questions = {
+    u'10': u"What distinguishes the country?",
+    u'11': u"What are the major societal trends?",
+    u'12': u"What are the main drivers?",
+    u'13': u"What are the foreseen developments?",
+}
+
+# Maps values from eea.soer.vocab.questions to their full description
+long_questions = {
+    u'0': u"Why should we care about this issue",
+    u'1': u"The state and impacts",
+    u'2': u"The key drivers and pressures",
+    u'3': u"The 2020 outlook",
+    u'4': u"Existing and planned responses",
 }
 
 # Maps values from eea.soer.vocab.diversity_questions to their full description
