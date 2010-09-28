@@ -75,7 +75,7 @@ schema = Schema((
             format='select',
         ),
         vocabulary=NamedVocabulary('eea.soer.vocab.european_countries'),
-        enforceVocabulary=True,
+        enforceVocabulary=False,
     ),
 
     StringField(
