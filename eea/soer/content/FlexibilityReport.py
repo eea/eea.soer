@@ -30,16 +30,17 @@ schema = Schema((
         name='question',
         required = True,
         widget=StringWidget(
-            label='Question',
+            label='Title',
             label_msgid='eea.soer_label_questions',
             i18n_domain='eea.soer',
-            description='Custom question for this report',
+            description='Custom title for this report',
          ),
      ),
 ),
 )
 schema = getattr(SOERReport, 'schema').copy() + schema.copy()
 schema['description'].default_method = 'default_desc'
+schema['title'].required = False
 
 
 class FlexibilityReport(SOERReport):
