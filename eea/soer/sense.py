@@ -93,8 +93,7 @@ class Surf2SOERReport(object):
         portal_type = 'FlexibilityReport'
         if self.topic == u'country introduction':
             portal_type = 'DiversityReport'                                            
-        elif self.topic in [u'air pollution', u'freshwater', u'climate change',
-                            u'land', u'waste', u'biodiversity']:
+        elif self.topic in vocab.long_topics.keys():
             if self.question in vocab.long_questions.values() + vocab.old_long_questions.values():
                 portal_type = 'CommonalityReport'
             elif self.question in vocab.long_diversity_questions.values() + vocab.old_long_diversity_questions.values():
