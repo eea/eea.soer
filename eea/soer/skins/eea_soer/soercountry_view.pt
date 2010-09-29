@@ -22,9 +22,9 @@
 	        tal:define="channel channel|nothing"
 		tal:condition="channel">
 	      <dt class="portletHeader">	
-		<a href="" title="" class="websource-box fancybox"
+		<a href="" title="" class="websource-box fancybox discreet"
 		   tal:attributes="href string:#channelSource;
-				   title string:Channel source">Channel</a>
+				   title string:Channel source">more info</a>
                <div class="hiddenStructure">
                    <div id="channelSource" class="websource-info" >
                       <img src=""
@@ -52,9 +52,12 @@
                 </div>
 		Content provider</dt>
 	      <dd class="portletItem">
+		<a href="" title="" class="fancybox"
+		   tal:attributes="href string:#channelSource;
+				   title string:Channel source">
 	          <img src=""
 		       tal:attributes="src channel/organisationLogoURL|nothing;
-			                   alt channel/organisationName" /></dd>
+			                   alt channel/organisationName" /></a></dd>
 	    </dl>
 	    <dl id="location-portlet" class="portlet" tal:condition="nocall:intro">
 	      <dt class="portletHeader">	
