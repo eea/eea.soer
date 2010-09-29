@@ -88,7 +88,7 @@ schema = Schema((
             format='select',
         ),
         vocabulary="getGeoCoverageVocabulary",
-        enforceVocabulary=True,
+        enforceVocabulary=False,
 
     ),
 
@@ -180,6 +180,18 @@ class SOERReport(ATFolder, ATNewsItem):
         indent = u''
         parent = []
         displayList = DisplayList()
+
+        displayList.add(u'', u'Select a region')
+        displayList.add(u'bio', u'-- Bio geo regions --')
+        displayList.add(u'alpine', u'Alpine')
+        displayList.add(u'carpathian', u'Carpathian')
+        displayList.add(u'baltic', u'Baltic')
+        displayList.add(u'countries', u'-- Countries --')
+        for region in vocab.countries():
+            current = region.subject.strip()
+            displayList.add(current, region.nuts_name.first.strip())
+
+        displayList.add(u'nuts', u'-- NUTS Regions --')
         for region in vocab.resources():
             current = region.subject.strip()
             if not current.startswith('http://rdfdata.eionet.europa.eu/ramon/nuts2008/'):
@@ -199,10 +211,6 @@ class SOERReport(ATFolder, ATNewsItem):
                 parent = []
             title = u'%s %s' % (indent, region.nuts_name.first.strip())
             displayList.add(current, title)
-        displayList.add(u'countries', u'-- Countries --')
-        for region in vocab.countries():
-            current = region.subject.strip()
-            displayList.add(current, region.nuts_name.first.strip())
 
         return displayList
 
