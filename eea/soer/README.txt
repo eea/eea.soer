@@ -83,10 +83,11 @@ Let's fill in the add form:
 
   >>> form = {
   ...     'text': 'The situation is flexible!',
+  ...     'question': 'My own question?',
   ... }
   >>> report.processForm(values=form, data=1, metadata=1)
   >>> report.Title()
-  'National and regional story (Sweden)'
+  'National and regional story (Sweden) - My own question?'
   >>> report.Description()
   'SOER Part C National and regional story from Sweden'
   >>> report.getText()
