@@ -4,6 +4,10 @@ Changelog
 0.6-dev - (unreleased)
 ----------------------
 
+* FlexibilityReport: geoCoverage required and question relabeled to title #3717 [vincisas]
+* ALl reports: evaluation field hidden since it will not be used at EEA [vincisas]
+* geoCoverage field has 3 regions #3719 [vincisas]
+
 0.5 - 2010-10-15
 ----------------
 * evaluations were not imported #3500 [vincisas]
