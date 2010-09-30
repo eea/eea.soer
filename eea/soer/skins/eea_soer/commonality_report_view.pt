@@ -97,7 +97,7 @@
 	    </dl>
 	    <dl id="location-portlet" class="portlet" >
 	      <dt class="portletHeader">	
-		<a href="" title="" class="websource-box fancybox"
+		<a href="" title="" class="websource-box fancybox discreet"
 		   tal:attributes="href string:#locationSource;
 				   title string:Location">Source</a>
                <div class="hiddenStructure">
@@ -128,9 +128,10 @@
 		                report nocall:report|nocall:context;
 		                text python: report.CookedBody(stx_level=2)">
 
-        <blockquote class="keymessage" 
-	    tal:omit-tag="not: report/getKeyMessage"
-	    tal:attributes="class python:subreport and 'keymessage' or 'quote-left';">
+        <blockquote class="keyMessage" 
+	    tal:condition="report/getKeyMessage"
+	    tal:attributes="class python:subreport and 'keyMessage' or 'quote-left';">
+            <h3>Key message</h3>
 	    <p tal:replace="structure report/getKeyMessage|nothing" />
         </blockquote>
         <p class="documentDescription"
@@ -151,6 +152,23 @@
             <div tal:replace="structure text" />
         </div>
 
+	    <dl class="portlet portlet-rss" id="portlet-rss-indicators_air"
+	        tal:define="indicators report/indicators"
+		tal:condition="indicators">
+	      
+	      <dt class="portletHeader">
+		Related indicators
+	      </dt>
+	      <dd class="portletItem">
+                <ul tal:repeat="indicator indicators">
+		   <li><a href="" title=""
+		          tal:attributes="href indicator/getRemoteUrl;
+			                  title indicator/Title"
+ 			  tal:content="indicator/Title"></a></li>
+		</ul>
+	      </dd>
+	    </dl>
+        <div class="visualClear"></div>
 <tal:figures tal:define="folderContents report/figures;
                          singleFigure python:len(folderContents) == 1"
              tal:condition="folderContents">
@@ -215,23 +233,6 @@
 </tal:figures>
 
         <div class="visualClear"></div>
-	    <dl class="portlet portlet-rss" id="portlet-rss-indicators_air"
-	        tal:define="indicators report/indicators"
-		tal:condition="indicators">
-	      
-	      <dt class="portletHeader">
-		Related indicators
-	      </dt>
-	      <dd class="portletItem">
-                <ul tal:repeat="indicator indicators">
-		   <li><a href="" title=""
-		          tal:attributes="href indicator/getRemoteUrl;
-			                  title indicator/Title"
- 			  tal:content="indicator/Title"></a></li>
-		</ul>
-	      </dd>
-	    </dl>
-
 
 </metal:reportContent>
 
