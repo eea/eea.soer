@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.6-dev - (unreleased)
-----------------------
+0.6 - (2010-09-30)
+------------------
 
 * FlexibilityReport: geoCoverage required and question relabeled to title #3717 [vincisas]
 * ALl reports: evaluation field hidden since it will not be used at EEA [vincisas]
