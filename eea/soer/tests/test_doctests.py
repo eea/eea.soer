@@ -23,6 +23,10 @@ def test_suite():
                   optionflags=OPTIONFLAGS,
                   package='eea.soer',
                   test_class=SOERFunctionalTestCase),
+            FunctionalDocFileSuite('report.txt',
+                  optionflags=OPTIONFLAGS,
+                  package='eea.soer.browser',
+                  test_class=SOERFunctionalTestCase),
             ))
 
 

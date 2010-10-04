@@ -19,6 +19,13 @@
 
   <browser:page
     for="*"
+    name="reportQuestionsByTopic"
+    class=".report.ReportQuestionsByTopic"
+    permission="zope.Public"
+    />
+
+  <browser:page
+    for="*"
     name="soerCountryView"
     class=".country.CountryView"
     permission="zope.Public"

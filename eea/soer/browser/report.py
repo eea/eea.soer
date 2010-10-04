@@ -2,7 +2,9 @@ from zope.interface import implements
 from zope.component import getUtility, queryMultiAdapter
 from zope.app.schema.vocabulary import IVocabularyFactory
 from eea.soer.interfaces import IReportView
+from eea.soer import vocab
 from Acquisition import aq_inner
+from Products.CMFCore.utils import getToolByName
 
 class ReportView(object):
     """ """
@@ -35,3 +37,30 @@ class ReportView(object):
         else:
             return u'http://map.eea.europa.eu/getmap.asp?Fullextent=1&imagetype=3&size=W600&PredefShade=GreenRed'
     
+
+class ReportQuestionsByTopic(object):
+    """ Group all reports from a country py a topic and sort them by question."""
+    
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self):
+        return self.reports
+
+    @property
+    def reports(self):
+        """ """
+        context = self.context
+        catalog = getToolByName(context, 'portal_catalog')
+        query = {'portal_type' : ['DiversityReport', 'CommonalityReport'],
+                 'getSoerCountry' : context.getId(),
+                 'sort_on' : 'getSoerTopic' }
+        return catalog(query)
+
+    @property
+    def questions(self):
+        questions = { 'DiversityReport' : dict([[v,k] for k,v in vocab.long_diversity_questions.items()]) }
+        questions['CommonalityReport'] = dict([[v,k] for k,v in vocab.long_questions.items()])
+        return questions
+
