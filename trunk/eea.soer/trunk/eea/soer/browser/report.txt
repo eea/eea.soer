@@ -1,0 +1,22 @@
+
+All content as part of eea.soer can be imported and exported as `SOER Feed <https://svn.eionet.europa.eu/projects/Zope/wiki/SOERFeedSpec>`_.
+
+  >>> self.setRoles(['Manager'])
+  >>> soer = self.portal.SOER
+  >>> country = soer[soer.invokeFactory('SOERCountry', id='no')]
+  >>> country.setLanguage('en')
+  >>> from eea.soer.tests.base import examplerdf, evalrdf
+    
+Lets load an RDF
+
+  >>> import surf
+  >>> from eea.soer import sense
+  >>> store = surf.Store(reader='rdflib',  writer='rdflib', rdflib_store = 'IOMemory')
+  >>> session = surf.Session(store, mapping={surf.ns.SOER.NationalStory : sense.NationalStory} )
+  >>> store.load_triples(source=examplerdf)
+  True
+  >>> country.setRdfFeed(examplerdf)
+  >>> _ = country.updateFromFeed()
+
+  >>> view = country.unrestrictedTraverse('@@reportQuestionsByTopic')
+  >>> view.questions
