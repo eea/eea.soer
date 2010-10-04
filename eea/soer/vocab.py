@@ -59,10 +59,10 @@ atvocabs = {
 
     'eea.soer.vocab.questions': (
         (u'0', "Why care?"),
-        (u'1', "State and impacts"),
-        (u'2', "Drivers and pressures"),
-        (u'3', "Outlook to 2020"),
-        (u'4', "Policy responses"),
+        (u'1', "State & Impacts"),
+        (u'2', "Drivers & Pressures"),
+        (u'3', "2020 Outlook"),
+        (u'4', "National responses"),
     ),
 
     'eea.soer.vocab.diversity_questions': (
