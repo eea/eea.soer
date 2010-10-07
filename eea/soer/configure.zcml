@@ -13,19 +13,19 @@
   <subscriber
       for="eea.soer.content.interfaces.ICommonalityReport
            zope.app.container.interfaces.IObjectModifiedEvent"
-      handler=".content.CommonalityReport.gen_title"
+      handler=".content.CommonalityReport.reportUpdated"
       />
 
   <subscriber
       for="eea.soer.content.interfaces.IDiversityReport
            zope.app.container.interfaces.IObjectModifiedEvent"
-      handler=".content.DiversityReport.gen_title"
+      handler=".content.DiversityReport.reportUpdated"
       />
 
   <subscriber
       for="eea.soer.content.interfaces.IFlexibilityReport
            zope.app.container.interfaces.IObjectModifiedEvent"
-      handler=".content.FlexibilityReport.gen_title"
+      handler=".content.FlexibilityReport.reportUpdated"
       />
 
   <subscriber

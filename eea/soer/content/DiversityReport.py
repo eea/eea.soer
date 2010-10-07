@@ -30,7 +30,6 @@ schema = Schema((
 ),)
 
 schema = SOERReportSchema.copy() + schema
-schema['description'].default_method = 'default_desc'
 schema['question'].vocabulary=NamedVocabulary('eea.soer.vocab.diversity_questions')
 
 
@@ -49,15 +48,10 @@ class DiversityReport(SOERReport):
     def getLongSoerQuestion(self):
         return vocab.long_diversity_questions[self.getQuestion()]
 
-    def default_desc(self):
-        country = self.getTermTitle('eea.soer.vocab.european_countries', self.getSoerCountry())
-        desc = 'SOER Part C Country profile from %s' % country
-        return desc
-
 
 registerType(DiversityReport, PROJECTNAME)
 
-def gen_title(obj, evt):
+def reportUpdated(obj, event):
     country = obj.getTermTitle('eea.soer.vocab.european_countries', obj.getSoerCountry())
     if obj.getTopic() == u'country introduction':
         obj.setTitle('Country introduction (%s)' % country)
@@ -65,3 +59,5 @@ def gen_title(obj, evt):
         question = obj.getTermTitle('eea.soer.vocab.diversity_questions', obj.getQuestion())
         t = 'Country profile: %s (%s)' % (question, country)
         obj.setTitle(t)
+    if not obj.Description() and not obj.isTemporary():
+        obj.setDescription('SOER Part C Country profile from %s' % country)

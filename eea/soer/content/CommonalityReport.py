@@ -17,7 +17,6 @@ except ImportError:
     from Products.Archetypes.public import *
 
 schema = getattr(SOERReport, 'schema', Schema(())).copy() 
-schema['description'].default_method = 'default_desc'
 
 
 class CommonalityReport(SOERReport):
@@ -32,10 +31,6 @@ class CommonalityReport(SOERReport):
     schema = schema
     default_view = 'commonality_report_view'
 
-    def default_desc(self):
-        country = self.getTermTitle('eea.soer.vocab.european_countries', self.getSoerCountry())
-        desc = 'SOER Part C Common environmental theme from %s' % country
-        return desc
 
     def getLongSoerQuestion(self):
         return vocab.long_questions.get(self.getQuestion(), u'Unknown value')
@@ -46,9 +41,13 @@ class CommonalityReport(SOERReport):
 
 registerType(CommonalityReport, PROJECTNAME)
 
-def gen_title(obj, evt):
+def reportUpdated(obj, event):
     topic = obj.getTermTitle('eea.soer.vocab.topics', obj.getTopic())
     section = obj.getTermTitle('eea.soer.vocab.questions', obj.getQuestion())
     country = obj.getTermTitle('eea.soer.vocab.european_countries', obj.getSoerCountry())
     t = '%s - %s (%s)' % (topic, section, country)
     obj.setTitle(t)
+    if not obj.Description() and not obj.isTemporary():
+        obj.setDescription('SOER Part C Common environmental theme from %s' % country)
+
+        
