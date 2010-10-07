@@ -76,5 +76,15 @@
     padding: 0 0.5em 1em 1em;
 }
 
+.photoAlbumEntryPreview,
+.photoAlbumEntryPreview a,
+.photoAlbumEntryPreview .photoAlbumEntryTitle {
+    height: auto;
+    width: auto;
+    background-image: none;
+    margin: 0.5em  0 2em 0;
+}
+
+
 /* </dtml-with> */
 
