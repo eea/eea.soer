@@ -44,6 +44,7 @@ class ReportQuestionsByTopic(object):
     def __init__(self, context, request):
         self.context = context
         self.request = request
+        self.topic = request.get('topic')
 
     def __call__(self):
         return self.reports
@@ -55,7 +56,8 @@ class ReportQuestionsByTopic(object):
         catalog = getToolByName(context, 'portal_catalog')
         query = {'portal_type' : ['DiversityReport', 'CommonalityReport'],
                  'getSoerCountry' : context.getId(),
-                 'sort_on' : 'getSoerTopic' }
+                 'getSoerTopic' : self.topic,
+                 'sort_on' : 'getSoerQuestion' }
         return catalog(query)
 
     @property
