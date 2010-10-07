@@ -39,7 +39,6 @@ schema = Schema((
 ),
 )
 schema = getattr(SOERReport, 'schema').copy() + schema.copy()
-schema['description'].default_method = 'default_desc'
 schema['title'].required = False
 schema['geoCoverage'].required = True
 
@@ -64,7 +63,11 @@ class FlexibilityReport(SOERReport):
 
 registerType(FlexibilityReport, PROJECTNAME)
 
-def gen_title(obj, evt):
+def reportUpdated(obj, event):
     country = obj.getTermTitle('eea.soer.vocab.european_countries', obj.getSoerCountry())
     t = 'National and regional story (%s) - %s' % (country, obj.getQuestion())
     obj.setTitle(t)
+    if not obj.Description() and not obj.isTemporary():
+        obj.setDescription('SOER Part C National and regional story from %s' % country)
+
+        

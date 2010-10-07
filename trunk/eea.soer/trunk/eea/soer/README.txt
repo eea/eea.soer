@@ -37,7 +37,7 @@ after saving/modifiying the report.
 Verify the properties of the other fields:
 
   >>> report.Title()
-  'Climate change mitigation - Drivers and pressures (Sweden)'
+  'Climate change mitigation - Drivers & Pressures (Sweden)'
   >>> report.getText()
   '<p>The situation is serious :s</p>'
 
