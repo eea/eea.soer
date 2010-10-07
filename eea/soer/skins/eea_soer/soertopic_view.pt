@@ -8,10 +8,12 @@
     <div metal:fill-slot="main">
     <metal:main-macro define-macro="main">
         <div class="visualClear"></div>
-	<tal:reports repeat="brain context/reportQuestinsByTopic"
-		     tal:define="report brain/getObject">
-	  <metal:reportContent  use-macro="report/commonality_report_view/macros/reportContent" />
-
+        <h1 tal:content="request/topic|string:No topic"></h1>
+	<tal:reports repeat="brain context/@@reportQuestionsByTopic">
+	   <tal:report  tal:define="report brain/getObject">
+             <h2 tal:content="report/getLongSoerQuestion"></h2>
+	     <metal:reportContent  use-macro="report/commonality_report_view/macros/reportContent" />
+	  </tal:report>	
 	</tal:reports>
     </metal:main-macro>
     </div>

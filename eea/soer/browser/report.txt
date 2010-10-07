@@ -18,5 +18,9 @@ Lets load an RDF
   >>> country.setRdfFeed(examplerdf)
   >>> _ = country.updateFromFeed()
 
+  >>> request = country.REQUEST
+  >>> request['topic'] = 'air pollution'
   >>> view = country.unrestrictedTraverse('@@reportQuestionsByTopic')
-  >>> view.questions
+  >>> for b in view.reports:
+  ...    obj = b.getObject()
+  ...    print obj.Title(), obj.getQuestion()
