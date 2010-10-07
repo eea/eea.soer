@@ -80,10 +80,11 @@ schema = Schema((
 
     StringField(
         name='geoCoverage',
-        required = False,
+        required = True,
         widget=SelectionWidget(
             label='Geographical coverage',
             label_msgid='eea.soer_label_geocoverage',
+            description='Required',
             i18n_domain='eea.soer',
             format='select',
         ),
@@ -181,7 +182,7 @@ class SOERReport(ATFolder, ATNewsItem):
         parent = []
         displayList = DisplayList()
 
-        displayList.add(u'', u'Select a region')
+        displayList.add(u'', u'Select a region (required)')
         displayList.add(u'bio', u'-- Bio geo regions --')
         displayList.add(u'alpine', u'Alpine')
         displayList.add(u'carpathian', u'Carpathian')

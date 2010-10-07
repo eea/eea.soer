@@ -40,7 +40,6 @@ schema = Schema((
 )
 schema = getattr(SOERReport, 'schema').copy() + schema.copy()
 schema['title'].required = False
-schema['geoCoverage'].required = True
 
 
 class FlexibilityReport(SOERReport):
