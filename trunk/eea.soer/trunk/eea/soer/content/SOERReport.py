@@ -142,6 +142,7 @@ schema = getattr(ATFolder, 'schema', Schema(())).copy() + schema.copy()
 schema['title'].default = 'not_set_yet'
 schema['title'].required = 0
 schema['title'].widget.visible = {'edit' : 'invisible'}
+schema['description'].widget.description = '(Optional) ' + schema['description'].widget.description
 schema['soerCountry'].default_method = 'default_country'
 
 class SOERReport(ATFolder, ATNewsItem):
