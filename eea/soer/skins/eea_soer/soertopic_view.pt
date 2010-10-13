@@ -6,15 +6,22 @@
 <body>
 
     <div metal:fill-slot="main">
-    <metal:main-macro define-macro="main">
+    <metal:main-macro define-macro="main"
+		      tal:define="view context/@@reportQuestionsByTopic">
         <div class="visualClear"></div>
-        <h1 tal:content="request/topic|string:No topic"></h1>
-	<tal:reports repeat="brain context/@@reportQuestionsByTopic">
-	   <tal:report  tal:define="report brain/getObject">
-             <h2 tal:content="report/getLongSoerQuestion"></h2>
+        <h1 tal:content="python: '%s (%s)' % (view.topicTitle, context.Title())"></h1>
+        <div class="soer-topicview">
+	<tal:reports repeat="brain view/reports">
+	   <tal:report  tal:define="report brain/getObject;
+				    mainreport nocall:report">
+             <h2 tal:content="python: 'Question: %s' % report.getLongSoerQuestion()"></h2>
 	     <metal:reportContent  use-macro="report/commonality_report_view/macros/reportContent" />
+	     <tal:subreport  tal:repeat="report mainreport/subReports">
+	       <metal:reportContent  use-macro="report/commonality_report_view/macros/reportContent" />
+	   </tal:subreport>	
 	  </tal:report>	
 	</tal:reports>
+	</div>
     </metal:main-macro>
     </div>
 

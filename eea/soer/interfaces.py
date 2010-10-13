@@ -44,3 +44,12 @@ class ICountryView(Interface):
     def getMapUrl():
         """ return url to the map """
 
+
+class IReportQuestionsByTopic(Interface):
+
+    def topicTitle():
+        """ return current topic title """
+
+    def reports():
+        """ return a list of reports """
+

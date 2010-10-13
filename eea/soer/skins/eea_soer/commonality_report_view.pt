@@ -133,9 +133,46 @@
            tal:condition="python:report.Description()">
             Description
         </p>
+       <div class="header">
+	    <tal:datasources tal:define="folderContents report/dataSources;"
+			     tal:condition="folderContents">
+	      <tal:entry tal:define="source python:'#datasources%s' % report.UID()">
+		<div class="hiddenStructure">
+		  <div id="" 
+		       tal:attributes="id python:source[1:]">
+		    <h3 i18n:translate="Data sources">Data sources</h3>
+		    <dl tal:condition="folderContents">
+		      <dt></dt>
+		      <dd tal:repeat="dataSrc folderContents"><a href=""
+								 tal:attributes="href dataSrc/getRemoteUrl"
+								 tal:content="dataSrc/Title|dataSrc/getRemoteUrl">pm10_04-08eng.xls</a></dd>
+		    </dl>
+		  </div>
+		</div>
+
+		<dl class="portlet">
+		  
+		  <dt class="portletHeader">
+		    Data sources
+		  </dt>
+		  <dd class="portletItem">
+		<a tal:attributes="
+				   href source;
+				   class string:fancybox;
+				   title string:Data soruce;">
+	            <img class="imagesource-box" src="tag_green_right.png" tal:condition="source|nothing"
+          		 tal:attributes="src python:'%s/tag_green_right.png' % portal_url" alt="Source" />
+		</a>
+		  </dd>
+		</dl>
+		
+	      </tal:entry>
+	    </tal:datasources>
+
+	 </div>
         <div class="keyMessage" 
 	    tal:condition="report/getKeyMessage">
-            <h3>Key message</h3>
+            <h5>Key message</h5>
 	    <p tal:replace="structure report/getKeyMessage|nothing" />
         </div>
         <p tal:condition="python: not text and is_editable"
@@ -144,6 +181,7 @@
             This item does not have any body text, click the edit tab to change it.
         </p>
     
+
         <div class="stx"
              tal:condition="text"
              tal:attributes="class python:test(report.Format() in ('text/structured',
@@ -152,27 +190,11 @@
             <div tal:replace="structure text" />
         </div>
 
-	    <dl class="portlet portlet-rss" id="portlet-rss-indicators_air"
-	        tal:define="indicators report/indicators"
-		tal:condition="indicators">
-	      
-	      <dt class="portletHeader">
-		Related indicators
-	      </dt>
-	      <dd class="portletItem">
-                <ul tal:repeat="indicator indicators">
-		   <li><a href="" title=""
-		          tal:attributes="href indicator/getRemoteUrl;
-			                  title indicator/Title"
- 			  tal:content="indicator/Title"></a></li>
-		</ul>
-	      </dd>
-	    </dl>
         <div class="visualClear"></div>
 <tal:figures tal:define="folderContents report/figures;
                          singleFigure python:len(folderContents) == 1"
              tal:condition="folderContents">
-    <h4 id="fancy-edse">Figures</h4> 
+    <h4>Figures</h4> 
     <tal:images tal:repeat="brain folderContents">
       <tal:entry tal:define="
         obj brain/getObject;
@@ -232,8 +254,26 @@
   </tal:images>
 </tal:figures>
 
-        <div class="visualClear"></div>
 
+
+        <div class="visualClear"></div>
+	    <dl class="portlet portlet-rss related-indicators"
+	        tal:define="indicators report/indicators"
+		tal:condition="indicators">
+	      
+	      <dt class="portletHeader">
+		Related indicators
+	      </dt>
+	      <dd class="portletItem">
+                <ul tal:repeat="indicator indicators">
+		   <li><a href="" title=""
+		          tal:attributes="href indicator/getRemoteUrl;
+			                  title indicator/Title"
+ 			  tal:content="indicator/Title"></a></li>
+		</ul>
+	      </dd>
+	    </dl>
+        <div class="visualClear"></div>
 </metal:reportContent>
 
 <metal:subReports tal:repeat="report context/subReports">

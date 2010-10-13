@@ -72,7 +72,6 @@
     background-color: #ECF3D0;
     border: 1px solid #8CACBB;
     color: Black;
-    font-size: 120%;
     padding: 0 1em 1em 1em;
     width: 500px;
     margin: 0 0 1em 0;
@@ -84,9 +83,16 @@
     height: auto;
     width: auto;
     background-image: none;
-    margin: 0.5em  0 2em 0;
+    margin: 0.5em  0 1em 0;
 }
 
 
+.related-indicators {
+   margin-bottom: 5em;
+}
+
+.soer-topicview h2 {
+   font-size: 150%;
+}
 /* </dtml-with> */
 
