@@ -128,17 +128,16 @@
 		                report nocall:report|nocall:context;
 		                text python: report.CookedBody(stx_level=2)">
 
-        <div class="keymessage" 
-	    tal:condition="report/getKeyMessage"
-	    tal:attributes="class python:subreport and 'keyMessage' or 'quote-left';">
+        <p class="documentDescription"
+           tal:content="report/Description"
+           tal:condition="python:report.Description()">
+            Description
+        </p>
+        <div class="keyMessage" 
+	    tal:condition="report/getKeyMessage">
             <h3>Key message</h3>
 	    <p tal:replace="structure report/getKeyMessage|nothing" />
         </div>
-        <p class="documentDescription"
-           tal:content="report/Description"
-           tal:condition="python:report.Description() and not subreport">
-            Description
-        </p>
         <p tal:condition="python: not text and is_editable"
            i18n:translate="no_body_text"
            class="discreet">
@@ -149,6 +148,7 @@
              tal:condition="text"
              tal:attributes="class python:test(report.Format() in ('text/structured',
                                                    'text/x-rst', ), 'stx', 'plain soerAssessment')">
+
             <div tal:replace="structure text" />
         </div>
 
