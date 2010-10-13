@@ -7,8 +7,7 @@
 <metal:main metal:fill-slot="main">
 <tal:main-macro metal:define-macro="main">
 
-<metal:isFromFeed use-macro="context/commonality_report_view/macros/isFromFeed" />
-<metal:reportContent  use-macro="context/commonality_report_view/macros/reportContent" />
+<metal:reportContent  use-macro="context/commonality_report_view/macros/main" />
 
 </tal:main-macro>
 </metal:main>
