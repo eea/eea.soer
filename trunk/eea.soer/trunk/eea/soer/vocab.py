@@ -119,6 +119,10 @@ class NUTSRegions(object):
             # we only want NUTS2008 list to have unique entires
             if url.startswith('http://rdfdata.eionet.europa.eu/ramon/nuts2008/'):
                 vocabulary.append(SimpleTerm(url,
+                                         token=u'nutscode2008_%s' % getattr(i, prefix % 'code').first.strip(),
+                                         title=getattr(i, prefix % 'name').first.strip()))
+            if url.startswith('http://rdfdata.eionet.europa.eu/ramon/nuts/'):
+                vocabulary.append(SimpleTerm(url,
                                          token=u'nutscode_%s' % getattr(i, prefix % 'code').first.strip(),
                                          title=getattr(i, prefix % 'name').first.strip()))
         for i in self.countries():
