@@ -3,7 +3,6 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="plone">
 <body>
-
 <metal:main metal:fill-slot="main"
             tal:define="view context/@@soerReportView;
 	    	       foo view/redirectIfSubReport">
@@ -285,9 +284,16 @@
   <metal:subReport use-macro="report/commonality_report_view/macros/reportContent" />
 </metal:subReports>
 
-
 </tal:main-macro>
 </metal:main>
+
+<metal:disclaimer fill-slot="sub">
+<div class="disclaimer" metal:define-macro="disclaimer">
+  <b>Disclaimer</b>
+  <p class="discreet">The country assessments are the sole responsibility of the EEA member and cooperating countries supported by the EEA through guidance, translation and editing. </p>
+</div>
+</metal:disclaimer>
+
 
 </body>
 </html>
