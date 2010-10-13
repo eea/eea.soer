@@ -60,4 +60,4 @@ def reportUpdated(obj, event):
         t = 'Country profile: %s (%s)' % (question, country)
         obj.setTitle(t)
     if not obj.Description() and not obj.isTemporary():
-        obj.setDescription('SOER Part C Country profile from %s' % country)
+        obj.setDescription('SOER Country profile from %s' % country)
