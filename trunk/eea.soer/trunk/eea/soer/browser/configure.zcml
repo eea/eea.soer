@@ -22,6 +22,7 @@
     name="reportQuestionsByTopic"
     class=".report.ReportQuestionsByTopic"
     permission="zope.Public"
+    allowed_interface="..interfaces.IReportQuestionsByTopic"
     />
 
   <browser:page

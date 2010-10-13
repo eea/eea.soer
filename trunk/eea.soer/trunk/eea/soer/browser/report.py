@@ -1,7 +1,7 @@
 from zope.interface import implements
 from zope.component import getUtility, queryMultiAdapter
 from zope.app.schema.vocabulary import IVocabularyFactory
-from eea.soer.interfaces import IReportView
+from eea.soer.interfaces import IReportView, IReportQuestionsByTopic
 from eea.soer import vocab
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
@@ -40,15 +40,19 @@ class ReportView(object):
 
 class ReportQuestionsByTopic(object):
     """ Group all reports from a country py a topic and sort them by question."""
+
+    implements(IReportQuestionsByTopic)
     
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        self.topic = request.get('topic')
+        self.topic = self.request.get('topic')
 
-    def __call__(self):
-        return self.reports
-
+    @property
+    def topicTitle(self):
+        vocab = getToolByName(self.context, 'portal_vocabularies')['eea.soer.vocab.topics']
+        return vocab[self.topic].Title()
+    
     @property
     def reports(self):
         """ """
@@ -57,9 +61,12 @@ class ReportQuestionsByTopic(object):
         query = {'portal_type' : ['DiversityReport', 'CommonalityReport'],
                  'getSoerCountry' : context.getId(),
                  'getSoerTopic' : self.topic,
-                 'sort_on' : 'getSoerQuestion' }
+                 'sort_on' : 'getSoerQuestion',
+                 'path' : { 'query' : '/'.join(context.getPhysicalPath()),
+                            'depth' : 1},
+                 }
         return catalog(query)
-
+            
     @property
     def questions(self):
         questions = { 'DiversityReport' : dict([[v,k] for k,v in vocab.long_diversity_questions.items()]) }

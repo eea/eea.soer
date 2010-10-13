@@ -240,6 +240,9 @@ class SOERReport(ATFolder, ATNewsItem):
                       if fig.getURL(1) not in assessment ],
                      10)
 
+    def dataSources(self):
+        return self.getFolderContents(contentFilter={'portal_type' : ['Link', 'DataSourceLink']}, full_objects=True)
+        
     def indicators(self):
         """ return indicators """
         return self.getFolderContents(contentFilter={'portal_type': 'RelatedIndicatorLink'}, full_objects=True)
