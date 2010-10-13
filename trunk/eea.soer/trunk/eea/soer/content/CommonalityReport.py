@@ -48,6 +48,6 @@ def reportUpdated(obj, event):
     t = '%s - %s (%s)' % (topic, section, country)
     obj.setTitle(t)
     if not obj.Description() and not obj.isTemporary():
-        obj.setDescription('SOER Part C Common environmental theme from %s' % country)
+        obj.setDescription('SOER Common environmental theme from %s' % country)
 
         

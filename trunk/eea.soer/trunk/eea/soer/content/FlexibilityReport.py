@@ -56,7 +56,7 @@ class FlexibilityReport(SOERReport):
 
     def default_desc(self):
         country = self.getTermTitle('eea.soer.vocab.european_countries', self.getSoerCountry())
-        desc = 'SOER Part C National and regional story from %s' % country
+        desc = 'SOER National and regional story from %s' % country
         return desc
 
 
@@ -67,6 +67,6 @@ def reportUpdated(obj, event):
     t = 'National and regional story (%s) - %s' % (country, obj.getQuestion())
     obj.setTitle(t)
     if not obj.Description() and not obj.isTemporary():
-        obj.setDescription('SOER Part C National and regional story from %s' % country)
+        obj.setDescription('SOER National and regional story from %s' % country)
 
         
