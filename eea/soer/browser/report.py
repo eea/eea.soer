@@ -33,7 +33,7 @@ class ReportView(object):
     def getGeoCoverageMapUrl(self):
         vocab =  getUtility(IVocabularyFactory, name=u"eea.soer.vocab.NUTSRegions")
         if self.context.getGeoCoverage():
-            return u'http://map.eea.europa.eu/getmap.asp?Fullextent=1&imagetype=3&size=W600&PredefShade=GreenRed&Q=%s:2' % vocab.getCode(self.context.getGeoCoverage())
+            return u'http://map.eea.europa.eu/getmap.asp?Fullextent=1&imagetype=3&size=W600&PredefShade=GreenRed&Q=%s' % vocab.getCode(self.context.getGeoCoverage())
         else:
             return u'http://map.eea.europa.eu/getmap.asp?Fullextent=1&imagetype=3&size=W600&PredefShade=GreenRed'
     
