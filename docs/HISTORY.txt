@@ -4,6 +4,11 @@ Changelog
 0.7-dev (unreleased)
 --------------------
 
+* sub headings and labels for SOER C documents #3685 [vincisas]
+* soer topic view for countries #3685 [vincisas]
+* keymessage harmonization #3760 [vincisas]
+* display datasources separatly #3723 [vincisas]
+* Allow subreports in FlexibilityReport  [vincisas]
 
 0.6 - (2010-09-30)
 ------------------
