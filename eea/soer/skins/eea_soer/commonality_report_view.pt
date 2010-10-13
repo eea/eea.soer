@@ -26,7 +26,7 @@
    tal:define="report nocall:report|nocall:context;
                view report/@@soerReportView;">
 	  <div class="header">
-	    <dl id="themes-portlet" class="portlet" >
+	    <dl id="themes-portlet" class="portlet" tal:condition="view/getTopics|nothing">
 	      <dt class="portletHeader">	
 	        Topic</dt>
 	      <dd class="portletItem" tal:repeat="topic view/getTopics">
