@@ -25,5 +25,9 @@
     </metal:main-macro>
     </div>
 
+<metal:disclaimer fill-slot="sub">
+  <metal:discmacro use-macro="context/commonality_report_view/macros/disclaimer" />
+</metal:disclaimer>
+
 </body>
 </html>
