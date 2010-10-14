@@ -77,6 +77,9 @@ class Surf2SOERReport(object):
         for fname in  atinterfaces.ISchema(context).fieldNames():
             fname = self.index_map.get(fname, fname)
             field = getattr(context, 'soer_%s' % fname)
+            if fname == 'description' and not field.first:
+                # no or empty soer description, fall back to DC
+                field = getattr(context, 'dc_description')
             if fname in ['keyword']:
                 setattr(self, fname, [ value.strip().encode('utf8') for value in field ])
             elif field.first is not None:

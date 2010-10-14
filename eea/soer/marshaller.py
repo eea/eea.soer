@@ -64,6 +64,7 @@ class NationalStory2Surf(Soer2Surf):
                       ('subject', 'keyword'),
                       ('modification_date', 'modified'),
                       ('effectiveDate','pubDate'),
+                      ('description','description'),                               
                       ])
 
     @property
