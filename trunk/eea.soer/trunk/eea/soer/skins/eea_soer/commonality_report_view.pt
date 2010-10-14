@@ -169,7 +169,7 @@
 	    </tal:datasources>
 
 	 </div>
-        <div class="keyMessage" 
+        <div class="soer-keyMessage" 
 	    tal:condition="report/getKeyMessage">
             <h5>Key message</h5>
 	    <p tal:replace="structure report/getKeyMessage|nothing" />
