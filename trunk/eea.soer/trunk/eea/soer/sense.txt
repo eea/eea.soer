@@ -58,7 +58,7 @@ Lets test geo coverage vocabulary
   >>> geovocab = getUtility(IVocabularyFactory, name=u"eea.soer.vocab.NUTSRegions")
   >>> geovocabulary = geovocab()
   >>> len(geovocabulary)
-  1819
+  3598
   >>> geovocab.getCode(u'http://rdfdata.eionet.europa.eu/ramon/nuts/SE')
   u'SE'
   >>> geovocab.getCode(u'http://rdfdata.eionet.europa.eu/ramon/countries/RS')
