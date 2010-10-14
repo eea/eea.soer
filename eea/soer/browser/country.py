@@ -34,4 +34,4 @@ class CountryView(object):
         mapImage = getattr(aq_base(self.context), '%s_map.png' % country_code, None)
         if mapImage is not None:
             return mapImage.absolute_url()
-        return u'http://map.eea.europa.eu/getmap.asp?Fullextent=1&imagetype=3&size=W600&PredefShade=GreenRed&Q=%s:2'% country_code
+        return u'http://map.eea.europa.eu/getmap.asp?Fullextent=1&imagetype=3&size=W600&PredefShade=GreenRed&Q=%s'% country_code
