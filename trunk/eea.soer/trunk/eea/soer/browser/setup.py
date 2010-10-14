@@ -30,7 +30,7 @@ class Countries(object):
         for country_code in european_countries.keys():
             if hasattr(aq_base(context), country_code):
                 continue
-            mapurl = u'http://map.eea.europa.eu/getmap.asp?Fullextent=1&imagetype=3&size=W600&PredefShade=GreenRed&Q=%s:2'
+            mapurl = u'http://map.eea.europa.eu/getmap.asp?Fullextent=1&imagetype=3&size=W600&PredefShade=GreenRed&Q=%s'
             print 'Creating folder with id %s and title %s' % (country_code, european_countries[country_code].title)
             folder = context[context.invokeFactory('SOERCountry', id=country_code)]
             folder.setTitle(european_countries[country_code].title)
