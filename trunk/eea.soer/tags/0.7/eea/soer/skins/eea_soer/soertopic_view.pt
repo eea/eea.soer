@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+    <div metal:fill-slot="main">
+    <metal:main-macro define-macro="main"
+		      tal:define="view context/@@reportQuestionsByTopic">
+        <div class="visualClear"></div>
+        <h1 tal:content="python: '%s (%s)' % (view.topicTitle, context.Title())"></h1>
+        <div class="soer-topicview">
+	<tal:reports repeat="brain view/reports">
+	   <tal:report  tal:define="report brain/getObject;
+				    mainreport nocall:report">
+             <h2 tal:content="python: 'Question: %s' % report.getLongSoerQuestion()"></h2>
+	     <metal:reportContent  use-macro="report/commonality_report_view/macros/reportContent" />
+	     <tal:subreport  tal:repeat="report mainreport/subReports">
+	       <metal:reportContent  use-macro="report/commonality_report_view/macros/reportContent" />
+	   </tal:subreport>	
+	  </tal:report>	
+	</tal:reports>
+	</div>
+    </metal:main-macro>
+    </div>
+
+<metal:disclaimer fill-slot="sub">
+  <metal:discmacro use-macro="context/commonality_report_view/macros/disclaimer" />
+</metal:disclaimer>
+
+</body>
+</html>
