@@ -1,14 +1,15 @@
 Changelog
 =========
 
-0.7-dev (unreleased)
---------------------
+0.7 - (2010-10-14)
+------------------
 
 * sub headings and labels for SOER C documents #3685 [vincisas]
 * soer topic view for countries #3685 [vincisas]
 * keymessage harmonization #3760 [vincisas]
 * display datasources separatly #3723 [vincisas]
 * Allow subreports in FlexibilityReport  [vincisas]
+* EEA disclaimer added to report views #3759 [vincisas]
 
 0.6 - (2010-09-30)
 ------------------
