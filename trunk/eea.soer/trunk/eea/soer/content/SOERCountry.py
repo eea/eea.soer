@@ -56,6 +56,15 @@ class SOERCountry(ATFolder):
 
     schema = schema
     _v_feedUpdating = False
+    feedHash = None
+
+    def _isFeedChanged(self, feed):
+        feedHash = md5(feed).hexdigest()
+        log.log('%s, %s' % (feedHash, self.feedHash))
+        if feedHash != self.feedHash:
+            self.feedHash = feedHash
+            return True
+        return False
 
     security.declareProtected(ADD_CONTENT_PERMISSION, 'updateFromFeed')
     def updateFromFeed(self):
