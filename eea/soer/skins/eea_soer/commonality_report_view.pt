@@ -174,22 +174,9 @@
             <h5>Key message</h5>
 	    <p tal:replace="structure report/getKeyMessage|nothing" />
         </div>
-        <p tal:condition="python: not text and is_editable"
-           i18n:translate="no_body_text"
-           class="discreet">
-            This item does not have any body text, click the edit tab to change it.
-        </p>
-    
-
-        <div class="stx"
-             tal:condition="text"
-             tal:attributes="class python:test(report.Format() in ('text/structured',
-                                                   'text/x-rst', ), 'stx', 'plain soerAssessment')">
-
-            <div tal:replace="structure text" />
-        </div>
 
         <div class="visualClear"></div>
+
 <tal:figures tal:define="folderContents report/figures;
                          singleFigure python:len(folderContents) == 1"
              tal:condition="folderContents">
@@ -253,6 +240,23 @@
   </tal:images>
 </tal:figures>
 
+        <div class="visualClear"></div>
+        <p tal:condition="python: not text and is_editable"
+           i18n:translate="no_body_text"
+           class="discreet">
+            This item does not have any body text, click the edit tab to change it.
+        </p>
+    
+
+        <div class="stx"
+             tal:condition="text"
+             tal:attributes="class python:test(report.Format() in ('text/structured',
+                                                   'text/x-rst', ), 'stx', 'plain soerAssessment')">
+
+            <div tal:replace="structure text" />
+        </div>
+
+        <div class="visualClear"></div>
 
 
         <div class="visualClear"></div>
