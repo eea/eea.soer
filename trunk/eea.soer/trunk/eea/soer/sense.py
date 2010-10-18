@@ -66,7 +66,8 @@ class Surf2SOERReport(object):
 
     index_map = { 'text' : 'assessment',
                   'effectiveDate' : 'pubDate',
-                  'subject' : 'keyword'}
+                  'subject' : 'keyword',
+                  'modification_date' : 'modified'}
     
     def __init__(self, context):
         self.context = context
