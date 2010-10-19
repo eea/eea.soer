@@ -81,6 +81,8 @@ class Surf2SOERReport(object):
             if fname == 'description' and not field.first:
                 # no or empty soer description, fall back to DC
                 field = getattr(context, 'dc_description')
+                if not field.first:
+                    field = getattr(context, 'dc_Description')
             if fname in ['keyword']:
                 setattr(self, fname, [ value.strip().encode('utf8') for value in field ])
             elif field.first is not None:
