@@ -94,6 +94,7 @@
 	      <dd class="portletItem">
 		<img src="miljostatus-logo-eng.gif" /></dd>
 	    </dl>
+  </tal:autoUpdated>
 	    <dl id="location-portlet" class="portlet" >
 	      <dt class="portletHeader">	
 		<a href="" title="" class="websource-box fancybox discreet"
@@ -118,7 +119,7 @@
                   tal:attributes="src view/getGeoCoverageMapUrl" /></dd>
 	    </dl>
 
-  </tal:autoUpdated>
+
 	  </div>
 </metal:isFromFeed>
 
@@ -132,54 +133,19 @@
            tal:condition="python:report.Description()">
             Description
         </p>
-       <div class="header">
-	    <tal:datasources tal:define="folderContents report/dataSources;"
-			     tal:condition="folderContents">
-	      <tal:entry tal:define="source python:'#datasources%s' % report.UID()">
-		<div class="hiddenStructure">
-		  <div id="" 
-		       tal:attributes="id python:source[1:]">
-		    <h3 i18n:translate="Data sources">Data sources</h3>
-		    <dl tal:condition="folderContents">
-		      <dt></dt>
-		      <dd tal:repeat="dataSrc folderContents"><a href=""
-								 tal:attributes="href dataSrc/getRemoteUrl"
-								 tal:content="dataSrc/Title|dataSrc/getRemoteUrl">pm10_04-08eng.xls</a></dd>
-		    </dl>
-		  </div>
-		</div>
-
-		<dl class="portlet">
-		  
-		  <dt class="portletHeader">
-		    Data sources
-		  </dt>
-		  <dd class="portletItem">
-		<a tal:attributes="
-				   href source;
-				   class string:fancybox;
-				   title string:Data soruce;">
-	            <img class="imagesource-box" src="tag_green_right.png" tal:condition="source|nothing"
-          		 tal:attributes="src python:'%s/tag_green_right.png' % portal_url" alt="Source" />
-		</a>
-		  </dd>
-		</dl>
-		
-	      </tal:entry>
-	    </tal:datasources>
-
-	 </div>
         <div class="soer-keyMessage" 
 	    tal:condition="report/getKeyMessage">
             <h5>Key message</h5>
 	    <p tal:replace="structure report/getKeyMessage|nothing" />
         </div>
 
-        <div class="visualClear"></div>
+
+
 
 <tal:figures tal:define="folderContents report/figures;
                          singleFigure python:len(folderContents) == 1"
              tal:condition="folderContents">
+
     <h4>Figures</h4> 
     <tal:images tal:repeat="brain folderContents">
       <tal:entry tal:define="
@@ -238,9 +204,47 @@
        </metal:entry>
    </tal:entry>
   </tal:images>
+        <div class="visualClear"></div>
 </tal:figures>
 
-        <div class="visualClear"></div>
+       <div class="header">
+	    <tal:datasources tal:define="folderContents report/dataSources;"
+			     tal:condition="folderContents">
+	      <tal:entry tal:define="source python:'#datasources%s' % report.UID()">
+		<div class="hiddenStructure">
+		  <div id="" 
+		       tal:attributes="id python:source[1:]">
+		    <h3 i18n:translate="Data sources">Data sources</h3>
+		    <dl tal:condition="folderContents">
+		      <dt></dt>
+		      <dd tal:repeat="dataSrc folderContents"><a href=""
+								 tal:attributes="href dataSrc/getRemoteUrl"
+								 tal:content="dataSrc/Title|dataSrc/getRemoteUrl">pm10_04-08eng.xls</a></dd>
+		    </dl>
+		  </div>
+		</div>
+
+		<dl class="portlet">
+		  
+		  <dt class="portletHeader">
+		    Data sources
+		  </dt>
+		  <dd class="portletItem">
+		<a tal:attributes="
+				   href source;
+				   class string:fancybox;
+				   title string:Data soruce;">
+	            <img class="imagesource-box" src="tag_green_right.png" tal:condition="source|nothing"
+          		 tal:attributes="src python:'%s/tag_green_right.png' % portal_url" alt="Source" />
+		</a>
+		  </dd>
+		</dl>
+		
+	      </tal:entry>
+	    </tal:datasources>
+
+	 </div>
+
         <p tal:condition="python: not text and is_editable"
            i18n:translate="no_body_text"
            class="discreet">
