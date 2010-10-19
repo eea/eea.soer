@@ -48,6 +48,11 @@
     width: 200px;
 }
 
+.header .topicmenu li {
+    float: left;
+    padding-right: 1em;
+}
+
 .tileItem {
     position: relative;
 } 
