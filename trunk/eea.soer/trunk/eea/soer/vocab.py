@@ -92,10 +92,10 @@ for loc in Locality.all().order():
 
 #geostore.load_triples(source="http://rdfdata.eionet.europa.eu/ramon/send_all")
 # use local file to speed up for now
-from eea.soer.tests.base import nutsrdf, evalrdf
+from eea.soer.tests.base import nutsrdf, evalrdf, spatialrdf
 geostore.load_triples(source=nutsrdf)
 geostore.load_triples(source=evalrdf)
-
+geostore.load_triples(source=spatialrdf)
 
 class NUTSRegions(object):
     """ All regions """
@@ -140,10 +140,12 @@ class NUTSRegions(object):
         return geosession.get_class(surf.ns.NUTS['CountryCode']).all().order()
     
     def getCode(self, subject):
-        for rdfClass in [ surf.ns.NUTS['CountryCode'], surf.ns.NUTS['NUTSRegion']]:
+        for rdfClass in [ surf.ns.NUTS['CountryCode'], surf.ns.NUTS['NUTSRegion'], surf.ns.ROD['Spatial']]:
             region = geosession.get_resource(subject, rdfClass)
             if region is not None and region.nuts_code.first is not None:
                 return region.nuts_code.first.strip()
+            if region is not None and region.rod_spatialTwoletter.first is not None:
+                return region.rod_spatialTwoletter.first.strip()
         return u''
 
 NUTSVocabularyFactory = NUTSRegions()

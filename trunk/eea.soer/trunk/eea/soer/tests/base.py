@@ -15,6 +15,8 @@ soerrdf = 'file://%s' % os.path.join(package_home(globals()), 'soerfeed.rdf')
 examplerdf = 'file://%s' % os.path.join(package_home(globals()), 'multiexample.rdf')
 evalrdf = 'file://%s' % os.path.join(package_home(globals()), 'evaluations.rdf')
 nutsrdf = 'file://%s' % os.path.join(package_home(globals()), 'nuts.rdf')
+# http://rod.eionet.europa.eu/spatial
+spatialrdf = 'file://%s' % os.path.join(package_home(globals()), 'spatial.rdf')
 
 @onsetup
 def setup_soer():
