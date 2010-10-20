@@ -3,6 +3,7 @@ import surf
 
 surf.ns.register(SOER="http://www.eea.europa.eu/soer/1.0#")
 surf.ns.register(SOEREVALUATION="http://www.eea.europa.eu/soer/rdfs/evaluation/1.0#")
+surf.ns.register(ROD="http://rod.eionet.europa.eu/schema.rdf#")
 
 DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"
 ADD_CONTENT_PERMISSION = AddPortalContent
