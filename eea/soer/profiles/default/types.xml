@@ -12,5 +12,9 @@
     meta_type="Factory-based Type Information with dynamic views"/>
  <object name="DataSourceLink"
     meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="SOERKeyFact"
+    meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="SOERMessage"
+    meta_type="Factory-based Type Information with dynamic views"/>
 
 </object>
