@@ -74,6 +74,11 @@ Lets test geo coverage vocabulary
 
   >>> NationalStory = session.get_class(surf.ns.SOER['NationalStory'])
   >>> obj = country['air-pollution-why-care-norway']
+  
+  >>> obj.Subject()
+  ('human health', 'air', 'air pollution concentrations', 'SOER2010', 'air pollution')
+
+
   >>> indi1 = obj[obj.invokeFactory('RelatedIndicatorLink', id='indi1')]
   >>> indi1.setTitle('Related indicator')
   >>> indi1.setRemoteUrl('http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/')

@@ -40,6 +40,11 @@
       handler=".content.SOERReport.soerImageAdded"
       />
 
+  <subscriber
+      for="eea.soer.content.interfaces.ISOERReport
+           zope.app.container.interfaces.IObjectModifiedEvent"
+      handler=".content.SOERReport.reportUpdated"
+      />
 
   <adapter factory=".marshaller.ReportingCountry2Surf" />
   <adapter factory=".marshaller.NationalStory2Surf" />

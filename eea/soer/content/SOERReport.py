@@ -274,3 +274,13 @@ def soerImageAdded(obj, event):
 def soerLinkAdded(obj, event):
     if ISOERReport.providedBy(obj.aq_parent):
         directlyProvides(obj, ISoerDataFile)
+
+def reportUpdated(obj, event):
+    keywords = list(obj.Subject())
+    if 'SOER2010' not in keywords:
+        keywords.append('SOER2010')
+    topic = obj.getTopic()
+    if topic not in keywords:
+        keywords.append(topic)
+    if keywords != list(obj.Subject()):
+        obj.setSubject(keywords)
