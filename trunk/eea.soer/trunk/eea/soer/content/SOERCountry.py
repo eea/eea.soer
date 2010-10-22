@@ -152,6 +152,7 @@ class SOERCountry(ATFolder):
                 try:
                     image = urllib2.urlopen(fig['url'])
                 except:
+                    log.log('FAILED: Fetching Figure: %s' % fig['url'])
                     continue
                 image_data = image.read()
                 if image_data:
@@ -173,7 +174,7 @@ class SOERCountry(ATFolder):
                     if fig.get('dataSource', None) is not None:
                         dataSrc = fig['dataSource']
                         dataLink = report[report.invokeFactory('DataSourceLink', id='tmpdatalink',
-                                                               title=dataSrc['fileName'],
+                                                               title=dataSrc['dataURL'],
                                                     remoteUrl=dataSrc['dataURL'])]
                         dataLink.setLanguage(language)
                         newId = dataLink._renameAfterCreation(check_auto_id=False)
@@ -181,6 +182,8 @@ class SOERCountry(ATFolder):
                         figure.setRelatedItems([dataLink])
                     figure.setLanguage(language)
                     figure.reindexObject()
+                else:
+                    log.log('FAILED: Figure is empty: %s' % fig['url'])
             i = 0
             for indicatorUrl in nstory.relatedIndicator():
                 i += 1
