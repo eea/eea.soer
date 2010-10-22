@@ -76,7 +76,7 @@ Lets test geo coverage vocabulary
   >>> obj = country['air-pollution-why-care-norway']
   
   >>> obj.Subject()
-  ('human health', 'air', 'air pollution concentrations', 'SOER2010', 'air pollution')
+  ('human health', 'air', 'air pollution concentrations', 'SOER2010', 'country assessment', 'air pollution')
 
 
   >>> indi1 = obj[obj.invokeFactory('RelatedIndicatorLink', id='indi1')]
