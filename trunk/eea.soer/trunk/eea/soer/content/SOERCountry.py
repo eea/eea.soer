@@ -71,12 +71,13 @@ class SOERCountry(ATFolder):
         """ update feed """
         url = self.getRdfFeed()
         if url:
-            squidt = getToolByName(self, 'portal_squid')
-            urlexpr = squidt.getUrlExpression()
-            # use squid default url calculation during update due
-            # acquisition problem to find the url expression script
-            # XXX: maybe we should disable invalidation all together during update? 
-            squidt.manage_setSquidSettings(squidt.getSquidURLs(), url_expression='')
+            squidt = getToolByName(self, 'portal_squid', None)
+            if squidt is not None:
+                urlexpr = squidt.getUrlExpression()
+                # use squid default url calculation during update due
+                # acquisition problem to find the url expression script
+                # XXX: maybe we should disable invalidation all together during update? 
+                squidt.manage_setSquidSettings(squidt.getSquidURLs(), url_expression='')
             toDeleteIds = []
             catalog = getToolByName(self, 'portal_catalog')
             for b in catalog(path='/'.join(self.getPhysicalPath()),
@@ -92,8 +93,9 @@ class SOERCountry(ATFolder):
                 if url:
                     log.log('Updating from extra feed %s' % url)
                     self._updateFromFeed(url)
-            # restore the url expression 
-            squidt.manage_setSquidSettings(squidt.getSquidURLs(), url_expression=urlexpr)
+            if squidt is not None:
+                # restore the url expression 
+                squidt.manage_setSquidSettings(squidt.getSquidURLs(), url_expression=urlexpr)
             
     def _updateFromFeed(self, url):
         log.log('Feed has changed, updating')
