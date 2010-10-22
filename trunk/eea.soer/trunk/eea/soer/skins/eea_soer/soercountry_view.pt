@@ -84,8 +84,10 @@
 
             <div class="documentDescription" tal:content="context/Description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pharetra sodales ligula sed elementum. Suspendisse et egestas est.</div>
 
-            <div tal:condition="nocall:intro" tal:content="structure python:intro.CookedBody(stx_level=2)"><p> Proin orci lacus, vestibulum porta interdum ac, rutrum a leo. Morbi adipiscing tortor nec erat rhoncus feugiat. Pellentesque quis neque et nunc ultricies rutrum. Etiam lacus leo, luctus ut egestas id, suscipit vitae mauris. Integer fringilla diam ac turpis semper fringilla id id dui. Proin eget suscipit est. Donec imperdiet eros ac sem tristique sodales.</p>
-                 <p>Quisque pharetra mattis erat sed bibendum. Nam quam tellus, interdum eu mollis a, porttitor sit amet ipsum. </p></div>
+            <div tal:condition="nocall:intro"><tal:intro  tal:content="structure python:intro.CookedBody(stx_level=2)"><p> Proin orci lacus, vestibulum porta interdum ac, rutrum a leo. Morbi adipiscing tortor nec erat rhoncus feugiat. Pellentesque quis neque et nunc ultricies rutrum. Etiam lacus leo, luctus ut egestas id, suscipit vitae mauris. Integer fringilla diam ac turpis semper fringilla id id dui. Proin eget suscipit est. Donec imperdiet eros ac sem tristique sodales.</p>
+                 <p>Quisque pharetra mattis erat sed bibendum. Nam quam tellus, interdum eu mollis a, porttitor sit amet ipsum. </p></tal:intro>
+ 		  <a href="soertopic_view?topic=country introduction" style="float:right;display:block;" class="moreLink">read more</a>
+            </div>
 
 	    <h3>Browse by topic</h3>
 	    <ul class="topicmenu">
@@ -93,6 +95,7 @@
 	      <li><a href="soertopic_view?topic=climate change" title="Reports about climate change mitigation">Climate change mitigation</a></li>
 	      <li><a href="soertopic_view?topic=biodiversity" title="Reports about Nature protection and biodiversity">Nature protection and biodiversity</a></li>
 	      <li><a href="soertopic_view?topic=land" title="Reports about Land use">Land use</a></li>
+	      <li><a href="soertopic_view?topic=freshwater" title="Reports about Freshwater">Freshwater</a></li>
 	      <li><a href="soertopic_view?topic=waste" title="Reports about Waste">Waste</a></li>
             </ul>
 	  </div>
