@@ -278,7 +278,7 @@ def soerLinkAdded(obj, event):
 def reportUpdated(obj, event):
     keywords = list(obj.Subject())
     changed = False
-    for keyword in ['SOER2010', 'country assesment', obj.getTopic()]:
+    for keyword in ['SOER2010', 'country assessment', obj.getTopic()]:
         if keyword not in keywords:
             keywords.append(keyword)
             changed = True
