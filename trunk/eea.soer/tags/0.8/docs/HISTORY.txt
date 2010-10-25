@@ -1,0 +1,79 @@
+Changelog
+=========
+
+0.8 - (2010-10-25)
+------------------
+
+*  description should be generated in soer namespace
+   use dc namespace as fallback if the soer description is missing [vincisas]
+*  keyMessage css fix [vincisas]
+*  new map service [vincisas]
+*  soertopic view [vincisas]
+*  SOERKeyFact and SOERMessage types [thuliper]
+*  default keywords for report content [vincisas]
+*  migration step for pre 0.5 images/datasource links [vincisas]
+
+
+0.7 - (2010-10-14)
+------------------
+
+* sub headings and labels for SOER C documents #3685 [vincisas]
+* soer topic view for countries #3685 [vincisas]
+* keymessage harmonization #3760 [vincisas]
+* display datasources separatly #3723 [vincisas]
+* Allow subreports in FlexibilityReport  [vincisas]
+* EEA disclaimer added to report views #3759 [vincisas]
+
+0.6 - (2010-09-30)
+------------------
+
+* FlexibilityReport: geoCoverage required and question relabeled to title #3717 [vincisas]
+* ALl reports: evaluation field hidden since it will not be used at EEA [vincisas]
+* geoCoverage field has 3 regions #3719 [vincisas]
+
+0.5 - 2010-10-15
+----------------
+* evaluations were not imported #3500 [vincisas]
+* evaluation vocabulary is used in Plone editing [vincisas]
+* blacklist is configurable through ZMI in properties_tool/rdfmarshaller_properties [vincisas]
+* Generated titles used old content type names. Fixes #3635 [vincisas]
+* Multiple feed support added, #3494 [vincisas]
+* Added country names that were not in NUTS selection to the geo coverage field #3600 [vincisas]
+
+0.4.3 - 2010-07-16
+------------------
+* rereleasing with the missing profiles/default/*.txt files [vincisas]
+
+0.4.2 - 2010-07-13
+------------------
+* updated the final terminology of types and topics #3492 [vincisas]
+
+0.4.1 - 2010-06-29
+------------------
+* fixed bug in creating new Soer Country [vincisas]
+* Harmonized titles for reports, country name within () [vincisas]
+
+0.4 - 2010-06-18
+----------------
+* Country view fix for Plone 3 [vincisas]
+* keywords, publication and modification dates were not exported in rdf [vincisas]
+* added default facetedconfigurations for Part-C and countries. [vincisas]
+
+0.3 - 2010-06-15
+----------------
+* Plone 3 fixes [vincisas]
+* Report and Country views [vincisas]
+* Import and Export RDF roundtrip [vincisas]
+* Default country map from EEA getmap service [vincsas]
+* Schema added for evaluation, questions [vincisas]
+
+0.2 - 2010-05-19
+----------------
+* Geographical coverage values are fetched from http://rod.eionet.europa.eu/countries [vincisas]
+* Schema updated to `SOER RDF spec <https://svn.eionet.europa.eu/projects/Zope/wiki/SOERFeedSpec>`_ [vincisas]
+* Plone 3 compatibility [vincisas]
+* import and export with eea.rdfmarshaller [vincisas]
+
+0.1 - 2010-01-15
+----------------
+* Initial release
