@@ -39,4 +39,12 @@
     class=".setup.Countries"
     permission="cmf.ManagePortal"
   />
+
+  <browser:page
+    for="*"
+    name="soerMigration"
+    class=".setup.Migration"
+    permission="cmf.ManagePortal"
+  />
+
 </configure>

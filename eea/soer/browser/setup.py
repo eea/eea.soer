@@ -1,10 +1,14 @@
 import os
 import urllib2
 from Acquisition import aq_base
+from zope.interface import directlyProvides
 from zope.component import getUtility
 from Globals import package_home
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone import log
+
 from eea.soer.config import GLOBALS
+from eea.soer.content.interfaces import ISoerFigure, ISoerDataFile
 from eea.facetednavigation.browser.app.exportimport import FacetedExportImport
 from p4a.subtyper.interfaces import ISubtyper
 
@@ -52,3 +56,29 @@ class Countries(object):
             faceted = FacetedExportImport(folder, folder.REQUEST)
             faceted.import_xml(import_file=facetedCountry.replace('<element value="se"/>','<element value="%s"/>' % country_code))
     
+
+class Migration(object):
+    """ """
+    
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self):
+        self.soerImagesAndLinks()
+        
+    def soerImagesAndLinks(self):
+        context = self.context
+        cat = getToolByName(context, 'portal_catalog')
+        for b in cat(object_provides='eea.soer.content.interfaces.ISOERReport'):
+            obj = b.getObject()
+            for fig in obj.getFolderContents(contentFilter={'portal_type' : 'Image'}, full_objects=True):
+                if not ISoerFigure.providedBy(fig):
+                    directlyProvides(fig, ISoerFigure)
+                    log.log('MIGRATED figure %s' % fig.absolute_url())
+                    
+            for link in obj.getFolderContents(contentFilter={'portal_type' : ['Link', 'DataSourceLink']}, full_objects=True):
+                if not ISoerDataFile.providedBy(link):
+                    directlyProvides(link, ISoerDataFile)
+                    log.log('MIGRATED data sourc %s' % link.absolute_url())
+
