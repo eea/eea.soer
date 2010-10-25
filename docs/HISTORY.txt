@@ -1,8 +1,18 @@
 Changelog
 =========
 
-0.8-dev (unreleased)
---------------------
+0.8 - (2010-10-25)
+------------------
+
+*  description should be generated in soer namespace
+   use dc namespace as fallback if the soer description is missing [vincisas]
+*  keyMessage css fix [vincisas]
+*  new map service [vincisas]
+*  soertopic view [vincisas]
+*  SOERKeyFact and SOERMessage types [thuliper]
+*  default keywords for report content [vincisas]
+*  migration step for pre 0.5 images/datasource links [vincisas]
+
 
 0.7 - (2010-10-14)
 ------------------
