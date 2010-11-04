@@ -169,13 +169,12 @@ class SOERCountry(ATFolder):
                     figure = getattr(report, fig['fileName'], None)
                     if figure is not None:
                         continue
-                    figure = report[report.invokeFactory('Image', id=fig['fileName'],
+                    figure = report[report.invokeFactory('Image', id='tempfile',
                                                          image=image_data)]
-                    figure.setTitle(fig['caption'])
+                    figure.setTitle(fig['caption'] or fig['fileName'])
                     figure.setDescription(fig['description'])
-                    if fig['fileName'] == 'tempfile':
-                        newId = figure._renameAfterCreation(check_auto_id=False)
-                        figure = report[newId]
+                    newId = figure._renameAfterCreation(check_auto_id=False)
+                    figure = report[newId]
                     if 'publish' in wtool.getActionsFor(figure):
                         wtool.doActionFor(figure, 'publish', comment='Automatic feed update')
 
