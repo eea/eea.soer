@@ -84,12 +84,12 @@
 
             <div class="documentDescription" tal:content="context/Description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pharetra sodales ligula sed elementum. Suspendisse et egestas est.</div>
 
-            <div tal:condition="nocall:intro"><tal:intro  tal:content="structure python:intro.CookedBody(stx_level=2)"><p> Proin orci lacus, vestibulum porta interdum ac, rutrum a leo. Morbi adipiscing tortor nec erat rhoncus feugiat. Pellentesque quis neque et nunc ultricies rutrum. Etiam lacus leo, luctus ut egestas id, suscipit vitae mauris. Integer fringilla diam ac turpis semper fringilla id id dui. Proin eget suscipit est. Donec imperdiet eros ac sem tristique sodales.</p>
-                 <p>Quisque pharetra mattis erat sed bibendum. Nam quam tellus, interdum eu mollis a, porttitor sit amet ipsum. </p></tal:intro>
- 		  <a href="soertopic_view?topic=country introduction" style="float:right;display:block;" class="moreLink">read more</a>
+            <div tal:condition="nocall:intro"><p tal:content="structure python:'.'.join(intro.getText(mimetype='text/plain').split('.')[:50])">Proin orci lacus, vestibulum porta interdum ac, rutrum a leo. Morbi adipiscing tortor nec erat rhoncus feugiat. Pellentesque quis neque et nunc ultricies rutrum. Etiam lacus leo, luctus ut egestas id, suscipit vitae mauris. Integer fringilla diam ac turpis semper fringilla id id dui. Proin eget suscipit est. Donec imperdiet eros ac sem tristique sodales.
+                 Quisque pharetra mattis erat sed bibendum. Nam quam tellus, interdum eu mollis a, porttitor sit amet ipsum.</p>
+ 		  <a href="soertopic_view?topic=country introduction" style="float:right;display:block;" class="moreLink">read more</a><br/>
             </div>
 
-	    <h3>Browse by topic</h3>
+    	    <h3>Browse by topic</h3>
 	    <ul class="topicmenu">
 	      <li><a href="soertopic_view?topic=air pollution" title="Reports about Air pollution">Air pollution</a></li>
 	      <li><a href="soertopic_view?topic=climate change" title="Reports about climate change mitigation">Climate change mitigation</a></li>
