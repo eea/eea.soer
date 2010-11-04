@@ -82,3 +82,68 @@ class Migration(object):
                     directlyProvides(link, ISoerDataFile)
                     log.log('MIGRATED data sourc %s' % link.absolute_url())
 
+
+class SenseFeeds(object):
+    """ setup sense feeds for countries and update them """
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self):
+        context = self.context
+        deleteOld = bool(self.request.get('deleteOld', False))
+        updateFeed = bool(self.request.get('updateFeed', False))        
+        feeds = {'bg' : ['http://nfp-bg.eionet.eu.int/soer-2010/part-c/rdf'], #Bulgaria
+                 'be' : ['http://nfp.irceline.be/soer-2010/@@rdf'], #Belgium
+                 'sk' : ['http://tsense.sazp.sk/Plone/soer-2010-part-c/slovakia/@@rdf'], #Slovakia
+                 'ie' : ['http://www.epa.ie/environmentinfocus/socio-economic/index.rdf',
+                         'http://www.epa.ie/environmentinfocus/climatechange/index.rdf',
+                         'http://www.epa.ie/environmentinfocus/air/index.rdf',
+                         'http://www.epa.ie/environmentinfocus/water/index.rdf',
+                         'http://www.epa.ie/environmentinfocus/waste/index.rdf',
+                         'http://www.epa.ie/environmentinfocus/land/index.rdf',
+                         'http://www.epa.ie/environmentinfocus/nature/index.rdf',
+                         'http://www.epa.ie/environmentinfocus/socio-economic/greeneconomy/index.rdf',
+                         'http://www.epa.ie/environmentinfocus/socio-economic/irishsustainabledevelopmentmodel/index.rdf'], #Ireland
+                 'no' : ['http://www.miljostatus.no/rdf'], #Norway
+                 'ro' : ['http://www.anpm.ro/soerstories/rdf'], #Romania
+                 'si' : ['http://www.arso.gov.si/en/soer/alps.rdf',
+                         #'http://www.arso.gov.si/en/soer/biodiversity.rdf',
+                         #'http://www.arso.gov.si/en/soer/bear%20story.rdf',
+                         #'http://www.arso.gov.si/en/soer/country%20introduction.rdf',
+                         #'http://www.arso.gov.si/en/soer/land.rdf'
+                         ], #Slovenia (alps worsk, rest broken)
+                 'it' : ['http://www.sense.sinanet.isprambiente.it/Plone/italian-soer-part-c/@@rdf'], #Italy (short feed)
+                 'nl' : ['http://www.pbl.nl/sense/'], #Netherlands (short)
+                 #'cz' : ['http://issar.cenia.cz/issar/add/CZ_SOER.rdf'], #Chech Republic (questins don't follow specification)
+                 #'de' : [], #Germany (waiting for feeds)
+                 #'at' : ['http://www.umweltbundesamt.at/rdf_eea'], #Austria (broken)
+                 #'se' : ['http://www.naturvardsverket.se/en/In-English/Menu/GlobalMenu/Sense---RDF/'], #Sweden (unaccessible, password protected, they are working on it)
+                 } 
+        for country_code, urls in feeds.items():
+            if hasattr(aq_base(context), country_code):
+                log.log("SENSE setup of '%s'" % country_code)
+                country = context[country_code]
+                if country.getRdfFeed() and deleteOld:
+                    log.log("SENSE setup of '%s' found old feeds, deleting them" % country_code)
+                    oldFeedIds = [b.getId for b in country.getFolderContents(contentFilter={'portal_type' : 'Link'})]
+                    country.manage_delObjects(ids=oldFeedIds)
+                    country.setRdfFeed('')
+                if not country.getRdfFeed():
+                    country.setRdfFeed(urls[0])
+                    log.log("SENSE setup adding feed %s to '%s'" % (urls[0], country_code))
+                    for url in urls[1:]:                    
+                        feed = country[ country.invokeFactory('Link', id='tmplink',
+                                                              title=url,
+                                                              remoteUrl=url) ]
+                        newId = feed._renameAfterCreation(check_auto_id=False)
+                        log.log("SENSE setup adding feed %s to '%s'" % (url, country_code))
+                else:
+                    log.log("SENSE setup found old feeds in '%s' skipping setup" % country_code)
+                if updateFeed:
+                    country.updateFromFeed()
+            else:
+                log.log("SENSE setup did NOT find '%s' no feeds were setup." % country_code)
+                
+                        

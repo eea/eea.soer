@@ -47,4 +47,12 @@
     permission="cmf.ManagePortal"
   />
 
+  <browser:page
+    for="*"
+    name="initSenseFeeds"
+    class=".setup.SenseFeeds"
+    permission="cmf.ManagePortal"
+  />
+
+
 </configure>
