@@ -4,6 +4,12 @@ Changelog
 0.9-dev (unreleased)
 --------------------
 
+* CHANGE: on country view we convert country introduction to text and show only the first 50 sentences.
+this will make the text more plain but the right formating will be shown when user press read more.
+fixes #3774
+* BUG FIX: unicode error with custom question in Flexibility report, fixes #3817 
+* added method for seting up all sense feeds 
+
 0.8 - (2010-10-25)
 ------------------
 
