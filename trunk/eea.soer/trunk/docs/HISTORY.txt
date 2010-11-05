@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.9-dev (unreleased)
---------------------
+0.9 - (2010-11-05)
+------------------
 
 * CHANGE: on country view we convert country introduction to text and show only the first 50 sentences.
 this will make the text more plain but the right formating will be shown when user press read more.
