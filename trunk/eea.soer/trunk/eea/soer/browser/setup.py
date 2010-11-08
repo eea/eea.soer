@@ -117,7 +117,14 @@ class SenseFeeds(object):
                  'it' : ['http://www.sense.sinanet.isprambiente.it/Plone/italian-soer-part-c/@@rdf'], #Italy (short feed)
                  'nl' : ['http://www.pbl.nl/sense/'], #Netherlands (short)
                  #'cz' : ['http://issar.cenia.cz/issar/add/CZ_SOER.rdf'], #Chech Republic (questins don't follow specification)
-                 #'de' : [], #Germany (waiting for feeds)
+                 'de' : ['http://sites.uba.de/SOER/dat/Diversity.xml',
+                         'http://sites.uba.de/SOER/dat/Air-pollution.xml',
+                         'http://sites.uba.de/SOER/dat/Freshwater.xml',
+                         'http://sites.uba.de/SOER/dat/Climate-change.xml',
+                         'http://sites.uba.de/SOER/dat/Land.xml',
+                         'http://sites.uba.de/SOER/dat/Waste.xml',
+                         'http://sites.uba.de/SOER/dat/Biodiversity.xml',
+                         'http://sites.uba.de/SOER/dat/Flexibility.xml'], #Germany 
                  #'at' : ['http://www.umweltbundesamt.at/rdf_eea'], #Austria (broken)
                  #'se' : ['http://www.naturvardsverket.se/en/In-English/Menu/GlobalMenu/Sense---RDF/'], #Sweden (unaccessible, password protected, they are working on it)
                  } 
