@@ -69,8 +69,6 @@
 
 .soerAssessment img {
     padding: 20px 0;
-    float: left;
-    clear: right;
 }
 
 .soer-keyMessage {
