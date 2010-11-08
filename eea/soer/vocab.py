@@ -79,7 +79,7 @@ atvocabs['eea.soer.vocab.all_questions'] = atvocabs['eea.soer.vocab.diversity_qu
 geostore = surf.Store(reader='rdflib',  writer='rdflib', rdflib_store = 'IOMemory')
 geosession = surf.Session(geostore)
 surf.ns.register(ROD="http://rod.eionet.europa.eu/schema.rdf#")
-#geostore.load_triples(source="http://rod.eionet.europa.eu/countries")        
+#geostore.load_triples(source="http://rod.eionet.europa.eu/countries")
 atvocabs['eea.soer.vocab.geo_coverage'] = []
 Locality = geosession.get_class(surf.ns.ROD['Locality'])
 
@@ -92,7 +92,7 @@ for loc in Locality.all().order():
 
 #geostore.load_triples(source="http://rdfdata.eionet.europa.eu/ramon/send_all")
 # use local file to speed up for now
-from eea.soer.tests.base import nutsrdf, evalrdf, spatialrdf
+from eea.soer.config import nutsrdf, evalrdf, spatialrdf
 geostore.load_triples(source=nutsrdf)
 geostore.load_triples(source=evalrdf)
 geostore.load_triples(source=spatialrdf)
@@ -109,7 +109,7 @@ class NUTSRegions(object):
     @property
     def namespace(self):
         return u'nuts'
-    
+
     def __call__(self, context=None):
         RdfClass = self.rdfClass
         vocabulary = []
@@ -138,7 +138,7 @@ class NUTSRegions(object):
 
     def countries(self):
         return geosession.get_class(surf.ns.NUTS['CountryCode']).all().order()
-    
+
     def getCode(self, subject):
         for rdfClass in [ surf.ns.NUTS['CountryCode'], surf.ns.NUTS['NUTSRegion'], surf.ns.ROD['Spatial']]:
             region = geosession.get_resource(subject, rdfClass)
@@ -152,7 +152,7 @@ NUTSVocabularyFactory = NUTSRegions()
 
 class Evaluations(object):
     """ Evaluations vocabulary """
-    
+
     implements(IVocabularyFactory)
 
 
