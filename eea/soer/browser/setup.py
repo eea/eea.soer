@@ -115,7 +115,6 @@ class SenseFeeds(object):
                          #'http://www.arso.gov.si/en/soer/land.rdf'
                          ], #Slovenia (alps worsk, rest broken)
                  'it' : ['http://www.sense.sinanet.isprambiente.it/Plone/italian-soer-part-c/@@rdf'], #Italy (short feed)
-                 'nl' : ['http://www.pbl.nl/sense/'], #Netherlands (short)
                  #'cz' : ['http://issar.cenia.cz/issar/add/CZ_SOER.rdf'], #Chech Republic (questins don't follow specification)
                  'de' : ['http://sites.uba.de/SOER/dat/Diversity.xml',
                          'http://sites.uba.de/SOER/dat/Air-pollution.xml',
