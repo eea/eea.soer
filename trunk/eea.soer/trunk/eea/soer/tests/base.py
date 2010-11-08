@@ -6,17 +6,10 @@ from Products.Five import zcml
 from Products.Five import fiveconfigure
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.GenericSetup import EXTENSION, profile_registry
-
+from eea.soer.config import soerrdf, examplerdf, evalrdf, nutsrdf, spatialrdf
 
 PRODUCTS = ['ATVocabularyManager', 'FiveSite', 'eea.rdfmarshaller']
 PROFILES = ['eea.soer:default', 'eea.rdfmarshaller:default']
-
-soerrdf = 'file://%s' % os.path.join(package_home(globals()), 'soerfeed.rdf')
-examplerdf = 'file://%s' % os.path.join(package_home(globals()), 'multiexample.rdf')
-evalrdf = 'file://%s' % os.path.join(package_home(globals()), 'evaluations.rdf')
-nutsrdf = 'file://%s' % os.path.join(package_home(globals()), 'nuts.rdf')
-# http://rod.eionet.europa.eu/spatial
-spatialrdf = 'file://%s' % os.path.join(package_home(globals()), 'spatial.rdf')
 
 @onsetup
 def setup_soer():
@@ -43,7 +36,7 @@ PloneTestCase.setupPloneSite(products=PRODUCTS, extension_profiles=PROFILES)
 
 
 class SOERFunctionalTestCase(PloneTestCase.FunctionalTestCase):
-    
+
     def afterSetUp(self):
         self.setRoles(['Manager'])
 

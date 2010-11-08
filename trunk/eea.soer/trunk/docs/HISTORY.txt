@@ -3,8 +3,9 @@ Changelog
 
 1.0-dev (unreleased)
 --------------------
-
-* BUG FIX #3809: removed forced floating left on any image tag in assessment. [demarant]  
+* BUG FIX: moved config variables from tests/base.py to config.py in order not
+  to @setup test env outside testing context [voineali]
+* BUG FIX #3809: removed forced floating left on any image tag in assessment. [demarant]
 
 0.9 - (2010-11-05)
 ------------------
@@ -12,8 +13,8 @@ Changelog
 * CHANGE: on country view we convert country introduction to text and show only the first 50 sentences.
 this will make the text more plain but the right formating will be shown when user press read more.
 fixes #3774
-* BUG FIX: unicode error with custom question in Flexibility report, fixes #3817 
-* added method for seting up all sense feeds 
+* BUG FIX: unicode error with custom question in Flexibility report, fixes #3817
+* added method for seting up all sense feeds
 
 0.8 - (2010-10-25)
 ------------------

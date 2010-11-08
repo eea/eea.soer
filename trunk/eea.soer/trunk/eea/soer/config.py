@@ -1,3 +1,5 @@
+import os
+from Globals import package_home
 from Products.CMFCore.permissions import AddPortalContent
 import surf
 
@@ -9,3 +11,10 @@ DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"
 ADD_CONTENT_PERMISSION = AddPortalContent
 GLOBALS = globals()
 PROJECTNAME = "eea.soer"
+
+soerrdf = 'file://%s' % os.path.join(package_home(globals()), 'tests/soerfeed.rdf')
+examplerdf = 'file://%s' % os.path.join(package_home(globals()), 'tests/multiexample.rdf')
+evalrdf = 'file://%s' % os.path.join(package_home(globals()), 'tests/evaluations.rdf')
+nutsrdf = 'file://%s' % os.path.join(package_home(globals()), 'tests/nuts.rdf')
+# http://rod.eionet.europa.eu/spatial
+spatialrdf = 'file://%s' % os.path.join(package_home(globals()), 'tests/spatial.rdf')
