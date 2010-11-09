@@ -124,7 +124,7 @@ class SenseFeeds(object):
                          'http://sites.uba.de/SOER/dat/Waste.xml',
                          'http://sites.uba.de/SOER/dat/Biodiversity.xml',
                          'http://sites.uba.de/SOER/dat/Flexibility.xml'], #Germany 
-                 #'at' : ['http://www.umweltbundesamt.at/rdf_eea'], #Austria (broken)
+                 'at' : ['http://www.umweltbundesamt.at/rdf_eea'], #Austria
                  #'se' : ['http://www.naturvardsverket.se/en/In-English/Menu/GlobalMenu/Sense---RDF/'], #Sweden (unaccessible, password protected, they are working on it)
                  } 
         for country_code, urls in feeds.items():
