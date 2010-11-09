@@ -1,6 +1,6 @@
 import os
 import urllib2
-from Acquisition import aq_base
+from Acquisition import aq_base, aq_inner
 from zope.interface import directlyProvides
 from zope.component import getUtility
 from Globals import package_home
@@ -66,6 +66,7 @@ class Migration(object):
 
     def __call__(self):
         self.soerImagesAndLinks()
+        self.recreateScales()
         
     def soerImagesAndLinks(self):
         context = self.context
@@ -82,6 +83,29 @@ class Migration(object):
                     directlyProvides(link, ISoerDataFile)
                     log.log('MIGRATED data sourc %s' % link.absolute_url())
 
+    def recreateScales(self):
+        context = self.context
+        cat = getToolByName(context, 'portal_catalog')
+        for brain in cat(object_provides='eea.soer.content.interfaces.ISoerFigure'):
+            obj = brain.getObject()
+            if obj is None:
+                continue
+            if hasattr(obj, 'image_preview'):
+                continue
+
+            try: state = obj._p_changed
+            except: state = 0
+
+            field = obj.getField('image')
+            if field is not None:
+                if field.getScale(obj, 'preview'):
+                    continue
+
+                log.log('UPDATING scales for  %s' % obj.absolute_url())
+                field.removeScales(obj)
+                field.createScales(obj)
+
+            if state is None: obj._p_deactivate()
 
 class SenseFeeds(object):
     """ setup sense feeds for countries and update them """
