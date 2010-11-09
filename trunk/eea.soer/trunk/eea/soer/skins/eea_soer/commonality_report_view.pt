@@ -233,7 +233,7 @@
 		<a tal:attributes="
 				   href source;
 				   class string:fancybox;
-				   title string:Data soruce;">
+				   title string:Data source;">
 	            <img class="imagesource-box" src="tag_green_right.png" tal:condition="source|nothing"
           		 tal:attributes="src python:'%s/tag_green_right.png' % portal_url" alt="Source" />
 		</a>
