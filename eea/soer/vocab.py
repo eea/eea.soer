@@ -2,6 +2,7 @@ from zope.app.schema.vocabulary import IVocabularyFactory
 from zope.interface import implements
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
+from Products.CMFCore.utils import getToolByName
 import surf
 
 # Maps values from eea.soer.vocab.topics to their full description
@@ -184,3 +185,18 @@ class Evaluations(object):
 
 EvalVocabularyFactory = Evaluations()
 
+
+class PortalTypesVocabulary(object):
+    """Vocabulary factory for soer portal types.
+    """
+    implements(IVocabularyFactory)
+
+    def __call__(self, context):
+        ttool = getToolByName(context, 'portal_types', None)
+        if ttool is None:
+            return None
+        items = [ SimpleTerm(t,t, ttool[t].Title())
+                  for t in ['CommonalityReport', 'DiversityReport', 'FlexibilityReport']]
+        return SimpleVocabulary(items)
+
+PortalTypesVocabularyFactory = PortalTypesVocabulary()
