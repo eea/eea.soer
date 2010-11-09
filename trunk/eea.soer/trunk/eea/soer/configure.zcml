@@ -74,6 +74,10 @@
     name="eea.soer.vocab.Evaluation"
     />
 
+  <utility
+    component=".vocab.PortalTypesVocabularyFactory"
+    name="eea.soer.vocab.PortalTypes"
+    />
   
   <configure zcml:condition="installed eea.themecentre">
      <subscriber
