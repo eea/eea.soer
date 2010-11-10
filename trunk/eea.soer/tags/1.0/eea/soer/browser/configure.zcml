@@ -1,0 +1,58 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:five="http://namespaces.zope.org/five"
+           xmlns:browser="http://namespaces.zope.org/browser">
+
+  <browser:page
+    for="eea.soer.content.interfaces.IReportingCountry"
+    name="rdf"
+    class=".sense.RDFExport"
+    permission="zope.Public"
+    />
+
+  <browser:page
+    for="*"
+    name="soerReportView"
+    class=".report.ReportView"
+    permission="zope.Public"
+    allowed_interface="..interfaces.IReportView"
+    />
+
+  <browser:page
+    for="*"
+    name="reportQuestionsByTopic"
+    class=".report.ReportQuestionsByTopic"
+    permission="zope.Public"
+    allowed_interface="..interfaces.IReportQuestionsByTopic"
+    />
+
+  <browser:page
+    for="*"
+    name="soerCountryView"
+    class=".country.CountryView"
+    permission="zope.Public"
+    allowed_interface="..interfaces.ICountryView"
+    />
+
+  <browser:page
+    for="*"
+    name="initSoerCountries"
+    class=".setup.Countries"
+    permission="cmf.ManagePortal"
+  />
+
+  <browser:page
+    for="*"
+    name="soerMigration"
+    class=".setup.Migration"
+    permission="cmf.ManagePortal"
+  />
+
+  <browser:page
+    for="*"
+    name="initSenseFeeds"
+    class=".setup.SenseFeeds"
+    permission="cmf.ManagePortal"
+  />
+
+
+</configure>
