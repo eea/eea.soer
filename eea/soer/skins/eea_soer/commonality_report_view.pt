@@ -168,8 +168,10 @@
                            tal:content="dataSrc/getRemoteUrl">pm10_04-08eng.xls</a></dd>
 		  </dl>
              <img class="image-inline captioned" src="" alt="Figure caption"
-	     tal:attributes="src string:${obj/absolute_url}/image_preview;
+	     tal:attributes="src string:${obj/absolute_url}/image_large;
                              alt obj_title"/> <br clear="all" />
+   	   <a href=""
+              tal:attributes="href string:${obj/absolute_url}/image_view_fullscreen;">Fullscreen image</a>
    	   <a href=""
               tal:attributes="href report/original_url">Original link</a>
         </div>
