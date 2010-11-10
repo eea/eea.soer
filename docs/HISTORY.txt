@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.0-dev (unreleased)
---------------------
+1.0 (2010-11-10)
+----------------
 * BUG FIX: moved config variables from tests/base.py to config.py in order not
   to @setup test env outside testing context [voineali]
 * BUG FIX #3809: removed forced floating left on any image tag in assessment. [demarant]
