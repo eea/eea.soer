@@ -28,6 +28,9 @@ fixes #3774
 * ALl reports: evaluation field hidden since it will not be used at EEA [vincisas]
 * geoCoverage field has 3 regions #3719 [vincisas]
 
+1.2-dev - (unreleased)
+----------------------
+
 1.1 - (2010-11-10)
 ------------------
 * Re-release egg since previous version 1.0 was incomplete/broken.[demarant]
