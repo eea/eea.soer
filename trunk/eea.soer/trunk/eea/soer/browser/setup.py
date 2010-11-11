@@ -138,7 +138,13 @@ class SenseFeeds(object):
                          #'http://www.arso.gov.si/en/soer/country%20introduction.rdf',
                          #'http://www.arso.gov.si/en/soer/land.rdf'
                          ], #Slovenia (alps worsk, rest broken)
-                 'it' : ['http://www.sense.sinanet.isprambiente.it/Plone/italian-soer-part-c/@@rdf'], #Italy (short feed)
+                 'it' : ['http://www.sense.sinanet.isprambiente.it/Plone/air-pollution/@@rdf',
+                         'http://www.sense.sinanet.isprambiente.it/Plone/climate-change/@@rdf',
+                         'http://www.sense.sinanet.isprambiente.it/Plone/waste/@@rdf',
+                         'http://www.sense.sinanet.isprambiente.it/Plone/nature-protection-and-biodiversity/@@rdf',
+                         'http://www.sense.sinanet.isprambiente.it/Plone/land/@@rdf',
+                         'http://www.sense.sinanet.isprambiente.it/Plone/diversity/@@rdf',
+                         'http://www.sense.sinanet.isprambiente.it/Plone/freshwater/@@rdf'], #Italy
                  #'cz' : ['http://issar.cenia.cz/issar/add/CZ_SOER.rdf'], #Chech Republic (questins don't follow specification)
                  'de' : ['http://sites.uba.de/SOER/dat/Diversity.xml',
                          'http://sites.uba.de/SOER/dat/Air-pollution.xml',
