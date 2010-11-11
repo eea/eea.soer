@@ -30,6 +30,7 @@ fixes #3774
 
 1.2-dev - (unreleased)
 ----------------------
+* Change: Added cache metadata to images [ghicaale #3667]
 
 1.1 - (2010-11-10)
 ------------------
