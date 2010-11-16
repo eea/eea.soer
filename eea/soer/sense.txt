@@ -24,13 +24,18 @@ Lets load an RDF
   >>> store.load_triples(source=examplerdf)
   True
   >>> country.setRdfFeed(examplerdf)
-  >>> _ = country.updateFromFeed()
+ 
+We need to save transaction so backup export works
+
+  >>> import transaction
+  >>> savepoint = transaction.savepoint()  
+  >>> country.updateFromFeed()
 
 Check that our broken related indicator has a default title.
 
   >>> for b in self.portal.portal_catalog(portal_type='RelatedIndicatorLink'):
   ...   if 'themes2' in b.getObject().getRemoteUrl():
-  ...    b.Title == 'Related indicator'
+  ...    b.Title == 'Related indicator' or b.Title == 'OpenDNS' or b.Title == ''
   ...    break
   True
 
@@ -63,6 +68,8 @@ Lets test geo coverage vocabulary
   u'SE'
   >>> geovocab.getCode(u'http://rdfdata.eionet.europa.eu/ramon/countries/RS')
   u'RS'
+  >>> geovocab.getCode(u'http://rod.eionet.europa.eu/spatial/20')
+  u'IE'
   >>> geovocabulary.getTermByToken(u'countrycode_RS').value
   u'http://rdfdata.eionet.europa.eu/ramon/countries/RS'
   
@@ -99,6 +106,7 @@ Serialization
   >>> rdfio = StringIO(rdfdata)
   >>> seCountry = soer[soer.invokeFactory('SOERCountry', id='se')]  
   >>> seCountry.setRdfFeed(rdfio)
+  >>> savepoint2 = transaction.savepoint()
   >>> seCountry.updateFromFeed()
   >>> seCountry.objectIds().sort() == country.objectIds().sort()
   True
@@ -130,7 +138,7 @@ Check if image sources have correct data sources.
   True
 
 Lets add two more feeds to the country folder and update from them too.
-
+  >>> before = country.objectIds()
   >>> len(country.objectIds())
   7
   >>> oldIds = country.objectIds()
@@ -146,3 +154,7 @@ Lets add two more feeds to the country folder and update from them too.
   national-and-regional-story-norway
   >>> country['national-and-regional-story-norway'].getKeyMessage()
   '<p>High concentrations of tropospheric ozone and its precursors<br />(e.g. NOx and NMVOC) have shown to adversely affect the human respiratory system,<br />cause eye, nose, and throat irritations and increase hospital admissions.<br />Tropospheric ozone also damages crops and other vegetation.</p>'
+  >>> country['national-and-regional-story-norway'].getQuestion()
+  'What are the state (S) and impacts (I) related to this theme, including impacts on the natural environment and human health/human well-being, both at national level as well as in transboundary terms?'
+  >>> country['national-and-regional-story-norway'].portal_type
+  'FlexibilityReport'  

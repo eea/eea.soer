@@ -126,7 +126,7 @@ class SOERCountry(ATFolder):
             questions.update(dict([[v,k] for k,v in vocab.long_questions.items()]))
             # old labels before https://svn.eionet.europa.eu/projects/Zope/ticket/3685
             questions.update(dict([[v,k] for k,v in vocab.old_long_questions.items()]))            
-            question = questions.get(nstory.question, '')
+            question = questions.get(nstory.question, nstory.question)
             original_url = nstory.subject.strip()
             parentReport = reports.get((nstory.topic, nstory.question), None)
             if parentReport:
@@ -137,7 +137,7 @@ class SOERCountry(ATFolder):
             else:
                 report = self[self.invokeFactory(nstory.portal_type, id='temp_report',
                                                  topic=nstory.topic,
-                                                 question=questions.get(nstory.question, ''))]
+                                                 question=question)]
             report.setLanguage(language)
             report.setDescription(nstory.description)
             report.setKeyMessage(nstory.keyMessage)

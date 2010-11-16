@@ -3,6 +3,7 @@ Changelog
 1.2-dev - (unreleased)
 ----------------------
 * Change: Added cache metadata to images [ghicaale #3667]
+* BUG FIX: flexibility questions are now saved on imported, were ignored before #3857 [vincisas]
 
 1.1 - (2010-11-10)
 ------------------
