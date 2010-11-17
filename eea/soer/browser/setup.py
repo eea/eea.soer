@@ -144,7 +144,11 @@ class SenseFeeds(object):
                          'http://www.sense.sinanet.isprambiente.it/Plone/nature-protection-and-biodiversity/@@rdf',
                          'http://www.sense.sinanet.isprambiente.it/Plone/land/@@rdf',
                          'http://www.sense.sinanet.isprambiente.it/Plone/diversity/@@rdf',
-                         'http://www.sense.sinanet.isprambiente.it/Plone/freshwater/@@rdf'], #Italy
+                         'http://www.sense.sinanet.isprambiente.it/Plone/freshwater/@@rdf',
+                         'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-alps/@@rdf',
+                         'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-local-authorities/@@rdf',
+                         'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-organic-farming/@@rdf',
+                         'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-white-certificates/@@rdf'], #Italy
                  #'cz' : ['http://issar.cenia.cz/issar/add/CZ_SOER.rdf'], #Chech Republic (questins don't follow specification)
                  'de' : ['http://sites.uba.de/SOER/dat/Diversity.xml',
                          'http://sites.uba.de/SOER/dat/Air-pollution.xml',
