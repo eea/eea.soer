@@ -179,7 +179,7 @@ class SOERCountry(ATFolder):
                         wtool.doActionFor(figure, 'publish', comment='Automatic feed update')
 
                     if fig['url'] in assessment.decode('utf8'):
-                        assessment = assessment.replace(fig['url'], 'resolveuid/%s' % figure.UID())
+                        assessment = assessment.replace(fig['url'].encode('utf8'), 'resolveuid/%s' % figure.UID())
                     if fig.get('dataSource', None) is not None:
                         dataSrc = fig['dataSource']
                         dataLink = report[report.invokeFactory('DataSourceLink', id='tmpdatalink',

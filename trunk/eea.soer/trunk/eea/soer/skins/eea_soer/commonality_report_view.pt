@@ -185,7 +185,7 @@
 		class python:test(is_video, 'thickbox', 'fancybox');
 		title python:desc_or_title">
 	      <span class="photoAlbumEntryWrapper">
-	        <img class="imagesource-box" src="tag_green_right.png" tal:condition="source|nothing"
+	        <img class="imagesource-box" src="tag_green_right.png" tal:condition="dataSources|source|nothing"
           	      tal:attributes="src python:'%s/tag_green_right.png' % portal_url" alt="Source" />
                <tal:multiplefigures condition="not: singleFigure">
                 <img style="border: none" tal:attributes="

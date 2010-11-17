@@ -100,10 +100,10 @@ class Surf2SOERReport(object):
         if self.topic == u'country introduction':
             portal_type = 'DiversityReport'                                            
         elif self.topic in vocab.long_topics.keys():
-            if self.question in vocab.long_questions.values() + vocab.old_long_questions.values():
+            if self.question.decode('utf8') in vocab.long_questions.values() + vocab.old_long_questions.values():
                 portal_type = 'CommonalityReport'
-            elif self.question in vocab.long_diversity_questions.values() + vocab.old_long_diversity_questions.values():
-                portal_type = 'DiversityReport'                        
+            elif self.question.decode('utf8') in vocab.long_diversity_questions.values() + vocab.old_long_diversity_questions.values():
+                portal_type = 'DiversityReport'
         return portal_type
 
     def hasFigure(self):
