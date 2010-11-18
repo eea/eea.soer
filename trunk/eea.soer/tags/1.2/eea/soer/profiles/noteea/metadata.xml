@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<metadata>
+   <version>0.3</version>
+   <dependencies>
+      <dependency>profile-eea.jquery:06-fancybox</dependency>
+    </dependencies>
+</metadata>
+
