@@ -12,7 +12,7 @@
                       tal:define="view context/@@soerCountryView;
                                   intro view/countryIntroduction;
  				  channel view/channel;">
-        <h1 tal:content="intro/Title|nothing" class="documentFirstHeading"
+        <h1 tal:content="intro/title|nothing" class="documentFirstHeading"
             tal:condition="intro">
             Title or id
         </h1>
@@ -84,7 +84,7 @@
 
             <div class="documentDescription" tal:content="context/Description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pharetra sodales ligula sed elementum. Suspendisse et egestas est.</div>
 
-            <div tal:condition="nocall:intro"><p tal:content="structure python:'.'.join(intro.getText(mimetype='text/plain').split('.')[:20])">Proin orci lacus, vestibulum porta interdum ac, rutrum a leo. Morbi adipiscing tortor nec erat rhoncus feugiat. Pellentesque quis neque et nunc ultricies rutrum. Etiam lacus leo, luctus ut egestas id, suscipit vitae mauris. Integer fringilla diam ac turpis semper fringilla id id dui. Proin eget suscipit est. Donec imperdiet eros ac sem tristique sodales.
+            <div tal:condition="nocall:intro"><p tal:content="structure intro/text">Proin orci lacus, vestibulum porta interdum ac, rutrum a leo. Morbi adipiscing tortor nec erat rhoncus feugiat. Pellentesque quis neque et nunc ultricies rutrum. Etiam lacus leo, luctus ut egestas id, suscipit vitae mauris. Integer fringilla diam ac turpis semper fringilla id id dui. Proin eget suscipit est. Donec imperdiet eros ac sem tristique sodales.
                  Quisque pharetra mattis erat sed bibendum. Nam quam tellus, interdum eu mollis a, porttitor sit amet ipsum.</p>
  		  <a href="soertopic_view?topic=country introduction" style="float:right;display:block;" class="moreLink">read more</a><br/>
             </div>
