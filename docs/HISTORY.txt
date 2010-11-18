@@ -1,5 +1,8 @@
 Changelog
 =========
+1.3-dev - (unreleased)
+----------------------
+
 1.2 - (2010-11-18)
 ------------------
 * Change: Added cache metadata to images [ghicaale #3667]
