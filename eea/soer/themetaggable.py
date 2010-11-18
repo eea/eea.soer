@@ -1,11 +1,12 @@
+
 from zope.component import queryAdapter
 from eea.themecentre.interfaces import IThemeTagging
 
-eeaThemes = { u'air pollution' : [u'air'],
-              u'climate change' : [u'climate'],
-              u'land' : [u'landuse',u'soil', u'waste'],
-              u'freshwater' : [u'water'],
-              u'waste' : [u'waste'] }
+eeaThemes = { u'air pollution' : 'air',
+              u'climate change' : 'climate',
+              u'land' : 'landuse',
+              u'freshwater' : 'water',
+              u'waste' : 'waste' }
 
 def reportUpdated(obj, event):
     topic = obj.getTopic()
@@ -13,6 +14,6 @@ def reportUpdated(obj, event):
         taggable = queryAdapter(obj, interface=IThemeTagging)
         if taggable is not None:
             eeaTheme = eeaThemes.get(topic, None)
-            if eeaTheme is not None:
-                taggable.tags = eeaTheme
+            if eeaTheme is not None and eeaTheme not in taggable.tags:
+                taggable.tags += eeaTheme
             
