@@ -4,6 +4,7 @@ Changelog
 ----------------------
 * Change: Added cache metadata to images [ghicaale #3667]
 * BUG FIX: flexibility questions are now saved on imported, were ignored before #3857 [vincisas]
+* Change: Preserve markup in country introduction snippet and cut at end of paragraph after char 1000, #3863 [vincisas]
 
 1.1 - (2010-11-10)
 ------------------

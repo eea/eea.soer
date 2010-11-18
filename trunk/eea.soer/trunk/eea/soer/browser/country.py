@@ -24,8 +24,15 @@ class CountryView(object):
                              'portal_type' : 'DiversityReport',
                              'getSoerTopic' : 'country introduction' } )
             if res:
-                return res[0].getObject()
-        
+                obj = res[0].getObject()
+                text = obj.getText()
+                index = text.lower().find('</p>', 1000)
+                if index != -1:
+                    text = text[:index] +'</p>'
+                return { 'title' : obj.Title(),
+                         'text' : text }
+        return None
+    
     def channel(self):
         return getattr(aq_base(self.context), 'channel', None)
         
