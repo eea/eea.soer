@@ -60,17 +60,17 @@ atvocabs = {
 
     'eea.soer.vocab.questions': (
         (u'0', "Why care?"),
-        (u'1', "State & Impacts"),
-        (u'2', "Drivers & Pressures"),
-        (u'3', "2020 Outlook"),
+        (u'1', "State and impacts"),
+        (u'2', "Drivers and pressures"),
+        (u'3', "Outlook 2020"),
         (u'4', "National responses"),
     ),
 
     'eea.soer.vocab.diversity_questions': (
-        (u'10', 'Factors'),
+        (u'10', 'Distinguishing factors'),
         (u'11', 'Societal developments'),
-        (u'12', 'Main drivers'),
-        (u'13', 'Main developments'),
+        (u'12', 'Drivers and impacts'),
+        (u'13', 'Future developments'),
     ),
 
 }

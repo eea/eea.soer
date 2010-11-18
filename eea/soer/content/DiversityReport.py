@@ -53,11 +53,7 @@ registerType(DiversityReport, PROJECTNAME)
 
 def reportUpdated(obj, event):
     country = obj.getTermTitle('eea.soer.vocab.european_countries', obj.getSoerCountry())
-    if obj.getTopic() == u'country introduction':
-        obj.setTitle('Country introduction (%s)' % country)
-    else:
-        question = obj.getTermTitle('eea.soer.vocab.diversity_questions', obj.getQuestion())
-        t = 'Country profile: %s (%s)' % (question, country)
-        obj.setTitle(t)
+    question = obj.getTermTitle('eea.soer.vocab.diversity_questions', obj.getQuestion())
+    obj.setTitle('Country introduction - %s (%s)' % (question, country))
     if not obj.Description() and not obj.isTemporary():
         obj.setDescription('SOER Country profile from %s' % country)
