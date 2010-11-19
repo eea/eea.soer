@@ -1,5 +1,8 @@
 Changelog
 =========
+1.4-dev (unreleased)
+--------------------
+
 1.3 - (2010-11-19)
 ------------------
 * a geo coverage vocabulary with only the used values to have faster faceted and shorter list [vincisas]
