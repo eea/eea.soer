@@ -265,7 +265,9 @@ class SOERReport(ATFolder, ATNewsItem):
             # we are subfolder lets fake url
             return '%s#%s' % (parent.absolute_url(*args), self.getId())
 
-
+    def isSubReport(self):
+        parent = aq_inner(self).aq_parent
+        return parent.portal_type == self.portal_type
 
 def soerImageAdded(obj, event):
     if ISOERReport.providedBy(obj.aq_parent):
