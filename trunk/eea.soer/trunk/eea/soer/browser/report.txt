@@ -25,8 +25,8 @@ Lets load an RDF
   ...    obj = b.getObject()
   ...    print obj.Title(), obj.getQuestion(), obj.absolute_url()
   Air pollution - Why care? (Norway) 0 http://nohost/plone/SOER/no/air-pollution-why-care-norway
-  Air pollution - State & Impacts (Norway) 1 http://nohost/plone/SOER/no/air-pollution-state-impacts-norway
-  Air pollution - Drivers & Pressures (Norway) 2 http://nohost/plone/SOER/no/air-pollution-drivers-pressures-norway
+  Air pollution - State and impacts (Norway) 1 http://nohost/plone/SOER/no/air-pollution-state-and-impacts-norway
+  Air pollution - Drivers and pressures (Norway) 2 http://nohost/plone/SOER/no/air-pollution-drivers-and-pressures-norway
 
   >>> view.topicTitle
   'Air pollution'
