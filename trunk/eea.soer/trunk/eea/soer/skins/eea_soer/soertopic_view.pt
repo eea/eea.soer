@@ -7,13 +7,14 @@
 
     <div metal:fill-slot="main">
     <metal:main-macro define-macro="main"
-		      tal:define="view context/@@reportQuestionsByTopic">
+		      tal:define="topicview context/@@reportQuestionsByTopic">
         <div class="visualClear"></div>
-        <h1 tal:content="python: '%s (%s)' % (view.topicTitle, context.Title())"></h1>
+        <h1 tal:content="python: '%s (%s)' % (topicview.topicTitle, context.Title())"></h1>
         <div class="soer-topicview">
-	<tal:reports repeat="brain view/reports">
+	<tal:reports repeat="brain topicview/reports">
 	   <tal:report  tal:define="report brain/getObject;
-				    mainreport nocall:report">
+				    mainreport nocall:report;
+				    isFirstReport repeat/brain/start;">
              <h2 tal:content="python: 'Question: %s' % report.getLongSoerQuestion()"></h2>
 	     <metal:reportContent  use-macro="report/commonality_report_view/macros/isFromFeed" />
 	     <metal:reportContent  use-macro="report/commonality_report_view/macros/reportContent" />
