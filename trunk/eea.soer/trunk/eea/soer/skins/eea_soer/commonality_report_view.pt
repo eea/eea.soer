@@ -109,11 +109,6 @@
 		                report nocall:report|nocall:context;
 		                text python: report.CookedBody(stx_level=2)">
 
-        <p class="documentDescription"
-           tal:content="report/Description"
-           tal:condition="python:report.Description()">
-            Description
-        </p>
         <div class="soer-keyMessage" 
 	    tal:condition="report/getKeyMessage">
             <h5>Key message</h5>
