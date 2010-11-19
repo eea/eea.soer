@@ -23,13 +23,15 @@
 
 
 <metal:isFromFeed define-macro="isFromFeed"
-   tal:define="report nocall:report|nocall:context;
-               view report/@@soerReportView;">
+		  tal:define="report nocall:report|nocall:context;
+			      view report/@@soerReportView;
+			      isFirstReport isFirstReport|python:True;
+			      topics view/getTopics|nothing;">
 	  <div class="header">
-	    <dl id="themes-portlet" class="portlet" tal:condition="view/getTopics|nothing">
+	    <dl id="themes-portlet" class="portlet" tal:condition="python: topics and isFirstReport">
 	      <dt class="portletHeader">	
 	        Topic</dt>
-	      <dd class="portletItem" tal:repeat="topic view/getTopics">
+	      <dd class="portletItem" tal:repeat="topic topics">
 		<a href="" tal:attributes="href topic/url;
                                            title topic/title;">
                   <img src="" alt=""
@@ -39,32 +41,11 @@
 	             tal:content="topic/title">topic</tal:topictitle></a></dd>
 	    </dl>
 
-  <tal:autoUpdated tal:condition="report/isFromFeed|nothing">
+  <tal:autoUpdated tal:condition="python: report.isFromFeed() and isFirstReport">
             <tal:channel define="cView context/@@soerCountryView;
                                  channel cView/channel">
                <metal:channel use-macro="context/soercountry_view/macros/channel"/>
             </tal:channel>
-            <dl class="portlet portlet-rss" tal:condition="nothing">
-	      <dt class="portletHeader">
-		Related topics
-	      </dt>
-	      <dt class="portletItem">
-		<a href="http://www.eea.europa.eu/themes/biodiversity">
-		  <img src="http://www.eea.europa.eu/themes/biodiversity/theme_image/image_icon" alt="Biodiversity"> Biodiversity
-		</a>
-	      </dt>
-	      
-	      <dt class="portletItem">
-		<a href="http://www.eea.europa.eu/themes/policy">
-		  <img src="http://www.eea.europa.eu/themes/air/theme_image/image_icon" alt="Air polution"> Air polution
-		</a>
-	      </dt>
-	      
-	      <dd class="portletFooter">
-	      </dd>
-	    </dl>
-
-
 	    <dl id="channel-portlet" class="portlet" tal:condition="nothing">
 	      <dt class="portletHeader">	
 		<a href="" title="" class="websource-box fancybox"
@@ -95,7 +76,7 @@
 		<img src="miljostatus-logo-eng.gif" /></dd>
 	    </dl>
   </tal:autoUpdated>
-	    <dl id="location-portlet" class="portlet" >
+	    <dl id="location-portlet" class="portlet">
 	      <dt class="portletHeader">	
 		<a href="" title="" class="websource-box fancybox discreet"
 		   tal:attributes="href string:#locationSource;
