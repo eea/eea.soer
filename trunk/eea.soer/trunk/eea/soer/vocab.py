@@ -151,6 +151,50 @@ class NUTSRegions(object):
 
 NUTSVocabularyFactory = NUTSRegions()
 
+class UsedGeoCoverage(object):
+    """ Only used regions """
+    
+    implements(IVocabularyFactory)
+
+    def __call__(self, context=None):
+        cat = getToolByName(context, 'portal_catalog')
+        uniqueValues = []
+        try:
+            uniqueValues = cat.uniqueValuesFor('getGeographicCoverage')
+        except:
+            try:
+                uniqueValues = cat.uniqueValuesFor('getGeoCoverage')
+            except:
+                return SimpleVocabulary([])
+        NutsRegion = geosession.get_class(surf.ns.NUTS['NUTSRegion'])
+        CountryCode = geosession.get_class(surf.ns.NUTS['CountryCode'])
+        result = []
+        for geo in uniqueValues:
+            res = None 
+            if geo.startswith('http://rdfdata.eionet.europa.eu/ramon/nuts2008/'):
+                res = geosession.get_resource(geo, NutsRegion)
+                token=u'nuts2008_%s' % res.nuts_code.first.strip()
+                title=res.nuts_name.first.strip()
+            elif  geo.startswith('http://rdfdata.eionet.europa.eu/ramon/nuts/'):
+                res = geosession.get_resource(geo, NutsRegion)
+                token=u'nuts_%s' % res.nuts_code.first.strip()
+                title=res.nuts_name.first.strip()
+            elif geo.startswith('http://rdfdata.eionet.europa.eu/ramon/countries/'):
+                res = geosession.get_resource(geo, CountryCode)
+                token=u'country_%s' % res.nuts_code.first.strip()
+                title=res.nuts_name.first.strip()
+            elif geo.startswith('http://rod.eionet.europa.eu/spatial/'):
+                res = geosession.get_resource(geo, Locality)
+                token=u'rod_%s' % res.rod_spatialTwoletter.first.strip(), 
+                title=res.rod_spatialName.first.strip()
+            if res:
+                result.append(SimpleTerm(geo,
+                                         token=token,
+                                         title=title))
+        return SimpleVocabulary(result)
+
+UsedGeoCoverageFactory = UsedGeoCoverage()
+
 class Evaluations(object):
     """ Evaluations vocabulary """
 

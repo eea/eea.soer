@@ -69,6 +69,12 @@
     component=".vocab.NUTSVocabularyFactory"
     name="eea.soer.vocab.NUTSRegions"
     />
+
+  <utility
+    component=".vocab.UsedGeoCoverageFactory"
+    name="eea.soer.vocab.UsedGeoCoverage"
+    />
+
   <utility
     component=".vocab.EvalVocabularyFactory"
     name="eea.soer.vocab.Evaluation"
