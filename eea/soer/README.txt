@@ -37,7 +37,7 @@ after saving/modifiying the report.
 Verify the properties of the other fields:
 
   >>> report.Title()
-  'Climate change mitigation - Drivers & Pressures (Sweden)'
+  'Climate change mitigation - Drivers and pressures (Sweden)'
   >>> report.getText()
   '<p>The situation is serious :s</p>'
 
@@ -62,7 +62,7 @@ be answered:
   ... }
   >>> report.processForm(values=form, data=1, metadata=1)
   >>> report.Title()
-  'Country profile: Factors (Sweden)'
+  'Country introduction - Distinguishing factors (Sweden)'
   >>> report.Description()
   'SOER Country profile from Sweden'
   >>> report.getText()
