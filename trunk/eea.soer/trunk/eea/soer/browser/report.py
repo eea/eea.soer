@@ -6,6 +6,27 @@ from eea.soer import vocab
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 
+PARTC_TOPIC_MAP = {
+    'climate change': { 'topic' : 'climate change',
+                        'image' : '/themes/climate/theme_image/image_icon',
+                        'title' : 'Climate change' },
+    'biodiversity': { 'topic' : 'nature and biodiversity',
+                        'image' : '/themes/biodiversity/theme_image/image_icon',
+                        'title' : 'Nature and biodiversity' },
+    'land': { 'topic' : 'land use',
+                        'image' : '/themes/landuse/theme_image/image_icon',
+                        'title' : 'Land' },
+    'waste': { 'topic' : 'material resources, natural resources, waste',
+                        'image' : '/themes/waste/theme_image/image_icon',
+                        'title' : 'Waste' },
+    'freshwater': { 'topic' : 'freshwater quality, water resources',
+                        'image' : '/themes/water/theme_image/image_icon',
+                        'title' : 'Freshwater' },
+    'air pollution': { 'topic' :'air pollution',
+                        'image' : '/themes/air/theme_image/image_icon',
+                        'title' : 'Air pollution' },
+    }
+
 class ReportView(object):
     """ """
     implements(IReportView)
@@ -19,16 +40,21 @@ class ReportView(object):
         if parent.portal_type == self.context.portal_type:
             return self.request.response.redirect('%s#%s' % (parent.absolute_url(), self.context.getId()))
         
-
+    
     def getTopics(self):
         context = self.context
+        parent = aq_inner(self.context).aq_parent
+        if parent.portal_type == context.portal_type:
+            parent = parent.aq_parent
+        while parent.getId() not in ['soer', 'soer-draft'] and parent.portal_type in ['Folder', 'SOERCountry']:
+            parent = parent.aq_parent
+        
         topic = context.getTopic()
-        adapter = queryMultiAdapter((context, self.request), name=u'themes-object', default=None)
-        themes = []
-        if adapter is not None:
-            themes = adapter.short_items()
-        return themes
-
+        result = PARTC_TOPIC_MAP.get(topic, None)
+        if result is not None:
+            result['url'] = '%s/soer_topic_search?topic=%s' % (parent.absolute_url(),result['topic'])
+            return [result]
+        return []
 
     def getGeoCoverageMapUrl(self):
         vocab =  getUtility(IVocabularyFactory, name=u"eea.soer.vocab.NUTSRegions")

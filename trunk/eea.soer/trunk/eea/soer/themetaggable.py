@@ -15,5 +15,5 @@ def reportUpdated(obj, event):
         if taggable is not None:
             eeaTheme = eeaThemes.get(topic, None)
             if eeaTheme is not None and eeaTheme not in taggable.tags:
-                taggable.tags += eeaTheme
+                taggable.tags = [eeaTheme]
             
