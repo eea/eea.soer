@@ -6,6 +6,7 @@ Changelog
 * Renamed "country introduction" to "country profile" #3875 [vincisas]
 * Diversity questions changed #3873 [vincisas]
 * BUG FIX: removed double country name for country introduction view #3881 [vincisas]
+* Default description is now hidden but changed are visible. #3780 [vincisas]
 
 1.3 - (2010-11-19)
 ------------------
