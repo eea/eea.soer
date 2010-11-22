@@ -93,6 +93,7 @@ class Surf2SOERReport(object):
         sortOrder = context.soer_sortOrder.first
         if sortOrder is not None:
             setattr(self, 'sortOrder', sortOrder.strip())
+        self.topic = self.topic.lower()
         
     @property
     def portal_type(self):
@@ -120,7 +121,8 @@ class Surf2SOERReport(object):
                 result =  { 'url' : fig.subject.strip(),
                             'fileName' : fileName,
                             'caption' : str(fig.soer_caption.first),
-                            'description' : str(fig.soer_description.first) }
+                            'description' : str(fig.soer_description.first),
+                            'sortOrder' : hasattr(fig, 'soer_sortOrder') and int(fig.soer_sortOrder.first) or 0 }
 
                 if fig.soer_mediaType.first is not None:
                     result['mediaType'] = fig.soer_mediaType.first.strip()
