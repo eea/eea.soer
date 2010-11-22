@@ -36,8 +36,8 @@
     <keyword>air pollution concentrations</keyword>
     <keyword>human health</keyword>
     <relatedEuropeanIndicator rdf:resource="http://themes2.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/" />
-    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif"/>
-    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif"/>
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07.gif" soer:sortOrder="0"/>
+    <hasFigure rdf:resource="http://www.miljostatus.no/PageFiles/1069/no2_04-07.gif" soer:sortOrder="1"/>
   </NationalStory>
   <NationalStory rdf:about="http://www.miljostatus.no/en/Topics/Air-pollution-seksjonsside/Local-waste" xml:lang="en"
                  rdfs:comment="A standard NationalStory with two figures">
@@ -265,7 +265,7 @@
           rdfs:comment="Link to the highest possible resolution of the image."
 	  soer:fileName="pm10_04-07eng-high-resolution.gif">
     <mediaType>image/gif</mediaType>
-    <caption>Figure caption</caption>
+    <caption>Figure caption - pm10</caption>
     <description>Figure description</description>
     <dataSource rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-07eng.xml"/>
   </Figure>
@@ -274,7 +274,7 @@
           rdfs:comment="Link to the highest possible resolution of the image.">
     <mediaType>image/gif</mediaType>
     <fileName>no2_04-07_eng-high-resolution.gif</fileName>
-    <caption>Figure caption</caption>
+    <caption>Figure caption no2</caption>
     <description>Figure description</description>
     <dataSource rdf:resource="http://www.miljostatus.no/PageFiles/1069/pm10_04-08eng.xls"/>
   </Figure>
