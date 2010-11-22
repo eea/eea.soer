@@ -43,8 +43,8 @@ long_questions = {
 # Maps values from eea.soer.vocab.diversity_questions to their full description
 long_diversity_questions = {
     u'10': u"What distinguishes the country?",
-    u'11': u"What are the major societal trends?",
-    u'12': u"What are the main drivers?",
+    u'11': u"What have been the major societal developments?",
+    u'12': u"What are the main drivers of environmental pressures?",
     u'13': u"What are the foreseen developments?",
 }
 
