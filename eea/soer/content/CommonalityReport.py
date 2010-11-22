@@ -38,6 +38,9 @@ class CommonalityReport(SOERReport):
     def getLongSoerTopic(self):
         return vocab.long_topics.get(self.getTopic(), u'Unknown value')
 
+    def default_desc(self):
+        country = self.getTermTitle('eea.soer.vocab.european_countries', self.getSoerCountry()).encode('utf8')
+        return 'SOER Common environmental theme from %s' % country
 
 registerType(CommonalityReport, PROJECTNAME)
 
@@ -48,6 +51,6 @@ def reportUpdated(obj, event):
     t = '%s - %s (%s)' % (topic, section, country)
     obj.setTitle(t)
     if not obj.Description() and not obj.isTemporary():
-        obj.setDescription('SOER Common environmental theme from %s' % country)
+        obj.setDescription(obj.default_desc())
 
         

@@ -48,6 +48,9 @@ class DiversityReport(SOERReport):
     def getLongSoerQuestion(self):
         return vocab.long_diversity_questions[self.getQuestion()]
 
+    def default_desc(self):
+        country = self.getTermTitle('eea.soer.vocab.european_countries', self.getSoerCountry())
+        return 'SOER Country profile from %s' % country
 
 registerType(DiversityReport, PROJECTNAME)
 
@@ -56,4 +59,4 @@ def reportUpdated(obj, event):
     question = obj.getTermTitle('eea.soer.vocab.diversity_questions', obj.getQuestion())
     obj.setTitle('Country profile - %s (%s)' % (question, country))
     if not obj.Description() and not obj.isTemporary():
-        obj.setDescription('SOER Country profile from %s' % country)
+        obj.setDescription(obj.default_desc())
