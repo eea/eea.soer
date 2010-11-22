@@ -41,7 +41,7 @@ schema = Schema((
 )
 
 schema = getattr(ATFolder, 'schema', Schema(())).copy() + schema.copy()
-
+schema['relatedItems'].widget.visible =  {'edit' : 'visible'}
 
 class SOERCountry(ATFolder):
     """ """

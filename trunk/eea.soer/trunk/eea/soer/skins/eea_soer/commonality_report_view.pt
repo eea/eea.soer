@@ -99,8 +99,17 @@
 		<img src="" title="" width="200"
                   tal:attributes="src view/getGeoCoverageMapUrl" /></dd>
 	    </dl>
-
-
+            <tal:firstreport condition="isFirstReport">
+              <div metal:use-macro="here/document_relateditems/macros/multimedia">
+		show related multimedia items if they exist
+              </div>
+              <div metal:use-macro="here/document_relateditems/macros/pages">
+		show related pages if they exist
+              </div>
+              <div metal:use-macro="here/document_relateditems/macros/auto">
+		show auto related items if they exist
+              </div>
+	    </tal:firstreport>
 	  </div>
 </metal:isFromFeed>
 
@@ -121,7 +130,7 @@
         </div>
 
 
-
+   
 
 <tal:figures tal:define="folderContents report/figures;
                          singleFigure python:len(folderContents) == 1"
