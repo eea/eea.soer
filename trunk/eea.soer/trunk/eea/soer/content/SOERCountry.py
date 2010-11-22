@@ -123,7 +123,7 @@ class SOERCountry(ATFolder):
         parentReport = None
         for nstory in soer.nationalStories():
             if nstory.portal_type in ['DiversityReport', 'CommonalityReport']:
-                questions = dict([[v,k] for k,v in vocab.long_diversity_questions.items()])
+                questions = dict([[v,k] for k,v in vocab.old_long_diversity_questions.items()])
                 questions.update(dict([[v,k] for k,v in vocab.long_questions.items()]))
                 # old labels before https://svn.eionet.europa.eu/projects/Zope/ticket/3685
                 questions.update(dict([[v,k] for k,v in vocab.old_long_questions.items()]))            
