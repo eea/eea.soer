@@ -49,6 +49,14 @@
 
   <browser:page
     for="*"
+    name="soerMigrationFaceted"
+    class=".setup.MigrationFaceted"
+    permission="cmf.ManagePortal"
+    allowed_attributes="reloadFacetedNavigation"
+  />
+
+  <browser:page
+    for="*"
     name="initSenseFeeds"
     class=".setup.SenseFeeds"
     permission="cmf.ManagePortal"

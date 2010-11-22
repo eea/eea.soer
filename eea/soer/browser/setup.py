@@ -3,6 +3,8 @@ import urllib2
 from Acquisition import aq_base, aq_inner
 from zope.interface import directlyProvides
 from zope.component import getUtility
+from zope.event import notify
+from zope.app.event.objectevent import ObjectModifiedEvent
 from Globals import package_home
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import log
@@ -54,7 +56,7 @@ class Countries(object):
             subtyper.change_type(folder, 'eea.facetednavigation.FolderFacetedNavigable')
 
             faceted = FacetedExportImport(folder, folder.REQUEST)
-            faceted.import_xml(import_file=facetedCountry.replace('<element value="se"/>','<element value="%s"/>' % country_code))
+            faceted.import_xml(import_file=facetedCountry.replace('<element value="se"/>','<element value="%s"/>' % country_code).replace(' name="se" ',' name="%s" ' % country_code))
     
 
 class Migration(object):
@@ -67,6 +69,8 @@ class Migration(object):
     def __call__(self):
         self.soerImagesAndLinks()
         self.recreateScales()
+        self.regenerateTitles()
+        self.removeOldCountryMaps()
         
     def soerImagesAndLinks(self):
         context = self.context
@@ -107,6 +111,45 @@ class Migration(object):
 
             if state is None: obj._p_deactivate()
 
+    def regenerateTitles(self):
+        context = self.context
+        cat = getToolByName(context, 'portal_catalog')
+        for b in cat(portal_type=['CommonalityReport','FlexibilityReport', 'DiversityReport']):
+            obj = b.getObject()
+            log.log("UPDATING title '%s'" % obj.Title())
+            notify( ObjectModifiedEvent(obj) )
+
+    def removeOldCountryMaps(self):
+        context = self.context
+        cat = getToolByName(context, 'portal_catalog')
+        for b in cat(portal_type='SOERCountry'):
+            obj = b.getObject()
+            mapid = '%s_map.png' % obj.getId()
+            if hasattr(obj, mapid):
+                log.log('Deleting old map %s for %s' %(mapid, obj.absolute_url()))
+                obj.manage_delObjects(ids=[mapid])
+
+class MigrationFaceted(object):
+    """ """
+    
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self):
+        self.reloadFacetedNavigation()
+        
+    def reloadFacetedNavigation(self):
+        """ reload faceted configuration for all countries """
+        subtyper = getUtility(ISubtyper)
+        for folder in self.context.getFolderContents(contentFilter={ 'portal_type' : 'SOERCountry'}, full_objects=True):
+            country_code = folder.getId()
+            subtyper.change_type(folder, 'eea.facetednavigation.FolderFacetedNavigable')
+            log.log('UPDATING facted configuration for %s' % folder.absolute_url())
+            faceted = FacetedExportImport(folder, folder.REQUEST)
+            faceted.import_xml(import_file=facetedCountry.replace('<element value="se"/>','<element value="%s"/>' % country_code).replace(' name="se" ',' name="%s" ' % country_code))
+
+        
 class SenseFeeds(object):
     """ setup sense feeds for countries and update them """
 
@@ -160,6 +203,7 @@ class SenseFeeds(object):
                          'http://sites.uba.de/SOER/dat/Flexibility.xml'], #Germany 
                  'at' : ['http://www.umweltbundesamt.at/rdf_eea'], #Austria
                  #'se' : ['http://www.naturvardsverket.se/en/In-English/Menu/GlobalMenu/Sense---RDF/'], #Sweden (unaccessible, password protected, they are working on it)
+                 'rs' : ['http://www.report.sepa.gov.rs/soer-2010-serbia/@@rdf'], #Serbia
                  } 
         for country_code, urls in feeds.items():
             if hasattr(aq_base(context), country_code):
