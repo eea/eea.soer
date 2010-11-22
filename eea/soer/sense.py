@@ -117,12 +117,15 @@ class Surf2SOERReport(object):
                 except:
                     log.log('Figure resource without information %s' % fig, severity=log.logging.WARN)
                     continue
-                
+                sortOrder = 0
+                if hasattr(fig, 'soer_sortOrder'):
+                    if fig.soer_sortOrder.first is not None:
+                        sortOrder = int(str(fig.soer_sortOrder.first))
                 result =  { 'url' : fig.subject.strip(),
                             'fileName' : fileName,
                             'caption' : str(fig.soer_caption.first),
                             'description' : str(fig.soer_description.first),
-                            'sortOrder' : hasattr(fig, 'soer_sortOrder') and int(fig.soer_sortOrder.first) or 0 }
+                            'sortOrder' :  sortOrder }
 
                 if fig.soer_mediaType.first is not None:
                     result['mediaType'] = fig.soer_mediaType.first.strip()
