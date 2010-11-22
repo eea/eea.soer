@@ -190,6 +190,7 @@ class SOERCountry(ATFolder):
                         dataLink = report[newId]                        
                         figure.setRelatedItems([dataLink])
                     figure.setLanguage(language)
+                    report.moveObjectToPosition(figure.getId(), fig['sortOrder'])
                     figure.reindexObject()
                 else:
                     log.log('FAILED: Figure is empty: %s' % fig['url'])
