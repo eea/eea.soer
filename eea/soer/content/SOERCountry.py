@@ -122,12 +122,15 @@ class SOERCountry(ATFolder):
 
         parentReport = None
         for nstory in soer.nationalStories():
-            questions = dict([[v,k] for k,v in vocab.long_diversity_questions.items()])
-            questions.update(dict([[v,k] for k,v in vocab.long_questions.items()]))
-            # old labels before https://svn.eionet.europa.eu/projects/Zope/ticket/3685
-            questions.update(dict([[v,k] for k,v in vocab.old_long_questions.items()]))            
-            question = questions.get(nstory.question, nstory.question)
-            original_url = nstory.subject.strip()
+            if nstory.portal_type in ['DiversityReport', 'CommonalityReport']:
+                questions = dict([[v,k] for k,v in vocab.long_diversity_questions.items()])
+                questions.update(dict([[v,k] for k,v in vocab.long_questions.items()]))
+                # old labels before https://svn.eionet.europa.eu/projects/Zope/ticket/3685
+                questions.update(dict([[v,k] for k,v in vocab.old_long_questions.items()]))            
+                question = questions.get(nstory.question, nstory.question)
+                original_url = nstory.subject.strip()
+            else:
+                question = nstory.question
             parentReport = reports.get((nstory.topic, nstory.question), None)
             if parentReport:
                 report = parentReport[parentReport.invokeFactory(nstory.portal_type, id='temp_report',
