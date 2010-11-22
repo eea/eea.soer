@@ -269,6 +269,13 @@ class SOERReport(ATFolder, ATNewsItem):
         parent = aq_inner(self).aq_parent
         return parent.portal_type == self.portal_type
 
+    def default_desc(self):
+        return ''
+    
+    def displayDescription(self):
+        return self.Description() != self.default_desc()
+
+
 def soerImageAdded(obj, event):
     if ISOERReport.providedBy(obj.aq_parent):
         directlyProvides(obj, ISoerFigure)
