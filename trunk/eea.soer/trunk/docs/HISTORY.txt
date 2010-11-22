@@ -1,7 +1,7 @@
 Changelog
 =========
-1.4-dev (unreleased)
---------------------
+1.4 - (2010-11-22)
+------------------
 * BUG FIX: changed call to getmap service to use another service projection for Europe 'Mercato (WM)', fixes #3634 [demarant]
 * Renamed "country introduction" to "country profile" #3875 [vincisas]
 * Diversity questions changed #3873 [vincisas]
