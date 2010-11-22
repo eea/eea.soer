@@ -42,4 +42,4 @@ class CountryView(object):
         mapImage = getattr(aq_base(self.context), '%s_map.png' % country_code, None)
         if mapImage is not None:
             return mapImage.absolute_url()
-        return u'http://discomap.eea.europa.eu/map/getmap/getMap.aspx?layers=0&c=0:ICC:%s:100,20,40&size=600,600&m=http://cow1/ArcGIS/services/Internal/EuroBoundaries_Dyna_WGS84/MapServer' % country_code.upper()
+        return u'http://discomap.eea.europa.eu/map/getmap/getMap.aspx?layers=0&c=0:ICC:%s:100,20,40&size=300,300&m=http://cow1/ArcGIS/services/Internal/EuroBoundaries_Dyna_WM/MapServer' % country_code.upper()
