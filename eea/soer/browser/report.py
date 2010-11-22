@@ -77,7 +77,7 @@ class ReportQuestionsByTopic(object):
     @property
     def topicTitle(self):
         if self.topic == 'country introduction':
-            return u'Country introduction'
+            return u'Country profile'
         vocab = getToolByName(self.context, 'portal_vocabularies')['eea.soer.vocab.topics']
         return vocab[self.topic].Title()
     
