@@ -62,7 +62,7 @@ be answered:
   ... }
   >>> report.processForm(values=form, data=1, metadata=1)
   >>> report.Title()
-  'Country introduction - Distinguishing factors (Sweden)'
+  'Country profile - Distinguishing factors (Sweden)'
   >>> report.Description()
   'SOER Country profile from Sweden'
   >>> report.getText()
