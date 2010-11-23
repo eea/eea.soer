@@ -24,7 +24,7 @@ class CountryView(object):
                              'portal_type' : 'DiversityReport',
                              'getSoerTopic' : 'country introduction' } )
             for report in  res:
-                obj = res[0].getObject()
+                obj = report.getObject()
                 if obj.getQuestion() == u'10':
                     text = obj.getText()
                     index = text.lower().find('</p>', 1000)
