@@ -30,6 +30,11 @@
     text-indent: 0;
 }
 
+.header {
+    float: right;
+    margin: 0 0 1em 0;
+}
+
 .header .portlet {
     vertical-align:baseline;
     position: relative;
