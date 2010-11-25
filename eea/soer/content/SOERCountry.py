@@ -78,6 +78,10 @@ class SOERCountry(ATFolder):
                 # acquisition problem to find the url expression script
                 # XXX: maybe we should disable invalidation all together during update? 
                 squidt.manage_setSquidSettings(squidt.getSquidURLs(), url_expression='')
+
+            if self.aq_parent:
+                self.aq_parent.manage_exportObject(id=self.getId())
+
             toDeleteIds = []
             catalog = getToolByName(self, 'portal_catalog')
             for b in catalog(path='/'.join(self.getPhysicalPath()),
