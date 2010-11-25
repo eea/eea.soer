@@ -1,0 +1,39 @@
+=============================
+eea.soer install instructions
+=============================
+
+The eea.soer product sets up a few content types using the default Plone 2.x/3.x
+content type system 'Archetypes'. This product is thus not designed to work
+with newer systems such as dexterity.
+
+Aside from Archetypes, only a thin product, eea.vocab, is required to get this
+product running on a basic Plone 2.5 installation (3.x has yet not been
+tested).
+
+ 1. Copy these lines to your src/EXTERNALS.txt file:
+   eea.soer https://svn.eionet.europa.eu/repositories/Zope/trunk/eea.soer
+   eea.vocab https://svn.eionet.europa.eu/repositories/Zope/trunk/eea.vocab
+
+ 2. Tell SVN to use these on your src folder by running the command:
+   svn ps svn:externals -F src/EXTERNALS.txt src
+
+ 3. Configure the appropriate buildout sections:
+   buildouteggs =
+       eea.soer
+       eea.vocab
+   developeggs =
+       src/eea.soer
+       src/eea.vocab
+   buildoutcommonzcml =
+       eea.soer
+       eea.vocab
+
+ 4. Rerun buildout and start the instance:
+   bin/buildout
+   bin/instance fg
+
+ 5. In the management interface, navigate to portal_quickinstaller, check
+    the boxes for eea.soer and eea.vocab and then press 'Install'.
+
+ 6. Using Plone CMS interface, you should now be able to create a folder and
+    start adding commonality/diversity/flexibility reports. Good Luck!
