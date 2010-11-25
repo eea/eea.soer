@@ -1,5 +1,8 @@
 Changelog
 =========
+1.6-dev (unreleased)
+--------------------
+
 1.5 - (2010-11-25)
 ------------------
 * BUG FIX: look at all country profiles to find the correct one #3887 [vincisas]
