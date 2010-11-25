@@ -14,7 +14,7 @@
  <property name="filter_content_types">False</property>
  <property name="allowed_content_types"/>
  <property name="allow_discussion">False</property>
- <property name="default_view">document_view</property>
+ <property name="default_view">keyfact_view</property>
  <property name="view_methods">
   <element value="document_view"/>
   <element value="document_mediatop_view"/>

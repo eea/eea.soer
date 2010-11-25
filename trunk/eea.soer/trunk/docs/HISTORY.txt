@@ -4,6 +4,7 @@ Changelog
 ---------------------
 * BUG FIX: look at all country profiles to find the correct one #3887 [vincisas]
 * fix figure thumbnail floating problem when more then 3 figures #3897 [vincisas]
+* automatic relation for key facts and key messages #3779 [vincisas]
 
 1.4 - (2010-11-22)
 ------------------
