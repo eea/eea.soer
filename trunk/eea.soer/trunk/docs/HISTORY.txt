@@ -2,6 +2,7 @@ Changelog
 =========
 1.6-dev (unreleased)
 --------------------
+* sort used geo coverage widget #3908 [vincisas]
 
 1.5 - (2010-11-25)
 ------------------
