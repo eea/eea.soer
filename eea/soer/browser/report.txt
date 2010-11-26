@@ -16,6 +16,8 @@ Lets load an RDF
   >>> store.load_triples(source=examplerdf)
   True
   >>> country.setRdfFeed(examplerdf)
+  >>> import transaction
+  >>> savepoint = transaction.savepoint()  
   >>> _ = country.updateFromFeed()
 
   >>> request = country.REQUEST
