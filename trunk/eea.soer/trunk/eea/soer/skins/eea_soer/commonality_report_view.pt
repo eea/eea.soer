@@ -173,7 +173,8 @@
              <a tal:attributes="
 	        href source|listing_url;
 		class python:test(is_video, 'thickbox', 'fancybox');
-		title python:desc_or_title">
+		title python:desc_or_title"
+		tal:omit-tag="not: dataSources">
 	      <span class="photoAlbumEntryWrapper">
 	        <img class="imagesource-box" src="tag_green_right.png" tal:condition="dataSources|source|nothing"
           	      tal:attributes="src python:'%s/tag_green_right.png' % portal_url" alt="Source" />
