@@ -191,6 +191,10 @@ class UsedGeoCoverage(object):
                 result.append(SimpleTerm(geo,
                                          token=token,
                                          title=title))
+        def attrgetter(obj):
+            return obj.title
+        result = sorted(result, key=attrgetter)
+
         return SimpleVocabulary(result)
 
 UsedGeoCoverageFactory = UsedGeoCoverage()
