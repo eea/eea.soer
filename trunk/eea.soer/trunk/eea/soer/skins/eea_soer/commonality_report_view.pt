@@ -146,7 +146,7 @@
 	source python:'#imagesourc%s' % obj.UID();
 	dataSources obj/getRelatedItems">
       <div class="hiddenStructure">
-        <div id="" tal:condition="dataSources|nothing" 
+        <div id=""
 	     tal:attributes="id python:source[1:]">
              <h3 tal:content="obj_title">Image title</h3>
 	     <div class="documentDescription"
@@ -157,6 +157,7 @@
 		           tal:attributes="href dataSrc/getRemoteUrl"
                            tal:content="dataSrc/getRemoteUrl">pm10_04-08eng.xls</a></dd>
 		  </dl>
+             <div tal:condition="not: dataSources"><p><strong>Data source</strong><br/>This figure has no data source. For further assistant contact <a href="http://www.eea.europa.eu/enquiries" title="Request data source">EEA enquiry service</a>.</p></div>
              <img class="image-inline captioned" src="" alt="Figure caption"
 	     tal:attributes="src string:${obj/absolute_url}/image_large;
                              alt obj_title"/> <br clear="all" />
@@ -173,8 +174,7 @@
              <a tal:attributes="
 	        href source|listing_url;
 		class python:test(is_video, 'thickbox', 'fancybox');
-		title python:desc_or_title"
-		tal:omit-tag="not: dataSources">
+		title python:desc_or_title">
 	      <span class="photoAlbumEntryWrapper">
 	        <img class="imagesource-box" src="tag_green_right.png" tal:condition="dataSources|source|nothing"
           	      tal:attributes="src python:'%s/tag_green_right.png' % portal_url" alt="Source" />
