@@ -157,7 +157,7 @@
 		           tal:attributes="href dataSrc/getRemoteUrl"
                            tal:content="dataSrc/getRemoteUrl">pm10_04-08eng.xls</a></dd>
 		  </dl>
-             <div tal:condition="not: dataSources"><p><strong>Data source</strong><br/>This figure has no data source. For further assistant contact <a href="http://www.eea.europa.eu/enquiries" title="Request data source">EEA enquiry service</a>.</p></div>
+             <div tal:condition="not: dataSources"><p><strong>Data source</strong><br/>This figure has no data source. For further information contact <a href="http://www.eea.europa.eu/enquiries" title="Request data source">EEA enquiry service</a>.</p></div>
              <img class="image-inline captioned" src="" alt="Figure caption"
 	     tal:attributes="src string:${obj/absolute_url}/image_large;
                              alt obj_title"/> <br clear="all" />
