@@ -15,7 +15,7 @@
 	   <tal:report  tal:define="report brain/getObject;
 				    mainreport nocall:report;
 				    isFirstReport repeat/brain/start;">
-             <h2 tal:content="python: 'Question: %s' % report.getLongSoerQuestion()"></h2>
+             <h2 tal:content="report/getLongSoerQuestion"></h2>
 	     <metal:reportContent  use-macro="report/commonality_report_view/macros/isFromFeed" />
 	     <metal:reportContent  use-macro="report/commonality_report_view/macros/reportContent" />
 	     <tal:subreport  tal:repeat="report mainreport/subReports">

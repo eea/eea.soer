@@ -4,6 +4,7 @@ Changelog
 --------------------
 * sort used geo coverage widget #3908 [vincisas]
 * show figure overlay/popus with link to enquiry service for the one with missing data sources #3928 [vincisas]
+* 'Question:' removed from titles in soertopic_view #3938 [vincisas]
 
 1.5 - (2010-11-25)
 ------------------
