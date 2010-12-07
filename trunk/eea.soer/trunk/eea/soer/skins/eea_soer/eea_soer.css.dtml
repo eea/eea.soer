@@ -2,7 +2,7 @@
 /* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
 
 .photoAlbumEntry,
-.header .portletHeader {
+.soerHeader .portletHeader {
     position: relative;
     padding: 5px 0;
 }
@@ -30,12 +30,12 @@
     text-indent: 0;
 }
 
-.header {
+.soerHeader {
     float: right;
     margin: 0 0 1em 0;
 }
 
-.header .portlet {
+.soerHeader .portlet {
     vertical-align:baseline;
     position: relative;
     overflow: hidden; 
@@ -45,15 +45,15 @@
     margin: 0 0 10px 10px; 
 }
 
-.header .body {
+.soerHeader .body {
     padding: 10px;
 }
 
-.header #channel-portlet img {
+.soerHeader #channel-portlet img {
     width: 200px;
 }
 
-.header .topicmenu li {
+.soerHeader .topicmenu li {
     float: left;
     padding-right: 1em;
 }
