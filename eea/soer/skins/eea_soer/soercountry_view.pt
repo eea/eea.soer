@@ -17,7 +17,7 @@
             Title or id
         </h1>
 
-	  <div class="header">
+	  <div class="soerHeader">
 	    <dl id="channel-portlet" class="portlet" metal:define-macro="channel"
 	        tal:define="channel channel|nothing"
 		tal:condition="channel">
