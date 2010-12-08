@@ -27,7 +27,7 @@
 			      view report/@@soerReportView;
 			      isFirstReport isFirstReport|python:True;
 			      topics view/getTopics|nothing;">
-	  <div class="header">
+	  <div class="soerHeader">
 	    <dl id="themes-portlet" class="portlet" tal:condition="python: topics and isFirstReport">
 	      <dt class="portletHeader">	
 	        Topic</dt>
@@ -200,7 +200,7 @@
         <div class="visualClear"></div>
 </tal:figures>
 
-       <div class="header">
+       <div class="soerHeader">
 	    <tal:datasources tal:define="folderContents report/dataSources;"
 			     tal:condition="folderContents">
 	      <tal:entry tal:define="source python:'#datasources%s' % report.UID()">
