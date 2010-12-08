@@ -99,7 +99,8 @@
                  Quisque pharetra mattis erat sed bibendum. Nam quam tellus, interdum eu mollis a, porttitor sit amet ipsum.</p>
  		  <a href="soertopic_view?topic=country introduction" style="float:right;display:block;" class="moreLink">read more</a><br/>
             </div>
-
+            
+	    <div class="visualClear"></div>
     	    <h3>Browse by topic</h3>
 	    <ul class="topicmenu">
 	      <li><a href="soertopic_view?topic=air pollution" title="Reports about Air pollution">Air pollution</a></li>
@@ -109,6 +110,8 @@
 	      <li><a href="soertopic_view?topic=freshwater" title="Reports about Freshwater">Freshwater</a></li>
 	      <li><a href="soertopic_view?topic=waste" title="Reports about Waste">Waste</a></li>
             </ul>
+            <div class="visualClear"></div>
+    	    <h3>Search</h3>
 	  </div>
 	</metal:top-macro>
         <div class="visualClear"></div>
