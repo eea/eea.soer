@@ -158,3 +158,12 @@ Lets add two more feeds to the country folder and update from them too.
   'What are the state (S) and impacts (I) related to this theme, including impacts on the natural environment and human health/human well-being, both at national level as well as in transboundary terms?'
   >>> country['national-and-regional-story-norway'].portal_type
   'FlexibilityReport'  
+
+Lets load the example rdf with updated modify date for some national stories.
+
+  >>> from eea.soer.config import updatedrdf  
+  >>> country.setRdfFeed(updatedrdf)
+  >>> country.updateFromFeed()
+  >>> len(country.objectIds())
+  9
+

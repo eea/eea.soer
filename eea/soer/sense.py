@@ -9,6 +9,7 @@ from eea.soer.content.interfaces import ISOERReport
 from DateTime import DateTime
 from Products.Archetypes import interfaces as atinterfaces
 from Products.CMFPlone import log
+import logging
 
 def getSingleValue(value, language=u"en"):
     for v in value:
@@ -165,9 +166,14 @@ class SoerRDF2Surf(object):
     
     def __init__(self, url):
         self.store = surf.Store(reader='rdflib',  writer='rdflib', rdflib_store = 'IOMemory')
+        self.store.log.setLevel(logging.CRITICAL)
+        self.store.writer.log.setLevel(logging.CRITICAL)
         self.session = surf.Session(self.store, mapping={surf.ns.SOER.NationalStory : NationalStory} )
-        self.store.load_triples(source=url)        
+        self.loadUrl(url)
 
+    def loadUrl(self, url):
+        self.store.load_triples(source=url)
+        
     def channel(self):
         channel = self.session.get_class(surf.ns.SOER['Channel']).all()
         if not channel:
@@ -187,6 +193,10 @@ class SoerRDF2Surf(object):
         for nstory in NationalStory.all().order():
             yield ISOERReport(nstory)
 
+    def nationalStory(self, subject):
+        NationalStory = self.session.get_class(surf.ns.SOER['NationalStory'])
+        return self.session.get_resource(subject, NationalStory)
+    
     nsFormating = "\n%s\n%20s %6s %9s %5s %7s %8s %8s %10s %6s %5s\n"
     figFormating = "%s\n%20s %6s %9s %5s %7s\n"
     def status(self):

@@ -14,6 +14,7 @@ PROJECTNAME = "eea.soer"
 
 soerrdf = 'file://%s' % os.path.join(package_home(globals()), 'tests/soerfeed.rdf')
 examplerdf = 'file://%s' % os.path.join(package_home(globals()), 'tests/multiexample.rdf')
+updatedrdf = 'file://%s' % os.path.join(package_home(globals()), 'tests/multiexampleupdated.rdf')
 evalrdf = 'file://%s' % os.path.join(package_home(globals()), 'tests/evaluations.rdf')
 nutsrdf = 'file://%s' % os.path.join(package_home(globals()), 'tests/nuts.rdf')
 # http://rod.eionet.europa.eu/spatial
