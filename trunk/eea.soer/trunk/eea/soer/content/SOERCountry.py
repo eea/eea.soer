@@ -7,6 +7,7 @@ import surf
 import urllib2 
 from BeautifulSoup import BeautifulSoup
 from AccessControl import ClassSecurityInfo
+from DateTime import DateTime
 from Products.CMFCore.utils import getToolByName
 from Products.ATContentTypes.content.folder import ATFolder
 from eea.soer.content.interfaces import IReportingCountry
@@ -20,6 +21,11 @@ except ImportError:
     # No multilingual support
     from Products.Archetypes.public import *
 from Products.CMFPlone import log
+
+try:
+    import tidy
+except:
+ tidy = None
 
 
 schema = Schema((
@@ -42,6 +48,22 @@ schema = Schema((
 
 schema = getattr(ATFolder, 'schema', Schema(())).copy() + schema.copy()
 schema['relatedItems'].widget.visible =  {'edit' : 'visible'}
+
+def tidyUp(value):
+    if tidy:
+        if isinstance(value, UnicodeType):
+            value = value.encode('utf8')
+
+        parsed = tidy.parseString(
+                        str(value), drop_empty_paras=1, indent_spaces=1, #indent="auto",
+                        output_xhtml=1, word_2000=1, wrap=72, input_xml=0, tab_size=4,
+                        show_body_only=True,
+                        output_encoding='utf8',
+                        input_encoding='utf8')
+    else:
+        return value
+
+    return str(parsed)
 
 class SOERCountry(ATFolder):
     """ """
@@ -82,50 +104,46 @@ class SOERCountry(ATFolder):
             if self.aq_parent:
                 self.aq_parent.manage_exportObject(id=self.getId())
 
-            toDeleteIds = []
-            catalog = getToolByName(self, 'portal_catalog')
-            for b in catalog(path='/'.join(self.getPhysicalPath()),
-                         portal_type=['CommonalityReport', 'DiversityReport','FlexibilityReport']):
-                if b.getId in self.objectIds() and b.getId not in toDeleteIds:
-                    toDeleteIds.append(b.getId)
-            log.log('Deleting %s' % toDeleteIds)
-            self.manage_delObjects(ids=toDeleteIds)
-        
-            self._updateFromFeed(url)
+            soer = sense.SoerRDF2Surf(url)
             for link in self.contentValues(filter={ 'portal_type' :'Link'}):
                 url = link.getRemoteUrl()
                 if url:
-                    log.log('Updating from extra feed %s' % url)
-                    self._updateFromFeed(url)
+                    soer.loadUrl(url)
+            self._updateFromFeed(soer)
             if squidt is not None:
                 # restore the url expression 
                 squidt.manage_setSquidSettings(squidt.getSquidURLs(), url_expression=urlexpr)
             
-    def _updateFromFeed(self, url):
-        log.log('Feed has changed, updating')
+    def _updateFromFeed(self, soer):
         language = self.Language() or 'en'
         self._v_feedUpdating = True
         reports = {}
-        soer = sense.SoerRDF2Surf(url)
+
         self.channel = channel = soer.channel()
         wtool = getToolByName(self, 'portal_workflow')
-        
+
+        def publishIfPossible(obj, action='publish'):
+                actions = [a['id'] for a in wtool.getActionsFor(obj)]
+                if action in actions:
+                    wtool.doActionFor(obj, action, comment='Automatic feed update')                    
+
         if channel and channel.get('organisationLogoURL',None):
-            image = urllib2.urlopen(channel['organisationLogoURL'])
-            image_data = image.read()
+            try:
+                image = urllib2.urlopen(channel['organisationLogoURL'])
+                image_data = image.read()
+            except:
+                image_data = None
             if image_data:
                 if not hasattr(self, 'logo'):
                     logo = self[self.invokeFactory('Image', id='logo',
                                                    image=image_data)]
-                    if 'publish' in wtool.getActionsFor(logo):
-                        wtool.doActionFor(logo, 'publish', comment='Automatic feed update')
+                    publishIfPossible(logo)
                 else:
                     logo = self['logo']
                     logo.setImage(image_data)
 
-
-        parentReport = None
-        for nstory in soer.nationalStories():
+        def updateReport(nstory, report=None):                
+            parentReport = None
             if nstory.portal_type in ['DiversityReport', 'CommonalityReport']:
                 questions = dict([[v,k] for k,v in vocab.old_long_diversity_questions.items()])
                 questions.update(dict([[v,k] for k,v in vocab.long_questions.items()]))
@@ -135,19 +153,20 @@ class SOERCountry(ATFolder):
                 original_url = nstory.subject.strip()
             else:
                 question = nstory.question
-            parentReport = reports.get((nstory.topic, nstory.question), None)
-            if parentReport:
-                report = parentReport[parentReport.invokeFactory(nstory.portal_type, id='temp_report',
-                                                                 topic=nstory.topic,
-                                                                 question=question)]
+            if report is None:
+                parentReport = reports.get((nstory.topic, nstory.question), None)
+                if parentReport:
+                    report = parentReport[parentReport.invokeFactory(nstory.portal_type, id='temp_report',
+                                                                     topic=nstory.topic,
+                                                                     question=question)]
 
-            else:
-                report = self[self.invokeFactory(nstory.portal_type, id='temp_report',
-                                                 topic=nstory.topic,
-                                                 question=question)]
+                else:
+                    report = self[self.invokeFactory(nstory.portal_type, id='temp_report',
+                                                     topic=nstory.topic,
+                                                     question=question)]
             report.setLanguage(language)
             report.setDescription(nstory.description)
-            report.setKeyMessage(nstory.keyMessage)
+            report.setKeyMessage(tidyUp(nstory.keyMessage))
             report.setGeoCoverage(nstory.geoCoverage)
             report.setSubject(nstory.keyword)
             report.setEvaluation(nstory.evaluation)
@@ -162,7 +181,7 @@ class SOERCountry(ATFolder):
                 else:
                     parentReport.moveObjectsToTop(ids=[newId])
 
-            assessment = nstory.assessment
+            assessment = tidyUp(nstory.assessment)
             for fig in nstory.hasFigure():
                 log.log('Fetching Figure: %s' % fig['url'])
                 # read figure
@@ -182,8 +201,7 @@ class SOERCountry(ATFolder):
                     figure.setDescription(fig['description'])
                     newId = figure._renameAfterCreation(check_auto_id=False)
                     figure = report[newId]
-                    if 'publish' in wtool.getActionsFor(figure):
-                        wtool.doActionFor(figure, 'publish', comment='Automatic feed update')
+                    publishIfPossible(figure)
 
                     if fig['url'] in assessment.decode('utf8'):
                         assessment = assessment.replace(fig['url'].encode('utf8'), 'resolveuid/%s' % figure.UID())
@@ -196,6 +214,8 @@ class SOERCountry(ATFolder):
                         newId = dataLink._renameAfterCreation(check_auto_id=False)
                         dataLink = report[newId]                        
                         figure.setRelatedItems([dataLink])
+                        publishIfPossible(dataLink)
+                        
                     figure.setLanguage(language)
                     report.moveObjectToPosition(figure.getId(), fig['sortOrder'])
                     figure.reindexObject()
@@ -220,15 +240,27 @@ class SOERCountry(ATFolder):
                                                              remoteUrl=indicatorUrl,
                                                              title=title)]
 
-                if 'publish' in wtool.getActionsFor(indicator):
-                    wtool.doActionFor(indicator, 'publish', comment='Automatic feed update')
+                publishIfPossible(indicator)
 
             report.setText(assessment, format='text/html')
             report.setEffectiveDate(nstory.pubDate)
-            if 'publish' in wtool.getActionsFor(report):
-                wtool.doActionFor(report, 'publish', comment='Automatic feed update')
+            publishIfPossible(report)
             report.original_url = nstory.subject.strip()
+            report.setModificationDate(nstory.modified)
             report.reindexObject()
+            report.setModificationDate(nstory.modified)
+
+        # find old reports, update them or remove them
+        catalog = getToolByName(self, 'portal_catalog')
+        toDeleteIds = [b.getId for b in catalog(path={'query' : '/'.join(self.getPhysicalPath()),
+                               'depth' : 1},
+                              portal_type=['CommonalityReport', 'DiversityReport','FlexibilityReport'])]
+        if toDeleteIds:
+            self.manage_delObjects(ids=toDeleteIds)
+        # update the rest which should be all new reports
+        for nstory in soer.nationalStories():
+            updateReport(nstory)
+            
         self._v_feedUpdating = False
         
 def soerCountryUpdated(obj, event):
