@@ -175,12 +175,16 @@ class SenseFeeds(object):
                          'http://www.epa.ie/environmentinfocus/socio-economic/irishsustainabledevelopmentmodel/index.rdf'], #Ireland
                  'no' : ['http://www.miljostatus.no/rdf'], #Norway
                  'ro' : ['http://www.anpm.ro/soerstories/rdf'], #Romania
-                 'si' : ['http://www.arso.gov.si/en/soer/alps.rdf',
-                         #'http://www.arso.gov.si/en/soer/biodiversity.rdf',
-                         #'http://www.arso.gov.si/en/soer/bear%20story.rdf',
-                         #'http://www.arso.gov.si/en/soer/country%20introduction.rdf',
-                         #'http://www.arso.gov.si/en/soer/land.rdf'
-                         ], #Slovenia (alps worsk, rest broken)
+                 'si' : ['http://www.arso.gov.si/en/soer/air_pollution.rdf',
+                         'http://www.arso.gov.si/en/soer/alps.rdf',
+                         'http://www.arso.gov.si/en/soer/bear_story.rdf',
+                         'http://www.arso.gov.si/en/soer/biodiversity.rdf',
+                         'http://www.arso.gov.si/en/soer/climate_change.rdf',
+                         'http://www.arso.gov.si/en/soer/country_introduction.rdf',
+                         'http://www.arso.gov.si/en/soer/freshwater.rdf',
+                         'http://www.arso.gov.si/en/soer/land.rdf',
+                         'http://www.arso.gov.si/en/soer/waste.rdf'
+                                                  ], #Slovenia (alps worsk, rest broken)
                  'it' : ['http://www.sense.sinanet.isprambiente.it/Plone/air-pollution/@@rdf',
                          'http://www.sense.sinanet.isprambiente.it/Plone/climate-change/@@rdf',
                          'http://www.sense.sinanet.isprambiente.it/Plone/waste/@@rdf',
@@ -191,20 +195,21 @@ class SenseFeeds(object):
                          'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-alps/@@rdf',
                          'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-local-authorities/@@rdf',
                          'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-organic-farming/@@rdf',
-                         'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-white-certificates/@@rdf'], #Italy
-                 #'cz' : ['http://issar.cenia.cz/issar/add/CZ_SOER.rdf'], #Chech Republic (questins don't follow specification)
-                 'de' : ['http://sites.uba.de/SOER/dat/Diversity.xml',
-                         'http://sites.uba.de/SOER/dat/Air-pollution.xml',
-                         'http://sites.uba.de/SOER/dat/Freshwater.xml',
-                         'http://sites.uba.de/SOER/dat/Climate-change.xml',
-                         'http://sites.uba.de/SOER/dat/Land.xml',
-                         'http://sites.uba.de/SOER/dat/Waste.xml',
-                         'http://sites.uba.de/SOER/dat/Biodiversity.xml',
-                         'http://sites.uba.de/SOER/dat/Flexibility.xml'], #Germany 
+                         'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-white-certificates/@@rdf'
+                         ], #Italy
+                 'cz' : ['http://issar.cenia.cz/issar/add/CZ_SOER.rdf'], #Chech Republic (questins don't follow specification)
+                 'de' : ['http://sites.uba.de/SOER/frm/Diversity.xml',
+                         'http://sites.uba.de/SOER/frm/Air-pollution.xml',
+                         'http://sites.uba.de/SOER/frm/Freshwater.xml',
+                         'http://sites.uba.de/SOER/frm/Climate-change.xml',
+                         'http://sites.uba.de/SOER/frm/Land.xml',
+                         'http://sites.uba.de/SOER/frm/Waste.xml',
+                         'http://sites.uba.de/SOER/frm/Biodiversity.xml',
+                         'http://sites.uba.de/SOER/frm/Flexibility.xml'], #Germany (waiting for feeds)
                  'at' : ['http://www.umweltbundesamt.at/rdf_eea'], #Austria
-                 #'se' : ['http://www.naturvardsverket.se/en/In-English/Menu/GlobalMenu/Sense---RDF/'], #Sweden (unaccessible, password protected, they are working on it)
+                 'se' : ['http://www.naturvardsverket.se/en/In-English/Menu/GlobalMenu/Sense---RDF'], #Sweden (unaccessible, password protected, they are working on it)
                  'rs' : ['http://www.report.sepa.gov.rs/soer-2010-serbia/@@rdf'], #Serbia
-                 } 
+                                  }
         for country_code, urls in feeds.items():
             if hasattr(aq_base(context), country_code):
                 log.log("SENSE setup of '%s'" % country_code)
