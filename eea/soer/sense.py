@@ -178,8 +178,8 @@ class SoerRDF2Surf(object):
         channel = self.session.get_class(surf.ns.SOER['Channel']).all()
         if not channel:
             channel = self.session.get_class(surf.ns.SOER['channel']).all()
-        if channel:
-            channel = channel.one()
+        if channel and channel.first():
+            channel = channel.first()
             result ={'organisationName' : getSingleValue(channel.soer_organisationName),
                       'organisationURL'  : getSingleValue(channel.soer_organisationURL),
                       'organisationContactURL'  : getSingleValue(channel.soer_organisationContactURL),
