@@ -3,6 +3,7 @@ Changelog
 
 1.7-dev - (unreleased)
 ----------------------
+* fixed listing of topics, the bullet was overlapping with items, bigger size to enphasize it. [demarant]
 * explicit css class since it broke Austrias table layout [vincisas]
 
 1.6 - (2010-12-06)
