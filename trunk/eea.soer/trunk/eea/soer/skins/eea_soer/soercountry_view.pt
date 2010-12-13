@@ -101,7 +101,7 @@
 
             <div tal:condition="nocall:intro"><p tal:content="structure intro/text">Proin orci lacus, vestibulum porta interdum ac, rutrum a leo. Morbi adipiscing tortor nec erat rhoncus feugiat. Pellentesque quis neque et nunc ultricies rutrum. Etiam lacus leo, luctus ut egestas id, suscipit vitae mauris. Integer fringilla diam ac turpis semper fringilla id id dui. Proin eget suscipit est. Donec imperdiet eros ac sem tristique sodales.
                  Quisque pharetra mattis erat sed bibendum. Nam quam tellus, interdum eu mollis a, porttitor sit amet ipsum.</p>
- 		 <p><a href="soertopic_view?topic=country introduction" style="display:block;" class="moreLink">Country profile: read more</a></p>
+ 		 <p><a href="soertopic_view?topic=country introduction" class="moreLink">Country profile: read more</a></p>
             </div>
             
 	    <div class="visualClear"></div>
