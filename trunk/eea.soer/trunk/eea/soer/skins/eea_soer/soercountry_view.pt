@@ -6,16 +6,20 @@
 <body>
 
     <div metal:fill-slot="main">
+    <h1 tal:content="context/title|nothing" class="documentFirstHeading">
+            Title or id
+    </h1>
+
     <metal:main-macro define-macro="main">
         <div class="visualClear"></div>
 	<metal:top-macro define-macro="topinfo"
                       tal:define="view context/@@soerCountryView;
                                   intro view/countryIntroduction;
  				  channel view/channel;">
-        <h1 tal:content="intro/title|nothing" class="documentFirstHeading"
+        <h2 tal:content="intro/title|nothing"
             tal:condition="intro">
             Title or id
-        </h1>
+        </h2>
 
 	  <div class="soerHeader">
 	    <dl id="channel-portlet" class="portlet" metal:define-macro="channel"
