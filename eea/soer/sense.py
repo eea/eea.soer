@@ -94,18 +94,21 @@ class Surf2SOERReport(object):
         sortOrder = context.soer_sortOrder.first
         if sortOrder is not None:
             setattr(self, 'sortOrder', sortOrder.strip())
-        self.topic = self.topic.lower()
+        self.topic = self.topic.decode('utf8')
         
     @property
     def portal_type(self):
         portal_type = 'FlexibilityReport'
-        if self.topic == 'country introduction':
-            portal_type = 'DiversityReport'                                            
-        elif self.topic.decode('utf8') in vocab.long_topics.keys():
+        topic = self.topic.lower()
+        if topic == 'country introduction':
+            portal_type = 'DiversityReport'
+        elif topic in vocab.long_topics.keys():
             if self.question.decode('utf8') in vocab.long_questions.values() + vocab.old_long_questions.values():
                 portal_type = 'CommonalityReport'
             elif self.question.decode('utf8') in vocab.long_diversity_questions.values() + vocab.old_long_diversity_questions.values():
                 portal_type = 'DiversityReport'
+        if portal_type != 'FlexibilityReport':
+            self.topic = topic
         return portal_type
 
     def hasFigure(self):
