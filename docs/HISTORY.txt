@@ -7,6 +7,7 @@ Changelog
 * bug fix: better h1/h2 headings. country name was not shown sometimes. country name as title needed for country first page, refs #3971. [demarant]
 * bug fix: listing of topics, the bullet was overlapping with items, bigger size to enphasize it. [demarant]
 * explicit css class since it broke Austrias table layout [vincisas]
+* we don't need country id since we use path in soertopic view, fixes #3979 [vincisas]
 
 1.6 - (2010-12-06)
 ------------------
