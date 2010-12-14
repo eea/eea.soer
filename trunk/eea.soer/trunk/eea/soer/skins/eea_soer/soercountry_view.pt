@@ -86,7 +86,7 @@
                   tal:attributes="src view/getMapUrl" /></dd>
 	    </dl>
 
-            <div class="documentDescription" tal:content="context/Description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pharetra sodales ligula sed elementum. Suspendisse et egestas est.</div>
+
 	    
               <div metal:use-macro="here/document_relateditems/macros/multimedia">
 		show related multimedia items if they exist
@@ -97,7 +97,8 @@
               <div metal:use-macro="here/document_relateditems/macros/auto">
 		show auto related items if they exist
               </div>
-
+	  </div>
+            <div class="documentDescription" tal:content="context/Description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pharetra sodales ligula sed elementum. Suspendisse et egestas est.</div>
 
             <div tal:condition="nocall:intro"><p tal:content="structure intro/text">Proin orci lacus, vestibulum porta interdum ac, rutrum a leo. Morbi adipiscing tortor nec erat rhoncus feugiat. Pellentesque quis neque et nunc ultricies rutrum. Etiam lacus leo, luctus ut egestas id, suscipit vitae mauris. Integer fringilla diam ac turpis semper fringilla id id dui. Proin eget suscipit est. Donec imperdiet eros ac sem tristique sodales.
                  Quisque pharetra mattis erat sed bibendum. Nam quam tellus, interdum eu mollis a, porttitor sit amet ipsum.</p>
@@ -116,7 +117,7 @@
             </ul>
             <div class="visualClear"></div>
     	    <h3>Search</h3>
-	  </div>
+
 	</metal:top-macro>
         <div class="visualClear"></div>
 
