@@ -87,7 +87,6 @@ class ReportQuestionsByTopic(object):
         context = self.context
         catalog = getToolByName(context, 'portal_catalog')
         query = {'portal_type' : ['DiversityReport', 'CommonalityReport'],
-                 'getSoerCountry' : context.getId(),
                  'getSoerTopic' : self.topic,
                  'sort_on' : 'getSoerQuestion',
                  'path' : { 'query' : '/'.join(context.getPhysicalPath()),
