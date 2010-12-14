@@ -1,5 +1,7 @@
 import os
 import urllib2
+import logging
+import transaction
 from Acquisition import aq_base, aq_inner
 from zope.interface import directlyProvides
 from zope.component import getUtility
@@ -8,6 +10,7 @@ from zope.app.event.objectevent import ObjectModifiedEvent
 from Globals import package_home
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import log
+from StringIO import StringIO
 
 from eea.soer.config import GLOBALS
 from eea.soer.content.interfaces import ISoerFigure, ISoerDataFile
@@ -236,3 +239,57 @@ class SenseFeeds(object):
                 log.log("SENSE setup did NOT find '%s' no feeds were setup." % country_code)
                 
                         
+
+class FeedUpdater(object):
+    """ update all feeds or the choosen one if they have a feed set """
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self):
+        """ Call /soer/@@senseFeedUpdate?country=se to just update selected
+            country, Sweden. The user who calls this script needs to be able to
+            delete/create and publish content in /soer section."""
+        context = self.context
+        query = { 'portal_type' :'SOERCountry' }
+        country = self.request.get('country',None)
+        if country is None:
+            return 'provide countries or update=all to update all countries'
+        query['getId'] = country
+        cat = getToolByName(context, 'portal_catalog')
+        out = []
+	kwargs = {'Importance': 'Normal',
+		  'X-MSMail-Priority': 'Normal',
+		  'X-Priority': '3',
+		  'Priority': 'normal'}
+        subject = 'SENSE Feed update (OK)'
+        error = None
+        for b in cat(query):
+            obj = b.getObject()
+            if obj.getRdfFeed():
+                try:
+                    obj.updateFromFeed()
+                    out.append({'country' : b.Title,
+                                'url' : b.getURL(),
+                                'feed' : obj.getRdfFeed(),
+                                'status' : 'OK' })
+                except Exception, e:
+                    # something went wrong, mark email important
+                    out.append({'country' : b.Title,
+                                'url' : b.getURL(),
+                                'feed' : obj.getRdfFeed(),
+                                'status' : 'FAILED' })
+                    kwargs['Importance'] = 'High'
+                    kwargs['X-MSMail-Priority'] = 'High'
+                    kwargs['X-Priority'] = '1 (Highest)'
+                    kwargs['Priority'] = 'urgent'
+                    subject = 'SENSE Feed update (FAILED)'
+                    error = e
+                    
+        msg = obj.unrestrictedTraverse('mail_feed_update')
+        msg = msg(status=out)
+        if error:
+            import pdb; pdb.set_trace()
+            raise e
+        return msg
