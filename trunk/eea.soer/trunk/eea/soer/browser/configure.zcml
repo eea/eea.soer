@@ -57,6 +57,13 @@
 
   <browser:page
     for="*"
+    name="senseFeedUpdate"
+    class=".setup.FeedUpdater"
+    permission="cmf.ManagePortal"
+  />
+
+  <browser:page
+    for="*"
     name="initSenseFeeds"
     class=".setup.SenseFeeds"
     permission="cmf.ManagePortal"
