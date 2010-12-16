@@ -247,13 +247,13 @@ class FeedUpdater(object):
         self.context = context
         self.request = request
 
-    def __call__(self):
+    def __call__(self, country=None):
         """ Call /soer/@@senseFeedUpdate?country=se to just update selected
             country, Sweden. The user who calls this script needs to be able to
             delete/create and publish content in /soer section."""
         context = self.context
         query = { 'portal_type' :'SOERCountry' }
-        country = self.request.get('country',None)
+        country = self.request.get('country', country)
         if country is None:
             return 'provide countries or update=all to update all countries'
         query['getId'] = country
@@ -268,28 +268,12 @@ class FeedUpdater(object):
         for b in cat(query):
             obj = b.getObject()
             if obj.getRdfFeed():
-                try:
                     obj.updateFromFeed()
                     out.append({'country' : b.Title,
                                 'url' : b.getURL(),
                                 'feed' : obj.getRdfFeed(),
                                 'status' : 'OK' })
-                except Exception, e:
-                    # something went wrong, mark email important
-                    out.append({'country' : b.Title,
-                                'url' : b.getURL(),
-                                'feed' : obj.getRdfFeed(),
-                                'status' : 'FAILED' })
-                    kwargs['Importance'] = 'High'
-                    kwargs['X-MSMail-Priority'] = 'High'
-                    kwargs['X-Priority'] = '1 (Highest)'
-                    kwargs['Priority'] = 'urgent'
-                    subject = 'SENSE Feed update (FAILED)'
-                    error = e
-                    
-        msg = obj.unrestrictedTraverse('mail_feed_update')
+        msg = context.unrestrictedTraverse('mail_feed_update')
         msg = msg(status=out)
-        if error:
-            import pdb; pdb.set_trace()
-            raise e
+
         return msg

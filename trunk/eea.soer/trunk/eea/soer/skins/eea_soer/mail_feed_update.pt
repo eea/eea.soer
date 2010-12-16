@@ -1,0 +1,14 @@
+<html>
+<body>
+<p><strong>SENSE feed update</strong></p>
+<dl>
+<tal:feeds repeat="item options/status">
+<dt><tal:country content="item/country"></tal:country>(<tal:status tal:content="item/status"></tal:status>)</dt>
+<dd><a href="" tal:attributes="href item/url">Link to country</a></dd>
+</tal:feeds>
+</dl>
+
+<p>Regards<br />
+EEA Web Team</p>
+</body>
+</html>
