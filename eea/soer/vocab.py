@@ -151,6 +151,10 @@ class NUTSRegions(object):
 
 NUTSVocabularyFactory = NUTSRegions()
 
+regions = {'alpine' : u'Alpine',
+           'carpathian' : u'Carpathian',
+           'baltic' : u'Baltic' }
+
 class UsedGeoCoverage(object):
     """ Only used regions """
     
@@ -187,6 +191,10 @@ class UsedGeoCoverage(object):
                 res = geosession.get_resource(geo, Locality)
                 token=u'rod_%s' % res.rod_spatialTwoletter.first.strip(), 
                 title=res.rod_spatialName.first.strip()
+            elif geo in regions.keys():
+                token=u'region_%s' % geo
+                title=regions.get(geo)
+                res = True
             if res:
                 result.append(SimpleTerm(geo,
                                          token=token,
