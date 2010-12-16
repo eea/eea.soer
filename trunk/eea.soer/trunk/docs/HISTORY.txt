@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.7-dev - (unreleased)
-----------------------
+1.7 - (2010-12-15)
+------------------
 * bug fix: removed listings from soercountry_view since it now works as frontpage and topics links are enough for listings. country more link better explained and not floated. refs #3971. [demarant]
 * bug fix: better h1/h2 headings. country name was not shown sometimes. country name as title needed for country first page, refs #3971. [demarant]
 * bug fix: listing of topics, the bullet was overlapping with items, bigger size to enphasize it. [demarant]
