@@ -1,6 +1,9 @@
 Changelog
 =========
 
+1.8-dev (unreleased)
+--------------------
+
 1.7 - (2010-12-15)
 ------------------
 * bug fix: removed listings from soercountry_view since it now works as frontpage and topics links are enough for listings. country more link better explained and not floated. refs #3971. [demarant]
