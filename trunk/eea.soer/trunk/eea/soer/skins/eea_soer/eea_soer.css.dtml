@@ -37,7 +37,7 @@
     width: 210px;
 }
 
-soerHeader .portlet {
+.soerHeader .portlet {
     vertical-align:baseline;
     position: relative;
     overflow: hidden; 
