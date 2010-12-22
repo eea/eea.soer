@@ -69,5 +69,13 @@
     permission="cmf.ManagePortal"
   />
 
+  <browser:page
+      for="*"
+      name="soer_admin_view"
+      class=".admin.AdminView"
+      permission="cmf.ManagePortal"
+      allowed_interface=".admin.IAdminView"
+      />
+
 
 </configure>
