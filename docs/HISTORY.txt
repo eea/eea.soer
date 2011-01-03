@@ -4,6 +4,7 @@ Changelog
 1.8-dev (unreleased)
 --------------------
 * status view for soer country assessments #2607 [vincisas]
+* Links to National and regional stories and Search in soercountry_view #3995 [vincisas]
 
 1.7 - (2010-12-15)
 ------------------

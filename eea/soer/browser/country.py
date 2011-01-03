@@ -43,3 +43,19 @@ class CountryView(object):
         if mapImage is not None:
             return mapImage.absolute_url()
         return u'http://discomap.eea.europa.eu/map/getmap/getMap.aspx?layers=0&c=0:ICC:%s:100,20,40&size=300,300&m=http://cow1/ArcGIS/services/Internal/EuroBoundaries_Dyna_WM/MapServer' % country_code.upper()
+
+    
+    def getRegionsUrl(self, widget):
+        context = self.context
+        catalog = getToolByName(context, 'portal_catalog')
+        regions = []
+        result = ''
+        for b in catalog( { 'path' :'/'.join( context.getPhysicalPath()),
+                            'portal_type' : ['DiversityReport','CommonalityReport', 'FlexibilityReport']} ):
+            obj = b.getObject()
+            region = obj.getGeoCoverage()
+            if region not in regions:
+                regions.append(region)
+                result += '&%s=%s' % (widget, region)
+        
+        return result[1:]
