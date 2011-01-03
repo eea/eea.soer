@@ -44,7 +44,9 @@ class ICountryView(Interface):
     def getMapUrl():
         """ return url to the map """
 
-
+    def getRegionsUrl(widget):
+        """ return part of a faceted query for geo coverage """
+        
 class IReportQuestionsByTopic(Interface):
 
     def topicTitle():
