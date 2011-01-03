@@ -9,7 +9,8 @@ class IAdminView(Interface):
 
     def info():
         """ return countries and it's reports """
-        
+
+
 class AdminView(BrowserView):
     implements(IAdminView)
 
@@ -25,22 +26,36 @@ class AdminView(BrowserView):
         result = {'unknown' : { 'title': 'Unknown',
                                 'url' : '',
                                 'id' : '',
-                                'reports' : []}}
+                                'common' : {'reports':[],
+                                            'stats': {}},
+                                'profile' : {'reports' : [],
+                                             'stats' : 0}}}
         for country in countries:
             result[country.getId] = { 'title': country.Title,
                                       'url' : country.getURL(),
                                       'id' : country.getId,
-                                      'reports' : []}
-        countryIds = result.keys()
-        reports = catalog(portal_type=['CommonalityReport'],
+                                      'common' : {'reports':[],
+                                                  'stats': {}},
+                                      'profile' : {'reports' : [],
+                                                   'stats' : 0 }}
+            countryIds = result.keys()
+        reports = catalog(portal_type=['DiversityReport', 'CommonalityReport'],
                           sort_on='sortable_title',
                           isSubReport=False)
         for brain in reports:
             obj = brain.getObject()
+            country = 'unknown'
             if obj.getSoerCountry() in countryIds:
-                result[obj.getSoerCountry()]['reports'].append(brain)
+                country = obj.getSoerCountry()
+            country = result[country]
+            if obj.portal_type == 'CommonalityReport':
+                country['common']['reports'].append(brain)
+                noQuestions =  country['common']['stats'].get(obj.getTopic(), 0) + 1
+                country['common']['stats'][obj.getTopic()] = noQuestions
             else:
-                result['unknown']['reports'].append(brain)
+                country['profile']['reports'].append(brain)
+                country['profile']['stats'] += 1
+        
         return [ c for cid,c in result.items()]
 
     __call__ = ViewPageTemplateFile('admin.pt')
