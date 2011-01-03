@@ -3,6 +3,7 @@ Changelog
 
 1.8-dev (unreleased)
 --------------------
+* status view for soer country assessments #2607 [vincisas]
 
 1.7 - (2010-12-15)
 ------------------
