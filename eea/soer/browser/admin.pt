@@ -23,8 +23,8 @@
         <tal:countries tal:define="countries  view/info"
             tal:repeat="country countries">
             <tr>
-                <td><a href="" tal:attributes="href country/url"
-		       tal:content="country/title">Country (<tal:code content="country/id" />)</a>
+                <td><a href="" tal:attributes="href python:country['url']+'/'"><h3
+		       tal:content="country/title">Country (<tal:code content="country/id" />)</h3></a>
 	        <table>
 		<thead>
                    <th></th>
