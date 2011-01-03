@@ -114,10 +114,20 @@
 	      <li><a href="soertopic_view?topic=land" title="Reports about Land use">Land use</a></li>
 	      <li><a href="soertopic_view?topic=freshwater" title="Reports about Freshwater">Freshwater</a></li>
 	      <li><a href="soertopic_view?topic=waste" title="Reports about Waste">Waste</a></li>
+	      <li tal:define="flex python:context.getFolderContents(contentFilter={'portal_type':'FlexibilityReport'});
+                                 flex python: flex and flex[0].getObject() or None;"
+                  tal:condition="flex|nothing"><a href="../#c11=FlexibilityReport&geo1=" title="National and regional story" class="internallink"
+						  tal:attributes="href python:'../#c11=FlexibilityReport&geo1=' + flex.getGeoCoverage()">National and regional stories</a></li>
             </ul>
             <div class="visualClear"></div>
     	    <h3>Search</h3>
+	    <ul class="topicmenu">
+             <li tal:define="report python:context.getFolderContents(contentFilter={'portal_type':['CommonalityReport','DiversityReport','FlexibilityReport']});
+                                 report python: report and report[0].getObject() or None;"
+                  tal:condition="report|nothing"><a href="../#geo1=" title="Search all reports" class="internallink"
+                     tal:attributes="href python:'../#geo1=' + report.getGeoCoverage()">Search all reports from <tal:country content="context/Title" /></a></li>
 
+            </ul>
 	</metal:top-macro>
         <div class="visualClear"></div>
 
