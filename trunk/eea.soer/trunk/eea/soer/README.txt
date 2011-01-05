@@ -93,3 +93,9 @@ Let's fill in the add form:
   >>> report.getText()
   '<p>The situation is flexible!</p>'
 
+
+--------------------------
+SENSE feeds update process
+--------------------------
+
+See https://svn.eionet.europa.eu/projects/Zope/wiki/SENSEfeedUpdate
