@@ -1,6 +1,9 @@
 Changelog
 =========
 
+1.9-dev (Unreleased)
+--------------------
+
 1.8 - (2011-01-05)
 ------------------
 * status view for soer country assessments #2607 [vincisas]
