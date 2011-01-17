@@ -158,7 +158,7 @@
       <tal:entry tal:define="
         obj brain/getObject;
         obj_title python:obj.pretty_title_or_id();
-        desc_or_title python:brain.Description or obj_title;
+        desc_or_title python:brain.Description or '';
         is_video nothing;
 	source python:'#imagesourc%s' % obj.UID();
 	dataSources obj/getRelatedItems">
