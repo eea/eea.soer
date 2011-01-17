@@ -29,10 +29,10 @@
 		<a href="" title="" class="websource-box fancybox discreet"
 		   tal:attributes="href string:#channelSource;
 				   title string:Channel source">more info</a>
-               <div class="hiddenStructure">
+		<div class="hiddenStructure">
                    <div id="channelSource" class="websource-info" >
                       <img src=""
-		           tal:attributes="src channel/organisationLogoURL|nothing;
+		           tal:attributes="src python:channel['localLogo'] and 'logo/image_preview' or  channel['organisationLogoURL'];
 			                   alt channel/organisationName|nothing" />
                       <br clear="all" />
                       <dl>
@@ -60,7 +60,7 @@
 		   tal:attributes="href string:#channelSource;
 				   title string:Channel source">
 	          <img src=""
-		       tal:attributes="src channel/organisationLogoURL|nothing;
+		           tal:attributes="src python:channel['localLogo'] and 'logo/image_preview' or  channel['organisationLogoURL'];
 			                   alt channel/organisationName" /></a></dd>
 	    </dl>
 	    <dl id="location-portlet" class="portlet" tal:condition="nocall:intro">

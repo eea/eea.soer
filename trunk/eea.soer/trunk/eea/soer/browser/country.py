@@ -35,8 +35,13 @@ class CountryView(object):
         return None
     
     def channel(self):
-        return getattr(aq_base(self.context), 'channel', None)
-        
+        context = aq_base(self.context)
+        channel = getattr(context, 'channel', None)
+        channel['localLogo'] = False
+        if channel is not None and hasattr(context, 'logo'):
+            channel['localLogo'] = True
+        return channel
+    
     def getMapUrl(self):
         country_code = self.context.getId()
         mapImage = getattr(aq_base(self.context), '%s_map.png' % country_code, None)
