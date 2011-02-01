@@ -1,6 +1,9 @@
 Changelog
 =========
 
+1.10-dev - (unreleased)
+-----------------------
+
 1.9 - (2011-02-01)
 ------------------
 * removed duplicate title display in figure popus #4030 [vincisas]
