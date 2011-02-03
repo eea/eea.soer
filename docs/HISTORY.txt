@@ -1,6 +1,9 @@
 Changelog
 =========
 
+1.11-dev - (unreleased)
+-----------------------
+
 1.10 - (2011-02-03)
 -------------------
  * Bug fix: fix bug introduced in previous version [tiberich #4088]
