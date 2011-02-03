@@ -37,7 +37,8 @@ class CountryView(object):
     def channel(self):
         context = aq_base(self.context)
         channel = getattr(context, 'channel', None)
-        channel['localLogo'] = False
+        if channel is not None:
+            channel['localLogo'] = False
         if channel is not None and hasattr(context, 'logo'):
             channel['localLogo'] = True
         return channel
