@@ -23,7 +23,7 @@ def get_intro_text(text):
             meta=False,
             page_structure=False,
             processing_instructions=False,
-            embeded=False,
+            embedded=False,
             forms=False,
             remove_unknown_tags=True,
             )
