@@ -101,8 +101,8 @@
             consectetur adipiscing elit. Ut pharetra sodales ligula sed
             elementum. Suspendisse et egestas est.</div>
 
-          <div tal:condition="nocall:intro">
-            <p tal:content="structure intro/text">
+          <div tal:condition="nocall:intro" tal:omit-tag="">
+            <p tal:replace="structure intro/text">
               Proin orci lacus, vestibulum porta interdum ac, rutrum a leo.
               Morbi adipiscing tortor nec erat rhoncus feugiat. Pellentesque
               quis neque et nunc ultricies rutrum. Etiam lacus leo, luctus ut
@@ -118,7 +118,8 @@
             </p>
           </div>
 
-          <div class="visualClear"></div>
+          <div class="visualClear"><!-- --></div>
+
           <h3>Browse by topic</h3>
           <ul class="topicmenu">
             <li><a href="soertopic_view?topic=air pollution" title="Reports about Air pollution">Air pollution</a></li>
