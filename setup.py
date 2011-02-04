@@ -34,6 +34,7 @@ setup(name='eea.soer',
           'eea.facetednavigation',
           'eea.faceted.inheritance',          
           'Products.ATVocabularyManager',
+          'lxml'
       ],
       entry_points="""
       # -*- Entry points: -*-
