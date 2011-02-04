@@ -91,7 +91,10 @@ class CountryView(object):
         regions = []
         result = ''
         for b in catalog( { 'path' :'/'.join( context.getPhysicalPath()),
-                            'portal_type' : ['DiversityReport','CommonalityReport', 'FlexibilityReport']} ):
+                            'portal_type' : [
+                                'DiversityReport',
+                                'CommonalityReport', 
+                                'FlexibilityReport']} ):
             obj = b.getObject()
             region = obj.getGeoCoverage()
             if region not in regions:
