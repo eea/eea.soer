@@ -29,7 +29,8 @@ class AdminView(BrowserView):
                                 'common' : {'reports':[],
                                             'stats': {}},
                                 'profile' : {'reports' : [],
-                                             'stats' : 0}}}
+                                             'stats' : 0}}
+                 }
         for country in countries:
             result[country.getId] = { 'title': country.Title,
                                       'url' : country.getURL(),
@@ -47,6 +48,11 @@ class AdminView(BrowserView):
             country = 'unknown'
             if obj.getSoerCountry() in countryIds:
                 country = obj.getSoerCountry()
+            #handle special cases where gb and montenegro got renamed folder ids.
+            elif obj.getSoerCountry() == 'gb':
+                country = 'uk'
+            elif obj.getSoerCountry() == 'montenegro':
+                country = 'me'
             country = result[country]
             if obj.portal_type == 'CommonalityReport':
                 country['common']['reports'].append(brain)
