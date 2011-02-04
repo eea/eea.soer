@@ -3,6 +3,7 @@ Changelog
 
 1.12-dev - (unreleased)
 -----------------------
+ * Bug fix: use lxml html cleaner to fix shortned intro text for countries [tiberich #4110]
 
 1.11 - (2011-02-04)
 -------------------
