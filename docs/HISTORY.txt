@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.11-dev - (unreleased)
------------------------
+1.11 - (2011-02-04)
+-------------------
  * Bug fix: show a message when topic is not found for soertopic_view, to avoid a 500 error [tiberich #4088]
 
 1.10 - (2011-02-03)
