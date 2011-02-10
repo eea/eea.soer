@@ -3,6 +3,7 @@ Changelog
 
 1.13-dev - (unreleased)
 -----------------------
+ * Bug fix: be more tolerant on errors in long questions [tiberich #4123]
 
 1.12 - (2011-02-04)
 -------------------
