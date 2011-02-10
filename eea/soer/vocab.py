@@ -155,6 +155,7 @@ regions = {'alpine' : u'Alpine',
            'carpathian' : u'Carpathian',
            'baltic' : u'Baltic' }
 
+
 class UsedGeoCoverage(object):
     """ Only used regions """
     
@@ -207,11 +208,11 @@ class UsedGeoCoverage(object):
 
 UsedGeoCoverageFactory = UsedGeoCoverage()
 
+
 class Evaluations(object):
     """ Evaluations vocabulary """
 
     implements(IVocabularyFactory)
-
 
     @property
     def rdfClass(self):

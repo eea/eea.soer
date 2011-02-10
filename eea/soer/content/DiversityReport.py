@@ -8,11 +8,13 @@ from eea.soer.content.SOERReport import schema as  SOERReportSchema, SOERReport
 from eea.soer.config import *
 from eea.soer import vocab
 from Products.ATVocabularyManager import NamedVocabulary
+
 try:
     from Products.LinguaPlone.public import *
 except ImportError:
     # No multilingual support
     from Products.Archetypes.public import *
+
 schema = Schema((
         StringField(
         name='topic',
@@ -30,7 +32,8 @@ schema = Schema((
 ),)
 
 schema = SOERReportSchema.copy() + schema
-schema['question'].vocabulary=NamedVocabulary('eea.soer.vocab.diversity_questions')
+schema['question'].vocabulary = \
+        NamedVocabulary('eea.soer.vocab.diversity_questions')
 
 
 class DiversityReport(SOERReport):
@@ -46,13 +49,16 @@ class DiversityReport(SOERReport):
     default_view = 'diversity_report_view'
 
     def getLongSoerQuestion(self):
-        return vocab.long_diversity_questions[self.getQuestion()]
+        q = self.getQuestion()
+        return vocab.long_diversity_questions.get(q, q)
 
     def default_desc(self):
-        country = self.getTermTitle('eea.soer.vocab.european_countries', self.getSoerCountry())
+        country = self.getTermTitle('eea.soer.vocab.european_countries', 
+                                    self.getSoerCountry())
         return 'SOER Country profile from %s' % country
 
 registerType(DiversityReport, PROJECTNAME)
+
 
 def reportUpdated(obj, event):
     country = obj.getTermTitle('eea.soer.vocab.european_countries', obj.getSoerCountry())
@@ -60,3 +66,4 @@ def reportUpdated(obj, event):
     obj.setTitle('Country profile - %s (%s)' % (question, country))
     if not obj.Description() and not obj.isTemporary():
         obj.setDescription(obj.default_desc())
+
