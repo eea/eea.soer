@@ -190,7 +190,7 @@
   	     tal:attributes="class css">
              <a tal:attributes="
 	        href source|listing_url;
-		class python:test(is_video, 'thickbox', 'fancybox');
+		class python:test(is_video, 'video-fancybox', 'fancybox');
 		title python:desc_or_title">
 	      <span class="photoAlbumEntryWrapper">
 	        <img class="imagesource-box" src="tag_green_right.png" tal:condition="dataSources|source|nothing"
