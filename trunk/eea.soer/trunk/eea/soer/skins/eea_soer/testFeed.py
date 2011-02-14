@@ -21,7 +21,3 @@ country.setRdfFeed(url)
 country.updateFromFeed()
 return context.REQUEST.RESPONSE.redirect(country.absolute_url())
 
-
-
-
-
