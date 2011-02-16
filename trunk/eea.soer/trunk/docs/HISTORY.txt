@@ -3,7 +3,7 @@ Changelog
 
 1.14-dev - (unreleased)
 -----------------------
- * WIP: replaced thickbox with fancybox [ichimdav #3773]
+ * Change: replaced thickbox with fancybox [ichimdav #3773]
 
 1.13 - (2011-02-10)
 -------------------
