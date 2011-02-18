@@ -1,6 +1,9 @@
 Changelog
 =========
 
+1.15-dev - (unreleased)
+-----------------------
+
 1.14 - (2011-02-18)
 -------------------
  * Change: replaced thickbox with fancybox [ichimdav #3773]
