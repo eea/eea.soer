@@ -1,5 +1,6 @@
 from zope.interface import Interface, Attribute
-from zope.schema import Choice, Bool, Set, List, TextLine, Text
+from zope.schema import Choice, List, Text
+#from zope.schema import Bool, Set, TextLine
 
 
 class ISOERReport(Interface):
@@ -31,14 +32,16 @@ class ISOERReport(Interface):
 
     description = Text(
             title=u'Key message',
-            description=u'This is a short key message for the National Story, a kind of very short summary or teaser (one/two paragraphs)',
+            description=u'This is a short key message for the National Story,' \
+                ' a kind of very short summary or teaser (one/two paragraphs)',
             required=True
             )
 
     # keyMessage
     keyMessage = Text(
             title=u'Key message',
-            description=u'This is a short key message for the National Story, a kind of very short summary or teaser (one/two paragraphs)',
+            description=u'This is a short key message for the National Story,' \
+                ' a kind of very short summary or teaser (one/two paragraphs)',
             required=True
             )
 

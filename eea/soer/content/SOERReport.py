@@ -10,7 +10,7 @@ from Products.ATContentTypes.content.folder import ATFolder
 from Products.ATContentTypes.content.newsitem import ATNewsItem
 from eea.soer.content.interfaces import ISOERReport
 from eea.soer.content.interfaces import ISoerFigure, ISoerDataFile
-from eea.soer.config import *
+#from eea.soer.config import PROJECTNAME
 from Products.ATVocabularyManager import NamedVocabulary
 from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
 from Products.CMFPlone.PloneBatch import Batch
@@ -19,6 +19,8 @@ try:
 except ImportError:
     # No multilingual support
     from Products.Archetypes.public import *
+from Products.Archetypes.atapi import Schema, TextField, AnnotationStorage
+from Products.Archetypes.atapi import RichWidget, StringField, SelectionWidget
 
 schema = Schema((
   
@@ -150,7 +152,7 @@ schema['relatedItems'].schemata = 'metadata'
 class SOERReport(ATFolder, ATNewsItem):
     """ """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(ATFolder,'__implements__',()),)
+    __implements__ = (getattr(ATFolder, '__implements__', ()), )
     implements(ISOERReport)
 
     meta_type = 'SOERReport'
@@ -170,7 +172,7 @@ class SOERReport(ATFolder, ATNewsItem):
         term = getattr(vocab, term_key, None)
         if term == None:
             return ''
-        return term.title;
+        return term.title
 
     def getSoerCountryName(self):
         country_code = self.getSoerCountry()

@@ -1,11 +1,11 @@
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
-from Products.ATContentTypes.configuration import zconf
-from Products.ATContentTypes.content.folder import ATFolder
-from Products.ATContentTypes.content.newsitem import ATNewsItem
+#from Products.ATContentTypes.configuration import zconf
+#from Products.ATContentTypes.content.folder import ATFolder
+#from Products.ATContentTypes.content.newsitem import ATNewsItem
 from eea.soer.content.interfaces import IDiversityReport
 from eea.soer.content.SOERReport import schema as  SOERReportSchema, SOERReport
-from eea.soer.config import *
+from eea.soer.config import PROJECTNAME
 from eea.soer import vocab
 from Products.ATVocabularyManager import NamedVocabulary
 
@@ -14,6 +14,8 @@ try:
 except ImportError:
     # No multilingual support
     from Products.Archetypes.public import *
+from Products.Archetypes.atapi import Schema, StringField, StringWidget
+from Products.Archetypes.atapi import registerType
 
 schema = Schema((
         StringField(
@@ -39,7 +41,7 @@ schema['question'].vocabulary = \
 class DiversityReport(SOERReport):
     """ """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(SOERReport,'__implements__',()),)
+    __implements__ = (getattr(SOERReport, '__implements__', ()), )
     implements(IDiversityReport)
 
     meta_type = 'DiversityReport'

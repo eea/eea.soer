@@ -1,18 +1,20 @@
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
-from Products.ATContentTypes.configuration import zconf
-from Products.ATContentTypes.content.folder import ATFolder
-from Products.ATContentTypes.content.newsitem import ATNewsItem
+#from Products.ATContentTypes.configuration import zconf
+#from Products.ATContentTypes.content.folder import ATFolder
+#from Products.ATContentTypes.content.newsitem import ATNewsItem
 from eea.soer.content.interfaces import IFlexibilityReport
 from eea.soer.content.SOERReport import SOERReport
-from eea.soer.config import *
-from eea.soer import vocab
-from Products.ATVocabularyManager import NamedVocabulary
+from eea.soer.config import PROJECTNAME
+#from eea.soer import vocab
+#from Products.ATVocabularyManager import NamedVocabulary
 try:
     from Products.LinguaPlone.public import *
 except ImportError:
     # No multilingual support
     from Products.Archetypes.public import *
+from Products.Archetypes.atapi import Schema, StringField, StringWidget
+from Products.Archetypes.atapi import registerType
 
 schema = Schema((
         StringField(
@@ -22,7 +24,8 @@ schema = Schema((
             label='Topics',
             label_msgid='eea.soer_label_topics',
             i18n_domain='eea.soer',
-            description='use any environmental term, you can find all terms at <a href="http://glossary.eea.europa.eu/">ETDS</a>'
+            description='use any environmental term, you can find all terms at'\
+            ' <a href="http://glossary.eea.europa.eu/">ETDS</a>'
          ),
      ),
 
@@ -43,9 +46,9 @@ schema['title'].required = False
 
 
 class FlexibilityReport(SOERReport):
-    """ """
+    """ Flexibility Report"""
     security = ClassSecurityInfo()
-    __implements__ = (getattr(SOERReport,'__implements__',()),)
+    __implements__ = (getattr(SOERReport, '__implements__', ()), )
     implements(IFlexibilityReport)
 
     meta_type = 'FlexibilityReport'
@@ -55,14 +58,16 @@ class FlexibilityReport(SOERReport):
     default_view = 'flexibility_report_view'
 
     def default_desc(self):
-        country = self.getTermTitle('eea.soer.vocab.european_countries', self.getSoerCountry()).encode('utf8')
+        country = self.getTermTitle('eea.soer.vocab.european_countries',
+                                self.getSoerCountry()).encode('utf8')
         return 'SOER National and regional story from %s' % country
 
 
 registerType(FlexibilityReport, PROJECTNAME)
 
 def reportUpdated(obj, event):
-    country = obj.getTermTitle('eea.soer.vocab.european_countries', obj.getSoerCountry()).encode('utf8')
+    country = obj.getTermTitle('eea.soer.vocab.european_countries',
+                                obj.getSoerCountry()).encode('utf8')
     t = 'National and regional story (%s) - %s' % (country, obj.getQuestion())
     obj.setTitle(t)
     if not obj.Description() and not obj.isTemporary():
