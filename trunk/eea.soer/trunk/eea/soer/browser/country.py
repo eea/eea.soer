@@ -33,7 +33,8 @@ def get_intro_text(text):
 
 
 class CountryView(object):
-
+    """ CountryView
+    """
     implements(ICountryView)
 
     def __init__(self, context, request):
@@ -46,6 +47,8 @@ class CountryView(object):
         self.request = request
 
     def countryIntroduction(self):
+        """ Country Introduction
+        """
         context = self.context
         if context.portal_type == 'SOERCountry':
             catalog = getToolByName(context, 'portal_catalog')
@@ -65,6 +68,8 @@ class CountryView(object):
         return None
     
     def channel(self):
+        """ Channel
+        """
         context = aq_base(self.context)
         channel = getattr(context, 'channel', None)
         if channel is not None:
@@ -74,6 +79,8 @@ class CountryView(object):
         return channel
     
     def getMapUrl(self):
+        """ Get Map URL
+        """
         country_code = self.context.getId()
         mapImage = getattr(aq_base(self.context), 
                 '%s_map.png' % country_code, None)
@@ -86,6 +93,8 @@ class CountryView(object):
 
     
     def getRegionsUrl(self, widget):
+        """ Get Regions URL
+        """
         context = self.context
         catalog = getToolByName(context, 'portal_catalog')
         regions = []
