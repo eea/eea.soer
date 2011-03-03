@@ -1,17 +1,21 @@
+""" Admin module for browser package
+"""
 from zope.interface import implements, Interface
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from eea.soer import vocab
+#from eea.soer import vocab
 
 class IAdminView(Interface):
-    """ """
+    """ IAdminView interface """
 
     def info():
         """ return countries and it's reports """
 
 
 class AdminView(BrowserView):
+    """ AdminView BrowserView
+    """
     implements(IAdminView)
 
     def __init__(self, context, request):
@@ -19,8 +23,8 @@ class AdminView(BrowserView):
         self.request = request
 
     def info(self):
-        """ """
-        ret = []
+        """ info """
+        #ret = []
         catalog = getToolByName(self.context, 'portal_catalog')
         countries = catalog(portal_type='SOERCountry')
         result = {'unknown' : { 'title': 'Unknown',
@@ -48,7 +52,7 @@ class AdminView(BrowserView):
             country = 'unknown'
             if obj.getSoerCountry() in countryIds:
                 country = obj.getSoerCountry()
-            #handle special cases where gb and montenegro got renamed folder ids.
+            #handle special cases where gb & montenegro got renamed folder ids
             elif obj.getSoerCountry() == 'gb':
                 country = 'uk'
             elif obj.getSoerCountry() == 'montenegro':
@@ -56,12 +60,13 @@ class AdminView(BrowserView):
             country = result[country]
             if obj.portal_type == 'CommonalityReport':
                 country['common']['reports'].append(brain)
-                noQuestions =  country['common']['stats'].get(obj.getTopic(), 0) + 1
+                noQuestions =  country['common']['stats'].get(
+                                                    obj.getTopic(), 0) + 1
                 country['common']['stats'][obj.getTopic()] = noQuestions
             else:
                 country['profile']['reports'].append(brain)
                 country['profile']['stats'] += 1
         
-        return [ c for cid,c in result.items()]
+        return [ c for _unused, c in result.items()]
 
     __call__ = ViewPageTemplateFile('admin.pt')
