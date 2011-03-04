@@ -13,7 +13,9 @@ All content as part of eea.soer can be imported and exported as `SOER Feed <http
   >>> soer = self.portal.SOER
   >>> country = soer[soer.invokeFactory('SOERCountry', id='no')]
   >>> country.setLanguage('en')
-  >>> from eea.soer.tests.base import examplerdf, evalrdf
+  >>> from eea.soer.config import examplerdf, evalrdf
+  
+#from eea.soer.tests.base import examplerdf, evalrdf
     
 Lets load an RDF
 
@@ -142,7 +144,7 @@ Lets add two more feeds to the country folder and update from them too.
   >>> len(country.objectIds())
   7
   >>> oldIds = country.objectIds()
-  >>> from eea.soer.tests.base import soerrdf
+  >>> from eea.soer.config import soerrdf
   >>> feed1 = country[country.invokeFactory('Link', id='feed1', 
   ...                      remoteUrl=soerrdf)]
   >>> country.updateFromFeed()

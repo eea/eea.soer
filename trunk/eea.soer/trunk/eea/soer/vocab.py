@@ -166,10 +166,10 @@ class UsedGeoCoverage(object):
         uniqueValues = []
         try:
             uniqueValues = cat.uniqueValuesFor('getGeographicCoverage')
-        except:
+        except KeyError:
             try:
                 uniqueValues = cat.uniqueValuesFor('getGeoCoverage')
-            except:
+            except KeyError:
                 return SimpleVocabulary([])
         NutsRegion = geosession.get_class(surf.ns.NUTS['NUTSRegion'])
         CountryCode = geosession.get_class(surf.ns.NUTS['CountryCode'])
@@ -178,23 +178,23 @@ class UsedGeoCoverage(object):
             res = None 
             if geo.startswith('http://rdfdata.eionet.europa.eu/ramon/nuts2008/'):
                 res = geosession.get_resource(geo, NutsRegion)
-                token=u'nuts2008_%s' % res.nuts_code.first.strip()
-                title=res.nuts_name.first.strip()
+                token = u'nuts2008_%s' % res.nuts_code.first.strip()
+                title = res.nuts_name.first.strip()
             elif  geo.startswith('http://rdfdata.eionet.europa.eu/ramon/nuts/'):
                 res = geosession.get_resource(geo, NutsRegion)
-                token=u'nuts_%s' % res.nuts_code.first.strip()
-                title=res.nuts_name.first.strip()
+                token = u'nuts_%s' % res.nuts_code.first.strip()
+                title = res.nuts_name.first.strip()
             elif geo.startswith('http://rdfdata.eionet.europa.eu/ramon/countries/'):
                 res = geosession.get_resource(geo, CountryCode)
-                token=u'country_%s' % res.nuts_code.first.strip()
-                title=res.nuts_name.first.strip()
+                token = u'country_%s' % res.nuts_code.first.strip()
+                title = res.nuts_name.first.strip()
             elif geo.startswith('http://rod.eionet.europa.eu/spatial/'):
                 res = geosession.get_resource(geo, Locality)
-                token=u'rod_%s' % res.rod_spatialTwoletter.first.strip(), 
-                title=res.rod_spatialName.first.strip()
+                token = u'rod_%s' % res.rod_spatialTwoletter.first.strip(), 
+                title = res.rod_spatialName.first.strip()
             elif geo in regions.keys():
-                token=u'region_%s' % geo
-                title=regions.get(geo)
+                token = u'region_%s' % geo
+                title = regions.get(geo)
                 res = True
             if res:
                 result.append(SimpleTerm(geo,
@@ -252,7 +252,7 @@ class PortalTypesVocabulary(object):
         ttool = getToolByName(context, 'portal_types', None)
         if ttool is None:
             return None
-        items = [ SimpleTerm(t,t, ttool[t].Title())
+        items = [ SimpleTerm(t, t, ttool[t].Title())
                   for t in ['CommonalityReport', 'DiversityReport', 'FlexibilityReport']]
         return SimpleVocabulary(items)
 

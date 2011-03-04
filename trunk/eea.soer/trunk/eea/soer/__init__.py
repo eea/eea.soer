@@ -1,10 +1,11 @@
 from os.path import dirname
 from Globals import package_home
-from Products.Archetypes.atapi import *
+from Products.Archetypes.atapi import listTypes, process_types
+#from Products.Archetypes.atapi import *
 from Products.CMFCore import utils as cmfutils
 from Products.CMFCore.DirectoryView import registerDirectory
-from eea.soer import content
-from eea.soer.config import *
+#from eea.soer import content
+from eea.soer.config import ADD_CONTENT_PERMISSION, PROJECTNAME
 
 
 # Register skin
@@ -31,7 +32,7 @@ def initialize(context):
         ).initialize(context)
 
     # Give it some extra permissions to control them on a per class limit
-    for i in range(0,len(all_content_types)):
+    for i in range(0, len(all_content_types)):
         context.registerClass(meta_type   = all_ftis[i]['meta_type'],
                               constructors= (all_constructors[i],),
                               permission  = ADD_CONTENT_PERMISSION)

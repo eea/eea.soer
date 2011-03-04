@@ -6,18 +6,18 @@ from Products.PortalTransforms.interfaces import itransform
 
 from DocumentTemplate.DT_Util import html_quote
 from DocumentTemplate.DT_Var import newline_to_br
-from Products.CMFCore.utils import getToolByName
+#from Products.CMFCore.utils import getToolByName
 import re
-from cgi import escape
-from urlparse import urlsplit, urljoin, urlunsplit
-from urllib import unquote_plus, quote_plus
-from Acquisition import aq_base
+#from cgi import escape
+#from urlparse import urlsplit, urljoin, urlunsplit
+#from urllib import unquote_plus, quote_plus
+#from Acquisition import aq_base
 from htmlentitydefs import name2codepoint
 from Products.kupu.plone.config import UID_PATTERN
 from zope.interface import implements
 
 name2codepoint = name2codepoint.copy()
-name2codepoint['apos']=ord("'")
+name2codepoint['apos'] = ord("'")
 
 
 # IMAGE_PATTERN matches an image tag on its own, or an image tag
@@ -147,10 +147,10 @@ class ImageSource:
                         d['width'] = target.width
                         if srctail:
                             if isinstance(srctail, unicode):
-                                srctail =srctail.encode('utf8') # restrictedTraverse doesn't accept unicode
+                                srctail = srctail.encode('utf8') # restrictedTraverse doesn't accept unicode
                             try:
                                 subtarget = target.restrictedTraverse(srctail)
-                            except:
+                            except Exception:
                                 subtarget = getattr(target, srctail, None)
                             if subtarget is not None:
                                 d['image'] = subtarget

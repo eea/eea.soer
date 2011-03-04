@@ -11,7 +11,7 @@ from eea.rdfmarshaller import marshaller
 
 class Soer2Surf(marshaller.ATCT2Surf):
     """ base class for adapters """
-    prefix= u'soer'
+    prefix = u'soer'
     field_map = {}
     
     @property
@@ -86,7 +86,7 @@ class NationalStory2Surf(Soer2Surf):
         if subReport:
             resource.soer_sortOrder = context.aq_parent.getObjectPosition(context.getId()) + 1
         for obj in context.objectValues():
-            surfObj = queryMultiAdapter((obj,self.session), interface=IArchetype2Surf)
+            surfObj = queryMultiAdapter((obj, self.session), interface = IArchetype2Surf)
             if surfObj is not None:
                 if obj.portal_type == 'Image':
                     resource.soer_hasFigure.append(surfObj.at2surf())

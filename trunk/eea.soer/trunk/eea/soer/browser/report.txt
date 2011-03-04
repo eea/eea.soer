@@ -5,7 +5,9 @@ All content as part of eea.soer can be imported and exported as `SOER Feed <http
   >>> soer = self.portal.SOER
   >>> country = soer[soer.invokeFactory('SOERCountry', id='no')]
   >>> country.setLanguage('en')
-  >>> from eea.soer.tests.base import examplerdf, evalrdf
+  >>> from eea.soer.config import examplerdf, evalrdf
+  
+#from eea.soer.tests.base import examplerdf, evalrdf
     
 Lets load an RDF
 

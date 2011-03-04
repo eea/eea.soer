@@ -1,12 +1,12 @@
-import os
-from Globals import package_home
+#import os
+#from Globals import package_home
 from Products.PloneTestCase import PloneTestCase
 from Products.PloneTestCase.layer import onsetup
 from Products.Five import zcml
 from Products.Five import fiveconfigure
-from Products.CMFPlone.interfaces import IPloneSiteRoot
-from Products.GenericSetup import EXTENSION, profile_registry
-from eea.soer.config import soerrdf, examplerdf, evalrdf, nutsrdf, spatialrdf
+#from Products.CMFPlone.interfaces import IPloneSiteRoot
+#from Products.GenericSetup import EXTENSION, profile_registry
+#from eea.soer.config import soerrdf, examplerdf, evalrdf, nutsrdf, spatialrdf
 
 PRODUCTS = ['ATVocabularyManager', 'FiveSite', 'eea.rdfmarshaller']
 PROFILES = ['eea.soer:default', 'eea.rdfmarshaller:default']
@@ -47,7 +47,7 @@ class SOERFunctionalTestCase(PloneTestCase.FunctionalTestCase):
 
     def enableDebugLog(self):
         """ Enable context.plone_log() output from Python scripts """
-        import sys ,logging
+        import sys , logging
         from Products.CMFPlone.log import logger
         logger.root.setLevel(logging.INFO)
         logger.root.addHandler(logging.StreamHandler(sys.stdout))

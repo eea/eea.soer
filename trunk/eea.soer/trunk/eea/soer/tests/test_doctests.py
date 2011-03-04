@@ -1,6 +1,6 @@
 import doctest
 import unittest
-from base import SOERFunctionalTestCase
+from eea.soer.tests.base import SOERFunctionalTestCase
 from Testing.ZopeTestCase import FunctionalDocFileSuite
 
 
