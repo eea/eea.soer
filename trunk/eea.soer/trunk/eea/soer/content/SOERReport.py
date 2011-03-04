@@ -1,4 +1,4 @@
-from zope.interface import implements, directlyProvides
+from zope.interface import implements, directlyProvides, alsoProvides
 from zope.component import getUtility
 from zope.app.schema.vocabulary import IVocabularyFactory
 from AccessControl import ClassSecurityInfo
@@ -282,7 +282,7 @@ class SOERReport(ATFolder, ATNewsItem):
 
 def soerImageAdded(obj, event):
     if ISOERReport.providedBy(obj.aq_parent):
-        directlyProvides(obj, ISoerFigure)
+        alsoProvides(obj, ISoerFigure)
 
 def soerLinkAdded(obj, event):
     if ISOERReport.providedBy(obj.aq_parent):

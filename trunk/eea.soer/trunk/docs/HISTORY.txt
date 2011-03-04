@@ -4,6 +4,7 @@ Changelog
 1.15-dev - (unreleased)
 -----------------------
  * Change: started cleaning up package for pylint violations [ichimdav #4140]
+ * Bug fix: use alsoProvides instead of directlyProvides when marking Images with the ISoerFigure interface [tiberich #4135]
 
 1.14 - (2011-02-18)
 -------------------
