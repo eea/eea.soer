@@ -264,10 +264,10 @@ class SOERReport(ATFolder, ATNewsItem):
 
     def absolute_url(self, *args):
         return super(SOERReport, self).absolute_url(*args)
-        parent = aq_inner(self).aq_parent
-        if parent.portal_type == self.portal_type:
+        #parent = aq_inner(self).aq_parent
+        #if parent.portal_type == self.portal_type:
             # we are subfolder lets fake url
-            return '%s#%s' % (parent.absolute_url(*args), self.getId())
+        #    return '%s#%s' % (parent.absolute_url(*args), self.getId())
 
     def isSubReport(self):
         parent = aq_inner(self).aq_parent

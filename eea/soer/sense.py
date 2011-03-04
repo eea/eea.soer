@@ -46,10 +46,10 @@ class NationalStory(object):
         return DateTime(self.soer_modified.first.strip())
 
     def update(self, country):
-        questions = dict([[v,k] for k,v in vocab.long_diversity_questions.items()])
-        questions.update(dict([[v,k] for k,v in vocab.long_questions.items()]))
+        questions = dict([[v, k] for k, v in vocab.long_diversity_questions.items()])
+        questions.update(dict([[v, k] for k, v in vocab.long_questions.items()]))
         # old labels before https://svn.eionet.europa.eu/projects/Zope/ticket/3685
-        questions.update(dict([[v,k] for k,v in vocab.old_long_questions.items()]))            
+        questions.update(dict([[v, k] for k, v in vocab.old_long_questions.items()]))            
         
         report = country[country.invokeFactory(self.portal_type, id='temp_report',
                                          soerTopic=self.getTopic(),
@@ -114,11 +114,11 @@ class Surf2SOERReport(object):
     def hasFigure(self):
         context = self.context
         if context.soer_hasFigure:
-            i = 0
+            #i = 0
             for fig in context.soer_hasFigure:
                 try:
                     fileName = fig.soer_fileName.first and str(fig.soer_fileName.first) or 'tempfile'
-                except:
+                except Exception:
                     log.log('Figure resource without information %s' % fig, severity=log.logging.WARN)
                     continue
                 sortOrder = 0
@@ -183,7 +183,7 @@ class SoerRDF2Surf(object):
             channel = self.session.get_class(surf.ns.SOER['channel']).all()
         if channel and channel.first():
             channel = channel.first()
-            result ={'organisationName' : getSingleValue(channel.soer_organisationName),
+            result = {'organisationName' : getSingleValue(channel.soer_organisationName),
                       'organisationURL'  : getSingleValue(channel.soer_organisationURL),
                       'organisationContactURL'  : getSingleValue(channel.soer_organisationContactURL),
                       'organisationLogoURL' : getSingleValue(channel.soer_organisationLogoURL),
@@ -192,22 +192,22 @@ class SoerRDF2Surf(object):
             return result
     
     def nationalStories(self):
-        NationalStory = self.session.get_class(surf.ns.SOER['NationalStory'])
-        for nstory in NationalStory.all().order():
+        natStory = self.session.get_class(surf.ns.SOER['NationalStory'])
+        for nstory in natStory.all().order():
             yield ISOERReport(nstory)
 
     def nationalStory(self, subject):
-        NationalStory = self.session.get_class(surf.ns.SOER['NationalStory'])
-        return self.session.get_resource(subject, NationalStory)
+        natStory = self.session.get_class(surf.ns.SOER['NationalStory'])
+        return self.session.get_resource(subject, natStory)
     
     nsFormating = "\n%s\n%20s %6s %9s %5s %7s %8s %8s %10s %6s %5s\n"
     figFormating = "%s\n%20s %6s %9s %5s %7s\n"
     def status(self):
         result = ""
-        NationalStory = self.session.get_class(surf.ns.SOER['NationalStory'])
-        DataFile = self.session.get_class(surf.ns.SOER['DataFile'])
-        result += self.nsFormating % (' ',' ', 'Topic','Question', 'Desc','KeyMsg','Assesment','KeyWord','Indicator','Figure','Data')
-        for nstory in NationalStory.all().order():
+        natStory = self.session.get_class(surf.ns.SOER['NationalStory'])
+        #DataFile = self.session.get_class(surf.ns.SOER['DataFile'])
+        result += self.nsFormating % (' ', ' ', 'Topic', 'Question', 'Desc', 'KeyMsg', 'Assesment', 'KeyWord', 'Indicator', 'Figure', 'Data')
+        for nstory in natStory.all().order():
             nstory = ISOERReport(nstory)
             result += self._checkNationalStory(nstory)
             for fig in nstory.hasFigure():
@@ -223,9 +223,9 @@ class SoerRDF2Surf(object):
         pass
     
     def _checkNationalStory(self, nstory):
-        subjectSize = len(nstory.subject)
-        if subjectSize > 20:
-            subject = nstory.subject[subjectSize-20:]
+        #subjectSize = len(nstory.subject)
+        #if subjectSize > 20:
+        #    subject = nstory.subject[subjectSize-20:]
         result = self.nsFormating % ( nstory.subject,
                                     'NationalStory',
                                     chk(nstory.topic),
@@ -241,9 +241,9 @@ class SoerRDF2Surf(object):
         return result
 
     def _checkFigure(self, fig):
-        subjectSize = len(fig['url'])
-        if subjectSize > 20:
-            subject = fig['url'][subjectSize-20:]
+        #subjectSize = len(fig['url'])
+        #if subjectSize > 20:
+        #    subject = fig['url'][subjectSize-20:]
         result = self.figFormating % (fig['url'],
                                       'Figure',
                                     chk(fig['mediaType']),
@@ -254,9 +254,9 @@ class SoerRDF2Surf(object):
         return result
     
     def _checkDataSource(self, dataSrc):
-        subjectSize = len(dataSrc['url'])
-        if subjectSize > 20:
-            subject = dataSrc['url'][subjectSize-20:]
+        #subjectSize = len(dataSrc['url'])
+        #if subjectSize > 20:
+        #    subject = dataSrc['url'][subjectSize-20:]
         result = self.figFormating % (dataSrc['url'],
                                       'DataSource','','',
                                     chk(dataSrc['fileName']),
