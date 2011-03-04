@@ -10,12 +10,12 @@ from eea.soer import vocab
 from Products.ATVocabularyManager import NamedVocabulary
 
 try:
-    from Products.LinguaPlone.public import *
+    from Products.LinguaPlone.public import Schema, StringField, StringWidget
+    from Products.LinguaPlone.public import registerType
 except ImportError:
     # No multilingual support
-    from Products.Archetypes.public import *
-from Products.Archetypes.atapi import Schema, StringField, StringWidget
-from Products.Archetypes.atapi import registerType
+    from Products.Archetypes.public import Schema, StringField, StringWidget
+    from Products.Archetypes.public import registerType
 
 schema = Schema((
         StringField(

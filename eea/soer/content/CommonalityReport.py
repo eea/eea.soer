@@ -11,13 +11,12 @@ from eea.soer import vocab
 #from Products.ATVocabularyManager import NamedVocabulary
 #from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
 try:
-    from Products.LinguaPlone.public import *
+    from Products.LinguaPlone.public import Schema, registerType
 except ImportError:
     # No multilingual support
-    from Products.Archetypes.public import *
-from Products.Archetypes.atapi import Schema, registerType 
+    from Products.Archetypes.public import Schema, registerType
 
-schema = getattr(SOERReport, 'schema', Schema(())).copy() 
+schema = getattr(SOERReport, 'schema', Schema(())).copy()
 
 
 class CommonalityReport(SOERReport):

@@ -15,12 +15,12 @@ from Products.ATVocabularyManager import NamedVocabulary
 from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
 from Products.CMFPlone.PloneBatch import Batch
 try:
-    from Products.LinguaPlone.public import *
+    from Products.LinguaPlone.public import Schema, TextField, AnnotationStorage
+    from Products.LinguaPlone.public import RichWidget, StringField, SelectionWidget
 except ImportError:
     # No multilingual support
-    from Products.Archetypes.public import *
-from Products.Archetypes.atapi import Schema, TextField, AnnotationStorage
-from Products.Archetypes.atapi import RichWidget, StringField, SelectionWidget
+    from Products.Archetypes.public import Schema, TextField, AnnotationStorage
+    from Products.Archetypes.public import RichWidget, StringField, SelectionWidget
 
 schema = Schema((
   
