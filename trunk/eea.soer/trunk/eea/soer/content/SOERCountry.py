@@ -17,12 +17,13 @@ from eea.soer import sense
 from types import UnicodeType
 
 try:
-    from Products.LinguaPlone.public import *
+    from Products.LinguaPlone.public import registerType, Schema, StringField
+    from Products.LinguaPlone.public import StringWidget
 except ImportError:
     # No multilingual support
-    from Products.Archetypes.public import *
-from Products.Archetypes.atapi import registerType, Schema, StringField
-from Products.Archetypes.atapi import StringWidget
+    from Products.Archetypes.public import registerType, Schema, StringField
+    from Products.Archetypes.public import StringWidget
+
 from Products.CMFPlone import log
 
 try:
