@@ -9,7 +9,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 class IAdminView(Interface):
     """ IAdminView interface """
 
-    def info():
+    def info(): #pyflakes, #pylint: disable-msg = E0211
         """ return countries and it's reports """
 
 
@@ -18,7 +18,7 @@ class AdminView(BrowserView):
     """
     implements(IAdminView)
 
-    def __init__(self, context, request):
+    def __init__(self, context, request): #pyflakes, #pylint: disable-msg = W0231
         self.context = context
         self.request = request
 

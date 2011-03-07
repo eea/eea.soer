@@ -46,8 +46,8 @@ class NationalStory(object):
         return DateTime(self.soer_modified.first.strip())
 
     def update(self, country):
-        questions = dict([[v, k] for k, v in vocab.long_diversity_questions.items()])
-        questions.update(dict([[v, k] for k, v in vocab.long_questions.items()]))
+        questions = dict([[v, k] for k, v in vocab.long_diversity_questions.items()]) #pyflakes, #pylint: disable-msg = W0631
+        questions.update(dict([[v, k] for k, v in vocab.long_questions.items()])) #pyflakes, #pylint: disable-msg = W0631
         # old labels before https://svn.eionet.europa.eu/projects/Zope/ticket/3685
         questions.update(dict([[v, k] for k, v in vocab.old_long_questions.items()]))            
         
