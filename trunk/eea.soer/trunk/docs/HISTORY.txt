@@ -3,6 +3,7 @@ Changelog
 
 1.16-dev - (unreleased)
 -----------------------
+ * Change: surpressed pylint violations that aren't fixable [ichimdav #4140]
 
 1.15 - (2011-03-07)
 -------------------

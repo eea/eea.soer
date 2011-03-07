@@ -13,7 +13,7 @@ try:
     from Products.LinguaPlone.public import registerType
 except ImportError:
     # No multilingual support
-    from Products.Archetypes.public import Schema, StringField, StringWidget
+    from Products.Archetypes.public import Schema, StringField, StringWidget #pyflakes
     from Products.Archetypes.public import registerType
 
 schema = Schema((

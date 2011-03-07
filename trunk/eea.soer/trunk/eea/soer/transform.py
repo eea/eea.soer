@@ -104,7 +104,7 @@ class ImageSource:
             target = hook(uid)
         return target
 
-    def convert(self, data, idata, filename=None, **kwargs):
+    def convert(self, data, idata, filename=None, **kwargs): #pyflakes, #pylint: disable-msg = R0912
         """convert the data, store the result in idata and return that
         optional argument filename may give the original file name of received data
         additional arguments given to engine's convert, convertTo or __call__ are
@@ -121,7 +121,7 @@ class ImageSource:
             rc = at_tool.reference_catalog
 
         if context is not None and at_tool is not None:
-            def replaceImage(match):
+            def replaceImage(match): #pyflakes, #pylint: disable-msg = R0912
                 tag = match.group('pat0') or match.group('pat1')
                 attrs = ATTR_PATTERN.match(tag)
                 atag = match.group('atag0') or match.group('atag1')

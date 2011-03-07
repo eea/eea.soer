@@ -69,7 +69,7 @@ class IReportingCountry(Interface):
         This interface is then used to create RDF from that folder for all
         contained reports. """
 
-    def updateFromFeed():
+    def updateFromFeed(): #pyflakes, #pylint: disable-msg = E0211
         """ Update reports from the rdf feed url """
     
 

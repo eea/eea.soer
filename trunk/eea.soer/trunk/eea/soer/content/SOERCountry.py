@@ -118,7 +118,7 @@ class SOERCountry(ATFolder):
                 # restore the url expression 
                 squidt.manage_setSquidSettings(squidt.getSquidURLs(), url_expression=urlexpr)
             
-    def _updateFromFeed(self, soer):
+    def _updateFromFeed(self, soer): #pyflakes, #pylint: disable-msg = R0912, R0914, R0915
         language = self.Language() or 'en'
         self._v_feedUpdating = True
         reports = {}
@@ -146,15 +146,15 @@ class SOERCountry(ATFolder):
                     logo = self['logo']
                     logo.setImage(image_data)
 
-        def updateReport(nstory, report=None):                
+        def updateReport(nstory, report=None): #pyflakes, #pylint: disable-msg = R0912, R0914, R0915              
             parentReport = None
             if nstory.portal_type in ['DiversityReport', 'CommonalityReport']:
-                questions = dict([[v, k] for k, v in vocab.old_long_diversity_questions.items()])
-                questions.update(dict([[v, k] for k, v in vocab.long_questions.items()]))
+                questions = dict([[v, k] for k, v in vocab.old_long_diversity_questions.items()]) #pyflakes, #pylint: disable-msg = W0631
+                questions.update(dict([[v, k] for k, v in vocab.long_questions.items()])) #pyflakes, #pylint: disable-msg = W0631
                 # old labels before https://svn.eionet.europa.eu/projects/Zope/ticket/3685
                 questions.update(dict([[v, k] for k, v in vocab.old_long_questions.items()]))            
                 question = questions.get(nstory.question, nstory.question)
-                _original_url = nstory.subject.strip()
+                #original_url = nstory.subject.strip()
             else:
                 question = nstory.question
             if report is None:
@@ -236,7 +236,7 @@ class SOERCountry(ATFolder):
                     url = urllib2.urlopen(indicatorUrl)
                     soup = BeautifulSoup(url)
                     title = soup.title.string.encode('utf8').strip()
-                except Exception:
+                except Exception: #pyflakes, #pylint: disable-msg = W0704
                     # we failed to get the title of the indicator, use 'Related Indicator'
                     pass
 
