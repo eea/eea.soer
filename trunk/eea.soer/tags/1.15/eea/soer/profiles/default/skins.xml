@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<object name="portal_skins">
+ <object name="eea_soer" meta_type="Filesystem Directory View"
+     directory="soer/skins/eea_soer"/>
+
+ <skin-path name="EEADesign2006">
+  <layer name="eea_soer" insert-after="custom"/>
+ </skin-path>
+ <skin-path name="Plone Default">
+  <layer name="eea_soer" insert-after="custom"/>
+ </skin-path>
+</object>

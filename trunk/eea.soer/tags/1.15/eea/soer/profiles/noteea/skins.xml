@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<object name="portal_skins" meta_type="Plone Skins Tool" allow_any="False"
+   cookie_persistence="False" 
+   request_varname="plone_skin">
+
+ <object name="eea_soer" meta_type="Filesystem Directory View"
+     directory="eea.soer:skins/eea_soer"/>
+ <object name="soer_none_eea" meta_type="Filesystem Directory View"
+     directory="eea.soer:skins/soer_none_eea"/>
+
+ <skin-path name="Plone Default">
+  <layer name="eea_soer" insert-after="custom"/>
+  <layer name="soer_none_eea" insert-after="custom"/>
+ </skin-path>
+</object>
