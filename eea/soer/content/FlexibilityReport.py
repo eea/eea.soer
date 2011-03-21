@@ -11,9 +11,10 @@ from eea.soer.config import PROJECTNAME
 try:
     from Products.LinguaPlone.public import Schema, StringField, StringWidget
     from Products.LinguaPlone.public import registerType
+    Schema, StringField, StringWidget, registerType #pyflakes 
 except ImportError:
     # No multilingual support
-    from Products.Archetypes.public import Schema, StringField, StringWidget #pyflakes
+    from Products.Archetypes.public import Schema, StringField, StringWidget 
     from Products.Archetypes.public import registerType
 
 schema = Schema((

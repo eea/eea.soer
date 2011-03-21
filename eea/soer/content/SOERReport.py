@@ -17,6 +17,7 @@ from Products.CMFPlone.PloneBatch import Batch
 try:
     from Products.LinguaPlone.public import Schema, TextField, AnnotationStorage
     from Products.LinguaPlone.public import RichWidget, StringField, SelectionWidget
+    Schema, TextField, AnnotationStorage, RichWidget, StringField, SelectionWidget
 except ImportError:
     # No multilingual support
     from Products.Archetypes.public import Schema, TextField, AnnotationStorage
