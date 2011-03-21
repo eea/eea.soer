@@ -12,6 +12,7 @@ from eea.soer import vocab
 #from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
 try:
     from Products.LinguaPlone.public import Schema, registerType
+    Schema, registerType #pyflakes
 except ImportError:
     # No multilingual support
     from Products.Archetypes.public import Schema, registerType

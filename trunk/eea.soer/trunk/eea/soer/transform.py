@@ -1,7 +1,3 @@
-try:
-    from Products.PortalTransforms.z3.interfaces import ITransform
-except ImportError:
-    ITransform = None
 from Products.PortalTransforms.interfaces import itransform
 
 from DocumentTemplate.DT_Util import html_quote
@@ -15,6 +11,13 @@ import re
 from htmlentitydefs import name2codepoint
 from Products.kupu.plone.config import UID_PATTERN
 from zope.interface import implements
+import logging
+logger = logging.getLogger('eea.soer.content.SOERCountry')
+ITransform = None
+try:
+    from Products.PortalTransforms.z3.interfaces import ITransform
+except ImportError, err:
+    logger.info(err)
 
 name2codepoint = name2codepoint.copy()
 name2codepoint['apos'] = ord("'")

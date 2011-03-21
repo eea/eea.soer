@@ -19,17 +19,21 @@ from types import UnicodeType
 try:
     from Products.LinguaPlone.public import registerType, Schema, StringField
     from Products.LinguaPlone.public import StringWidget
+    registerType, Schema, StringField, StringWidget #pyflakes
 except ImportError:
     # No multilingual support
     from Products.Archetypes.public import registerType, Schema, StringField
     from Products.Archetypes.public import StringWidget
 
 from Products.CMFPlone import log
+import logging
+logger = logging.getLogger('eea.soer.content.SOERCountry')
 
+tidy = None
 try:
     import tidy
-except ImportError:
-    tidy = None
+except ImportError, err:
+    logger.info(err)
 
 
 schema = Schema((
