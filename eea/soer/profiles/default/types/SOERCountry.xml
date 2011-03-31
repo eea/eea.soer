@@ -16,7 +16,6 @@
   <element value="CommonalityReport"/>
   <element value="DiversityReport"/>
   <element value="FlexibilityReport"/>
-  <element value="RSSFeedRecipe"/>
   <element value="Page"/>
   <element value="Link"/>
   <element value="ATImage"/>
