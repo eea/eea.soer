@@ -55,37 +55,43 @@ def hideFromNavigation(context):
 def setupATVocabularies(context):
     """ Installs all AT-based Vocabularies
     """
-    if context.readDataFile('eeasoer.txt') is None:
-        return
+    pass
 
-    # if we have eeasoer_vocabularies.txt vocabularies are replaced
-    # used when vocabularies need to be upgraded
-    replace = bool(context.readDataFile('eeasoer_vocabularies.txt'))
+    #TODO: plone4
+    #if context.readDataFile('eea.soer.txt') is None:
+        #return
 
-    from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
-    portal = context.getSite()
-    atvm = getToolByName(portal, ATVOCABULARYTOOL, None)
-    if atvm is None:
-        return
-    setupCountriesVocabulary(context)
-    for vkey in vocabs.keys():
-        if hasattr(atvm, vkey):
-            if not replace:
-                continue
-            atvm.manage_delObjects(ids=[vkey])
+    ## if we have eeasoer_vocabularies.txt vocabularies are replaced
+    ## used when vocabularies need to be upgraded
+    #replace = bool(context.readDataFile('eeasoer_vocabularies.txt'))
 
-        print "adding vocabulary %s" % vkey
+    #from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
+    #portal = context.getSite()
+    #atvm = getToolByName(portal, ATVOCABULARYTOOL, None)
+    #if atvm is None:
+        #return
+    #setupCountriesVocabulary(context)
+    #for vkey in vocabs.keys():
+        #if hasattr(atvm, vkey):
+            #if not replace:
+                #continue
+            #atvm.manage_delObjects(ids=[vkey])
 
-        atvm.invokeFactory('SimpleVocabulary', vkey)
-        simple = atvm.getVocabularyByName(vkey)
-        for (key, val) in vocabs[vkey]:
-            simple.addTerm(key, val)
+        #print "adding vocabulary %s" % vkey
+
+        #atvm.invokeFactory('SimpleVocabulary', vkey)
+        #simple = atvm.getVocabularyByName(vkey)
+        #for (key, val) in vocabs[vkey]:
+            #simple.addTerm(key, val)
 
 def setupVarious(context):
     """ Setup various
     """
-    # only run this step if we are in eea.dataservice profile
-    if context.readDataFile('eeasoer.txt') is None:
-        return
-    setupTransform(context)
-    hideFromNavigation(context)
+    pass
+
+    #TODO: plone4
+    ## only run this step if we are in eea.dataservice profile
+    #if context.readDataFile('eea.soer.txt') is None:
+        #return
+    #setupTransform(context)
+    #hideFromNavigation(context)

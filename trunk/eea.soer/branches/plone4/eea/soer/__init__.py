@@ -7,14 +7,9 @@ from Products.CMFCore import utils as cmfutils
 from Products.CMFCore.DirectoryView import registerDirectory
 from eea.soer.config import ADD_CONTENT_PERMISSION, PROJECTNAME
 
-# Register skin
-GLOBALS = globals()
-ppath = cmfutils.ProductsPath
-cmfutils.ProductsPath.append(dirname(package_home(GLOBALS)))
-registerDirectory('skins', GLOBALS)
-cmfutils.ProductsPath = ppath
-
 def initialize(context):
+    """ Initialize
+    """
 
     # Initialize portal content
     all_content_types, all_constructors, all_ftis = process_types(

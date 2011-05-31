@@ -16,9 +16,9 @@ from eea.facetednavigation.browser.app.exportimport import FacetedExportImport
 from p4a.subtyper.interfaces import ISubtyper
 
 facetedMain = os.path.join(package_home(GLOBALS),
-                    'Extensions', 'faceted-main.xml')
+                    'browser', 'faceted-main.xml')
 facetedCountry = open(os.path.join(package_home(GLOBALS),
-                    'Extensions', 'faceted-country.xml'),'r').read()
+                    'browser', 'faceted-country.xml'),'r').read()
 
 class Countries(object):
     """ Countries

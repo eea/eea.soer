@@ -12,6 +12,7 @@
   <include package=".browser" />
 
   <include file="profiles.zcml" />
+  <include file="skins.zcml" />
 
   <subscriber for="eea.soer.content.interfaces.ICommonalityReport
                    zope.lifecycleevent.interfaces.IObjectModifiedEvent"
