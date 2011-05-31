@@ -1,18 +1,17 @@
-#import os
-#from Globals import package_home
+""" Base
+"""
 from Products.PloneTestCase import PloneTestCase
 from Products.PloneTestCase.layer import onsetup
 from Products.Five import zcml
 from Products.Five import fiveconfigure
-#from Products.CMFPlone.interfaces import IPloneSiteRoot
-#from Products.GenericSetup import EXTENSION, profile_registry
-#from eea.soer.config import soerrdf, examplerdf, evalrdf, nutsrdf, spatialrdf
 
 PRODUCTS = ['ATVocabularyManager', 'FiveSite', 'eea.rdfmarshaller']
 PROFILES = ['eea.soer:default', 'eea.rdfmarshaller:default']
 
 @onsetup
 def setup_soer():
+    """ Setup
+    """
     fiveconfigure.debug_mode = True
     import Products.Five
     import Products.FiveSite
@@ -34,10 +33,13 @@ setup_soer()
 PRODUCTS.append('eea.soer')
 PloneTestCase.setupPloneSite(products=PRODUCTS, extension_profiles=PROFILES)
 
-
 class SOERFunctionalTestCase(PloneTestCase.FunctionalTestCase):
+    """ SOER Functional Test Case
+    """
 
     def afterSetUp(self):
+        """ After setup
+        """
         self.setRoles(['Manager'])
 
         # Let's set up the folder structure. This is important since title and
@@ -46,9 +48,9 @@ class SOERFunctionalTestCase(PloneTestCase.FunctionalTestCase):
         self.portal.invokeFactory('Folder', id='SOER')
 
     def enableDebugLog(self):
-        """ Enable context.plone_log() output from Python scripts """
+        """ Enable context.plone_log() output from Python scripts
+        """
         import sys , logging
         from Products.CMFPlone.log import logger
         logger.root.setLevel(logging.INFO)
         logger.root.addHandler(logging.StreamHandler(sys.stdout))
-

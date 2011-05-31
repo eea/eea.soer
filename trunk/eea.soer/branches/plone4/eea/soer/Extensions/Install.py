@@ -1,12 +1,14 @@
+""" Install
+"""
 from Products.CMFCore.utils import getToolByName
 import transaction
-
 
 PROFILES = [ 'eea.rdfmarshaller:default', 'eea.soer:default']
 PRODUCT_DEPENDENCIES = ['ATVocabularyManager', 'eea.vocab']
 
-
 def install(self, reinstall=False):
+    """ Install
+    """
     qi = getToolByName(self, 'portal_quickinstaller')
     for i in PRODUCT_DEPENDENCIES:
         if not qi.isProductInstalled(i):
@@ -22,5 +24,3 @@ def install(self, reinstall=False):
     migrationTool = getToolByName(self, 'portal_migration')
     if migrationTool.getInstanceVersionTuple()[0] >= 3:
         portal_setup.runAllImportStepsFromProfile('profile-eea.soer:plone3')
-         
-

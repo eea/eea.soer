@@ -1,3 +1,5 @@
+""" Vocab
+"""
 from zope.app.schema.vocabulary import IVocabularyFactory
 from zope.interface import implements
 from zope.schema.vocabulary import SimpleVocabulary
@@ -90,7 +92,6 @@ surf.ns.register(EVALUATION="http://www.eea.europa.eu/soer/rdfs/evaluation/1.0#"
 for loc in Locality.all().order():
     atvocabs['eea.soer.vocab.geo_coverage'].append((loc.rod_loccode.first.strip(), loc.rdfs_label.first.strip()))
 
-
 #geostore.load_triples(source="http://rdfdata.eionet.europa.eu/ramon/send_all")
 # use local file to speed up for now
 from eea.soer.config import nutsrdf, evalrdf, spatialrdf
@@ -99,16 +100,20 @@ geostore.load_triples(source=evalrdf)
 geostore.load_triples(source=spatialrdf)
 
 class NUTSRegions(object):
-    """ All regions """
-
+    """ All regions
+    """
     implements(IVocabularyFactory)
 
     @property
     def rdfClass(self):
+        """ RDF class
+        """
         return geosession.get_class(surf.ns.NUTS['NUTSRegion'])
 
     @property
     def namespace(self):
+        """ Namespace
+        """
         return u'nuts'
 
     def __call__(self, context=None):
@@ -135,12 +140,18 @@ class NUTSRegions(object):
 
 
     def resources(self):
+        """ Resources
+        """
         return self.rdfClass.all().order()
 
     def countries(self):
+        """ Countries
+        """
         return geosession.get_class(surf.ns.NUTS['CountryCode']).all().order()
 
     def getCode(self, subject):
+        """ Get code
+        """
         for rdfClass in [ surf.ns.NUTS['CountryCode'], surf.ns.NUTS['NUTSRegion'], surf.ns.ROD['Spatial']]:
             region = geosession.get_resource(subject, rdfClass)
             if region is not None and region.nuts_code.first is not None:
@@ -155,10 +166,9 @@ regions = {'alpine' : u'Alpine',
            'carpathian' : u'Carpathian',
            'baltic' : u'Baltic' }
 
-
 class UsedGeoCoverage(object):
-    """ Only used regions """
-    
+    """ Only used regions
+    """
     implements(IVocabularyFactory)
 
     def __call__(self, context=None):
@@ -175,7 +185,7 @@ class UsedGeoCoverage(object):
         CountryCode = geosession.get_class(surf.ns.NUTS['CountryCode'])
         result = []
         for geo in uniqueValues:
-            res = None 
+            res = None
             if geo.startswith('http://rdfdata.eionet.europa.eu/ramon/nuts2008/'):
                 res = geosession.get_resource(geo, NutsRegion)
                 token = u'nuts2008_%s' % res.nuts_code.first.strip()
@@ -190,7 +200,7 @@ class UsedGeoCoverage(object):
                 title = res.nuts_name.first.strip()
             elif geo.startswith('http://rod.eionet.europa.eu/spatial/'):
                 res = geosession.get_resource(geo, Locality)
-                token = u'rod_%s' % res.rod_spatialTwoletter.first.strip(), 
+                token = u'rod_%s' % res.rod_spatialTwoletter.first.strip(),
                 title = res.rod_spatialName.first.strip()
             elif geo in regions.keys():
                 token = u'region_%s' % geo
@@ -201,6 +211,8 @@ class UsedGeoCoverage(object):
                                          token=token,
                                          title=title))
         def attrgetter(obj):
+            """ Attr getter
+            """
             return obj.title
         result = sorted(result, key=attrgetter)
 
@@ -208,18 +220,21 @@ class UsedGeoCoverage(object):
 
 UsedGeoCoverageFactory = UsedGeoCoverage()
 
-
 class Evaluations(object):
-    """ Evaluations vocabulary """
-
+    """ Evaluations vocabulary
+    """
     implements(IVocabularyFactory)
 
     @property
     def rdfClass(self):
+        """ RDF class
+        """
         return geosession.get_class(surf.ns.EVALUATION['Evaluation'])
 
     @property
     def namespace(self):
+        """ Namespace
+        """
         return u'evaluation'
 
     def __call__(self, context=None):
@@ -234,6 +249,8 @@ class Evaluations(object):
         return SimpleVocabulary(vocabulary)
 
     def getCode(self, subject):
+        """ Get code
+        """
         Evaluation = self.rdfClass
         evaluation = Evaluation(subject).evaluation_code.first
         if evaluation:
@@ -242,9 +259,8 @@ class Evaluations(object):
 
 EvalVocabularyFactory = Evaluations()
 
-
 class PortalTypesVocabulary(object):
-    """Vocabulary factory for soer portal types.
+    """ Vocabulary factory for soer portal types.
     """
     implements(IVocabularyFactory)
 

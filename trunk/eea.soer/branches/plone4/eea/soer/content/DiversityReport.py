@@ -1,8 +1,7 @@
+""" Diversity Report
+"""
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
-#from Products.ATContentTypes.configuration import zconf
-#from Products.ATContentTypes.content.folder import ATFolder
-#from Products.ATContentTypes.content.newsitem import ATNewsItem
 from eea.soer.content.interfaces import IDiversityReport
 from eea.soer.content.SOERReport import schema as  SOERReportSchema, SOERReport
 from eea.soer.config import PROJECTNAME
@@ -38,9 +37,9 @@ schema = SOERReportSchema.copy() + schema
 schema['question'].vocabulary = \
         NamedVocabulary('eea.soer.vocab.diversity_questions')
 
-
 class DiversityReport(SOERReport):
-    """ """
+    """ Diversity Report
+    """
     security = ClassSecurityInfo()
     __implements__ = (getattr(SOERReport, '__implements__', ()), )
     implements(IDiversityReport)
@@ -52,21 +51,25 @@ class DiversityReport(SOERReport):
     default_view = 'diversity_report_view'
 
     def getLongSoerQuestion(self):
+        """ Get Long Soer Question
+        """
         q = self.getQuestion()
         return vocab.long_diversity_questions.get(q, q)
 
     def default_desc(self):
-        country = self.getTermTitle('eea.soer.vocab.european_countries', 
+        """ Default desc
+        """
+        country = self.getTermTitle('eea.soer.vocab.european_countries',
                                     self.getSoerCountry())
         return 'SOER Country profile from %s' % country
 
 registerType(DiversityReport, PROJECTNAME)
 
-
 def reportUpdated(obj, event):
+    """ Report updated
+    """
     country = obj.getTermTitle('eea.soer.vocab.european_countries', obj.getSoerCountry())
     question = obj.getTermTitle('eea.soer.vocab.diversity_questions', obj.getQuestion())
     obj.setTitle('Country profile - %s (%s)' % (question, country))
     if not obj.Description() and not obj.isTemporary():
         obj.setDescription(obj.default_desc())
-

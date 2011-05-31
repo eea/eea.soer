@@ -1,13 +1,10 @@
-#import sys
+""" SOER Country
+"""
 from md5 import md5
-#from StringIO import StringIO
-#import traceback
 from zope.interface import implements
-#import surf
-import urllib2 
+import urllib2
 from BeautifulSoup import BeautifulSoup
 from AccessControl import ClassSecurityInfo
-#from DateTime import DateTime
 from Products.CMFCore.utils import getToolByName
 from Products.ATContentTypes.content.folder import ATFolder
 from eea.soer.content.interfaces import IReportingCountry
@@ -58,6 +55,8 @@ schema = getattr(ATFolder, 'schema', Schema(())).copy() + schema.copy()
 schema['relatedItems'].widget.visible =  {'edit' : 'visible'}
 
 def tidyUp(value):
+    """ Tidy up
+    """
     if tidy:
         if isinstance(value, UnicodeType):
             value = value.encode('utf8')
@@ -74,7 +73,8 @@ def tidyUp(value):
     return str(parsed)
 
 class SOERCountry(ATFolder):
-    """ """
+    """ SOER Country
+    """
     implements(IReportingCountry)
 
     security = ClassSecurityInfo()
@@ -89,6 +89,8 @@ class SOERCountry(ATFolder):
     feedHash = None
 
     def _isFeedChanged(self, feed):
+        """ Id feed changed
+        """
         feedHash = md5(feed).hexdigest()
         log.log('%s, %s' % (feedHash, self.feedHash))
         if feedHash != self.feedHash:
@@ -98,7 +100,8 @@ class SOERCountry(ATFolder):
 
     security.declareProtected(ADD_CONTENT_PERMISSION, 'updateFromFeed')
     def updateFromFeed(self):
-        """ update feed """
+        """ Update feed
+        """
         url = self.getRdfFeed()
         if url:
             squidt = getToolByName(self, 'portal_squid', None)
@@ -106,7 +109,7 @@ class SOERCountry(ATFolder):
                 urlexpr = squidt.getUrlExpression()
                 # use squid default url calculation during update due
                 # acquisition problem to find the url expression script
-                # XXX: maybe we should disable invalidation all together during update? 
+                # XXX: maybe we should disable invalidation all together during update?
                 squidt.manage_setSquidSettings(squidt.getSquidURLs(), url_expression='')
 
             if self.aq_parent:
@@ -119,10 +122,12 @@ class SOERCountry(ATFolder):
                     soer.loadUrl(url)
             self._updateFromFeed(soer)
             if squidt is not None:
-                # restore the url expression 
+                # restore the url expression
                 squidt.manage_setSquidSettings(squidt.getSquidURLs(), url_expression=urlexpr)
-            
+
     def _updateFromFeed(self, soer): #pyflakes, #pylint: disable-msg = R0912, R0914, R0915
+        """ Update from feed
+        """
         language = self.Language() or 'en'
         self._v_feedUpdating = True
         reports = {}
@@ -131,6 +136,8 @@ class SOERCountry(ATFolder):
         wtool = getToolByName(self, 'portal_workflow')
 
         def publishIfPossible(obj, action='publish'):
+            """ Publish if possible
+            """
             actions = [a['id'] for a in wtool.getActionsFor(obj)]
             if action in actions:
                 wtool.doActionFor(obj, action, comment='Automatic feed update')
@@ -150,13 +157,15 @@ class SOERCountry(ATFolder):
                     logo = self['logo']
                     logo.setImage(image_data)
 
-        def updateReport(nstory, report=None): #pyflakes, #pylint: disable-msg = R0912, R0914, R0915              
+        def updateReport(nstory, report=None): #pyflakes, #pylint: disable-msg = R0912, R0914, R0915
+            """ Update report
+            """
             parentReport = None
             if nstory.portal_type in ['DiversityReport', 'CommonalityReport']:
                 questions = dict([[v, k] for k, v in vocab.old_long_diversity_questions.items()]) #pyflakes, #pylint: disable-msg = W0631
                 questions.update(dict([[v, k] for k, v in vocab.long_questions.items()])) #pyflakes, #pylint: disable-msg = W0631
                 # old labels before https://svn.eionet.europa.eu/projects/Zope/ticket/3685
-                questions.update(dict([[v, k] for k, v in vocab.old_long_questions.items()]))            
+                questions.update(dict([[v, k] for k, v in vocab.old_long_questions.items()]))
                 question = questions.get(nstory.question, nstory.question)
                 #original_url = nstory.subject.strip()
             else:
@@ -220,10 +229,10 @@ class SOERCountry(ATFolder):
                                                     remoteUrl=dataSrc['dataURL'])]
                         dataLink.setLanguage(language)
                         newId = dataLink._renameAfterCreation(check_auto_id=False)
-                        dataLink = report[newId]                        
+                        dataLink = report[newId]
                         figure.setRelatedItems([dataLink])
                         publishIfPossible(dataLink)
-                        
+
                     figure.setLanguage(language)
                     report.moveObjectToPosition(figure.getId(), fig['sortOrder'])
                     figure.reindexObject()
@@ -268,12 +277,13 @@ class SOERCountry(ATFolder):
         # update the rest which should be all new reports
         for nstory in soer.nationalStories():
             updateReport(nstory)
-            
+
         self._v_feedUpdating = False
-        
+
 def soerCountryUpdated(obj, event):
+    """ SOER country updated
+    """
     if obj.getRdfFeed() and not obj._v_feedUpdating:
         obj.updateFromFeed()
-        
 
 registerType(SOERCountry, PROJECTNAME)

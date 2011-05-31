@@ -1,15 +1,17 @@
+""" Doctests
+"""
 import doctest
 import unittest
 from eea.soer.tests.base import SOERFunctionalTestCase
 from Testing.ZopeTestCase import FunctionalDocFileSuite
 
-
 OPTIONFLAGS = (doctest.REPORT_ONLY_FIRST_FAILURE |
                doctest.ELLIPSIS |
                doctest.NORMALIZE_WHITESPACE)
 
-
 def test_suite():
+    """ Test suite
+    """
     return unittest.TestSuite((
             FunctionalDocFileSuite('README.txt',
                   optionflags=OPTIONFLAGS,
@@ -28,7 +30,6 @@ def test_suite():
                   package='eea.soer.browser',
                   test_class=SOERFunctionalTestCase),
             ))
-
 
 if __name__ == '__main__':
     unittest.main(defaultTest='test_suite')

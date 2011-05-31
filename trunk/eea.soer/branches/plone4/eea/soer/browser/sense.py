@@ -1,11 +1,11 @@
-""" sense module
+""" Sense module
 """
 from Products.Marshall.registry import getComponent
 
-
 class RDFExport(object):
-    """ RDFExport class"""
-    
+    """ RDFExport class
+    """
+
     def __init__(self, context, request):
         self.context = context
         self.request = request
@@ -18,13 +18,15 @@ class RDFExport(object):
         return data
 
 class ChannelInfo(object):
-    """ ChannelInfo class"""
-    
+    """ ChannelInfo class
+    """
+
     def __init__(self, context, request):
         self.context = context
         self.request = request
 
     def __call__(self):
-        """ return channel info """
+        """ Return channel info
+        """
         pass
-        
+

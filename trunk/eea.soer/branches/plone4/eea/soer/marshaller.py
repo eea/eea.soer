@@ -1,3 +1,5 @@
+""" Marshaller
+"""
 import surf
 import rdflib
 from zope.interface import implements
@@ -10,21 +12,26 @@ from eea.rdfmarshaller.interfaces import IArchetype2Surf, ISurfSession
 from eea.rdfmarshaller import marshaller
 
 class Soer2Surf(marshaller.ATCT2Surf):
-    """ base class for adapters """
+    """ Base class for adapters
+    """
     prefix = u'soer'
     field_map = {}
-    
+
     @property
     def namespace(self):
+        """ Namespace
+        """
         return surf.ns.SOER
 
-
 class ReportingCountry2Surf(Soer2Surf):
-    """ adapter from eea.soer report AT types to surf resource and RDF """
+    """ Adapter from eea.soer report AT types to surf resource and RDF
+    """
     implements(IArchetype2Surf)
     adapts(IReportingCountry, ISurfSession)
 
     def channel(self):
+        """ Channel
+        """
         resource = self.session.get_class(self.namespace['Channel'])(self.subject)
         resource.bind_namespaces([self.prefix])
         resource.session = self.session
@@ -34,25 +41,28 @@ class ReportingCountry2Surf(Soer2Surf):
             value = props.getProperty(propName, None)
             if value is not None:
                 setattr(resource, '%s_%s' % (self.prefix, propName), (value, language))
-                
+
         # rdf:resource values
-        for propName in ['license']:                
+        for propName in ['license']:
             value = props.getProperty(propName, None)
             if value is not None:
                 setattr(resource, '%s_%s' % (self.prefix, propName), rdflib.URIRef(value))
 
         resource.save()
         return resource
-            
+
     def at2surf(self, **kwargs):
+        """ At to surf
+        """
         self.channel()
         for obj in self.context.objectValues():
             atsurf = queryMultiAdapter((obj, self.session), interface=IArchetype2Surf)
             if atsurf is not None:
                 atsurf.at2surf()
-                
+
 class NationalStory2Surf(Soer2Surf):
-    """ adapter from eea.soer report AT types to surf resource and RDF """
+    """ Adapter from eea.soer report AT types to surf resource and RDF
+    """
     implements(IArchetype2Surf)
     adapts(ISOERReport, ISurfSession)
 
@@ -64,14 +74,18 @@ class NationalStory2Surf(Soer2Surf):
                       ('subject', 'keyword'),
                       ('modification_date', 'modified'),
                       ('effectiveDate','pubDate'),
-                      ('description','description'),                               
+                      ('description','description'),
                       ])
 
     @property
     def blacklist_map(self):
+        """ Blacklist map
+        """
         return super(NationalStory2Surf, self).blacklist_map + ['relatedItems', 'question', 'geoCoverage', 'id']
-    
+
     def at2surf(self, subReport=False, **kwargs):
+        """ AT to surf
+        """
         resource = super(NationalStory2Surf, self).at2surf()
         context = self.context
         language = context.Language()
@@ -99,14 +113,13 @@ class NationalStory2Surf(Soer2Surf):
                     # current resource has the sort order 0 since it is parent to the other reports
                     resource.soer_sortOrder = 0
                     surfObj.at2surf(subReport=True)
-        
-            
-        
+
         resource.save()
         return resource
 
 class Image2Surf(Soer2Surf):
-    """ Resource axtension for """
+    """ Resource axtension for
+    """
     implements(IArchetype2Surf)
     adapts(ISoerFigure, ISurfSession)
 
@@ -119,16 +132,15 @@ class Image2Surf(Soer2Surf):
                                      ('relatedItems', 'dataSource'),
                                      ]))
         self.dc_map = {} # we don't want Dublin Core right now
-        
-
 
 class Link2Surf(Soer2Surf):
-    """ Resource axtension for """
+    """ Resource axtension for
+    """
     implements(IArchetype2Surf)
     adapts(ISoerDataFile, ISurfSession)
 
     portalType = u'DataFile'
-    
+
     def __init__(self, context, session):
         super(Link2Surf, self).__init__(context, session)
         self.field_map.update( dict([('id', 'fileName'),
@@ -138,4 +150,6 @@ class Link2Surf(Soer2Surf):
 
     @property
     def blacklist_map(self):
+        """ Blacklist map
+        """
         return  super(Link2Surf, self).blacklist_map + Soer2Surf.dc_map.keys()

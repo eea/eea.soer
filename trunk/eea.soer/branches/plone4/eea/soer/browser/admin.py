@@ -4,14 +4,14 @@ from zope.interface import implements, Interface
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-#from eea.soer import vocab
 
 class IAdminView(Interface):
-    """ IAdminView interface """
+    """ IAdminView interface
+    """
 
     def info(): #pyflakes, #pylint: disable-msg = E0211
-        """ return countries and it's reports """
-
+        """ Return countries and it's reports
+        """
 
 class AdminView(BrowserView):
     """ AdminView BrowserView
@@ -23,7 +23,8 @@ class AdminView(BrowserView):
         self.request = request
 
     def info(self):
-        """ info """
+        """ Info
+        """
         #ret = []
         catalog = getToolByName(self.context, 'portal_catalog')
         countries = catalog(portal_type='SOERCountry')
@@ -66,7 +67,7 @@ class AdminView(BrowserView):
             else:
                 country['profile']['reports'].append(brain)
                 country['profile']['stats'] += 1
-        
+
         return [ c for _unused, c in result.items()]
 
     __call__ = ViewPageTemplateFile('admin.pt')

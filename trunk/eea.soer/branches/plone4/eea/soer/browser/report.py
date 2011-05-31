@@ -2,7 +2,6 @@
 """
 from zope.interface import implements
 from zope.component import getUtility
-#from zope.component import queryMultiAdapter
 from zope.app.schema.vocabulary import IVocabularyFactory
 from eea.soer.interfaces import IReportView, IReportQuestionsByTopic
 from eea.soer import vocab
@@ -31,9 +30,10 @@ PARTC_TOPIC_MAP = {
     }
 
 class ReportView(object):
-    """ ReportView class"""
+    """ ReportView class
+    """
     implements(IReportView)
-    
+
     def __init__(self, context, request):
         self.context = context
         self.request = request
@@ -45,8 +45,8 @@ class ReportView(object):
         if parent.portal_type == self.context.portal_type:
             return self.request.response.redirect('%s#%s' % (
                 parent.absolute_url(), self.context.getId()))
-        
-    
+
+
     def getTopics(self):
         """ Retrieves the topics of the report
         """
@@ -57,7 +57,7 @@ class ReportView(object):
         while parent.getId() not in ['soer', 'soer-draft'] \
                 and parent.portal_type in ['Folder', 'SOERCountry']:
             parent = parent.aq_parent
-        
+
         topic = context.getTopic()
         result = PARTC_TOPIC_MAP.get(topic, None)
         if result is not None:
@@ -80,13 +80,13 @@ class ReportView(object):
             return u'http://discomap.eea.europa.eu/map/getmap/getMap.aspx' \
             '?layers=0&c=0:ICC::100,20,40&size=300,300&m=http://cow1/ArcGIS' \
             '/services/Internal/EuroBoundaries_Dyna_WM/MapServer'
-    
+
 
 class ReportQuestionsByTopic(object):
     """ Group all reports from a country py a topic and sort them by question.
     """
     implements(IReportQuestionsByTopic)
-    
+
     def __init__(self, context, request):
         self.context = context
         self.request = request
@@ -101,10 +101,11 @@ class ReportQuestionsByTopic(object):
         v = getToolByName(self.context,
                 'portal_vocabularies')['eea.soer.vocab.topics']
         return v[self.topic].Title()
-    
+
     @property
     def reports(self):
-        """ Catalog search to get reports based on topic"""
+        """ Catalog search to get reports based on topic
+        """
         context = self.context
         catalog = getToolByName(context, 'portal_catalog')
         query = {'portal_type' : ['DiversityReport', 'CommonalityReport'],
@@ -114,7 +115,7 @@ class ReportQuestionsByTopic(object):
                             'depth' : 1},
                  }
         return catalog(query)
-            
+
     @property
     def questions(self):
         """ Return a dict with questions from vocab file

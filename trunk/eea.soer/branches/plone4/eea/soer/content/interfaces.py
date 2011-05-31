@@ -1,10 +1,11 @@
+""" Interfaces
+"""
 from zope.interface import Interface, Attribute
 from zope.schema import Choice, List, Text
-#from zope.schema import Bool, Set, TextLine
-
 
 class ISOERReport(Interface):
-
+    """ SOER Report
+    """
     reportingCountryCode = Attribute(u'Which country do you represent?')
 
     geoCoverage = Choice(
@@ -51,31 +52,36 @@ class ISOERReport(Interface):
             description=u'Content of this report',
             required=True
             )
-    
-    
 
 class ICommonalityReport(ISOERReport):
+    """ Commonality Report
+    """
     pass
 
 class IDiversityReport(ISOERReport):
+    """ Diversity Report
+    """
     pass
 
 class IFlexibilityReport(ISOERReport):
+    """ Flexibility Report
+    """
     pass
-
 
 class IReportingCountry(Interface):
     """ For a folder that contains SOER reports.
         This interface is then used to create RDF from that folder for all
-        contained reports. """
+        contained reports.
+    """
 
     def updateFromFeed(): #pyflakes, #pylint: disable-msg = E0211
-        """ Update reports from the rdf feed url """
-    
+        """ Update reports from the rdf feed url
+        """
 
 class ISoerFigure(Interface):
-    """ Marker interface for Images inside a SOER report """
+    """ Marker interface for Images inside a SOER report
+    """
 
 class ISoerDataFile(Interface):
-    """ Marker interface for Links inside a SOER report """
-
+    """ Marker interface for Links inside a SOER report
+    """

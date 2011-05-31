@@ -1,13 +1,9 @@
+""" Transform
+"""
 from Products.PortalTransforms.interfaces import itransform
-
 from DocumentTemplate.DT_Util import html_quote
 from DocumentTemplate.DT_Var import newline_to_br
-#from Products.CMFCore.utils import getToolByName
 import re
-#from cgi import escape
-#from urlparse import urlsplit, urljoin, urlunsplit
-#from urllib import unquote_plus, quote_plus
-#from Acquisition import aq_base
 from htmlentitydefs import name2codepoint
 from Products.kupu.plone.config import UID_PATTERN
 from zope.interface import implements
@@ -21,7 +17,6 @@ except ImportError, err:
 
 name2codepoint = name2codepoint.copy()
 name2codepoint['apos'] = ord("'")
-
 
 # IMAGE_PATTERN matches an image tag on its own, or an image tag
 # enclosed in a simple <p> or <div>. In the latter case we strip out
@@ -69,14 +64,15 @@ IMAGE_TEMPLATE = '''\
 '''
 
 class ImageSource:
-    """Transform which adds captions to images embedded in HTML"""
+    """ Transform which adds captions to images embedded in HTML
+    """
     if ITransform is not None:
         implements(ITransform)
     __implements__ = itransform
     __name__ = "image_with_source"
     inputs = ('text/x-html-safe',)
     output = "text/x-html-safe"
-    
+
     def __init__(self, name=None):
         self.config_metadata = {
             'inputs' : ('list', 'Inputs', 'Input(s) MIME type. Change with care.'),
@@ -95,9 +91,9 @@ class ImageSource:
         raise AttributeError(attr)
 
     def resolveuid(self, context, reference_catalog, uid):
-        """Convert a uid to an object by looking it up in the reference catalog.
-        If not found then tries to fallback to a possible hook (e.g. so you could
-        resolve uids on another system).
+        """ Convert a uid to an object by looking it up in the reference catalog.
+            If not found then tries to fallback to a possible hook (e.g.
+            so you could resolve uids on another system).
         """
         target = reference_catalog.lookupObject(uid)
         if target is not None:
@@ -108,11 +104,11 @@ class ImageSource:
         return target
 
     def convert(self, data, idata, filename=None, **kwargs): #pyflakes, #pylint: disable-msg = R0912
-        """convert the data, store the result in idata and return that
+        """ Convert the data, store the result in idata and return that
         optional argument filename may give the original file name of received data
         additional arguments given to engine's convert, convertTo or __call__ are
         passed back to the transform
-        
+
         The object on which the translation was invoked is available as context
         (default: None)
         """
@@ -193,6 +189,8 @@ class ImageSource:
 
             # Replace urls that use UIDs with human friendly urls.
             def replaceUids(match):
+                """ Replace Uids
+                """
                 tag = match.group('tag')
                 uid = match.group('uid')
                 target = self.resolveuid(context, rc, uid)
@@ -215,5 +213,6 @@ class ImageSource:
         return idata
 
 def register():
+    """ Register
+    """
     return ImageSource()
-

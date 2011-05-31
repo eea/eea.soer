@@ -1,3 +1,5 @@
+""" Sense
+"""
 import surf
 import rdflib
 from zope.interface import implements
@@ -12,45 +14,58 @@ from Products.CMFPlone import log
 import logging
 
 def getSingleValue(value, language=u"en"):
+    """ Get single value
+    """
     for v in value:
         if isinstance(v, rdflib.Literal) and v.language == language:
             return v
     return value.first or ''
 
-
 class GetATSchema4SurfObj(object):
+    """ Get AT Schema for Surf Obj
+    """
     implements(atinterfaces.ISchema)
     adapts(INationalStory)
-    
+
     def __init__(self, context):
         self.context = context
 
     @property
     def schema(self):
+        """ Schema
+        """
         return SOERReport.schema
 
     def fieldNames(self):
+        """ Field names
+        """
         return [field.getName() for field in self.schema.fields() ] + ['relatedEuropeanIndicator']
 
-
 class NationalStory(object):
+    """ National Story
+    """
     implements(INationalStory)
-    
 
     @property
     def effectiveDate(self):
+        """ Effective Date
+        """
         return DateTime(self.soer_pubDate.first.strip())
 
     @property
     def modified(self):
+        """ Modified
+        """
         return DateTime(self.soer_modified.first.strip())
 
     def update(self, country):
+        """ Update
+        """
         questions = dict([[v, k] for k, v in vocab.long_diversity_questions.items()]) #pyflakes, #pylint: disable-msg = W0631
         questions.update(dict([[v, k] for k, v in vocab.long_questions.items()])) #pyflakes, #pylint: disable-msg = W0631
         # old labels before https://svn.eionet.europa.eu/projects/Zope/ticket/3685
-        questions.update(dict([[v, k] for k, v in vocab.old_long_questions.items()]))            
-        
+        questions.update(dict([[v, k] for k, v in vocab.old_long_questions.items()]))
+
         report = country[country.invokeFactory(self.portal_type, id='temp_report',
                                          soerTopic=self.getTopic(),
                                          soerQuestion=questions[self.question])]
@@ -60,8 +75,9 @@ class NationalStory(object):
             # log missing assesment
             pass
 
-
 class Surf2SOERReport(object):
+    """ Surf to SOER Report
+    """
     implements(ISOERReport)
     adapts(INationalStory)
 
@@ -69,12 +85,14 @@ class Surf2SOERReport(object):
                   'effectiveDate' : 'pubDate',
                   'subject' : 'keyword',
                   'modification_date' : 'modified'}
-    
+
     def __init__(self, context):
         self.context = context
         self._updateFromSurf()
-        
+
     def _updateFromSurf(self):
+        """ Update from Surf
+        """
         context = self.context
         for fname in  atinterfaces.ISchema(context).fieldNames():
             fname = self.index_map.get(fname, fname)
@@ -95,9 +113,11 @@ class Surf2SOERReport(object):
         if sortOrder is not None:
             setattr(self, 'sortOrder', sortOrder.strip())
         self.topic = self.topic.decode('utf8')
-        
+
     @property
     def portal_type(self):
+        """ Portal type
+        """
         portal_type = 'FlexibilityReport'
         topic = self.topic.lower()
         if topic == 'country introduction':
@@ -112,6 +132,8 @@ class Surf2SOERReport(object):
         return portal_type
 
     def hasFigure(self):
+        """ Has figure
+        """
         context = self.context
         if context.soer_hasFigure:
             #i = 0
@@ -145,10 +167,12 @@ class Surf2SOERReport(object):
                                                  'fileName' : fileName,
                                                  'dataURL' : str(dataSrc) }
                         log.log('Data source without information %s' % dataSrc, severity=log.logging.WARN)
-                                                 
+
                 yield result
-                        
+
     def dataSource(self):
+        """ Data source
+        """
         context = self.context
         if context.soer_dataSource:
             for dataSrc in context.soer_dataSource:
@@ -157,16 +181,19 @@ class Surf2SOERReport(object):
                         'dataURL' : dataSrc.soer_dataURL.first.strip() }
 
     def relatedIndicator(self):
+        """ Related indicator
+        """
         context = self.context
         if context.soer_relatedEuropeanIndicator:
             return [ str(indicator) for indicator in context.soer_relatedEuropeanIndicator ]
         return []
 
 class SoerRDF2Surf(object):
-    """ read a rdf and verify that the feed is correct before content is updated
-        in Plone. """
+    """ Read a rdf and verify that the feed is correct before content is updated
+        in Plone.
+    """
     implements(ISoerRDF2Surf)
-    
+
     def __init__(self, url):
         self.store = surf.Store(reader='rdflib',  writer='rdflib', rdflib_store = 'IOMemory')
         self.store.log.setLevel(logging.CRITICAL)
@@ -175,9 +202,13 @@ class SoerRDF2Surf(object):
         self.loadUrl(url)
 
     def loadUrl(self, url):
+        """ Load Url
+        """
         self.store.load_triples(source=url)
-        
+
     def channel(self):
+        """ Channel
+        """
         channel = self.session.get_class(surf.ns.SOER['Channel']).all()
         if not channel:
             channel = self.session.get_class(surf.ns.SOER['channel']).all()
@@ -190,19 +221,25 @@ class SoerRDF2Surf(object):
                       'license' : getSingleValue(channel.soer_license),
                       'updated' : DateTime() }
             return result
-    
+
     def nationalStories(self):
+        """ National stories
+        """
         natStory = self.session.get_class(surf.ns.SOER['NationalStory'])
         for nstory in natStory.all().order():
             yield ISOERReport(nstory)
 
     def nationalStory(self, subject):
+        """ National story
+        """
         natStory = self.session.get_class(surf.ns.SOER['NationalStory'])
         return self.session.get_resource(subject, natStory)
-    
+
     nsFormating = "\n%s\n%20s %6s %9s %5s %7s %8s %8s %10s %6s %5s\n"
     figFormating = "%s\n%20s %6s %9s %5s %7s\n"
     def status(self):
+        """ Status
+        """
         result = ""
         natStory = self.session.get_class(surf.ns.SOER['NationalStory'])
         #DataFile = self.session.get_class(surf.ns.SOER['DataFile'])
@@ -216,13 +253,17 @@ class SoerRDF2Surf(object):
                     result += self._checkDataSource(fig['dataSource'])
             for dataSrc in nstory.dataSource():
                 result += self._checkDataSource(dataSrc)
-                
+
         return result
 
     def _checkChannel(self, channel):
+        """ Check channel
+        """
         pass
-    
+
     def _checkNationalStory(self, nstory):
+        """ Check national story
+        """
         #subjectSize = len(nstory.subject)
         #if subjectSize > 20:
         #    subject = nstory.subject[subjectSize-20:]
@@ -241,6 +282,8 @@ class SoerRDF2Surf(object):
         return result
 
     def _checkFigure(self, fig):
+        """ Check figure
+        """
         #subjectSize = len(fig['url'])
         #if subjectSize > 20:
         #    subject = fig['url'][subjectSize-20:]
@@ -252,8 +295,10 @@ class SoerRDF2Surf(object):
                                     chk(fig['dataSource'])
                                     )
         return result
-    
+
     def _checkDataSource(self, dataSrc):
+        """ Check data source
+        """
         #subjectSize = len(dataSrc['url'])
         #if subjectSize > 20:
         #    subject = dataSrc['url'][subjectSize-20:]
@@ -264,9 +309,7 @@ class SoerRDF2Surf(object):
                                     )
         return result
 
-
-    
-
-
 def chk(context):
+    """ Check
+    """
     return context and 'OK' or 'Miss'

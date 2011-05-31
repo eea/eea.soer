@@ -1,3 +1,5 @@
+""" Config
+"""
 import os
 from Globals import package_home
 from Products.CMFCore.permissions import AddPortalContent

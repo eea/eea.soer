@@ -21,7 +21,8 @@ facetedCountry = open(os.path.join(package_home(GLOBALS),
                     'Extensions', 'faceted-country.xml'),'r').read()
 
 class Countries(object):
-    """ Countries """
+    """ Countries
+    """
 
     def __init__(self, context, request):
         self.context = context
@@ -70,9 +71,9 @@ class Countries(object):
                 country_code).replace(' name="se" ',' name="%s" '
                                                     % country_code))
 
-
 class Migration(object):
-    """ Migration class"""
+    """ Migration class
+    """
 
     def __init__(self, context, request):
         self.context = context
@@ -159,7 +160,8 @@ class Migration(object):
                 obj.manage_delObjects(ids=[mapid])
 
 class MigrationFaceted(object):
-    """ Migration Faceted """
+    """ Migration Faceted
+    """
 
     def __init__(self, context, request):
         self.context = context
@@ -169,7 +171,8 @@ class MigrationFaceted(object):
         self.reloadFacetedNavigation()
 
     def reloadFacetedNavigation(self):
-        """ reload faceted configuration for all countries """
+        """ Reload faceted configuration for all countries
+        """
         subtyper = getUtility(ISubtyper)
         for folder in self.context.getFolderContents(
                 contentFilter={ 'portal_type' : 'SOERCountry'},
@@ -185,9 +188,9 @@ class MigrationFaceted(object):
                 % country_code).replace(' name="se" ',' name="%s" '
                 % country_code))
 
-
 class SenseFeeds(object):
-    """ setup sense feeds for countries and update them """
+    """ Setup sense feeds for countries and update them
+    """
 
     def __init__(self, context, request):
         self.context = context
@@ -276,7 +279,8 @@ class SenseFeeds(object):
 
 
 class FeedUpdater(object):
-    """ update all feeds or the choosen one if they have a feed set """
+    """ Update all feeds or the choosen one if they have a feed set
+    """
 
     def __init__(self, context, request):
         self.context = context
@@ -285,7 +289,8 @@ class FeedUpdater(object):
     def __call__(self, country=None):
         """ Call /soer/@@senseFeedUpdate?country=se to just update selected
             country, Sweden. The user who calls this script needs to be able to
-            delete/create and publish content in /soer section."""
+            delete/create and publish content in /soer section.
+        """
         context = self.context
         query = { 'portal_type' :'SOERCountry' }
         country = self.request.get('country', country)

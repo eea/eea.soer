@@ -1,3 +1,5 @@
+""" SOER Report
+"""
 from zope.interface import implements, directlyProvides, alsoProvides
 from zope.component import getUtility
 from zope.app.schema.vocabulary import IVocabularyFactory
@@ -10,7 +12,6 @@ from Products.ATContentTypes.content.folder import ATFolder
 from Products.ATContentTypes.content.newsitem import ATNewsItem
 from eea.soer.content.interfaces import ISOERReport
 from eea.soer.content.interfaces import ISoerFigure, ISoerDataFile
-#from eea.soer.config import PROJECTNAME
 from Products.ATVocabularyManager import NamedVocabulary
 from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
 from Products.CMFPlone.PloneBatch import Batch
@@ -24,7 +25,7 @@ except ImportError:
     from Products.Archetypes.public import RichWidget, StringField, SelectionWidget
 
 schema = Schema((
-  
+
     #keyMessage
     TextField('keyMessage',
         required = False,
@@ -93,9 +94,7 @@ schema = Schema((
         ),
         vocabulary="getGeoCoverageVocabulary",
         enforceVocabulary=False,
-
     ),
-
 
     StringField(
         name='topic',
@@ -151,7 +150,8 @@ schema['relatedItems'].widget.visible =  {'edit' : 'visible'}
 schema['relatedItems'].schemata = 'metadata'
 
 class SOERReport(ATFolder, ATNewsItem):
-    """ """
+    """ SOER Report
+    """
     security = ClassSecurityInfo()
     __implements__ = (getattr(ATFolder, '__implements__', ()), )
     implements(ISOERReport)
@@ -164,9 +164,10 @@ class SOERReport(ATFolder, ATNewsItem):
     content_icon = 'document_icon.gif'
 
     original_url = ''
-    
+
     def getTermTitle(self, vocab_name, term_key):
-        """Utility method to get the title form a vocabulary term"""
+        """ Utility method to get the title form a vocabulary term
+        """
         portal = getToolByName(self, 'portal_url').getPortalObject()
         atvm = getToolByName(portal, ATVOCABULARYTOOL, None)
         vocab = atvm.getVocabularyByName(vocab_name)
@@ -176,6 +177,8 @@ class SOERReport(ATFolder, ATNewsItem):
         return term.title
 
     def getSoerCountryName(self):
+        """ Get SOER country name
+        """
         country_code = self.getSoerCountry()
         if len(country_code) > 2:
             # country folder id is probably named with full name
@@ -183,6 +186,8 @@ class SOERReport(ATFolder, ATNewsItem):
         return self.getTermTitle('eea.soer.vocab.european_countries', country_code)
 
     def getGeoCoverageVocabulary(self, content_instance=None, field=None):
+        """ Get geo coverage vocabulary
+        """
         vocab =  getUtility(IVocabularyFactory, name=u"eea.soer.vocab.NUTSRegions")
         indent = u''
         parent = []
@@ -203,7 +208,7 @@ class SOERReport(ATFolder, ATNewsItem):
             current = region.subject.strip()
             if not current.startswith('http://rdfdata.eionet.europa.eu/ramon/nuts2008/'):
                 continue
-            
+
             if region.nuts_partOf.first:
                 if region.nuts_partOf.first.subject.strip() not in parent:
                     indent += u'.'
@@ -212,7 +217,7 @@ class SOERReport(ATFolder, ATNewsItem):
                     while region.nuts_partOf.first.subject.strip() != parent[-1]:
                         parent = parent[:-1]
                         indent = indent[:-1]
-                    
+
             elif len(parent) > 0:
                 indent = u''
                 parent = []
@@ -222,13 +227,19 @@ class SOERReport(ATFolder, ATNewsItem):
         return displayList
 
     def getGeographicCoverage(self):
+        """ Get geographic coverage
+        """
         return self.getGeoCoverage()
-        
+
     def getEvaluationVocabulary(self, content_instance=None, field=None):
+        """ Get evaluation vocabulary
+        """
         vocab = getUtility(IVocabularyFactory, name=u"eea.soer.vocab.Evaluation")
-        return DisplayList([(t.value, t.title) for t in vocab(self) ]) 
-    
+        return DisplayList([(t.value, t.title) for t in vocab(self) ])
+
     def default_country(self):
+        """ Default country
+        """
         path = self.getPhysicalPath()
         if len(path) >= 2:
             if self.aq_parent.portal_type == self.portal_type:
@@ -239,31 +250,38 @@ class SOERReport(ATFolder, ATNewsItem):
         return ''
 
     def figures(self):
-        """ return figures for listing at the bottom of the report """
+        """ Return figures for listing at the bottom of the report
+        """
         assessment = self.getText()
-        return Batch([fig  for fig in self.getFolderContents(contentFilter={'portal_type' : 'Image'}) 
+        return Batch([fig  for fig in self.getFolderContents(contentFilter={'portal_type' : 'Image'})
                       if fig.getURL(1) not in assessment ],
                      10)
 
     def dataSources(self):
+        """ Data sources
+        """
         return self.getFolderContents(contentFilter={'portal_type' : ['Link', 'DataSourceLink']}, full_objects=True)
-        
+
     def indicators(self):
-        """ return indicators """
+        """ Return indicators
+        """
         return self.getFolderContents(contentFilter={'portal_type': 'RelatedIndicatorLink'}, full_objects=True)
-    
+
     def subReports(self):
-        """ return reports inside this report (multiple indicator base report) """ 
+        """ Return reports inside this report (multiple indicator base report)
+        """
         return self.getFolderContents(contentFilter={'portal_type' : self.portal_type}, full_objects=True)
-    
+
     def isFromFeed(self):
-        """ return True if SOERCountry has a feed url """
+        """ Return True if SOERCountry has a feed url
+        """
         if hasattr(self.aq_parent, 'getRdfFeed'):
             return self.aq_parent.getRdfFeed() and True or False
         return False
-        
 
     def absolute_url(self, *args):
+        """ Absolute url
+        """
         return super(SOERReport, self).absolute_url(*args)
         #parent = aq_inner(self).aq_parent
         #if parent.portal_type == self.portal_type:
@@ -271,25 +289,36 @@ class SOERReport(ATFolder, ATNewsItem):
         #    return '%s#%s' % (parent.absolute_url(*args), self.getId())
 
     def isSubReport(self):
+        """ Is sub report
+        """
         parent = aq_inner(self).aq_parent
         return parent.portal_type == self.portal_type
 
     def default_desc(self):
+        """ Default desc
+        """
         return ''
-    
+
     def displayDescription(self):
+        """ Display description
+        """
         return self.Description() != self.default_desc()
 
-
 def soerImageAdded(obj, event):
+    """ SOER image added
+    """
     if ISOERReport.providedBy(obj.aq_parent):
         alsoProvides(obj, ISoerFigure)
 
 def soerLinkAdded(obj, event):
+    """ SOER link added
+    """
     if ISOERReport.providedBy(obj.aq_parent):
         directlyProvides(obj, ISoerDataFile)
 
 def reportUpdated(obj, event):
+    """ Report updated
+    """
     keywords = list(obj.Subject())
     changed = False
     for keyword in ['SOER2010', 'country assessment', obj.getTopic()]:

@@ -1,3 +1,2 @@
-""" browser init 
+""" Browser init
 """
-# package
