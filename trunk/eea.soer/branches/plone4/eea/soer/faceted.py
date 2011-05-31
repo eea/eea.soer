@@ -1,5 +1,8 @@
-from eea.facetednavigation.subtypes.descriptors import FacetedNavigableDescriptor
-from eea.faceted.inheritance.subtypes.descriptors import FacetedHeritorDescriptor
+""" Faceted
+"""
+#TODO: plone4
+#from eea.facetednavigation.subtypes.descriptors import FacetedNavigableDescriptor
+#from eea.faceted.inheritance.subtypes.descriptors import FacetedHeritorDescriptor
 
 class FolderFacetedNavigableDescriptor(FacetedNavigableDescriptor):
     """ Folder descriptor

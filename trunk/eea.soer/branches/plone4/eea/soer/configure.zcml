@@ -7,24 +7,24 @@
   <include package="plone.i18n.locales" />
 
   <five:registerPackage package="." initialize=".initialize" />
-  
+
   <include package=".browser" />
   <include file="profiles.zcml" />
   <subscriber
       for="eea.soer.content.interfaces.ICommonalityReport
-           zope.app.container.interfaces.IObjectModifiedEvent"
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
       handler=".content.CommonalityReport.reportUpdated"
       />
 
   <subscriber
       for="eea.soer.content.interfaces.IDiversityReport
-           zope.app.container.interfaces.IObjectModifiedEvent"
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
       handler=".content.DiversityReport.reportUpdated"
       />
 
   <subscriber
       for="eea.soer.content.interfaces.IFlexibilityReport
-           zope.app.container.interfaces.IObjectModifiedEvent"
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
       handler=".content.FlexibilityReport.reportUpdated"
       />
 
@@ -42,7 +42,7 @@
 
   <subscriber
       for="eea.soer.content.interfaces.ISOERReport
-           zope.app.container.interfaces.IObjectModifiedEvent"
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
       handler=".content.SOERReport.reportUpdated"
       />
 
@@ -57,13 +57,15 @@
     <implements interface="eea.facetednavigation.interfaces.IPossibleFacetedNavigable" />
   </class>
 
-  <utility
+  <!-- #TODO: plone4 -->
+  <!-- utility
         name="eea.facetednavigation.SoerCountryFacetedNavigable"
-        factory=".faceted.FolderFacetedNavigableDescriptor" />
+        factory=".faceted.FolderFacetedNavigableDescriptor" / -->
 
-  <utility
+  <!-- #TODO: plone4 -->
+  <!-- utility
         name="eea.facetednavigation.SoerCountryFacetedHeritor"
-        factory=".faceted.FolderFacetedHeritorDescriptor" />
+        factory=".faceted.FolderFacetedHeritorDescriptor" / -->
 
   <utility
     component=".vocab.NUTSVocabularyFactory"
@@ -84,11 +86,11 @@
     component=".vocab.PortalTypesVocabularyFactory"
     name="eea.soer.vocab.PortalTypes"
     />
-  
+
   <configure zcml:condition="installed eea.themecentre">
      <subscriber
          for="eea.soer.content.interfaces.ISOERReport
-              zope.app.container.interfaces.IObjectModifiedEvent"
+              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
          handler=".themetaggable.reportUpdated" />
   </configure>
 </configure>

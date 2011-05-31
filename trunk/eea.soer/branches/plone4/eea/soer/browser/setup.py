@@ -2,19 +2,14 @@
 """
 import os
 import urllib2
-#import logging
-#import transaction
 from Acquisition import aq_base
-#from Acquisition import aq_inner
 from zope.interface import directlyProvides
 from zope.component import getUtility
 from zope.event import notify
-from zope.app.event.objectevent import ObjectModifiedEvent
+from zope.lifecycleevent import ObjectModifiedEvent
 from Globals import package_home
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import log
-#from StringIO import StringIO
-
 from eea.soer.config import GLOBALS
 from eea.soer.content.interfaces import ISoerFigure, ISoerDataFile
 from eea.facetednavigation.browser.app.exportimport import FacetedExportImport
@@ -22,23 +17,22 @@ from p4a.subtyper.interfaces import ISubtyper
 
 facetedMain = os.path.join(package_home(GLOBALS),
                     'Extensions', 'faceted-main.xml')
-facetedCountry = open(os.path.join(package_home(GLOBALS), 
+facetedCountry = open(os.path.join(package_home(GLOBALS),
                     'Extensions', 'faceted-country.xml'),'r').read()
-
 
 class Countries(object):
     """ Countries """
-    
+
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        
+
     def __call__(self):
         context = self.context
         vocab = getToolByName(context, 'portal_vocabularies')
         european_countries = vocab['eea.soer.vocab.european_countries']
         subtyper = getUtility(ISubtyper)
-        subtyper.change_type(context, 
+        subtyper.change_type(context,
                         'eea.facetednavigation.FolderFacetedNavigable')
         faceted = FacetedExportImport(context, context.REQUEST)
         faceted.import_xml(import_file=facetedMain)
@@ -75,11 +69,11 @@ class Countries(object):
                 '<element value="se"/>','<element value="%s"/>' %
                 country_code).replace(' name="se" ',' name="%s" '
                                                     % country_code))
-    
+
 
 class Migration(object):
     """ Migration class"""
-    
+
     def __init__(self, context, request):
         self.context = context
         self.request = request
@@ -89,7 +83,7 @@ class Migration(object):
         self.recreateScales()
         self.regenerateTitles()
         self.removeOldCountryMaps()
-        
+
     def soerImagesAndLinks(self):
         """ Soer Images and Links method
         """
@@ -102,7 +96,7 @@ class Migration(object):
                 if not ISoerFigure.providedBy(fig):
                     directlyProvides(fig, ISoerFigure)
                     log.log('MIGRATED figure %s' % fig.absolute_url())
-                    
+
             for link in obj.getFolderContents(
                     contentFilter={'portal_type' : ['Link', 'DataSourceLink']},
                     full_objects=True):
@@ -145,7 +139,7 @@ class Migration(object):
         """
         context = self.context
         cat = getToolByName(context, 'portal_catalog')
-        for b in cat(portal_type=['CommonalityReport', 
+        for b in cat(portal_type=['CommonalityReport',
             'FlexibilityReport', 'DiversityReport']):
             obj = b.getObject()
             log.log("UPDATING title '%s'" % obj.Title())
@@ -166,14 +160,14 @@ class Migration(object):
 
 class MigrationFaceted(object):
     """ Migration Faceted """
-    
+
     def __init__(self, context, request):
         self.context = context
         self.request = request
 
     def __call__(self):
         self.reloadFacetedNavigation()
-        
+
     def reloadFacetedNavigation(self):
         """ reload faceted configuration for all countries """
         subtyper = getUtility(ISubtyper)
@@ -191,7 +185,7 @@ class MigrationFaceted(object):
                 % country_code).replace(' name="se" ',' name="%s" '
                 % country_code))
 
-        
+
 class SenseFeeds(object):
     """ setup sense feeds for countries and update them """
 
@@ -202,7 +196,7 @@ class SenseFeeds(object):
     def __call__(self):
         context = self.context
         deleteOld = bool(self.request.get('deleteOld', False))
-        updateFeed = bool(self.request.get('updateFeed', False))        
+        updateFeed = bool(self.request.get('updateFeed', False))
         feeds = {'bg' : ['http://nfp-bg.eionet.eu.int/soer-2010/part-c/rdf'], #Bulgaria
                  'be' : ['http://nfp.irceline.be/soer-2010/@@rdf'], #Belgium
                  'sk' : ['http://tsense.sazp.sk/Plone/soer-2010-part-c/slovakia/@@rdf'], #Slovakia
@@ -266,7 +260,7 @@ class SenseFeeds(object):
                 if not country.getRdfFeed():
                     country.setRdfFeed(urls[0])
                     log.log("SENSE setup adding feed %s to '%s'" % (urls[0], country_code))
-                    for url in urls[1:]:                    
+                    for url in urls[1:]:
                         feed = country[ country.invokeFactory('Link', id='tmplink',
                                                               title=url,
                                                               remoteUrl=url) ]
@@ -278,8 +272,8 @@ class SenseFeeds(object):
                     country.updateFromFeed()
             else:
                 log.log("SENSE setup did NOT find '%s' no feeds were setup." % country_code)
-                
-                        
+
+
 
 class FeedUpdater(object):
     """ update all feeds or the choosen one if they have a feed set """
@@ -301,9 +295,9 @@ class FeedUpdater(object):
         cat = getToolByName(context, 'portal_catalog')
         out = []
         #kwargs = {'Importance': 'Normal',
-		#    'X-MSMail-Priority': 'Normal',
-		#    'X-Priority': '3',
-		#    'Priority': 'normal'}
+        #          'X-MSMail-Priority': 'Normal',
+        #          'X-Priority': '3',
+        #          'Priority': 'normal'}
         #subject = 'SENSE Feed update (OK)'
         #error = None
         for b in cat(query):
