@@ -26,6 +26,7 @@ from Products.CMFPlone import log
 import logging
 logger = logging.getLogger('eea.soer.content.SOERCountry')
 
+#TODO: plone4, check status of tidy python library
 tidy = None
 try:
     import tidy

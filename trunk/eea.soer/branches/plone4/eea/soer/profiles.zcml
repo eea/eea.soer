@@ -9,4 +9,18 @@
       description="Extension profile for eea.soer"
       provides="Products.GenericSetup.interfaces.EXTENSION" />
 
+  <genericsetup:importStep
+        name="eea-soer-various"
+        title="EEA Soer setup"
+        description="Various setup for eea.soer"
+        handler="eea.soer.setuphandlers.setupVarious">
+  </genericsetup:importStep>
+
+  <genericsetup:importStep
+        name="eea-soer-vocabularies"
+        title="EEA Soer setup"
+        description="Setup vocabularies for eea.soer"
+        handler="eea.soer.setuphandlers.setupATVocabularies">
+  </genericsetup:importStep>
+
 </configure>

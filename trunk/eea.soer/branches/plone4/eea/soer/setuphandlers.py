@@ -6,6 +6,10 @@ from Products.CMFCore.utils import getToolByName
 from eea.soer.vocab import atvocabs as vocabs
 from eea.vocab import countries
 from eea.soer import transform
+from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
+import logging
+
+logger = logging.getLogger('eea.soer.setuphandlers')
 
 def reindexSoerReports(context):
     """ Reindex Soer Reports
@@ -55,43 +59,35 @@ def hideFromNavigation(context):
 def setupATVocabularies(context):
     """ Installs all AT-based Vocabularies
     """
-    pass
+    if context.readDataFile('eea.soer.txt') is None:
+        return
 
-    #TODO: plone4
-    #if context.readDataFile('eea.soer.txt') is None:
-        #return
+    # if we have eeasoer_vocabularies.txt vocabularies are replaced
+    # used when vocabularies need to be upgraded
+    replace = bool(context.readDataFile('eeasoer_vocabularies.txt'))
 
-    ## if we have eeasoer_vocabularies.txt vocabularies are replaced
-    ## used when vocabularies need to be upgraded
-    #replace = bool(context.readDataFile('eeasoer_vocabularies.txt'))
+    portal = context.getSite()
+    atvm = getToolByName(portal, ATVOCABULARYTOOL, None)
+    if atvm is None:
+        return
+    setupCountriesVocabulary(context)
+    for vkey in vocabs.keys():
+        if hasattr(atvm, vkey):
+            if not replace:
+                continue
+            atvm.manage_delObjects(ids=[vkey])
 
-    #from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
-    #portal = context.getSite()
-    #atvm = getToolByName(portal, ATVOCABULARYTOOL, None)
-    #if atvm is None:
-        #return
-    #setupCountriesVocabulary(context)
-    #for vkey in vocabs.keys():
-        #if hasattr(atvm, vkey):
-            #if not replace:
-                #continue
-            #atvm.manage_delObjects(ids=[vkey])
+        logger.info("Adding vocabulary %s" % vkey)
 
-        #print "adding vocabulary %s" % vkey
-
-        #atvm.invokeFactory('SimpleVocabulary', vkey)
-        #simple = atvm.getVocabularyByName(vkey)
-        #for (key, val) in vocabs[vkey]:
-            #simple.addTerm(key, val)
+        atvm.invokeFactory('SimpleVocabulary', vkey)
+        simple = atvm.getVocabularyByName(vkey)
+        for (key, val) in vocabs[vkey]:
+            simple.addTerm(key, val)
 
 def setupVarious(context):
     """ Setup various
     """
-    pass
-
-    #TODO: plone4
-    ## only run this step if we are in eea.dataservice profile
-    #if context.readDataFile('eea.soer.txt') is None:
-        #return
-    #setupTransform(context)
-    #hideFromNavigation(context)
+    if context.readDataFile('eea.soer.txt') is None:
+        return
+    setupTransform(context)
+    hideFromNavigation(context)
