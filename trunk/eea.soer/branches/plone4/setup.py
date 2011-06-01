@@ -40,7 +40,6 @@ setup(name=NAME,
           'Products.ATVocabularyManager',
           'Products.LinguaPlone',
           'p4a.subtyper',
-          'Products.Marshall',
           'eea.themecentre',
       ],
       entry_points="""

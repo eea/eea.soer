@@ -2,9 +2,14 @@
 <metadata>
  <description>EEA Soer profile</description>
  <version>4</version>
- <!-- dependencies>
+ <dependencies>
   <dependency>profile-Products.LinguaPlone:LinguaPlone</dependency>
-  <dependency>profile-eea.vocab:default</dependency>
   <dependency>profile-Products.ATVocabularyManager:default</dependency>
- <dependencies -->
+  <dependency>profile-eea.vocab:default</dependency>
+  <dependency>profile-eea.facetednavigation:default</dependency>
+  <dependency>profile-eea.faceted.inheritance:default</dependency>
+  <dependency>profile-p4a.subtyper:default</dependency>
+  <dependency>profile-eea.themecentre:default</dependency>
+  <dependency>profile-eea.rdfmarshaller:default</dependency>
+ </dependencies>
 </metadata>

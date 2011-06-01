@@ -84,6 +84,18 @@ def setupATVocabularies(context):
         for (key, val) in vocabs[vkey]:
             simple.addTerm(key, val)
 
+def installProductsMarshall(context):
+    """ Install Products.Marshall
+    """
+    if context.readDataFile('eea.soer.txt') is None:
+        return
+
+    logger.info("Installing Products.Marshall")
+
+    site = context.getSite()
+    qinstaller = getToolByName(site, 'portal_quickinstaller')
+    qinstaller.installProduct('Marshall')
+
 def setupVarious(context):
     """ Setup various
     """
@@ -91,3 +103,4 @@ def setupVarious(context):
         return
     setupTransform(context)
     hideFromNavigation(context)
+    installProductsMarshall(context)
