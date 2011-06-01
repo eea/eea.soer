@@ -7,7 +7,6 @@ from eea.soer.content.SOERReport import schema as  SOERReportSchema, SOERReport
 from eea.soer.config import PROJECTNAME
 from eea.soer import vocab
 from Products.ATVocabularyManager import NamedVocabulary
-
 try:
     from Products.LinguaPlone.public import Schema, StringField, StringWidget
     from Products.LinguaPlone.public import registerType

@@ -4,8 +4,15 @@
            xmlns:browser="http://namespaces.zope.org/browser"
            i18n_domain="eea">
 
+  <include package="eea.vocab" />
+  <include package="eea.facetednavigation" />
+  <include package="eea.faceted.inheritance" />
+  <include package="Products.ATVocabularyManager" />
+  <include package="Products.LinguaPlone" />
+  <include package="p4a.subtyper" />
+  <include package="Products.Marshall" />
+  <include package="eea.themecentre" />
   <include package="eea.rdfmarshaller" />
-  <include package="plone.i18n.locales" />
 
   <five:registerPackage package="." initialize=".initialize" />
 

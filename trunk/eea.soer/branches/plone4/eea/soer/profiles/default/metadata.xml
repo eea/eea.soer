@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 <metadata>
  <description>EEA Soer profile</description>
- <version>1</version>
- <!-- #TODO: plone4 -->
+ <version>4</version>
  <!-- dependencies>
+  <dependency>profile-Products.LinguaPlone:LinguaPlone</dependency>
+  <dependency>profile-eea.vocab:default</dependency>
   <dependency>profile-Products.ATVocabularyManager:default</dependency>
  <dependencies -->
 </metadata>

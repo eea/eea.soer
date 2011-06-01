@@ -12,7 +12,6 @@ from eea.soer.config import PROJECTNAME, ADD_CONTENT_PERMISSION
 from eea.soer import vocab
 from eea.soer import sense
 from types import UnicodeType
-
 try:
     from Products.LinguaPlone.public import registerType, Schema, StringField
     from Products.LinguaPlone.public import StringWidget

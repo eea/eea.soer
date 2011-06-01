@@ -81,7 +81,6 @@ class ReportView(object):
             '?layers=0&c=0:ICC::100,20,40&size=300,300&m=http://cow1/ArcGIS' \
             '/services/Internal/EuroBoundaries_Dyna_WM/MapServer'
 
-
 class ReportQuestionsByTopic(object):
     """ Group all reports from a country py a topic and sort them by question.
     """
@@ -125,4 +124,3 @@ class ReportQuestionsByTopic(object):
         questions['CommonalityReport'] = dict([[v, k] for k, v in #pyflakes, #pylint: disable-msg = W0631
             vocab.long_questions.items()])
         return questions
-

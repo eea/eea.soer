@@ -29,14 +29,19 @@ setup(name=NAME,
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'lxml',
+          'surf',
+          'rdflib',
           'BeautifulSoup',
-          'eea.jquery',
           'eea.vocab',
           'eea.rdfmarshaller',
           'eea.facetednavigation',
           'eea.faceted.inheritance',
           'Products.ATVocabularyManager',
-          'lxml'
+          'Products.LinguaPlone',
+          'p4a.subtyper',
+          'Products.Marshall',
+          'eea.themecentre',
       ],
       entry_points="""
       # -*- Entry points: -*-

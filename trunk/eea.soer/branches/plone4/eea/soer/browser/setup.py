@@ -276,8 +276,6 @@ class SenseFeeds(object):
             else:
                 log.log("SENSE setup did NOT find '%s' no feeds were setup." % country_code)
 
-
-
 class FeedUpdater(object):
     """ Update all feeds or the choosen one if they have a feed set
     """
