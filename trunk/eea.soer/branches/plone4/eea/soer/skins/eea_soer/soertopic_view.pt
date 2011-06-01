@@ -1,7 +1,8 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-  lang="en"
-  metal:use-macro="here/main_template/macros/master"
-  i18n:domain="plone">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="eea">
   <body>
 
     <div metal:fill-slot="main">
@@ -21,8 +22,8 @@
                 <metal:reportContent use-macro="report/commonality_report_view/macros/reportContent" />
                 <tal:subreport  tal:repeat="report mainreport/subReports">
                   <metal:reportContent  use-macro="report/commonality_report_view/macros/reportContent" />
-                </tal:subreport>	
-              </tal:report>	
+                </tal:subreport>
+              </tal:report>
             </tal:reports>
           </div>
         </div>

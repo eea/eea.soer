@@ -1,7 +1,8 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-  lang="en"
-  metal:use-macro="here/main_template/macros/master"
-  i18n:domain="plone">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
 
   <body>
 
@@ -25,7 +26,7 @@
             <dl id="channel-portlet" class="portlet" metal:define-macro="channel"
               tal:define="channel channel|nothing"
               tal:condition="channel">
-              <dt class="portletHeader">	
+              <dt class="portletHeader">
                 <a href="" title="" class="websource-box fancybox discreet"
                   tal:attributes="href string:#channelSource;
                   title string:Channel source">more info</a>
@@ -64,7 +65,7 @@
                     alt channel/organisationName" /></a></dd>
             </dl>
             <dl id="location-portlet" class="portlet" tal:condition="nocall:intro">
-              <dt class="portletHeader">	
+              <dt class="portletHeader">
                 <a href="" title="" class="websource-box fancybox"
                   tal:attributes="href string:#locationSource;
                   title string:Reporting country"
@@ -75,7 +76,7 @@
                       <dt>Reporting country</dt>
                       <dd tal:content="context/Title">Norway</dd>
                       <dd class="portletItem">
-                        <img src="" title="" 
+                        <img src="" title=""
                           tal:attributes="src view/getMapUrl" /></dd>
                     </dl>
                   </div>

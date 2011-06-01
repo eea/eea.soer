@@ -1,7 +1,8 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-  lang="en"
-  metal:use-macro="here/main_template/macros/master"
-  i18n:domain="plone">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="eea">
   <body>
     <metal:main metal:fill-slot="main"
       tal:define="view context/@@soerReportView;
@@ -29,7 +30,7 @@
           topics view/getTopics|nothing;">
           <div class="soerHeader">
             <dl id="themes-portlet" class="portlet" tal:condition="python: topics and isFirstReport">
-              <dt class="portletHeader">	
+              <dt class="portletHeader">
                 Topic</dt>
               <dd class="portletItem" tal:repeat="topic topics">
                 <a href="" tal:attributes="href topic/url;
@@ -47,7 +48,7 @@
                 <metal:channel use-macro="context/soercountry_view/macros/channel"/>
               </tal:channel>
               <dl id="channel-portlet" class="portlet" tal:condition="nothing">
-                <dt class="portletHeader">	
+                <dt class="portletHeader">
                   <a href="" title="" class="websource-box fancybox"
                     tal:attributes="href string:#channelSource;
                     title string:Channel source">Channel</a>
@@ -77,7 +78,7 @@
               </dl>
             </tal:autoUpdated>
             <dl id="location-portlet" class="portlet">
-              <dt class="portletHeader">	
+              <dt class="portletHeader">
                 <a href="" title="" class="websource-box fancybox discreet"
                   tal:attributes="href string:#locationSource;
                   title string:Location">Source</a>
@@ -89,7 +90,7 @@
                       <dd>
                         <a href=""
                           tal:attributes="href python:'http://cr.eionet.europa.eu/references.action?search=&amp;uri=%s' % report.getGeoCoverage()">
-                          <img src="" title="" 
+                          <img src="" title=""
                             tal:attributes="src view/getGeoCoverageMapUrl" /></a></dd>
                     </dl>
                   </div>
@@ -140,7 +141,7 @@
             tal:condition="report/displayDescription">
             Description
           </p>
-          <div class="soer-keyMessage" 
+          <div class="soer-keyMessage"
             tal:condition="report/getKeyMessage">
             <h5>Key message</h5>
             <p tal:replace="structure report/getKeyMessage|nothing" />
@@ -153,7 +154,7 @@
             singleFigure python:len(folderContents) == 1"
             tal:condition="folderContents">
 
-            <h4>Figures</h4> 
+            <h4>Figures</h4>
             <tal:images tal:repeat="brain folderContents">
               <tal:entry tal:define="
                 obj brain/getObject;
@@ -222,7 +223,7 @@
             <div class="soerHeader">
               <tal:entry tal:define="source python:'#datasources%s' % report.UID()">
                 <div class="hiddenStructure">
-                  <div id="" 
+                  <div id=""
                     tal:attributes="id python:source[1:]">
                     <h3 i18n:translate="Data sources">Data sources</h3>
                     <dl tal:condition="folderContents">
