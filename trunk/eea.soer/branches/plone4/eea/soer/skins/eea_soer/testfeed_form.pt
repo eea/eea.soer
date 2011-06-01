@@ -1,7 +1,7 @@
 <html      metal:use-macro="here/main_template/macros/master">
 
 <body>
-<metal:main metal:fill-slot="main">
+<metal:main metal:fill-slot="content-core">
 <h1 class="documentFirstHeading">Test your SOER feed</h1>
 <p>Enter url to the feed and country code, if there is no errors they will be redirected to the country view of the feed. If they get errors they should see if they understand the error and if not contact me with the feed url and I'll help them.
 </p>

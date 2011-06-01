@@ -6,12 +6,9 @@
 
   <body>
 
-    <div metal:fill-slot="main">
-      <h1 tal:content="context/title|nothing" class="documentFirstHeading">
-        Title or id
-      </h1>
+    <div metal:fill-slot="content-core">
 
-      <metal:main-macro define-macro="main">
+      <metal:main-macro define-macro="content-core">
         <div class="visualClear"></div>
         <metal:top-macro define-macro="topinfo"
           tal:define="view context/@@soerCountryView;
@@ -87,20 +84,19 @@
                   tal:attributes="src view/getMapUrl" /></dd>
             </dl>
 
-            <div metal:use-macro="here/document_relateditems/macros/multimedia">
+            <!-- #TODO: plone4 -->
+            <!-- div metal:use-macro="here/document_relateditems/macros/multimedia">
               show related multimedia items if they exist
-            </div>
-            <div metal:use-macro="here/document_relateditems/macros/pages">
+            </div -->
+            <!-- #TODO: plone4 -->
+            <!-- div metal:use-macro="here/document_relateditems/macros/pages">
               show related pages if they exist
-            </div>
-            <div metal:use-macro="here/document_relateditems/macros/auto">
+            </div -->
+            <!-- #TODO: plone4 -->
+            <!-- div metal:use-macro="here/document_relateditems/macros/auto">
               show auto related items if they exist
-            </div>
+            </div -->
           </div>
-          <div class="documentDescription" tal:content="context/Description">
-            Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Ut pharetra sodales ligula sed
-            elementum. Suspendisse et egestas est.</div>
 
           <div tal:condition="nocall:intro" tal:omit-tag="">
             <p tal:replace="structure intro/text">
@@ -130,8 +126,8 @@
             <li><a href="soertopic_view?topic=freshwater" title="Reports about Freshwater">Freshwater</a></li>
             <li><a href="soertopic_view?topic=waste" title="Reports about Waste">Waste</a></li>
             <li tal:define="flex python:context.getFolderContents(contentFilter={'portal_type':'FlexibilityReport'});
-              flex python: flex and flex[0].getObject() or None;"
-              tal:condition="flex|nothing"><a href="../#c11=FlexibilityReport&geo1=" title="National and regional story" class="internallink"
+                            flex python:flex[0].getObject() if flex else None;"
+                tal:condition="nocall:flex|nothing"><a href="../#c11=FlexibilityReport&geo1=" title="National and regional story" class="internallink"
                 tal:attributes="href python:'../#c11=FlexibilityReport&' + view.getRegionsUrl('geo1')">National and regional stories</a></li>
           </ul>
           <div class="visualClear"></div>

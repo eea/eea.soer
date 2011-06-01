@@ -30,6 +30,3 @@ def test_suite():
                   package='eea.soer.browser',
                   test_class=SOERFunctionalTestCase),
             ))
-
-if __name__ == '__main__':
-    unittest.main(defaultTest='test_suite')

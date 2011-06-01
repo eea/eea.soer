@@ -4,24 +4,13 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="eea">
   <body>
-    <metal:main metal:fill-slot="main"
+    <metal:main metal:fill-slot="content-core"
       tal:define="view context/@@soerReportView;
       foo view/redirectIfSubReport">
 
-      <tal:main-macro metal:define-macro="main">
-
-        <div metal:use-macro="here/document_actions/macros/document_actions">
-          Document actions (print, sendto etc)
-        </div>
-
-        <h1 tal:content="object_title" class="documentFirstHeading">
-          Title or id
-        </h1>
-
-        <div metal:use-macro="here/document_byline/macros/byline">
-          Get the byline - contains details about author and modification date.
-        </div>
-
+      <tal:main-macro metal:define-macro="content-core"
+                      tal:define="object_title context/@@plone_context_state/object_title;
+                                  isAnon context/@@plone_portal_state/anonymous;">
 
         <metal:isFromFeed define-macro="isFromFeed"
           tal:define="report nocall:report|nocall:context;
@@ -100,6 +89,7 @@
                 <img src="" title="" width="200"
                   tal:attributes="src view/getGeoCoverageMapUrl" /></dd>
             </dl>
+            <!-- #TODO: plone4
             <tal:firstreport condition="isFirstReport">
               <div metal:use-macro="here/document_relateditems/macros/multimedia">
                 show related multimedia items if they exist
@@ -111,6 +101,7 @@
                 show auto related items if they exist
               </div>
             </tal:firstreport>
+            -->
           </div>
         </metal:isFromFeed>
 
@@ -136,19 +127,12 @@
                   tal:attributes="href report/original_url;">original</a></tal:syncdate>
             </div>
           </tal:anonymous>
-          <p class="documentDescription"
-            tal:content="report/Description"
-            tal:condition="report/displayDescription">
-            Description
-          </p>
+
           <div class="soer-keyMessage"
             tal:condition="report/getKeyMessage">
             <h5>Key message</h5>
             <p tal:replace="structure report/getKeyMessage|nothing" />
           </div>
-
-
-
 
           <tal:figures tal:define="folderContents report/figures;
             singleFigure python:len(folderContents) == 1"
@@ -314,9 +298,10 @@
           <p class="discreet">The country assessments are the sole responsibility of the EEA member and cooperating countries supported by the EEA through guidance, translation and editing. </p>
         </div>
 
-        <metal:sub define-slot="sub">
+        <!-- #TODO: plone4 -->
+        <!-- metal:sub define-slot="sub">
           <metal:discussion use-macro="here/viewThreadsAtBottom/macros/discussionView" />
-        </metal:sub>
+        </metal:sub -->
       </metal:subsection>
     </metal:disclaimer>
 

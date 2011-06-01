@@ -5,9 +5,10 @@
       i18n:domain="eea">
   <body>
 
-    <metal:main metal:fill-slot="main">
-      <tal:main-macro metal:define-macro="main">
+    <metal:main metal:fill-slot="content-core">
+      <tal:main-macro metal:define-macro="content-core">
 
+        <!-- #TODO: plone4
         <metal:document use-macro="here/document_macros/macros/document">
           <tal:document metal:fill-slot="related_multimedia">
             <div id="related-portlets">
@@ -24,6 +25,7 @@
             </div>
           </tal:document>
         </metal:document>
+        -->
 
         <a href="../" title="Link to full assessment">Link to full assessment</a>
 

@@ -12,7 +12,7 @@
 
 <body>
 
-<metal:main metal:fill-slot="main">
+<metal:main metal:fill-slot="content-core">
 <tal:main-macro metal:define-macro="main">
 
     <table>
@@ -22,7 +22,7 @@
         </tr>
         </thead>
         <tbody>
-        <tal:countries tal:define="countries  view/info"
+        <tal:countries tal:define="countries view/info"
             tal:repeat="country countries">
             <tr>
                 <td><a href="" tal:attributes="href python:country['url']+'/'"><h3

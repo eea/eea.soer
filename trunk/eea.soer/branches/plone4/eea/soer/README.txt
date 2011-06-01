@@ -5,7 +5,6 @@ eea.soer
 The eea.soer package provides the SOER report content types. There are
 currently three kind of reports:
 
-
 Commonality Reports
 -------------------
 

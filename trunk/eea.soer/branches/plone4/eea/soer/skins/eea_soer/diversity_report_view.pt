@@ -5,8 +5,8 @@
       i18n:domain="eea">
   <body>
 
-    <metal:main metal:fill-slot="main">
-      <tal:main-macro metal:define-macro="main">
+    <metal:main metal:fill-slot="content-core">
+      <tal:main-macro metal:define-macro="content-core">
 
         <metal:reportContent  use-macro="context/commonality_report_view/macros/main" />
 
