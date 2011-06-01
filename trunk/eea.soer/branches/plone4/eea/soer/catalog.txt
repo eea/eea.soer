@@ -60,4 +60,3 @@ index.
   >>> for i in catalog(query):
   ...     print i.getObject()
   <DiversityReport at diversity>
-
