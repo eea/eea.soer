@@ -23,9 +23,6 @@ the parent folder.
   >>> report.Description()
   'SOER Common environmental theme from Sweden'
 
-#TODO: plone4, report.Description() should return the below text
-'SOER Common environmental theme from Sweden'
-
 The title is generated from the topic and section combination. It's changed
 after saving/modifiying the report.
 

@@ -22,16 +22,29 @@
   <include file="skins.zcml" />
 
   <subscriber for="eea.soer.content.interfaces.ICommonalityReport
+                   zope.app.container.interfaces.IObjectAddedEvent"
+              handler=".content.CommonalityReport.reportUpdated" />
+
+  <subscriber for="eea.soer.content.interfaces.ICommonalityReport
                    zope.lifecycleevent.interfaces.IObjectModifiedEvent"
               handler=".content.CommonalityReport.reportUpdated" />
 
-  <subscriber for="eea.soer.content.interfaces.IDiversityReport
-                   zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-              handler=".content.DiversityReport.reportUpdated" />
+  <!-- #TODO: plone4, related to sense.txt tests -->
+  <!-- subscriber for="eea.soer.content.interfaces.IFlexibilityReport
+                   zope.app.container.interfaces.IObjectAddedEvent"
+              handler=".content.FlexibilityReport.reportUpdated" / -->
 
   <subscriber for="eea.soer.content.interfaces.IFlexibilityReport
                    zope.lifecycleevent.interfaces.IObjectModifiedEvent"
               handler=".content.FlexibilityReport.reportUpdated" />
+
+  <subscriber for="eea.soer.content.interfaces.IDiversityReport
+                   zope.app.container.interfaces.IObjectAddedEvent"
+              handler=".content.DiversityReport.reportUpdated" />
+
+  <subscriber for="eea.soer.content.interfaces.IDiversityReport
+                   zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+              handler=".content.DiversityReport.reportUpdated" />
 
   <subscriber for="Products.ATContentTypes.interface.link.IATLink
                    zope.app.container.interfaces.IObjectAddedEvent"
