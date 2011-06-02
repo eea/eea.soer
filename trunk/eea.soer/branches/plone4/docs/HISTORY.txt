@@ -5,6 +5,8 @@ Changelog
 
 4.0-dev - (unreleased)
 -----------------------
+ * TODO: plone4, when installed on a clean Plone4 there is an error in tempaltes related to document_relateditems macro
+ * TODO: plone4, when add/edit soer content types there is an error related to referencebrowser.pt
  * Feature: Plone 4.0.4 compatible release [ghicaale #4300]
 
 1.17 - (2011-04-01)

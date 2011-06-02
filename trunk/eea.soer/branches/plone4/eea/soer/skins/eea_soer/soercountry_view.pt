@@ -84,18 +84,15 @@
                   tal:attributes="src view/getMapUrl" /></dd>
             </dl>
 
-            <!-- #TODO: plone4 -->
-            <!-- div metal:use-macro="here/document_relateditems/macros/multimedia">
+            <div metal:use-macro="here/document_relateditems/macros/multimedia">
               show related multimedia items if they exist
-            </div -->
-            <!-- #TODO: plone4 -->
-            <!-- div metal:use-macro="here/document_relateditems/macros/pages">
+            </div>
+            <div metal:use-macro="here/document_relateditems/macros/pages">
               show related pages if they exist
-            </div -->
-            <!-- #TODO: plone4 -->
-            <!-- div metal:use-macro="here/document_relateditems/macros/auto">
+            </div>
+            <div metal:use-macro="here/document_relateditems/macros/auto">
               show auto related items if they exist
-            </div -->
+            </div>
           </div>
 
           <div tal:condition="nocall:intro" tal:omit-tag="">

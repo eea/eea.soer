@@ -90,7 +90,7 @@
                 <img src="" title="" width="200"
                   tal:attributes="src view/getGeoCoverageMapUrl" /></dd>
             </dl>
-            <!-- #TODO: plone4
+
             <tal:firstreport condition="isFirstReport">
               <div metal:use-macro="here/document_relateditems/macros/multimedia">
                 show related multimedia items if they exist
@@ -102,7 +102,7 @@
                 show auto related items if they exist
               </div>
             </tal:firstreport>
-            -->
+
           </div>
         </metal:isFromFeed>
 
