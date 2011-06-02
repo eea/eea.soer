@@ -5,10 +5,11 @@
       i18n:domain="eea">
   <body>
     <metal:main metal:fill-slot="content-core"
-      tal:define="view context/@@soerReportView;
-      foo view/redirectIfSubReport">
+                tal:define="view context/@@soerReportView;
+                            foo view/redirectIfSubReport">
 
-      <tal:main-macro metal:define-macro="content-core"
+      <!-- #TODO: plone4, should be metal:define-macro="content-core" -->
+      <tal:main-macro metal:define-macro="main"
                       tal:define="object_title context/@@plone_context_state/object_title;
                                   isAnon context/@@plone_portal_state/anonymous;">
 
