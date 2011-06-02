@@ -1,6 +1,6 @@
 """ SOER Country
 """
-from md5 import md5
+from hashlib import md5
 from zope.interface import implements
 import urllib2
 from BeautifulSoup import BeautifulSoup
@@ -104,16 +104,25 @@ class SOERCountry(ATFolder):
         """
         url = self.getRdfFeed()
         if url:
-            squidt = getToolByName(self, 'portal_squid', None)
-            if squidt is not None:
-                urlexpr = squidt.getUrlExpression()
-                # use squid default url calculation during update due
-                # acquisition problem to find the url expression script
-                # XXX: maybe we should disable invalidation all together during update?
-                squidt.manage_setSquidSettings(squidt.getSquidURLs(), url_expression='')
+
+            #TODO: plone4, we dont use portal_squid anymore
+            #squidt = getToolByName(self, 'portal_squid', None)
+            #if squidt is not None:
+                #urlexpr = squidt.getUrlExpression()
+                ## use squid default url calculation during update due
+                ## acquisition problem to find the url expression script
+                ## XXX: maybe we should disable invalidation all together
+                ##      during update?
+                #squidt.manage_setSquidSettings(squidt.getSquidURLs(),
+                                                #url_expression='')
 
             if self.aq_parent:
-                self.aq_parent.manage_exportObject(id=self.getId())
+                try:
+                    self.aq_parent.manage_exportObject(id=self.getId())
+                except IOError:
+                    #TODO: plone4, running tests clienthome has a wrong path
+                    #      but zexp gets created anyway in the right location
+                    logger.info('Clienthome has a wrong path')
 
             soer = sense.SoerRDF2Surf(url)
             for link in self.contentValues(filter={ 'portal_type' :'Link'}):
@@ -121,9 +130,12 @@ class SOERCountry(ATFolder):
                 if url:
                     soer.loadUrl(url)
             self._updateFromFeed(soer)
-            if squidt is not None:
-                # restore the url expression
-                squidt.manage_setSquidSettings(squidt.getSquidURLs(), url_expression=urlexpr)
+
+            #TODO: plone4, we dont use portal_squid anymore
+            #if squidt is not None:
+                ## restore the url expression
+                #squidt.manage_setSquidSettings(squidt.getSquidURLs(),
+                                                #url_expression=urlexpr)
 
     def _updateFromFeed(self, soer): #pyflakes, #pylint: disable-msg = R0912, R0914, R0915
         """ Update from feed
@@ -138,7 +150,7 @@ class SOERCountry(ATFolder):
         def publishIfPossible(obj, action='publish'):
             """ Publish if possible
             """
-            actions = [a['id'] for a in wtool.getActionsFor(obj)]
+            actions = [a['id'] for a in wtool.getTransitionsFor(obj)]
             if action in actions:
                 wtool.doActionFor(obj, action, comment='Automatic feed update')
 

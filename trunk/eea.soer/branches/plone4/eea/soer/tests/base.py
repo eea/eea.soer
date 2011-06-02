@@ -19,6 +19,7 @@ def setup_soer():
     zcml.load_config('configure.zcml', eea.soer)
     fiveconfigure.debug_mode = False
 
+    PloneTestCase.installPackage('eea.soer')
     PloneTestCase.installPackage('eea.vocab')
     PloneTestCase.installPackage('eea.rdfmarshaller')
     PloneTestCase.installPackage('eea.facetednavigation')
