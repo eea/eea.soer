@@ -7,16 +7,12 @@ from eea.soer.content.SOERReport import schema as  SOERReportSchema, SOERReport
 from eea.soer.config import PROJECTNAME
 from eea.soer import vocab
 from Products.ATVocabularyManager import NamedVocabulary
-try:
-    from Products.LinguaPlone.public import Schema, StringField, StringWidget
-    from Products.LinguaPlone.public import registerType
-except ImportError:
-    # No multilingual support
-    from Products.Archetypes.public import Schema, StringField, StringWidget
-    from Products.Archetypes.public import registerType
-
-# Make pyflakes happy
-__all__ = [Schema, StringField, StringWidget, registerType]
+from Products.Archetypes.public import (
+    Schema,
+    StringField,
+    StringWidget,
+    registerType
+)
 
 schema = Schema((
         StringField(

@@ -274,7 +274,7 @@ class SenseFeeds(object):
                                                          'Link', id='tmplink',
                                                          title=url,
                                                          remoteUrl=url)]
-                        _newId = feed._renameAfterCreation(check_auto_id=False)
+                        feed._renameAfterCreation(check_auto_id=False)
                         log.log("SENSE setup adding feed %s to '%s'" %
                                                         (url, country_code))
                 else:

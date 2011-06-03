@@ -12,18 +12,15 @@ from eea.soer.config import PROJECTNAME, ADD_CONTENT_PERMISSION
 from eea.soer import vocab
 from eea.soer import sense
 from types import UnicodeType
-try:
-    from Products.LinguaPlone.public import registerType, Schema, StringField
-    from Products.LinguaPlone.public import StringWidget
-except ImportError:
-    # No multilingual support
-    from Products.Archetypes.public import registerType, Schema, StringField
-    from Products.Archetypes.public import StringWidget
-
-__all__ = [registerType, Schema, StringField, StringWidget]
-
 from Products.CMFPlone import log
 import logging
+from Products.Archetypes.public import (
+    registerType,
+    Schema,
+    StringField,
+    StringWidget
+)
+
 logger = logging.getLogger('eea.soer.content.SOERCountry')
 
 #TODO: plone4, check status of tidy python library
@@ -35,7 +32,6 @@ except ImportError, err:
 
 
 schema = Schema((
-
     StringField(
         name='rdfFeed',
         languageIndependent=False,
@@ -177,13 +173,13 @@ class SOERCountry(ATFolder):
             """
             parentReport = None
             if nstory.portal_type in ['DiversityReport', 'CommonalityReport']:
-                questions = dict([[v, k] for k, v in
-                                  vocab.old_long_diversity_questions.items()])
-                questions.update(dict([[v, k] for k, v in
-                                       vocab.long_questions.items()]))
+                questions = dict([v, k] for k, v in
+                                  vocab.old_long_diversity_questions.items())
+                questions.update(dict([m, n] for m, n in
+                                       vocab.long_questions.items()))
                 # Old labels before #3685
-                questions.update(dict([[v, k] for k, v in
-                                       vocab.old_long_questions.items()]))
+                questions.update(dict([x, y] for x, y in
+                                       vocab.old_long_questions.items()))
                 question = questions.get(nstory.question, nstory.question)
                 #original_url = nstory.subject.strip()
             else:

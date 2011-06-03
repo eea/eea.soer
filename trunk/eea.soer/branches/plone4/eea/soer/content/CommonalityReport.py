@@ -6,14 +6,7 @@ from eea.soer.content.interfaces import ICommonalityReport
 from eea.soer.content.SOERReport import SOERReport
 from eea.soer.config import PROJECTNAME
 from eea.soer import vocab
-try:
-    from Products.LinguaPlone.public import Schema, registerType
-except ImportError:
-    # No multilingual support
-    from Products.Archetypes.public import Schema, registerType
-
-# Make pyflakes happy
-__all__ = [Schema, registerType]
+from Products.Archetypes.public import Schema, registerType
 
 schema = getattr(SOERReport, 'schema', Schema(())).copy()
 

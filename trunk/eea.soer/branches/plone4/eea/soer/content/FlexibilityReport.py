@@ -5,16 +5,12 @@ from AccessControl import ClassSecurityInfo
 from eea.soer.content.interfaces import IFlexibilityReport
 from eea.soer.content.SOERReport import SOERReport
 from eea.soer.config import PROJECTNAME
-try:
-    from Products.LinguaPlone.public import Schema, StringField, StringWidget
-    from Products.LinguaPlone.public import registerType
-except ImportError:
-    # No multilingual support
-    from Products.Archetypes.public import Schema, StringField, StringWidget
-    from Products.Archetypes.public import registerType
-
-# Make pyflakes happy
-__all__ = [Schema, StringField, StringWidget, registerType]
+from Products.Archetypes.public import (
+    Schema,
+    StringField,
+    StringWidget,
+    registerType
+)
 
 schema = Schema((
         StringField(

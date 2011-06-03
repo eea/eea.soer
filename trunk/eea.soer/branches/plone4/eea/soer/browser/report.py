@@ -107,11 +107,11 @@ class ReportQuestionsByTopic(object):
         """
         context = self.context
         catalog = getToolByName(context, 'portal_catalog')
-        query = {'portal_type' : ['DiversityReport', 'CommonalityReport'],
-                 'getSoerTopic' : self.topic,
-                 'sort_on' : 'getSoerQuestion',
-                 'path' : { 'query' : '/'.join(context.getPhysicalPath()),
-                            'depth' : 1},
+        query = {'portal_type': ['DiversityReport', 'CommonalityReport'],
+                 'getSoerTopic': self.topic,
+                 'sort_on': 'getSoerQuestion',
+                 'path': { 'query' : '/'.join(context.getPhysicalPath()),
+                           'depth' : 1},
                  }
         return catalog(query)
 
@@ -119,8 +119,8 @@ class ReportQuestionsByTopic(object):
     def questions(self):
         """ Return a dict with questions from vocab file
         """
-        questions = { 'DiversityReport' : dict([[v, k] for k, v in
-            vocab.long_diversity_questions.items()]) }
-        questions['CommonalityReport'] = dict([[v, k] for k, v in
-            vocab.long_questions.items()])
+        questions = {'DiversityReport': dict([v, k] for k, v in
+            vocab.long_diversity_questions.items())}
+        questions['CommonalityReport'] = dict([x, y] for x, y in
+            vocab.long_questions.items())
         return questions

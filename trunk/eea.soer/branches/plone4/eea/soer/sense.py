@@ -62,13 +62,13 @@ class NationalStory(object):
     def update(self, country):
         """ Update
         """
-        questions = dict([[v, k] for k, v in
-                                    vocab.long_diversity_questions.items()])
-        questions.update(dict([[v, k] for k, v in
-                                    vocab.long_questions.items()]))
+        questions = dict([v, k] for k, v in
+                                    vocab.long_diversity_questions.items())
+        questions.update(dict([x, y] for x, y in
+                                    vocab.long_questions.items()))
         # Old labels before #3685
-        questions.update(dict([[v, k] for k, v in
-                                    vocab.old_long_questions.items()]))
+        questions.update(dict([m, n] for m, n in
+                                    vocab.old_long_questions.items()))
 
         report = country[country.invokeFactory(
                                       self.portal_type, id='temp_report',
