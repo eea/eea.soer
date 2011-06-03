@@ -29,10 +29,9 @@
                    zope.lifecycleevent.interfaces.IObjectModifiedEvent"
               handler=".content.CommonalityReport.reportUpdated" />
 
-  <!-- #TODO: plone4, related to sense.txt tests -->
-  <!-- subscriber for="eea.soer.content.interfaces.IFlexibilityReport
+  <subscriber for="eea.soer.content.interfaces.IFlexibilityReport
                    zope.app.container.interfaces.IObjectAddedEvent"
-              handler=".content.FlexibilityReport.reportUpdated" / -->
+              handler=".content.FlexibilityReport.reportUpdated" />
 
   <subscriber for="eea.soer.content.interfaces.IFlexibilityReport
                    zope.lifecycleevent.interfaces.IObjectModifiedEvent"

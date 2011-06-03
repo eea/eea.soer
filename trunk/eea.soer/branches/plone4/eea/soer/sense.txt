@@ -151,19 +151,16 @@ Lets add two more feeds to the country folder and update from them too.
   >>> len(country.objectIds())
   9
   >>> for report in country.objectIds():
-  ...   if report not in oldIds and report != 'feed1' and report != 'not_set_yet':
-  ...     import pdb; pdb.set_trace()
+  ...   if report not in oldIds and report != 'feed1':
   ...     print report
-  national-and-regional-story-norway
+  national-and-regional-story-norwa...
 
-#TODO: plone4, report != 'not_set_yet' should not be in above IF statement,
-check configure.zcml for the coresponding subscriber
-
-  >>> country['national-and-regional-story-norway'].getKeyMessage()
+  >>> flexibility_report = country.objectValues('FlexibilityReport')[0]
+  >>> flexibility_report.getKeyMessage()
   '<p>High concentrations of tropospheric ozone and its precursors<br />(e.g. NOx and NMVOC) have shown to adversely affect the human respiratory system,<br />cause eye, nose, and throat irritations and increase hospital admissions.<br />Tropospheric ozone also damages crops and other vegetation.</p>'
-  >>> country['national-and-regional-story-norway'].getQuestion()
+  >>> flexibility_report.getQuestion()
   'What are the state (S) and impacts (I) related to this theme, including impacts on the natural environment and human health/human well-being, both at national level as well as in transboundary terms?'
-  >>> country['national-and-regional-story-norway'].portal_type
+  >>> flexibility_report.portal_type
   'FlexibilityReport'
 
 Lets load the example rdf with updated modify date for some national stories.
