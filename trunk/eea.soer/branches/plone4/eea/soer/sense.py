@@ -39,7 +39,8 @@ class GetATSchema4SurfObj(object):
     def fieldNames(self):
         """ Field names
         """
-        return [field.getName() for field in self.schema.fields() ] + ['relatedEuropeanIndicator']
+        return [field.getName() for field in
+                         self.schema.fields() ] + ['relatedEuropeanIndicator']
 
 class NationalStory(object):
     """ National Story
@@ -61,14 +62,18 @@ class NationalStory(object):
     def update(self, country):
         """ Update
         """
-        questions = dict([[v, k] for k, v in vocab.long_diversity_questions.items()]) #pyflakes, #pylint: disable-msg = W0631
-        questions.update(dict([[v, k] for k, v in vocab.long_questions.items()])) #pyflakes, #pylint: disable-msg = W0631
-        # old labels before https://svn.eionet.europa.eu/projects/Zope/ticket/3685
-        questions.update(dict([[v, k] for k, v in vocab.old_long_questions.items()]))
+        questions = dict([[v, k] for k, v in
+                                    vocab.long_diversity_questions.items()])
+        questions.update(dict([[v, k] for k, v in
+                                    vocab.long_questions.items()]))
+        # Old labels before #3685
+        questions.update(dict([[v, k] for k, v in
+                                    vocab.old_long_questions.items()]))
 
-        report = country[country.invokeFactory(self.portal_type, id='temp_report',
-                                         soerTopic=self.getTopic(),
-                                         soerQuestion=questions[self.question])]
+        report = country[country.invokeFactory(
+                                      self.portal_type, id='temp_report',
+                                      soerTopic=self.getTopic(),
+                                      soerQuestion=questions[self.question])]
         if self.soer_assessment.first is not None:
             report.setText(self.soer_assessment.first.strip())
         else:
@@ -103,7 +108,8 @@ class Surf2SOERReport(object):
                 if not field.first:
                     field = getattr(context, 'dc_Description')
             if fname in ['keyword']:
-                setattr(self, fname, [ value.strip().encode('utf8') for value in field ])
+                setattr(self, fname, [ value.strip().encode('utf8')
+                                                        for value in field ])
             elif field.first is not None:
                 setattr(self, fname, field.first.strip().encode('utf8'))
             else:
@@ -123,9 +129,13 @@ class Surf2SOERReport(object):
         if topic == 'country introduction':
             portal_type = 'DiversityReport'
         elif topic in vocab.long_topics.keys():
-            if self.question.decode('utf8') in vocab.long_questions.values() + vocab.old_long_questions.values():
+            if self.question.decode('utf8') in \
+                                      vocab.long_questions.values() + \
+                                      vocab.old_long_questions.values():
                 portal_type = 'CommonalityReport'
-            elif self.question.decode('utf8') in vocab.long_diversity_questions.values() + vocab.old_long_diversity_questions.values():
+            elif self.question.decode('utf8') in \
+                                 vocab.long_diversity_questions.values() + \
+                                 vocab.old_long_diversity_questions.values():
                 portal_type = 'DiversityReport'
         if portal_type != 'FlexibilityReport':
             self.topic = topic
@@ -139,9 +149,11 @@ class Surf2SOERReport(object):
             #i = 0
             for fig in context.soer_hasFigure:
                 try:
-                    fileName = fig.soer_fileName.first and str(fig.soer_fileName.first) or 'tempfile'
+                    fileName = fig.soer_fileName.first and \
+                                    str(fig.soer_fileName.first) or 'tempfile'
                 except Exception:
-                    log.log('Figure resource without information %s' % fig, severity=log.logging.WARN)
+                    log.log('Figure resource without information %s' %
+                                              fig, severity=log.logging.WARN)
                     continue
                 sortOrder = 0
                 if hasattr(fig, 'soer_sortOrder'):
@@ -158,15 +170,19 @@ class Surf2SOERReport(object):
                 if fig.soer_dataSource.first is not None:
                     dataSrc = fig.soer_dataSource.first
                     if not isinstance(dataSrc, rdflib.URIRef):
-                        fileName = dataSrc.soer_fileName.first and str(dataSrc.soer_fileName.first) or 'tempfile'
-                        result['dataSource'] = { 'url' : dataSrc.subject.strip(),
-                                                 'fileName' : fileName,
-                                                 'dataURL' : dataSrc.soer_dataURL.first.strip() }
+                        fileName = dataSrc.soer_fileName.first and \
+                                str(dataSrc.soer_fileName.first) or 'tempfile'
+                        result['dataSource'] = {
+                            'url' : dataSrc.subject.strip(),
+                            'fileName' : fileName,
+                            'dataURL' : dataSrc.soer_dataURL.first.strip() }
                     else:
-                        result['dataSource'] = { 'url' : str(dataSrc),
-                                                 'fileName' : fileName,
-                                                 'dataURL' : str(dataSrc) }
-                        log.log('Data source without information %s' % dataSrc, severity=log.logging.WARN)
+                        result['dataSource'] = {
+                            'url' : str(dataSrc),
+                            'fileName' : fileName,
+                            'dataURL' : str(dataSrc) }
+                        log.log('Data source without information %s' %
+                                           dataSrc, severity=log.logging.WARN)
 
                 yield result
 
@@ -185,7 +201,8 @@ class Surf2SOERReport(object):
         """
         context = self.context
         if context.soer_relatedEuropeanIndicator:
-            return [ str(indicator) for indicator in context.soer_relatedEuropeanIndicator ]
+            return [ str(indicator) for indicator in
+                          context.soer_relatedEuropeanIndicator ]
         return []
 
 class SoerRDF2Surf(object):
@@ -195,10 +212,13 @@ class SoerRDF2Surf(object):
     implements(ISoerRDF2Surf)
 
     def __init__(self, url):
-        self.store = surf.Store(reader='rdflib',  writer='rdflib', rdflib_store = 'IOMemory')
+        self.store = surf.Store(reader='rdflib',
+                                writer='rdflib',
+                                rdflib_store = 'IOMemory')
         self.store.log.setLevel(logging.CRITICAL)
         self.store.writer.log.setLevel(logging.CRITICAL)
-        self.session = surf.Session(self.store, mapping={surf.ns.SOER.NationalStory : NationalStory} )
+        self.session = surf.Session(self.store, mapping={
+                                  surf.ns.SOER.NationalStory: NationalStory})
         self.loadUrl(url)
 
     def loadUrl(self, url):
@@ -214,12 +234,16 @@ class SoerRDF2Surf(object):
             channel = self.session.get_class(surf.ns.SOER['channel']).all()
         if channel and channel.first():
             channel = channel.first()
-            result = {'organisationName' : getSingleValue(channel.soer_organisationName),
-                      'organisationURL'  : getSingleValue(channel.soer_organisationURL),
-                      'organisationContactURL'  : getSingleValue(channel.soer_organisationContactURL),
-                      'organisationLogoURL' : getSingleValue(channel.soer_organisationLogoURL),
-                      'license' : getSingleValue(channel.soer_license),
-                      'updated' : DateTime() }
+            result = {'organisationName':
+                          getSingleValue(channel.soer_organisationName),
+                      'organisationURL':
+                          getSingleValue(channel.soer_organisationURL),
+                      'organisationContactURL':
+                          getSingleValue(channel.soer_organisationContactURL),
+                      'organisationLogoURL':
+                          getSingleValue(channel.soer_organisationLogoURL),
+                      'license': getSingleValue(channel.soer_license),
+                      'updated': DateTime()}
             return result
 
     def nationalStories(self):
@@ -243,7 +267,9 @@ class SoerRDF2Surf(object):
         result = ""
         natStory = self.session.get_class(surf.ns.SOER['NationalStory'])
         #DataFile = self.session.get_class(surf.ns.SOER['DataFile'])
-        result += self.nsFormating % (' ', ' ', 'Topic', 'Question', 'Desc', 'KeyMsg', 'Assesment', 'KeyWord', 'Indicator', 'Figure', 'Data')
+        result += self.nsFormating % (' ', ' ', 'Topic', 'Question', 'Desc',
+                                      'KeyMsg', 'Assesment', 'KeyWord',
+                                      'Indicator', 'Figure', 'Data')
         for nstory in natStory.all().order():
             nstory = ISOERReport(nstory)
             result += self._checkNationalStory(nstory)

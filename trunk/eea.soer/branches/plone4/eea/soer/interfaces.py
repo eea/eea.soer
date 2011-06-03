@@ -6,7 +6,7 @@ class ISurf2AT(Interface):
     """ Surf to AT
     """
 
-    def update(context):  #pylint: disable-msg = E0213
+    def update(context):
         """ Updated context with values from RDF
         """
 
@@ -44,6 +44,8 @@ class IReportView(Interface):
         """
 
 class ICountryView(Interface):
+    """ Country View
+    """
 
     def countryIntroduction(self):
         """ Return the 'country introduction' report. It is a DiversityReport
@@ -58,11 +60,13 @@ class ICountryView(Interface):
         """ Return url to the map
         """
 
-    def getRegionsUrl(widget):  #pylint: disable-msg = E0213
+    def getRegionsUrl(widget):
         """ Return part of a faceted query for geo coverage
         """
 
 class IReportQuestionsByTopic(Interface):
+    """  Report Questions By Topic
+    """
 
     def topicTitle(self):
         """ Return current topic title

@@ -10,7 +10,8 @@ class ISOERReport(Interface):
 
     geoCoverage = Choice(
             title=u'Geographical coverage',
-            description=u'The geographical (spatial) area covered by the assessment.',
+            description=u'The geographical (spatial) area covered by '
+                         'the assessment.',
             required=True,
             vocabulary=u'Geographical coverage'
             )
@@ -38,7 +39,6 @@ class ISOERReport(Interface):
             required=True
             )
 
-    # keyMessage
     keyMessage = Text(
             title=u'Key message',
             description=u'This is a short key message for the National Story,' \
@@ -46,7 +46,6 @@ class ISOERReport(Interface):
             required=True
             )
 
-    #assesment
     assessment = Text(
             title=u'Report assesment',
             description=u'Content of this report',
@@ -74,7 +73,7 @@ class IReportingCountry(Interface):
         contained reports.
     """
 
-    def updateFromFeed(): #pyflakes, #pylint: disable-msg = E0211
+    def updateFromFeed(self):
         """ Update reports from the rdf feed url
         """
 

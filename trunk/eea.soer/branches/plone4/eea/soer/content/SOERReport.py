@@ -16,13 +16,28 @@ from Products.ATVocabularyManager import NamedVocabulary
 from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
 from Products.CMFPlone.PloneBatch import Batch
 try:
-    from Products.LinguaPlone.public import Schema, TextField, AnnotationStorage
-    from Products.LinguaPlone.public import RichWidget, StringField, SelectionWidget
-    Schema, TextField, AnnotationStorage, RichWidget, StringField, SelectionWidget
+    from Products.LinguaPlone.public import (
+        Schema, TextField, AnnotationStorage
+    )
+    from Products.LinguaPlone.public import (
+        RichWidget, StringField, SelectionWidget
+    )
 except ImportError:
     # No multilingual support
-    from Products.Archetypes.public import Schema, TextField, AnnotationStorage
-    from Products.Archetypes.public import RichWidget, StringField, SelectionWidget
+    from Products.Archetypes.public import (
+        Schema, TextField, AnnotationStorage
+    )
+    from Products.Archetypes.public import (
+        RichWidget, StringField, SelectionWidget
+    )
+
+# Make pyflakes happy
+__all__ = [Schema,
+           TextField,
+           AnnotationStorage,
+           RichWidget,
+           StringField,
+           SelectionWidget]
 
 schema = Schema((
 
@@ -130,7 +145,8 @@ schema = Schema((
         widget=SelectionWidget(
             label='Evaluation',
             label_msgid='label_evaluation',
-            description='This is a two letter value which indicates quickly what the evaluation and trend is.',
+            description='This is a two letter value which indicates quickly '
+                        'what the evaluation and trend is.',
             visible={'view' : 'invisible',
                      'edit' : 'invisible'},
             format='select',
@@ -144,7 +160,8 @@ schema = getattr(ATFolder, 'schema', Schema(())).copy() + schema.copy()
 schema['title'].default = 'not_set_yet'
 schema['title'].required = 0
 schema['title'].widget.visible = {'edit' : 'invisible'}
-schema['description'].widget.description = '(Optional) ' + schema['description'].widget.description
+schema['description'].widget.description = \
+                     '(Optional) ' + schema['description'].widget.description
 schema['soerCountry'].default_method = 'default_country'
 schema['relatedItems'].widget.visible =  {'edit' : 'visible'}
 schema['relatedItems'].schemata = 'metadata'
@@ -183,12 +200,14 @@ class SOERReport(ATFolder, ATNewsItem):
         if len(country_code) > 2:
             # country folder id is probably named with full name
             return country_code
-        return self.getTermTitle('eea.soer.vocab.european_countries', country_code)
+        return self.getTermTitle('eea.soer.vocab.european_countries',
+                                 country_code)
 
     def getGeoCoverageVocabulary(self, content_instance=None, field=None):
         """ Get geo coverage vocabulary
         """
-        vocab =  getUtility(IVocabularyFactory, name=u"eea.soer.vocab.NUTSRegions")
+        vocab =  getUtility(IVocabularyFactory,
+                            name=u"eea.soer.vocab.NUTSRegions")
         indent = u''
         parent = []
         displayList = DisplayList()
@@ -206,7 +225,8 @@ class SOERReport(ATFolder, ATNewsItem):
         displayList.add(u'nuts', u'-- NUTS Regions --')
         for region in vocab.resources():
             current = region.subject.strip()
-            if not current.startswith('http://rdfdata.eionet.europa.eu/ramon/nuts2008/'):
+            if not current.startswith(
+                          'http://rdfdata.eionet.europa.eu/ramon/nuts2008/'):
                 continue
 
             if region.nuts_partOf.first:
@@ -214,7 +234,8 @@ class SOERReport(ATFolder, ATNewsItem):
                     indent += u'.'
                     parent.append(region.nuts_partOf.first.subject.strip())
                 else:
-                    while region.nuts_partOf.first.subject.strip() != parent[-1]:
+                    while region.nuts_partOf.first.subject.strip() != \
+                                                                  parent[-1]:
                         parent = parent[:-1]
                         indent = indent[:-1]
 
@@ -234,7 +255,8 @@ class SOERReport(ATFolder, ATNewsItem):
     def getEvaluationVocabulary(self, content_instance=None, field=None):
         """ Get evaluation vocabulary
         """
-        vocab = getUtility(IVocabularyFactory, name=u"eea.soer.vocab.Evaluation")
+        vocab = getUtility(IVocabularyFactory,
+                           name=u"eea.soer.vocab.Evaluation")
         return DisplayList([(t.value, t.title) for t in vocab(self) ])
 
     def default_country(self):
@@ -253,24 +275,28 @@ class SOERReport(ATFolder, ATNewsItem):
         """ Return figures for listing at the bottom of the report
         """
         assessment = self.getText()
-        return Batch([fig  for fig in self.getFolderContents(contentFilter={'portal_type' : 'Image'})
-                      if fig.getURL(1) not in assessment ],
-                     10)
+        return Batch([fig for fig in
+            self.getFolderContents(contentFilter={'portal_type': 'Image'})
+            if fig.getURL(1) not in assessment ],
+            10)
 
     def dataSources(self):
         """ Data sources
         """
-        return self.getFolderContents(contentFilter={'portal_type' : ['Link', 'DataSourceLink']}, full_objects=True)
+        return self.getFolderContents(contentFilter= \
+            {'portal_type': ['Link', 'DataSourceLink']}, full_objects=True)
 
     def indicators(self):
         """ Return indicators
         """
-        return self.getFolderContents(contentFilter={'portal_type': 'RelatedIndicatorLink'}, full_objects=True)
+        return self.getFolderContents(contentFilter= \
+                {'portal_type': 'RelatedIndicatorLink'}, full_objects=True)
 
     def subReports(self):
         """ Return reports inside this report (multiple indicator base report)
         """
-        return self.getFolderContents(contentFilter={'portal_type' : self.portal_type}, full_objects=True)
+        return self.getFolderContents(contentFilter= \
+                      {'portal_type': self.portal_type}, full_objects=True)
 
     def isFromFeed(self):
         """ Return True if SOERCountry has a feed url

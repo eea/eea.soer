@@ -39,7 +39,8 @@ ATTR_PATTERN = re.compile('''
      | height%s
      | .
      )*\>
-    )''' % (ATTR_CLASS, ATTR_WIDTH, ATTR_ALT, ATTR_HEIGHT), re.VERBOSE | re.IGNORECASE | re.DOTALL)
+    )''' % (ATTR_CLASS, ATTR_WIDTH, ATTR_ALT, ATTR_HEIGHT),
+         re.VERBOSE | re.IGNORECASE | re.DOTALL)
 SRC_TAIL = re.compile(r'/([^" \/>]+)')
 
 CLASS_PATTERN = re.compile('\s*class\s*=\s*("[^"]*captioned[^"]*"|[^" \/>]+)')
@@ -69,12 +70,16 @@ class ImageSource:
 
     def __init__(self, name=None):
         self.config_metadata = {
-            'inputs' : ('list', 'Inputs', 'Input(s) MIME type. Change with care.'),
+            'inputs' : ('list',
+                        'Inputs',
+                        'Input(s) MIME type. Change with care.'),
             }
         if name is not None:
             self.__name__ = name
 
     def name(self):
+        """ Name
+        """
         return self.__name__
 
     def __getattr__(self, attr):
@@ -85,7 +90,8 @@ class ImageSource:
         raise AttributeError(attr)
 
     def resolveuid(self, context, reference_catalog, uid):
-        """ Convert a uid to an object by looking it up in the reference catalog.
+        """ Convert a uid to an object by looking it up in the reference
+            catalog.
             If not found then tries to fallback to a possible hook (e.g.
             so you could resolve uids on another system).
         """
@@ -97,7 +103,7 @@ class ImageSource:
             target = hook(uid)
         return target
 
-    def convert(self, data, idata, filename=None, **kwargs): #pyflakes, #pylint: disable-msg = R0912
+    def convert(self, data, idata, filename=None, **kwargs):
         """ Convert the data, store the result in idata and return that
         optional argument filename may give the original file name of received data
         additional arguments given to engine's convert, convertTo or __call__ are
@@ -114,7 +120,9 @@ class ImageSource:
             rc = at_tool.reference_catalog
 
         if context is not None and at_tool is not None:
-            def replaceImage(match): #pyflakes, #pylint: disable-msg = R0912
+            def replaceImage(match):
+                """ Replace image
+                """
                 tag = match.group('pat0') or match.group('pat1')
                 attrs = ATTR_PATTERN.match(tag)
                 atag = match.group('atag0') or match.group('atag1')
@@ -133,14 +141,16 @@ class ImageSource:
                         d['originalwidth'] = attrs.group('width')
                         d['originalalt'] = attrs.group('alt')
                         d['url_path'] = target.absolute_url_path()
-                        d['caption'] = newline_to_br(html_quote(target.Description()))
+                        d['caption'] = \
+                             newline_to_br(html_quote(target.Description()))
                         d['image'] = d['fullimage'] = target
                         d['tag'] = None
                         d['isfullsize'] = True
                         d['width'] = target.width
                         if srctail:
                             if isinstance(srctail, unicode):
-                                srctail = srctail.encode('utf8') # restrictedTraverse doesn't accept unicode
+                                # restrictedTraverse doesn't accept unicode
+                                srctail = srctail.encode('utf8')
                             try:
                                 subtarget = target.restrictedTraverse(srctail)
                             except Exception:
@@ -149,7 +159,9 @@ class ImageSource:
                                 d['image'] = subtarget
 
                             if srctail.startswith('image_'):
-                                d['tag'] = target.getField('image').tag(target, scale=srctail[6:])
+                                d['tag'] = \
+                               target.getField('image').tag(target,
+                                                            scale=srctail[6:])
                             elif subtarget:
                                 d['tag'] = subtarget.tag()
 
@@ -157,15 +169,20 @@ class ImageSource:
                             d['tag'] = target.tag()
 
                         if subtarget is not None:
-                            d['isfullsize'] = subtarget.width == target.width and subtarget.height == target.height
+                            d['isfullsize'] = subtarget.width == \
+                               target.width and subtarget.height == \
+                               target.height
                             d['width'] = subtarget.width
 
-                        # strings that may contain non-ascii characters need to be decoded to unicode
+                        # Strings that may contain non-ascii characters
+                        # need to be decoded to unicode
                         for key in ('caption', 'tag'):
                             if isinstance(d[key], str):
                                 d[key] = d[key].decode('utf8')
 
-                        if atag is not None: # Must preserve original link, don't overwrite with a link to the image
+                        # Must preserve original link, don't overwrite with
+                        # a link to the image
+                        if atag is not None:
                             d['isfullsize'] = True
                             d['tag'] = "%s%s</a>" % (atag, d['tag'])
 

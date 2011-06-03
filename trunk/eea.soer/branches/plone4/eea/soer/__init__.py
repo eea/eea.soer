@@ -1,10 +1,7 @@
 """ EEA SOER package
 """
-from os.path import dirname
-from Globals import package_home
 from Products.Archetypes.atapi import listTypes, process_types
 from Products.CMFCore import utils as cmfutils
-from Products.CMFCore.DirectoryView import registerDirectory
 from eea.soer.config import ADD_CONTENT_PERMISSION, PROJECTNAME
 
 def initialize(context):

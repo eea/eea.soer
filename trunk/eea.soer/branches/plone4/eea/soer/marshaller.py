@@ -32,21 +32,29 @@ class ReportingCountry2Surf(Soer2Surf):
     def channel(self):
         """ Channel
         """
-        resource = self.session.get_class(self.namespace['Channel'])(self.subject)
+        resource = self.session.get_class(
+                               self.namespace['Channel'])(self.subject)
         resource.bind_namespaces([self.prefix])
         resource.session = self.session
         language = self.context.Language()
         props = getToolByName(self.context, 'portal_properties').soer_properties
-        for propName in ['organisationName', 'organisationURL', 'organisationContactURL', 'organisationLogoURL']:
+        for propName in ['organisationName',
+                         'organisationURL',
+                         'organisationContactURL',
+                         'organisationLogoURL']:
             value = props.getProperty(propName, None)
             if value is not None:
-                setattr(resource, '%s_%s' % (self.prefix, propName), (value, language))
+                setattr(resource,
+                        '%s_%s' % (self.prefix, propName),
+                        (value, language))
 
         # rdf:resource values
         for propName in ['license']:
             value = props.getProperty(propName, None)
             if value is not None:
-                setattr(resource, '%s_%s' % (self.prefix, propName), rdflib.URIRef(value))
+                setattr(resource,
+                        '%s_%s' % (self.prefix, propName),
+                        rdflib.URIRef(value))
 
         resource.save()
         return resource
@@ -56,7 +64,8 @@ class ReportingCountry2Surf(Soer2Surf):
         """
         self.channel()
         for obj in self.context.objectValues():
-            atsurf = queryMultiAdapter((obj, self.session), interface=IArchetype2Surf)
+            atsurf = queryMultiAdapter((obj, self.session),
+                                       interface=IArchetype2Surf)
             if atsurf is not None:
                 atsurf.at2surf()
 
@@ -81,7 +90,8 @@ class NationalStory2Surf(Soer2Surf):
     def blacklist_map(self):
         """ Blacklist map
         """
-        return super(NationalStory2Surf, self).blacklist_map + ['relatedItems', 'question', 'geoCoverage', 'id']
+        return super(NationalStory2Surf, self).blacklist_map + \
+                        ['relatedItems', 'question', 'geoCoverage', 'id']
 
     def at2surf(self, subReport=False, **kwargs):
         """ AT to surf
@@ -98,19 +108,23 @@ class NationalStory2Surf(Soer2Surf):
         resource.soer_geoCoverage = rdflib.URIRef(context.getGeoCoverage())
         resource.soer_hasFigure = []
         if subReport:
-            resource.soer_sortOrder = context.aq_parent.getObjectPosition(context.getId()) + 1
+            resource.soer_sortOrder = \
+                  context.aq_parent.getObjectPosition(context.getId()) + 1
         for obj in context.objectValues():
-            surfObj = queryMultiAdapter((obj, self.session), interface = IArchetype2Surf)
+            surfObj = queryMultiAdapter((obj, self.session),
+                                        interface = IArchetype2Surf)
             if surfObj is not None:
                 if obj.portal_type == 'Image':
                     resource.soer_hasFigure.append(surfObj.at2surf())
                 elif obj.portal_type in ['DataSourceLink', 'Link']:
-                    # we allowed normal links as data source pre 0.5
+                    # We allowed normal links as data source pre 0.5
                     resource.soer_dataSource.append(surfObj.at2surf())
                 elif obj.portal_type == 'RelatedIndicatorLink':
-                    resource.soer_relatedEuropeanIndicator.append((rdflib.URIRef(obj.getRemoteUrl()), language))
+                    resource.soer_relatedEuropeanIndicator.append(
+                               (rdflib.URIRef(obj.getRemoteUrl()), language))
                 else:
-                    # current resource has the sort order 0 since it is parent to the other reports
+                    # Current resource has the sort order 0 since it is
+                    # parent to the other reports
                     resource.soer_sortOrder = 0
                     surfObj.at2surf(subReport=True)
 

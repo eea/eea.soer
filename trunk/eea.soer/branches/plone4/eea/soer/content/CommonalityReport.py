@@ -8,10 +8,12 @@ from eea.soer.config import PROJECTNAME
 from eea.soer import vocab
 try:
     from Products.LinguaPlone.public import Schema, registerType
-    Schema, registerType #pyflakes
 except ImportError:
     # No multilingual support
     from Products.Archetypes.public import Schema, registerType
+
+# Make pyflakes happy
+__all__ = [Schema, registerType]
 
 schema = getattr(SOERReport, 'schema', Schema(())).copy()
 

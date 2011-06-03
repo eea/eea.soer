@@ -200,44 +200,46 @@ class SenseFeeds(object):
         context = self.context
         deleteOld = bool(self.request.get('deleteOld', False))
         updateFeed = bool(self.request.get('updateFeed', False))
-        feeds = {'bg' : ['http://nfp-bg.eionet.eu.int/soer-2010/part-c/rdf'], #Bulgaria
-                 'be' : ['http://nfp.irceline.be/soer-2010/@@rdf'], #Belgium
-                 'sk' : ['http://tsense.sazp.sk/Plone/soer-2010-part-c/slovakia/@@rdf'], #Slovakia
-                 'ie' : ['http://www.epa.ie/environmentinfocus/socio-economic/index.rdf',
-                         'http://www.epa.ie/environmentinfocus/climatechange/index.rdf',
-                         'http://www.epa.ie/environmentinfocus/air/index.rdf',
-                         'http://www.epa.ie/environmentinfocus/water/index.rdf',
-                         'http://www.epa.ie/environmentinfocus/waste/index.rdf',
-                         'http://www.epa.ie/environmentinfocus/land/index.rdf',
-                         'http://www.epa.ie/environmentinfocus/nature/index.rdf',
-                         'http://www.epa.ie/environmentinfocus/socio-economic/greeneconomy/index.rdf',
-                         'http://www.epa.ie/environmentinfocus/socio-economic/'
-                         'irishsustainabledevelopmentmodel/index.rdf'], #Ireland
-                 'no' : ['http://www.miljostatus.no/rdf'], #Norway
-                 'ro' : ['http://www.anpm.ro/soerstories/rdf'], #Romania
-                 'si' : ['http://www.arso.gov.si/en/soer/air_pollution.rdf',
-                         'http://www.arso.gov.si/en/soer/alps.rdf',
-                         'http://www.arso.gov.si/en/soer/bear_story.rdf',
-                         'http://www.arso.gov.si/en/soer/biodiversity.rdf',
-                         'http://www.arso.gov.si/en/soer/climate_change.rdf',
-                         'http://www.arso.gov.si/en/soer/country_introduction.rdf',
-                         'http://www.arso.gov.si/en/soer/freshwater.rdf',
-                         'http://www.arso.gov.si/en/soer/land.rdf',
-                         'http://www.arso.gov.si/en/soer/waste.rdf'
-                                                  ], #Slovenia (alps worsk, rest broken)
-                 'it' : ['http://www.sense.sinanet.isprambiente.it/Plone/air-pollution/@@rdf',
-                         'http://www.sense.sinanet.isprambiente.it/Plone/climate-change/@@rdf',
-                         'http://www.sense.sinanet.isprambiente.it/Plone/waste/@@rdf',
-                         'http://www.sense.sinanet.isprambiente.it/Plone/nature-protection-and-biodiversity/@@rdf',
-                         'http://www.sense.sinanet.isprambiente.it/Plone/land/@@rdf',
-                         'http://www.sense.sinanet.isprambiente.it/Plone/diversity/@@rdf',
-                         'http://www.sense.sinanet.isprambiente.it/Plone/freshwater/@@rdf',
-                         'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-alps/@@rdf',
-                         'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-local-authorities/@@rdf',
-                         'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-organic-farming/@@rdf',
-                         'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-white-certificates/@@rdf'
-                         ], #Italy
-                 'cz' : ['http://issar.cenia.cz/issar/add/CZ_SOER.rdf'], #Chech Republic (questions don't follow specification)
+        feeds = {'bg' : ['http://nfp-bg.eionet.eu.int/soer-2010/part-c/rdf'],
+                 'be' : ['http://nfp.irceline.be/soer-2010/@@rdf'],
+                 'sk' :
+  ['http://tsense.sazp.sk/Plone/soer-2010-part-c/slovakia/@@rdf'],
+                 'ie' :
+  ['http://www.epa.ie/environmentinfocus/socio-economic/index.rdf',
+   'http://www.epa.ie/environmentinfocus/climatechange/index.rdf',
+   'http://www.epa.ie/environmentinfocus/air/index.rdf',
+   'http://www.epa.ie/environmentinfocus/water/index.rdf',
+   'http://www.epa.ie/environmentinfocus/waste/index.rdf',
+   'http://www.epa.ie/environmentinfocus/land/index.rdf',
+   'http://www.epa.ie/environmentinfocus/nature/index.rdf',
+   'http://www.epa.ie/environmentinfocus/socio-economic/greeneconomy/index.rdf',
+   'http://www.epa.ie/environmentinfocus/socio-economic/'
+   'irishsustainabledevelopmentmodel/index.rdf'],
+                 'no' : ['http://www.miljostatus.no/rdf'],
+                 'ro' : ['http://www.anpm.ro/soerstories/rdf'],
+                 'si' :
+  ['http://www.arso.gov.si/en/soer/air_pollution.rdf',
+   'http://www.arso.gov.si/en/soer/alps.rdf',
+   'http://www.arso.gov.si/en/soer/bear_story.rdf',
+   'http://www.arso.gov.si/en/soer/biodiversity.rdf',
+   'http://www.arso.gov.si/en/soer/climate_change.rdf',
+   'http://www.arso.gov.si/en/soer/country_introduction.rdf',
+   'http://www.arso.gov.si/en/soer/freshwater.rdf',
+   'http://www.arso.gov.si/en/soer/land.rdf',
+   'http://www.arso.gov.si/en/soer/waste.rdf'], # Alps works, rest are broken
+                 'it' :
+  ['http://www.sense.sinanet.isprambiente.it/Plone/air-pollution/@@rdf',
+   'http://www.sense.sinanet.isprambiente.it/Plone/climate-change/@@rdf',
+   'http://www.sense.sinanet.isprambiente.it/Plone/waste/@@rdf',
+   'http://www.sense.sinanet.isprambiente.it/Plone/nature-protection-and-biodiversity/@@rdf',
+   'http://www.sense.sinanet.isprambiente.it/Plone/land/@@rdf',
+   'http://www.sense.sinanet.isprambiente.it/Plone/diversity/@@rdf',
+   'http://www.sense.sinanet.isprambiente.it/Plone/freshwater/@@rdf',
+   'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-alps/@@rdf',
+   'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-local-authorities/@@rdf',
+   'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-organic-farming/@@rdf',
+   'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-white-certificates/@@rdf'],
+                 'cz' : ['http://issar.cenia.cz/issar/add/CZ_SOER.rdf'], # Questions don't follow specification
                  'de' : ['http://sites.uba.de/SOER/frm/Diversity.xml',
                          'http://sites.uba.de/SOER/frm/Air-pollution.xml',
                          'http://sites.uba.de/SOER/frm/Freshwater.xml',
@@ -245,36 +247,44 @@ class SenseFeeds(object):
                          'http://sites.uba.de/SOER/frm/Land.xml',
                          'http://sites.uba.de/SOER/frm/Waste.xml',
                          'http://sites.uba.de/SOER/frm/Biodiversity.xml',
-                         'http://sites.uba.de/SOER/frm/Flexibility.xml'], #Germany (waiting for feeds)
-                 'at' : ['http://www.umweltbundesamt.at/rdf_eea'], #Austria
-                 'se' : ['http://www.naturvardsverket.se/en/In-English/Menu/GlobalMenu/Sense---RDF'], #Sweden (unaccessible, password protected, they are working on it)
-                 'rs' : ['http://www.report.sepa.gov.rs/soer-2010-serbia/@@rdf'], #Serbia
+                         'http://sites.uba.de/SOER/frm/Flexibility.xml'], # Waiting for feeds
+                 'at' : ['http://www.umweltbundesamt.at/rdf_eea'],
+                 'se' :
+  ['http://www.naturvardsverket.se/en/In-English/Menu/GlobalMenu/Sense---RDF'], # Unaccessible, password protected, they are working on it
+                 'rs' :
+  ['http://www.report.sepa.gov.rs/soer-2010-serbia/@@rdf'],
                                   }
         for country_code, urls in feeds.items():
             if hasattr(aq_base(context), country_code):
                 log.log("SENSE setup of '%s'" % country_code)
                 country = context[country_code]
                 if country.getRdfFeed() and deleteOld:
-                    log.log("SENSE setup of '%s' found old feeds, deleting them" % country_code)
+                    log.log("SENSE setup of '%s' found old feeds, deleting "
+                            "them" % country_code)
                     oldFeedIds = [b.getId for b in country.getFolderContents(
-                                        contentFilter={'portal_type' : 'Link'})]
+                                      contentFilter={'portal_type' : 'Link'})]
                     country.manage_delObjects(ids=oldFeedIds)
                     country.setRdfFeed('')
                 if not country.getRdfFeed():
                     country.setRdfFeed(urls[0])
-                    log.log("SENSE setup adding feed %s to '%s'" % (urls[0], country_code))
+                    log.log("SENSE setup adding feed %s to '%s'" %
+                                                     (urls[0], country_code))
                     for url in urls[1:]:
-                        feed = country[ country.invokeFactory('Link', id='tmplink',
-                                                              title=url,
-                                                              remoteUrl=url) ]
+                        feed = country[ country.invokeFactory(
+                                                         'Link', id='tmplink',
+                                                         title=url,
+                                                         remoteUrl=url)]
                         _newId = feed._renameAfterCreation(check_auto_id=False)
-                        log.log("SENSE setup adding feed %s to '%s'" % (url, country_code))
+                        log.log("SENSE setup adding feed %s to '%s'" %
+                                                        (url, country_code))
                 else:
-                    log.log("SENSE setup found old feeds in '%s' skipping setup" % country_code)
+                    log.log("SENSE setup found old feeds in '%s' skipping "
+                            "setup" % country_code)
                 if updateFeed:
                     country.updateFromFeed()
             else:
-                log.log("SENSE setup did NOT find '%s' no feeds were setup." % country_code)
+                log.log("SENSE setup did NOT find '%s' no feeds "
+                        "were setup." % country_code)
 
 class FeedUpdater(object):
     """ Update all feeds or the choosen one if they have a feed set

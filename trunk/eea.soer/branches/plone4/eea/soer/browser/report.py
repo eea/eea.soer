@@ -119,8 +119,8 @@ class ReportQuestionsByTopic(object):
     def questions(self):
         """ Return a dict with questions from vocab file
         """
-        questions = { 'DiversityReport' : dict([[v, k] for k, v in #pyflakes, #pylint: disable-msg = W0631
+        questions = { 'DiversityReport' : dict([[v, k] for k, v in
             vocab.long_diversity_questions.items()]) }
-        questions['CommonalityReport'] = dict([[v, k] for k, v in #pyflakes, #pylint: disable-msg = W0631
+        questions['CommonalityReport'] = dict([[v, k] for k, v in
             vocab.long_questions.items()])
         return questions

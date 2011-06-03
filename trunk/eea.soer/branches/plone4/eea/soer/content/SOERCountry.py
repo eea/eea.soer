@@ -15,11 +15,12 @@ from types import UnicodeType
 try:
     from Products.LinguaPlone.public import registerType, Schema, StringField
     from Products.LinguaPlone.public import StringWidget
-    registerType, Schema, StringField, StringWidget #pyflakes
 except ImportError:
     # No multilingual support
     from Products.Archetypes.public import registerType, Schema, StringField
     from Products.Archetypes.public import StringWidget
+
+__all__ = [registerType, Schema, StringField, StringWidget]
 
 from Products.CMFPlone import log
 import logging
@@ -62,11 +63,13 @@ def tidyUp(value):
             value = value.encode('utf8')
 
         parsed = tidy.parseString(
-                        str(value), drop_empty_paras=1, indent_spaces=1, #indent="auto",
-                        output_xhtml=1, word_2000=1, wrap=72, input_xml=0, tab_size=4,
-                        show_body_only=True,
-                        output_encoding='utf8',
-                        input_encoding='utf8')
+            str(value), drop_empty_paras=1,
+            indent_spaces=1, #indent="auto",
+            output_xhtml=1, word_2000=1, wrap=72,
+            input_xml=0, tab_size=4,
+            show_body_only=True,
+            output_encoding='utf8',
+            input_encoding='utf8')
     else:
         return value
 
@@ -111,7 +114,7 @@ class SOERCountry(ATFolder):
                 #urlexpr = squidt.getUrlExpression()
                 ## use squid default url calculation during update due
                 ## acquisition problem to find the url expression script
-                ## XXX: maybe we should disable invalidation all together
+                ## TODO: maybe we should disable invalidation all together
                 ##      during update?
                 #squidt.manage_setSquidSettings(squidt.getSquidURLs(),
                                                 #url_expression='')
@@ -137,7 +140,7 @@ class SOERCountry(ATFolder):
                 #squidt.manage_setSquidSettings(squidt.getSquidURLs(),
                                                 #url_expression=urlexpr)
 
-    def _updateFromFeed(self, soer): #pyflakes, #pylint: disable-msg = R0912, R0914, R0915
+    def _updateFromFeed(self, soer):
         """ Update from feed
         """
         language = self.Language() or 'en'
@@ -169,30 +172,35 @@ class SOERCountry(ATFolder):
                     logo = self['logo']
                     logo.setImage(image_data)
 
-        def updateReport(nstory, report=None): #pyflakes, #pylint: disable-msg = R0912, R0914, R0915
+        def updateReport(nstory, report=None):
             """ Update report
             """
             parentReport = None
             if nstory.portal_type in ['DiversityReport', 'CommonalityReport']:
-                questions = dict([[v, k] for k, v in vocab.old_long_diversity_questions.items()]) #pyflakes, #pylint: disable-msg = W0631
-                questions.update(dict([[v, k] for k, v in vocab.long_questions.items()])) #pyflakes, #pylint: disable-msg = W0631
-                # old labels before https://svn.eionet.europa.eu/projects/Zope/ticket/3685
-                questions.update(dict([[v, k] for k, v in vocab.old_long_questions.items()]))
+                questions = dict([[v, k] for k, v in
+                                  vocab.old_long_diversity_questions.items()])
+                questions.update(dict([[v, k] for k, v in
+                                       vocab.long_questions.items()]))
+                # Old labels before #3685
+                questions.update(dict([[v, k] for k, v in
+                                       vocab.old_long_questions.items()]))
                 question = questions.get(nstory.question, nstory.question)
                 #original_url = nstory.subject.strip()
             else:
                 question = nstory.question
             if report is None:
-                parentReport = reports.get((nstory.topic, nstory.question), None)
+                parentReport = reports.get((nstory.topic, nstory.question),
+                                           None)
                 if parentReport:
-                    report = parentReport[parentReport.invokeFactory(nstory.portal_type, id='temp_report',
-                                                                     topic=nstory.topic,
-                                                                     question=question)]
-
+                    report = parentReport[parentReport.invokeFactory(
+                        nstory.portal_type, id='temp_report',
+                        topic=nstory.topic,
+                        question=question)]
                 else:
-                    report = self[self.invokeFactory(nstory.portal_type, id='temp_report',
-                                                     topic=nstory.topic,
-                                                     question=question)]
+                    report = self[self.invokeFactory(
+                        nstory.portal_type, id='temp_report',
+                        topic=nstory.topic,
+                        question=question)]
             report.setLanguage(language)
             report.setDescription(nstory.description)
             report.setKeyMessage(tidyUp(nstory.keyMessage))
@@ -206,7 +214,8 @@ class SOERCountry(ATFolder):
             else:
                 report = parentReport[newId]
                 if hasattr(nstory,'sortOrder'):
-                    parentReport.moveObjectToPosition(newId, int(nstory.sortOrder))
+                    parentReport.moveObjectToPosition(newId,
+                                                      int(nstory.sortOrder))
                 else:
                     parentReport.moveObjectsToTop(ids=[newId])
 
@@ -233,20 +242,26 @@ class SOERCountry(ATFolder):
                     publishIfPossible(figure)
 
                     if fig['url'] in assessment.decode('utf8'):
-                        assessment = assessment.replace(fig['url'].encode('utf8'), 'resolveuid/%s' % figure.UID())
+                        assessment = \
+                            assessment.replace(fig['url'].encode('utf8'),
+                                               'resolveuid/%s' % figure.UID())
                     if fig.get('dataSource', None) is not None:
                         dataSrc = fig['dataSource']
-                        dataLink = report[report.invokeFactory('DataSourceLink', id='tmpdatalink',
-                                                               title=dataSrc['dataURL'],
-                                                    remoteUrl=dataSrc['dataURL'])]
+                        dataLink = report[report.invokeFactory(
+                            'DataSourceLink',
+                            id='tmpdatalink',
+                            title=dataSrc['dataURL'],
+                            remoteUrl=dataSrc['dataURL'])]
                         dataLink.setLanguage(language)
-                        newId = dataLink._renameAfterCreation(check_auto_id=False)
+                        newId = dataLink._renameAfterCreation(
+                                                       check_auto_id=False)
                         dataLink = report[newId]
                         figure.setRelatedItems([dataLink])
                         publishIfPossible(dataLink)
 
                     figure.setLanguage(language)
-                    report.moveObjectToPosition(figure.getId(), fig['sortOrder'])
+                    report.moveObjectToPosition(figure.getId(),
+                                                fig['sortOrder'])
                     figure.reindexObject()
                 else:
                     log.log('FAILED: Figure is empty: %s' % fig['url'])
@@ -254,21 +269,24 @@ class SOERCountry(ATFolder):
             for indicatorUrl in nstory.relatedIndicator():
                 i += 1
                 if not indicatorUrl.startswith('http'):
-                    # FIXME need to find out which indicator url it is for i.e CSI 018
+                    #TODO: need to find out which indicator url it
+                    #      is for i.e CSI 018
                     continue
                 title = u'Related indicator'
                 try:
                     url = urllib2.urlopen(indicatorUrl)
                     soup = BeautifulSoup(url)
                     title = soup.title.string.encode('utf8').strip()
-                except Exception: #pyflakes, #pylint: disable-msg = W0704
-                    # we failed to get the title of the indicator, use 'Related Indicator'
-                    pass
+                except Exception:
+                    # we failed to get the title of the indicator,
+                    # use 'Related Indicator'
+                    logger.info('Failed to get indicator title')
 
-                indicator = report[report.invokeFactory('RelatedIndicatorLink', id='indicator%s' % i,
-                                                             remoteUrl=indicatorUrl,
-                                                             title=title)]
-
+                indicator = report[report.invokeFactory(
+                    'RelatedIndicatorLink',
+                    id='indicator%s' % i,
+                    remoteUrl=indicatorUrl,
+                    title=title)]
                 publishIfPossible(indicator)
 
             report.setText(assessment, format='text/html')
@@ -281,9 +299,12 @@ class SOERCountry(ATFolder):
 
         # find old reports, update them or remove them
         catalog = getToolByName(self, 'portal_catalog')
-        toDeleteIds = [b.getId for b in catalog(path={'query' : '/'.join(self.getPhysicalPath()),
-                               'depth' : 1},
-                              portal_type=['CommonalityReport', 'DiversityReport','FlexibilityReport'])]
+        toDeleteIds = [b.getId for b in catalog(path={
+            'query': '/'.join(self.getPhysicalPath()),
+            'depth': 1},
+                              portal_type=['CommonalityReport',
+                                           'DiversityReport',
+                                           'FlexibilityReport'])]
         if toDeleteIds:
             self.manage_delObjects(ids=toDeleteIds)
         # update the rest which should be all new reports

@@ -10,11 +10,13 @@ from Products.ATVocabularyManager import NamedVocabulary
 try:
     from Products.LinguaPlone.public import Schema, StringField, StringWidget
     from Products.LinguaPlone.public import registerType
-    Schema, StringField, StringWidget, registerType #pyflakes
 except ImportError:
     # No multilingual support
     from Products.Archetypes.public import Schema, StringField, StringWidget
     from Products.Archetypes.public import registerType
+
+# Make pyflakes happy
+__all__ = [Schema, StringField, StringWidget, registerType]
 
 schema = Schema((
         StringField(
@@ -67,8 +69,10 @@ registerType(DiversityReport, PROJECTNAME)
 def reportUpdated(obj, event):
     """ Report updated
     """
-    country = obj.getTermTitle('eea.soer.vocab.european_countries', obj.getSoerCountry())
-    question = obj.getTermTitle('eea.soer.vocab.diversity_questions', obj.getQuestion())
+    country = obj.getTermTitle('eea.soer.vocab.european_countries',
+                               obj.getSoerCountry())
+    question = obj.getTermTitle('eea.soer.vocab.diversity_questions',
+                                obj.getQuestion())
     obj.setTitle('Country profile - %s (%s)' % (question, country))
     if not obj.Description() and not obj.isTemporary():
         obj.setDescription(obj.default_desc())
