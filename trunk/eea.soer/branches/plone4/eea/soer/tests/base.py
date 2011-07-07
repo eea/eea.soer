@@ -11,6 +11,7 @@ from Products.CMFPlone.log import logger
 PloneTestCase.installProduct('ATVocabularyManager')
 PloneTestCase.installProduct('LinguaPlone')
 
+
 @onsetup
 def setup_soer():
     """ Setup
@@ -28,7 +29,9 @@ def setup_soer():
     PloneTestCase.installPackage('p4a.subtyper')
 
 setup_soer()
-PloneTestCase.setupPloneSite(extension_profiles=('eea.soer:default',))
+
+PloneTestCase.setupPloneSite(extension_profiles=('eea.soer:default',), products=['kupu'])
+
 
 class SOERFunctionalTestCase(PloneTestCase.FunctionalTestCase):
     """ SOER Functional Test Case

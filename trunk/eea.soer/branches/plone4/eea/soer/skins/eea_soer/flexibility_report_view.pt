@@ -9,7 +9,7 @@
 <tal:main-macro metal:define-macro="content-core">
 
 
-<metal:isFromFeed use-macro="context/commonality_report_view/macros/main" />
+<metal:isFromFeed use-macro="context/commonality_report_view/macros/content-core" />
 
 
 </tal:main-macro>

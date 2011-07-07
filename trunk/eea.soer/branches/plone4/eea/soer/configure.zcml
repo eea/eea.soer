@@ -15,11 +15,10 @@
   <include package="eea.rdfmarshaller" />
 
   <five:registerPackage package="." initialize=".initialize" />
-
-  <include package=".browser" />
-
+  <include package=".upgrades" />
   <include file="profiles.zcml" />
   <include file="skins.zcml" />
+  <include package=".browser" />
 
   <subscriber for="eea.soer.content.interfaces.ICommonalityReport
                    zope.app.container.interfaces.IObjectAddedEvent"
@@ -68,13 +67,9 @@
     <implements interface="eea.facetednavigation.interfaces.IPossibleFacetedNavigable" />
   </class>
 
-  <!-- #TODO: plone4 -->
-  <!-- utility name="eea.facetednavigation.SoerCountryFacetedNavigable"
-               factory=".faceted.FolderFacetedNavigableDescriptor" / -->
-
-  <!-- #TODO: plone4 -->
-  <!-- utility name="eea.facetednavigation.SoerCountryFacetedHeritor"
-               factory=".faceted.FolderFacetedHeritorDescriptor" / -->
+  <class class="eea.soer.content.SOERCountry.SOERCountry">
+    <implements interface="eea.faceted.inheritance.interfaces.IPossibleFacetedHeritor" />
+  </class>
 
   <utility component=".vocab.NUTSVocabularyFactory"
            name="eea.soer.vocab.NUTSRegions" />

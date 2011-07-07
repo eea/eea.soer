@@ -8,8 +8,7 @@
                 tal:define="view context/@@soerReportView;
                             foo view/redirectIfSubReport">
 
-      <!-- #TODO: plone4, should be metal:define-macro="content-core" -->
-      <tal:main-macro metal:define-macro="main"
+      <tal:main-macro metal:define-macro="content-core"
                       tal:define="object_title context/@@plone_context_state/object_title;
                                   isAnon context/@@plone_portal_state/anonymous;">
 
@@ -109,7 +108,8 @@
         <metal:reportContent define-macro="reportContent"
           tal:define="subreport nocall:report|nothing;
           report nocall:report|nocall:context;
-          text python: report.CookedBody(stx_level=2)">
+          text python: report.CookedBody(stx_level=2);
+          isAnon context/@@plone_portal_state/anonymous;">
 
           <tal:anonymous tal:condition="python:isAnon and not report.isSubReport()">
             <div class="discreet documentByLine">
@@ -299,10 +299,6 @@
           <p class="discreet">The country assessments are the sole responsibility of the EEA member and cooperating countries supported by the EEA through guidance, translation and editing. </p>
         </div>
 
-        <!-- #TODO: plone4 -->
-        <!-- metal:sub define-slot="sub">
-          <metal:discussion use-macro="here/viewThreadsAtBottom/macros/discussionView" />
-        </metal:sub -->
       </metal:subsection>
     </metal:disclaimer>
 
