@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+         xmlns="http://www.eea.europa.eu/soer/rdfs/question/1.0#">
+  <Question rdf:about="http://www.eea.europa.eu/soer/questions#c0">
+		<long>Why should we care?</long>
+		<short>Why care?</short>
+	</Question>
+  <Question rdf:about="http://www.eea.europa.eu/soer/questions#c1">
+		<long>What are the state and impacts?</long>
+		<short>State and impacts</short>
+	</Question>
+  <Question rdf:about="http://www.eea.europa.eu/soer/questions#c2">
+		<long>What are the related drivers and pressures?</long>
+		<short>Drivers and pressures</short>
+	</Question>
+  <Question rdf:about="http://www.eea.europa.eu/soer/questions#c3">
+		<long>What is the 2020 outlook?</long>
+		<short>Outlook to 2020</short>
+	</Question>
+  <Question rdf:about="http://www.eea.europa.eu/soer/questions#c4">
+		<long>What are the policy responses?</long>
+		<short>Policy responses</short>
+	</Question>
+  <Question rdf:about="http://www.eea.europa.eu/soer/questions#d1">
+		<long>What distinguishes the country?</long>
+		<short>Factors</short>
+	</Question>
+  <Question rdf:about="http://www.eea.europa.eu/soer/questions#d2">
+		<long>What are the major societal trends?</long>
+		<short>Societal developments</short>
+	</Question>
+  <Question rdf:about="http://www.eea.europa.eu/soer/questions#d3">
+		<long>What are the main drivers?</long>
+		<short>Main drivers</short>
+	</Question>
+  <Question rdf:about="http://www.eea.europa.eu/soer/questions#d4">
+		<long>What are the foreseen developments?</long>
+		<short>Main developments</short>
+	</Question>
+</rdf:RDF>
