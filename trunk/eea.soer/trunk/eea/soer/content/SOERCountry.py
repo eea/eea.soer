@@ -172,11 +172,12 @@ class SOERCountry(ATFolder):
                     report = self[self.invokeFactory(nstory.portal_type, id='temp_report',
                                                      topic=nstory.topic,
                                                      question=question)]
+            subject = [k.decode('utf-8') for k in nstory.keyword]
             report.setLanguage(language)
             report.setDescription(nstory.description)
             report.setKeyMessage(tidyUp(nstory.keyMessage))
             report.setGeoCoverage(nstory.geoCoverage)
-            report.setSubject(nstory.keyword)
+            report.setSubject(subject)
             report.setEvaluation(nstory.evaluation)
             newId = report._renameAfterCreation(check_auto_id=False)
             if parentReport is None:
