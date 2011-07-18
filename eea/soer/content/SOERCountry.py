@@ -172,7 +172,11 @@ class SOERCountry(ATFolder):
                     report = self[self.invokeFactory(nstory.portal_type, id='temp_report',
                                                      topic=nstory.topic,
                                                      question=question)]
-            subject = [k.decode('utf-8') for k in nstory.keyword]
+            subject = nstory.keyword
+            if isinstance(subject, (list, tuple)):
+                subject = [k.decode('utf-8') for k in nstory.keyword]
+            if isinstance(subject, basestring):
+                subject = subject.decode('utf-8')
             report.setLanguage(language)
             report.setDescription(nstory.description)
             report.setKeyMessage(tidyUp(nstory.keyMessage))
