@@ -3,6 +3,7 @@ Changelog
 
 1.18-dev - (unreleased)
 -----------------------
+ * Bug fix: decode to utf-8 the Country keywords [tiberich #4424]
 
 1.17 - (2011-04-01)
 -------------------
