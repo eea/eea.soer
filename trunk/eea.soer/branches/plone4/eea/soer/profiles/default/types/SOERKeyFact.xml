@@ -18,6 +18,7 @@
  <property name="view_methods">
   <element value="document_view"/>
   <element value="document_mediatop_view"/>
+  <element value="keyfact_view"/>
  </property>
  <property name="default_view_fallback">False</property>
  <alias from="(Default)" to="(dynamic view)"/>
