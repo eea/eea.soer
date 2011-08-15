@@ -5,12 +5,14 @@ Changelog
 4.0-dev - (unreleased)
 ----------------------
 
-* TODO: plone4, change code that uses portal_squid to plone.app.caching logic
+ * TODO: plone4, change code that uses portal_squid to plone.app.caching logic
 
-* Feature: Added upgrade steps
+ * Change: removed the old themes portlet, now part of the main template as viewlet
+
+ * Feature: Added upgrade steps
   [voineali #4392]
 
-* Feature: Plone 4.0.4 compatible release
+ * Feature: Plone 4.0.4 compatible release
   [ghicaale #4300]
 
 
