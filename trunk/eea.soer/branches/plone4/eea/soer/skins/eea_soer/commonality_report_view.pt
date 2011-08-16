@@ -44,7 +44,7 @@
                   <div class="hiddenStructure">
                     <div id="channelSource" class="websource-info" >
                       <img src="miljostatus-logo-eng.gif" />
-                      <br clear="all" />
+                      <br />
                       <dl>
                         <dt>Organisation name</dt>
                         <dd>Organisation name</dd>
@@ -163,7 +163,7 @@
                     <div tal:condition="not: dataSources"><p><strong>Data source</strong><br/>This figure has no data source. For further information contact <a href="http://www.eea.europa.eu/enquiries" title="Request data source">EEA enquiry service</a>.</p></div>
                     <img class="image-inline captioned" src="" alt="Figure caption"
                       tal:attributes="src string:${obj/absolute_url}/image_large;
-                      alt obj_title"/> <br clear="all" />
+                      alt obj_title"/> <br />
                     <a href=""
                       tal:attributes="href string:${obj/absolute_url}/image_view_fullscreen;">Fullscreen image</a>
                     <a href=""

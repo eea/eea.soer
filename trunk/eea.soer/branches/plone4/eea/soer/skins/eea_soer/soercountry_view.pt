@@ -32,7 +32,7 @@
                     <img src=""
                       tal:attributes="src python:channel['localLogo'] and 'logo/image_preview' or  channel['organisationLogoURL'];
                       alt channel/organisationName|nothing" />
-                    <br clear="all" />
+                    <br />
                     <dl>
                       <dt>Organisation name</dt>
                       <dd tal:content="channel/organisationName">Organisation name</dd>
