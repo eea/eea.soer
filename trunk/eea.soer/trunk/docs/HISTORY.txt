@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.19-dev - (unreleased)
------------------------
+1.19 - (2011-09-13)
+-------------------
  * Bug fix: fix @@rdf view for country profiles [tiberich #4532]
 
 1.18 - (2011-07-18)
