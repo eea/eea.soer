@@ -1,5 +1,5 @@
 // Integration JS between fancybox and EEA
-$(document).ready(function() {
+jQuery(document).ready(function($) {
     if (jQuery.fn.fancybox !== undefined) {
         jQuery('.fancybox').fancybox();
         jQuery('.gallery-fancybox').each(function() {

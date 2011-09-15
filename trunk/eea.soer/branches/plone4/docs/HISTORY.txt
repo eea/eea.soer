@@ -6,6 +6,10 @@ Changelog
 ----------------------
 
  * TODO: plone4, change code that uses portal_squid to plone.app.caching logic
+ 
+ * Bugfix: Fixed IE JS errors, fixed code that uses jQuery to avoid conflicts
+   with other JS frameworks [szabozo0 #4542]
+
 
  * Change: removed the old themes portlet, now part of the main template as viewlet
 
