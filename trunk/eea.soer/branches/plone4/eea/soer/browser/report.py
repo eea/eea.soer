@@ -2,7 +2,7 @@
 """
 from zope.interface import implements
 from zope.component import getUtility
-from zope.app.schema.vocabulary import IVocabularyFactory
+from zope.schema.interfaces import IVocabularyFactory
 from eea.soer.interfaces import IReportView, IReportQuestionsByTopic
 from eea.soer import vocab
 from Acquisition import aq_inner

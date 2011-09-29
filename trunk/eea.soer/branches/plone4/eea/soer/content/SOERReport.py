@@ -2,7 +2,7 @@
 """
 from zope.interface import implements, directlyProvides, alsoProvides
 from zope.component import getUtility
-from zope.app.schema.vocabulary import IVocabularyFactory
+from zope.schema.interfaces import IVocabularyFactory
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
