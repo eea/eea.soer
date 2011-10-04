@@ -89,7 +89,7 @@ class ReportQuestionsByTopic(object):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        self.topic = self.request.get('topic')
+        self.topic = self.request.get('topic', None)
 
     @property
     def topicTitle(self):
@@ -108,11 +108,12 @@ class ReportQuestionsByTopic(object):
         context = self.context
         catalog = getToolByName(context, 'portal_catalog')
         query = {'portal_type': ['DiversityReport', 'CommonalityReport'],
-                 'getSoerTopic': self.topic,
                  'sort_on': 'getSoerQuestion',
                  'path': { 'query' : '/'.join(context.getPhysicalPath()),
                            'depth' : 1},
                  }
+        if self.topic:
+            query['getSoerTopic'] = self.topic
         return catalog(query)
 
     @property
