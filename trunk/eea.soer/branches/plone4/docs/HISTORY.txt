@@ -4,6 +4,8 @@ Changelog
 
 4.0-dev - (unreleased)
 ----------------------
+ * Bug fix: decode to utf-8 the Country keywords [tiberich #4424] (v1.18 backport)
+ * Bug fix: fix @@rdf view for country profiles [tiberich #4532] (v1.19 backport)
 
  * TODO: plone4, change code that uses portal_squid to plone.app.caching logic
  

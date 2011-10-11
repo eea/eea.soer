@@ -101,9 +101,9 @@ class NationalStory2Surf(Soer2Surf):
         language = context.Language()
         question = context.getQuestion()
         if context.portal_type == 'DiversityReport':
-            question = vocab.long_diversity_questions[context.getQuestion()]
+            question = vocab.long_diversity_questions.get(question, question)
         elif context.portal_type == 'CommonalityReport':
-            question = vocab.long_questions[context.getQuestion()]
+            question = vocab.long_questions.get(question, question)
         resource.soer_question = (question, language)
         resource.soer_geoCoverage = rdflib.URIRef(context.getGeoCoverage())
         resource.soer_hasFigure = []
