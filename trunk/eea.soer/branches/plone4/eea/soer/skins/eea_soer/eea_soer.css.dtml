@@ -52,7 +52,11 @@
 }
 
 .soerHeader #channel-portlet img {
-    width: 200px;
+    max-width: 200px;
+}
+
+#channel-portlet dd {
+    text-align:center;
 }
 
 .topicmenu li {
@@ -116,4 +120,5 @@
    color: #76797C;
 }
 /* </dtml-with> */
+
 

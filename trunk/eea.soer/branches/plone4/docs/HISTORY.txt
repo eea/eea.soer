@@ -4,6 +4,7 @@ Changelog
 
 4.0-dev - (unreleased)
 ----------------------
+ * Change: Migrated eea_soer.css.dtml from custom [szabozo0 #4161]
  * Change: Removed obsolete related items, now replaced by viewlets [demarant #4541]
  * Bug fix: decode to utf-8 the Country keywords [tiberich #4424] (v1.18 backport)
  * Bug fix: fix @@rdf view for country profiles [tiberich #4532] (v1.19 backport)
