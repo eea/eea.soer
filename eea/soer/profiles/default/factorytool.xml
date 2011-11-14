@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<object name="portal_factory" meta_type="Plone Factory Tool">
+  <factorytypes>
+    <type portal_type="SOERCountry" />
+    <type portal_type="FlexibilityReport" />
+    <type portal_type="CommonalityReport" />
+    <type portal_type="DiversityReport" />
+  </factorytypes>
+</object>
