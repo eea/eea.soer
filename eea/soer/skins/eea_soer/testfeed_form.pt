@@ -1,0 +1,24 @@
+<html      metal:use-macro="here/main_template/macros/master">
+
+<body>
+<metal:main metal:fill-slot="content-core">
+<h1 class="documentFirstHeading">Test your SOER feed</h1>
+<p>Enter url to the feed and country code, if there is no errors they will be redirected to the country view of the feed. If they get errors they should see if they understand the error and if not contact me with the feed url and I'll help them.
+</p>
+
+<form action="testFeed">
+
+<label>Link to your feed</label>
+<div class="formHelp">Full url to your feed. The feed can't be password protected.</div>
+<input type="text" name="url" size="70"/>
+<br clear="all"/>
+<label>Your country code</label>
+<div class="formHelp">Enter your two letter country code.</div>
+<input type="text" name="countryCode" size="3"/>
+
+<div class="formHelp">When you re-submit your feed it will overwrite the previous submits you made so no need to clean up.</div>
+<input type="submit"/>
+</form>
+</metal:main>
+</body>
+</html>

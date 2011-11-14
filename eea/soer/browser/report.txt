@@ -1,0 +1,33 @@
+All content as part of eea.soer can be imported and exported as `SOER Feed <https://svn.eionet.europa.eu/projects/Zope/wiki/SOERFeedSpec>`_.
+
+  >>> self.setRoles(['Manager'])
+  >>> soer = self.portal.SOER
+  >>> country = soer[soer.invokeFactory('SOERCountry', id='no')]
+  >>> country.setLanguage('en')
+  >>> from eea.soer.config import examplerdf, evalrdf
+
+Lets load an RDF
+
+  >>> import surf
+  >>> from eea.soer import sense
+  >>> store = surf.Store(reader='rdflib',  writer='rdflib', rdflib_store = 'IOMemory')
+  >>> session = surf.Session(store, mapping={surf.ns.SOER.NationalStory : sense.NationalStory} )
+  >>> store.load_triples(source=examplerdf)
+  True
+  >>> country.setRdfFeed(examplerdf)
+  >>> import transaction
+  >>> savepoint = transaction.savepoint()
+  >>> _ = country.updateFromFeed()
+
+  >>> request = country.REQUEST
+  >>> request['topic'] = 'air pollution'
+  >>> view = country.unrestrictedTraverse('@@reportQuestionsByTopic')
+  >>> for b in view.reports:
+  ...    obj = b.getObject()
+  ...    print obj.Title(), obj.getQuestion(), obj.absolute_url()
+  Air pollution - Why care? (Norway) 0 http://nohost/plone/SOER/no/air-pollution-why-care-norway
+  Air pollution - State and impacts (Norway) 1 http://nohost/plone/SOER/no/air-pollution-state-and-impacts-norway
+  Air pollution - Drivers and pressures (Norway) 2 http://nohost/plone/SOER/no/air-pollution-drivers-and-pressures-norway
+
+  >>> view.topicTitle
+  'Air pollution'
