@@ -33,12 +33,12 @@ schema = Schema((
 schema = SOERReportSchema.copy() + schema
 schema['question'].vocabulary = \
         NamedVocabulary('eea.soer.vocab.diversity_questions')
+schema['subject'].required = True
 
 class DiversityReport(SOERReport):
     """ Diversity Report
     """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(SOERReport, '__implements__', ()), )
     implements(IDiversityReport)
 
     meta_type = 'DiversityReport'
