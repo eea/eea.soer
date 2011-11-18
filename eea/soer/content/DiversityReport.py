@@ -13,6 +13,8 @@ from Products.Archetypes.public import (
     StringWidget,
     registerType
 )
+from eea.themecentre.content.ThemeTaggable import ThemeTaggable
+from eea.themecentre.content.ThemeTaggable import ThemeTaggable_schema
 
 schema = Schema((
         StringField(
@@ -30,12 +32,15 @@ schema = Schema((
      ),
 ),)
 
-schema = SOERReportSchema.copy() + schema
+schema = SOERReportSchema.copy() + ThemeTaggable_schema.copy() + schema
 schema['question'].vocabulary = \
         NamedVocabulary('eea.soer.vocab.diversity_questions')
-schema['subject'].required = True
 
-class DiversityReport(SOERReport):
+schema['location'].required = True
+schema['subject'].required = True
+schema['themes'].required = True
+
+class DiversityReport(SOERReport, ThemeTaggable):
     """ Diversity Report
     """
     security = ClassSecurityInfo()
