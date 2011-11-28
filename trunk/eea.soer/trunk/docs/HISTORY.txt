@@ -3,10 +3,12 @@ Changelog
 
 4.2-dev - (unreleased)
 ----------------------
+* Bug fix: Required themes and subject is handled by EEAContentTypes
+  [voineali #4694]
 
 4.1 - (2011-11-18)
 ------------------
-* Rerelease broken egg  
+* Rerelease broken egg
 
 4.0 - (2011-11-18)
 ------------------
