@@ -36,10 +36,6 @@ schema = SOERReportSchema.copy() + ThemeTaggable_schema.copy() + schema
 schema['question'].vocabulary = \
         NamedVocabulary('eea.soer.vocab.diversity_questions')
 
-schema['location'].required = True
-schema['subject'].required = True
-schema['themes'].required = True
-
 class DiversityReport(SOERReport, ThemeTaggable):
     """ Diversity Report
     """
