@@ -3,6 +3,10 @@ Changelog
 
 4.3-dev - (unreleased)
 ----------------------
+* Change: Disabled location portlet since discomap service is not working anymore. 
+   [demarant]
+* Change: changed the link to faceted search since its location has moved,
+   necessary since we now do not show navigation on faceted. [demarant]
 
 4.2 - (2011-11-28)
 ------------------
