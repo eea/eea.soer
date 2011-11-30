@@ -66,7 +66,8 @@
                   <img src="miljostatus-logo-eng.gif" /></dd>
               </dl>
             </tal:autoUpdated>
-            <dl id="location-portlet" class="portlet">
+            <!-- DISABLED location portlet until service works again.
+              <dl id="location-portlet" class="portlet">
               <dt class="portletHeader">
                 <a href="" title="" class="websource-box fancybox discreet"
                   tal:attributes="href string:#locationSource;
@@ -90,6 +91,8 @@
                   tal:attributes="src view/getGeoCoverageMapUrl" /></dd>
             </dl>
 
+            END disable location portlet-->
+            
           </div>
         </metal:isFromFeed>
 
