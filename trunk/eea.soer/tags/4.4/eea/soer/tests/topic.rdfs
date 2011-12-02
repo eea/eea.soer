@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ RDF Schema for describing questions for soer reports (based on http://rdfdata.eionet.europa.eu/article17/assessments/ )
+ 2010-05-31 - Sasha Vincic 
+-->
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xmlns="http://www.eea.europa.eu/soer/rdfs/topic/1.0#">
+
+<!-- Description of Ontology --> 
+<owl:Ontology rdf:about="">
+  <rdfs:label>Soer topic code schema v.0.1</rdfs:label>
+</owl:Ontology>
+
+<!-- Begin: Class Declaration -->
+<rdfs:Class rdf:about="Topic">
+  <rdfs:label>Soer report topic</rdfs:label>
+</rdfs:Class>
+
+
+<!-- Begin: Property Declarations -->
+<rdf:Property rdf:about="short">
+  <rdfs:label>Short</rdfs:label>
+</rdf:Property>
+
+<rdf:Property rdf:about="long">
+  <rdfs:label>Long</rdfs:label>
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+</rdf:Property>
+
+</rdf:RDF>
