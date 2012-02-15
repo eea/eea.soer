@@ -3,6 +3,7 @@ Changelog
 
 4.5-dev - (unreleased)
 ----------------------
+ * Bug fix: properly link resources in css file [tiberich #4956]
 
 4.4 - (2011-12-02)
 ------------------
