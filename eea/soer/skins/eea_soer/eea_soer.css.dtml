@@ -8,7 +8,7 @@
 }
 
 .websource-box {
-    background: transparent url('tag_green_right.png') no-repeat 100% 0;
+    background: transparent url('&dtml-portal_url;/tag_green_right.png') no-repeat 100% 0;
     position: absolute;
     top: 0;
     right: 0;
