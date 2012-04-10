@@ -99,7 +99,10 @@ class ReportQuestionsByTopic(object):
             return u'Country profile'
         v = getToolByName(self.context,
                 'portal_vocabularies')['eea.soer.vocab.topics']
-        return v[self.topic].Title()
+        if self.topic in v.keys():
+            return v[self.topic].Title()
+        else:
+            return 'Requested topic not found'
 
     @property
     def reports(self):
