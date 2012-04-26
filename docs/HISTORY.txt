@@ -1,8 +1,8 @@
 Changelog
 =========
 
-4.6-dev - (unreleased)
-----------------------
+4.6 - (2012-04-26)
+------------------
  * Bug fix: fixed soertopic_view template not to endup in error when missing topic is requested
    [ghicaale]
 
