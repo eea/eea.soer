@@ -3,6 +3,8 @@
 
 4.7-dev - (unreleased)
 ----------------------
+* Bug fix: updated link of countries flexibility reports.
+  [demarant fixes #5266] 
 * Bug fix: fixed markup of HISTORY.txt file
   [ciobabog refs #5231]
 

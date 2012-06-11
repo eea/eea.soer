@@ -116,8 +116,8 @@
             <li><a href="soertopic_view?topic=waste" title="Reports about Waste">Waste</a></li>
             <li tal:define="flex python:context.getFolderContents(contentFilter={'portal_type':'FlexibilityReport'});
                             flex python:flex[0].getObject() if flex else None;"
-                tal:condition="nocall:flex|nothing"><a href="../#c11=FlexibilityReport&geo1=" title="National and regional story" class="internallink"
-                tal:attributes="href python:'../#c11=FlexibilityReport&' + view.getRegionsUrl('geo1')">National and regional stories</a></li>
+                tal:condition="nocall:flex|nothing"><a href="../find#c11=FlexibilityReport&geo1=" title="National and regional story" class="internallink"
+                tal:attributes="href python:'../find#c11=FlexibilityReport&' + view.getRegionsUrl('geo1')">National and regional stories</a></li>
           </ul>
           <div class="visualClear"></div>
           <h3>Search</h3>
