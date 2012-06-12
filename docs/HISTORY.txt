@@ -1,8 +1,8 @@
 ﻿Changelog
 =========
 
-4.7-dev - (unreleased)
-----------------------
+4.7 - (2012-06-12)
+------------------
 * Bug fix: fixes several layout issues with soer countries 
   portlets padding/margin.
   [demarant fixes #5265]
