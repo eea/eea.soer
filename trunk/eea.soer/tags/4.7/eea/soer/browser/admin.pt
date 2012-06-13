@@ -1,0 +1,61 @@
+<metal:block use-macro="here/global_defines/macros/defines" />
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="eea">
+
+<head>
+    <title>Promotions Admin Panel</title>
+</head>
+
+<body>
+
+<metal:main metal:fill-slot="content-core">
+<tal:main-macro metal:define-macro="main">
+
+    <table>
+        <thead>
+        <tr>
+            <th>SOER Country content status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tal:countries tal:define="countries view/info"
+            tal:repeat="country countries">
+            <tr>
+                <td><a href="" tal:attributes="href python:country['url']+'/'"><h3
+                       tal:content="country/title">Country (<tal:code content="country/id" />)</h3></a>
+                <table>
+                <thead>
+                   <th style="text-align: left;" tal:define="stats country/profile/stats">
+                       <span style="color: red;" tal:omit-tag="python:stats >=4">Country profile questions: <span tal:content="stats" /> of 4</span></th>
+                <thead>
+                <tbody>
+                <tr tal:repeat="report country/profile/reports">
+                   <td tal:content="report/Title"
+                       tal:attributes="class python:'state-'+report.review_state"></td>
+                </tr>
+                <thead>
+                   <th style="text-align: left;" tal:define="stats country/common/stats">Theme: number of questions (5 per theme) <tal:stats tal:repeat="theme stats/keys">
+                       <span style="color: red;" tal:omit-tag="python:stats[theme] >= 5"><tal:theme content="theme" />: <span tal:content="python:stats[theme]" /></span></tal:stats> &nbsp;</th>
+                <thead>
+                <tr tal:repeat="report country/common/reports">
+                   <td tal:content="report/Title"
+                       tal:attributes="class python:'state-'+report.review_state"></td>
+                </tr>
+              </tbody>
+             </table>
+          </td>
+          </tr>
+         </tal:countries>
+     </tbody>
+     </table>
+
+
+</tal:main-macro>
+</metal:main>
+
+</body>
+</html>
