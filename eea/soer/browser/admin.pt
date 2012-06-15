@@ -7,7 +7,7 @@
       i18n:domain="eea">
 
 <head>
-    <title>Promotions Admin Panel</title>
+    <title i18n:translate="">Promotions Admin Panel</title>
 </head>
 
 <body>
@@ -18,38 +18,48 @@
     <table>
         <thead>
         <tr>
-            <th>SOER Country content status</th>
+            <th i18n:translate="">SOER Country content status</th>
         </tr>
         </thead>
-        <tbody>
-        <tal:countries tal:define="countries view/info"
-            tal:repeat="country countries">
-            <tr>
-                <td><a href="" tal:attributes="href python:country['url']+'/'"><h3
-                       tal:content="country/title">Country (<tal:code content="country/id" />)</h3></a>
-                <table>
-                <thead>
-                   <th style="text-align: left;" tal:define="stats country/profile/stats">
-                       <span style="color: red;" tal:omit-tag="python:stats >=4">Country profile questions: <span tal:content="stats" /> of 4</span></th>
-                <thead>
-                <tbody>
-                <tr tal:repeat="report country/profile/reports">
-                   <td tal:content="report/Title"
-                       tal:attributes="class python:'state-'+report.review_state"></td>
-                </tr>
-                <thead>
-                   <th style="text-align: left;" tal:define="stats country/common/stats">Theme: number of questions (5 per theme) <tal:stats tal:repeat="theme stats/keys">
-                       <span style="color: red;" tal:omit-tag="python:stats[theme] >= 5"><tal:theme content="theme" />: <span tal:content="python:stats[theme]" /></span></tal:stats> &nbsp;</th>
-                <thead>
-                <tr tal:repeat="report country/common/reports">
-                   <td tal:content="report/Title"
-                       tal:attributes="class python:'state-'+report.review_state"></td>
-                </tr>
-              </tbody>
-             </table>
-          </td>
-          </tr>
-         </tal:countries>
+        <tbody tal:define="countries view/info">
+            <tr tal:repeat="country countries">
+                <td>
+                    <a href="" tal:attributes="href python:country['url']+'/'">
+                        <h3>
+                            <span tal:replace="country/title" /> (<span tal:replace="country/id" />)
+                        </h3>
+                    </a>
+                    <table>
+                        <thead>
+                           <th style="text-align: left;" tal:define="stats country/profile/stats">
+                               <span style="color: red;" tal:omit-tag="python:stats >=4" i18n:translate="">
+                                   Country profile questions: <span tal:content="stats" i18n:name="count">num</span> of 4
+                               </span>
+                           </th>
+                        </thead>
+                        <tbody>
+                        <tr tal:repeat="report country/profile/reports">
+                           <td tal:content="report/Title"
+                               tal:attributes="class python:'state-'+report.review_state"></td>
+                        </tr>
+                        <thead>
+                           <th style="text-align: left;" tal:define="stats country/common/stats">
+                               <span i18n:translate="">Theme: number of questions (5 per theme)</span>&nbsp; 
+                               <tal:stats tal:repeat="theme stats/keys">
+                                   <span style="color: red;" tal:omit-tag="python:stats[theme] >= 5">
+                                       <span tal:replace="theme" />: <span tal:replace="python:stats[theme]" />
+                                  </span>
+                              </tal:stats> &nbsp;
+                           </th>
+                        </thead>                 
+                            <tr tal:repeat="report country/common/reports">
+                               <td tal:content="report/Title"
+                                   tal:attributes="class python:'state-'+report.review_state"></td>
+                            </tr>
+                       </tbody>
+                   </table>
+              </td>
+            </tr>
      </tbody>
      </table>
 
