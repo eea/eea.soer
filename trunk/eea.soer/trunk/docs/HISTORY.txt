@@ -3,6 +3,8 @@
 
 4.8-dev - (unreleased)
 ----------------------
+* Bug Fix: Fixed i18n missing tags *.pt 
+  [prospchr refs #5162]
 
 4.7 - (2012-06-13)
 ------------------

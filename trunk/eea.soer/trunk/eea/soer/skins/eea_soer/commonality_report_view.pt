@@ -19,7 +19,7 @@
           topics view/getTopics|nothing;">
           <div class="soerHeader">
             <dl id="themes-portlet" class="portlet" tal:condition="python: topics and isFirstReport">
-              <dt class="portletHeader">
+              <dt class="portletHeader" i18n:translate="">
                 Topic</dt>
               <dd class="portletItem" tal:repeat="topic topics">
                 <a href="" tal:attributes="href topic/url;
@@ -28,7 +28,7 @@
                     tal:attributes="src topic/image;
                     alt topic/title" />
                   <tal:topictitle
-                    tal:content="topic/title">topic</tal:topictitle></a></dd>
+                     tal:content="topic/title"></tal:topictitle></a></dd>
             </dl>
 
             <tal:autoUpdated tal:condition="python: report.isFromFeed() and isFirstReport">
@@ -40,28 +40,29 @@
                 <dt class="portletHeader">
                   <a href="" title="" class="websource-box fancybox"
                     tal:attributes="href string:#channelSource;
-                    title string:Channel source">Channel</a>
+                                    title string:Channel source"
+                    i18n:translate="channel">Channel</a>
                   <div class="hiddenStructure">
                     <div id="channelSource" class="websource-info" >
                       <img src="miljostatus-logo-eng.gif" />
                       <br />
                       <dl>
-                        <dt>Organisation name</dt>
-                        <dd>Organisation name</dd>
-                        <dt>Reporting country</dt>
-                        <dd>Norway</dd>
-                        <dt>Organisation website</dt>
-                        <dd><a href="" title="">Organisation website</a></dd>
-                        <dt>Contact link</dt>
-                        <dd><a href="" title="">Contact link</a></dd>
-                        <dt>Last updated</dt>
+                        <dt i18n:translate="">Organisation name</dt>
+                        <dd i18n:translate="">Organisation name</dd>
+                        <dt i18n:translate="">Reporting country</dt>
+                        <dd i18n:translate="">Norway</dd>
+                        <dt i18n:translate="">Organisation website</dt>
+                        <dd><a href="" title="" i18n:translate="">Organisation website</a></dd>
+                        <dt i18n:translate="">Contact link</dt>
+                        <dd><a href="" title="" i18n:translate="">Contact link</a></dd>
+                        <dt i18n:translate="">Last updated</dt>
                         <dd>2010-05-07</dd>
-                        <dt>Content licence</dt>
-                        <dd><a href="" title="">CC By 2.5</a></dd>
+                        <dt i18n:translate="">Content licence</dt>
+                        <dd><a href="" title="" i18n:translate="">CC By 2.5</a></dd>
                       </dl>
                     </div>
                   </div>
-                  Content provider</dt>
+                  <span i18n:translate="">Content provider</span></dt>
                 <dd class="portletItem">
                   <img src="miljostatus-logo-eng.gif" /></dd>
               </dl>
@@ -116,13 +117,16 @@
                 <strong  i18n:translate="Feed synced">Feed synced</strong>: <span tal:replace="python:plone_view.toLocalizedTime(channel['updated'])">
                   August 16, 2001 at 23:35:59
                   </span> <a href="" title="Original link for this report"
-                  tal:attributes="href report/original_url;">original</a></tal:syncdate>
+                             tal:attributes="href report/original_url;"
+                             i18n:attributes="title"
+                             i18n:translate="">original</a>
+             </tal:syncdate>
             </div>
           </tal:anonymous>
 
           <div class="soer-keyMessage"
             tal:condition="report/getKeyMessage">
-            <h5>Key message</h5>
+            <h5 i18n:translate="">Key message</h5>
             <p tal:replace="structure report/getKeyMessage|nothing" />
           </div>
 
@@ -130,7 +134,7 @@
             singleFigure python:len(folderContents) == 1"
             tal:condition="folderContents">
 
-            <h4>Figures</h4>
+            <h4 i18n:translate="">Figures</h4>
             <tal:images tal:repeat="brain folderContents">
               <tal:entry tal:define="
                 obj brain/getObject;
@@ -146,19 +150,29 @@
                     <div class="documentDescription"
                       tal:content="structure desc_or_title">Image description Proin orci lacus, vestibulum porta interdum ac, rutrum a leo. Morbi adipiscing tortor nec erat rhoncus feugiat.</div>
                     <dl tal:condition="dataSources">
-                      <dt>Data source</dt>
+                      <dt i18n:translate="">Data source</dt>
                       <dd tal:repeat="dataSrc dataSources"><a href=""
                           tal:attributes="href dataSrc/getRemoteUrl"
                           tal:content="dataSrc/getRemoteUrl">pm10_04-08eng.xls</a></dd>
                     </dl>
-                    <div tal:condition="not: dataSources"><p><strong>Data source</strong><br/>This figure has no data source. For further information contact <a href="http://www.eea.europa.eu/enquiries" title="Request data source">EEA enquiry service</a>.</p></div>
-                    <img class="image-inline captioned" src="" alt="Figure caption"
+                    <div tal:condition="not: dataSources">
+                        <p>
+                            <strong i18n:translate="">Data source</strong><br/>
+                            <span i18n:translate="">This figure has no data source. For further information contact</span>&nbsp; 
+                            <a href="http://www.eea.europa.eu/enquiries" 
+                               title="Request data source" 
+                               i18n:attributes="title" 
+                               i18n:translate="">EEA enquiry service</a>.
+                       </p></div>
+                    <img class="image-inline captioned" src=""
                       tal:attributes="src string:${obj/absolute_url}/image_large;
-                      alt obj_title"/> <br />
+                                      alt obj_title"/> <br />
                     <a href=""
-                      tal:attributes="href string:${obj/absolute_url}/image_view_fullscreen;">Fullscreen image</a>
+                      tal:attributes="href string:${obj/absolute_url}/image_view_fullscreen;"
+                      i18n:translate="">Fullscreen image</a>
                     <a href=""
-                      tal:attributes="href report/original_url">Original link</a>
+                       tal:attributes="href report/original_url"
+                        i18n:translate="">Original link</a>
                   </div>
                 </div>
                 <metal:entry define-macro="entry">
@@ -171,7 +185,7 @@
                       title python:desc_or_title">
                       <span class="photoAlbumEntryWrapper">
                         <img class="imagesource-box" src="tag_green_right.png" tal:condition="dataSources|source|nothing"
-                          tal:attributes="src python:'%s/tag_green_right.png' % portal_url" alt="Source" />
+                          tal:attributes="src python:'%s/tag_green_right.png' % portal_url" alt="Source"  i18n:attributes="alt"/>
                         <tal:multiplefigures condition="not: singleFigure">
                           <img style="border: none" tal:attributes="
                             title python:desc_or_title;
@@ -201,7 +215,7 @@
                 <div class="hiddenStructure">
                   <div id=""
                     tal:attributes="id python:source[1:]">
-                    <h3 i18n:translate="Data sources">Data sources</h3>
+                    <h3 i18n:translate="data-sources">Data sources</h3>
                     <dl tal:condition="folderContents">
                       <dt></dt>
                       <dd tal:repeat="dataSrc folderContents"><a href=""
@@ -213,16 +227,18 @@
 
                 <dl class="portlet">
 
-                  <dt class="portletHeader">
-                    Data sources
-                  </dt>
+                  <dt class="portletHeader" i18n:translate="data-sources">Data sources</dt>
                   <dd class="portletItem">
                     <a tal:attributes="
                       href source;
                       class string:fancybox;
                       title string:Data source;">
-                      <img class="imagesource-box" src="tag_green_right.png" tal:condition="source|nothing"
-                        tal:attributes="src python:'%s/tag_green_right.png' % portal_url" alt="Source" />
+                      <img class="imagesource-box" 
+                           src="tag_green_right.png" 
+                           tal:condition="source|nothing"
+                           tal:attributes="src python:'%s/tag_green_right.png' % portal_url" 
+                           alt="Source"
+                           i18n:attributes="alt" />
                     </a>
                   </dd>
                 </dl>
@@ -255,7 +271,7 @@
             tal:define="indicators report/indicators"
             tal:condition="indicators">
 
-            <dt class="portletHeader">
+            <dt class="portletHeader" i18n:translate="">
               Related indicators
             </dt>
             <dd class="portletItem">
@@ -286,8 +302,8 @@
     <metal:disclaimer fill-slot="sub">
       <metal:subsection define-macro="disclaimer">
         <div class="disclaimer">
-          <b>Disclaimer</b>
-          <p class="discreet">The country assessments are the sole responsibility of the EEA member and cooperating countries supported by the EEA through guidance, translation and editing. </p>
+          <b i18n:translate="disclaimer">Disclaimer</b>
+          <p class="discreet" i18n:translate="disclaimer-country-assassments">The country assessments are the sole responsibility of the EEA member and cooperating countries supported by the EEA through guidance, translation and editing. </p>
         </div>
 
       </metal:subsection>

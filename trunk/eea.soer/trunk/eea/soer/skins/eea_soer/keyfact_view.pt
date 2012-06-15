@@ -8,7 +8,10 @@
     <metal:main metal:fill-slot="content-core">
       <tal:main-macro metal:define-macro="content-core">
 
-        <a href="../" title="Link to full assessment">Link to full assessment</a>
+        <a href="../" 
+           title="Link to full assessment"
+           i18n:attributes="title"
+           i18n:translate="">Link to full assessment</a>
 
       </tal:main-macro>
     </metal:main>

@@ -2,7 +2,7 @@
       xml:lang="en"
       lang="en"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="plone">
+      i18n:domain="eea">
 
   <body>
 
@@ -26,7 +26,7 @@
               <dt class="portletHeader">
                 <a href="" title="" class="websource-box fancybox discreet"
                   tal:attributes="href string:#channelSource;
-                  title string:Channel source">more info</a>
+                                  title string:Channel source" i18n:translate="more-info">more info</a>
                 <div class="hiddenStructure">
                   <div id="channelSource" class="websource-info" >
                     <img src=""
@@ -34,25 +34,26 @@
                       alt channel/organisationName|nothing" />
                     <br />
                     <dl>
-                      <dt>Organisation name</dt>
+                      <dt i18n:translate="">Organisation name</dt>
                       <dd tal:content="channel/organisationName">Organisation name</dd>
-                      <dt>Reportin country</dt>
+                      <dt i18n:translate="">Reporting country</dt>
                       <dd tal:content="context/getSoerCountryName|context/Title">Norway</dd>
-                      <dt>Organisation website</dt>
+                      <dt i18n:translate="org-website">Organisation website</dt>
                       <dd><a href="" title=""
-                          tal:attributes="href channel/organisationURL">Organisation website</a></dd>
-                      <dt>Contact link</dt>
+                             tal:attributes="href channel/organisationURL" i18n:translate="org-website">Organisation website</a>
+                             </dd>
+                      <dt i18n:translate="contact-link">Contact link</dt>
                       <dd><a href="" title=""
-                          tal:attributes="href channel/organisationContactURL">Contact link</a></dd>
-                      <dt>Last updated</dt>
+                          tal:attributes="href channel/organisationContactURL" i18n:translate="contact-link">Contact link</a></dd>
+                      <dt i18n:translate="">Last updated</dt>
                       <dd tal:content="python:plone_view.toLocalizedTime(channel['updated'])">2010-05-07</dd>
-                      <dt>Content license</dt>
+                      <dt i18n:translate="">Content license</dt>
                       <dd><a href="" title=""
-                          tal:attributes="href channel/license">CC By 2.5</a></dd>
+                             tal:attributes="href channel/license" i18n:translate="">CC By 2.5</a></dd>
                     </dl>
                   </div>
                 </div>
-                Content provider</dt>
+                <span i18n:translate="content-provider">Content provider</span></dt>
               <dd class="portletItem">
                 <a href="" title="" class="fancybox"
                   tal:attributes="href string:#channelSource;
@@ -99,31 +100,74 @@
               interdum eu mollis a, porttitor sit amet ipsum.
             </p>
             <p>
-              <a href="soertopic_view?topic=country introduction" class="moreLink">
+              <a href="soertopic_view?topic=country introduction" class="moreLink" i18n:translate="">
                 Country profile: read more</a>
             </p>
           </div>
 
           <div class="visualClear"><!-- --></div>
 
-          <h3>Browse by topic</h3>
+          <h3 i18n:translate="browse-by-topic">Browse by topic</h3>
           <ul class="topicmenu">
-            <li><a href="soertopic_view?topic=air pollution" title="Reports about Air pollution">Air pollution</a></li>
-            <li><a href="soertopic_view?topic=climate change" title="Reports about climate change mitigation">Climate change mitigation</a></li>
-            <li><a href="soertopic_view?topic=biodiversity" title="Reports about Nature protection and biodiversity">Nature protection and biodiversity</a></li>
-            <li><a href="soertopic_view?topic=land" title="Reports about Land use">Land use</a></li>
-            <li><a href="soertopic_view?topic=freshwater" title="Reports about Freshwater">Freshwater</a></li>
-            <li><a href="soertopic_view?topic=waste" title="Reports about Waste">Waste</a></li>
+            <li>
+                <a href="soertopic_view?topic=air pollution" 
+                   title="Reports about Air pollution"
+                   i18n:attributes="title"
+                   i18n:translate="">Air pollution</a>
+            </li>
+            <li>
+                <a href="soertopic_view?topic=climate change" 
+                   title="Reports about climate change mitigation"
+                   i18n:attributes="title"
+                   i18n:translate="">Climate change mitigation</a>
+            </li>
+            <li>
+                <a href="soertopic_view?topic=biodiversity" 
+                   title="Reports about Nature protection and biodiversity"
+                   i18n:attributes="title"
+                   i18n:translate="">Nature protection and biodiversity</a>
+            </li>
+            <li>
+                <a href="soertopic_view?topic=land" 
+                   title="Reports about Land use"
+                   i18n:attributes="title"
+                   i18n:translate="">Land use</a>
+            </li>
+            <li>
+                <a href="soertopic_view?topic=freshwater" 
+                   title="Reports about Freshwater"
+                   i18n:attributes="title"
+                   i18n:translate="">Freshwater</a>
+            </li>
+            <li>
+                <a href="soertopic_view?topic=waste" 
+                   title="Reports about Waste"
+                   i18n:attributes="title"
+                   i18n:translate="">Waste</a>
+            </li>
             <li tal:define="flex python:context.getFolderContents(contentFilter={'portal_type':'FlexibilityReport'});
                             flex python:flex[0].getObject() if flex else None;"
-                tal:condition="nocall:flex|nothing"><a href="../find#c11=FlexibilityReport&geo1=" title="National and regional story" class="internallink"
-                tal:attributes="href python:'../find#c11=FlexibilityReport&' + view.getRegionsUrl('geo1')">National and regional stories</a></li>
+                tal:condition="nocall:flex|nothing">
+                    <a href="../find#c11=FlexibilityReport&amp;geo1=" 
+                       title="National and regional story" 
+                       class="internallink"
+                       tal:attributes="href python:'../find#c11=FlexibilityReport&amp;' + view.getRegionsUrl('geo1')"
+                       i18n:attributes="title"
+                       i18n:translate="">National and regional stories</a>
+          </li>
           </ul>
           <div class="visualClear"></div>
-          <h3>Search</h3>
+          <h3 i18n:translate="search">Search</h3>
           <ul class="topicmenu">
-            <li><a href="../find#geo1=" title="Search all reports" class="internallink"
-                tal:attributes="href python:'../find#' + view.getRegionsUrl('geo1')">Search all reports from <tal:country content="context/Title" /></a></li>
+            <li><a href="../find#geo1=" 
+                   title="Search all reports" 
+                   class="internallink"
+                   i18n:attributes="title"
+                   tal:attributes="href python:'../find#' + view.getRegionsUrl('geo1')">
+                        <span i18n:translate="">Search all reports from</span>&nbsp;
+                        <span tal:replace="context/Title" />
+                </a>
+            </li>
           </ul>
         </metal:top-macro>
         <div class="visualClear"></div>
