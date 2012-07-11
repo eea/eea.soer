@@ -3,7 +3,7 @@
 <body>
 <metal:main metal:fill-slot="content-core">
 <h1 class="documentFirstHeading" i18n:translate="">Test your SOER feed</h1>
-<p i18n:translate="soer-description">
+<p i18n:translate="">
     Enter url to the feed and country code, if there is no errors they will be redirected 
     to the country view of the feed. If they get errors they should see if they understand 
     the error and if not contact me with the feed url and I'll help them.

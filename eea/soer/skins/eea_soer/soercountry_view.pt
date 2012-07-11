@@ -26,7 +26,7 @@
               <dt class="portletHeader">
                 <a href="" title="" class="websource-box fancybox discreet"
                   tal:attributes="href string:#channelSource;
-                                  title string:Channel source" i18n:translate="more-info">more info</a>
+                                  title string:Channel source" i18n:translate="">more info</a>
                 <div class="hiddenStructure">
                   <div id="channelSource" class="websource-info" >
                     <img src=""
@@ -38,13 +38,13 @@
                       <dd tal:content="channel/organisationName">Organisation name</dd>
                       <dt i18n:translate="">Reporting country</dt>
                       <dd tal:content="context/getSoerCountryName|context/Title">Norway</dd>
-                      <dt i18n:translate="org-website">Organisation website</dt>
+                      <dt i18n:translate="">Organisation website</dt>
                       <dd><a href="" title=""
-                             tal:attributes="href channel/organisationURL" i18n:translate="org-website">Organisation website</a>
+                             tal:attributes="href channel/organisationURL" i18n:translate="">Organisation website</a>
                              </dd>
-                      <dt i18n:translate="contact-link">Contact link</dt>
+                      <dt i18n:translate="">Contact link</dt>
                       <dd><a href="" title=""
-                          tal:attributes="href channel/organisationContactURL" i18n:translate="contact-link">Contact link</a></dd>
+                          tal:attributes="href channel/organisationContactURL" i18n:translate="">Contact link</a></dd>
                       <dt i18n:translate="">Last updated</dt>
                       <dd tal:content="python:plone_view.toLocalizedTime(channel['updated'])">2010-05-07</dd>
                       <dt i18n:translate="">Content license</dt>
@@ -53,7 +53,7 @@
                     </dl>
                   </div>
                 </div>
-                <span i18n:translate="content-provider">Content provider</span></dt>
+                <span i18n:translate="">Content provider</span></dt>
               <dd class="portletItem">
                 <a href="" title="" class="fancybox"
                   tal:attributes="href string:#channelSource;
@@ -80,7 +80,7 @@
                     </dl>
                   </div>
                 </div>
-                <tal i18n:translate="Reporting country">Reporting country</tal></dt>
+                <tal i18n:translate="">Reporting country</tal></dt>
               <dd class="portletItem">
                 <img src="" title="" width="200"
                   tal:attributes="src view/getMapUrl" /></dd>
@@ -107,7 +107,7 @@
 
           <div class="visualClear"><!-- --></div>
 
-          <h3 i18n:translate="browse-by-topic">Browse by topic</h3>
+          <h3 i18n:translate="">Browse by topic</h3>
           <ul class="topicmenu">
             <li>
                 <a href="soertopic_view?topic=air pollution" 
@@ -157,7 +157,7 @@
           </li>
           </ul>
           <div class="visualClear"></div>
-          <h3 i18n:translate="search">Search</h3>
+          <h3 i18n:translate="">Search</h3>
           <ul class="topicmenu">
             <li><a href="../find#geo1=" 
                    title="Search all reports" 

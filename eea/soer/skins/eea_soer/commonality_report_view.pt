@@ -41,7 +41,7 @@
                   <a href="" title="" class="websource-box fancybox"
                     tal:attributes="href string:#channelSource;
                                     title string:Channel source"
-                    i18n:translate="channel">Channel</a>
+                    i18n:translate="">Channel</a>
                   <div class="hiddenStructure">
                     <div id="channelSource" class="websource-info" >
                       <img src="miljostatus-logo-eng.gif" />
@@ -105,16 +105,16 @@
 
           <tal:anonymous tal:condition="python:isAnon and not report.isSubReport()">
             <div class="discreet documentByLine">
-              <strong  i18n:translate="Published">Published</strong>: <span tal:replace="python:plone_view.toLocalizedTime(report.getEffectiveDate())">
+              <strong  i18n:translate="">
                 August 16, 2001 at 23:35:59
               </span>
-              <strong  i18n:translate="Modified">Modified</strong>: <span tal:replace="python:plone_view.toLocalizedTime(report.ModificationDate())">
+              <strong  i18n:translate="">
                 August 16, 2001 at 23:35:59
               </span>
               <tal:syncdate define="cView context/@@soerCountryView;
                 channel cView/channel"
                 tal:condition="channel|nothing">
-                <strong  i18n:translate="Feed synced">Feed synced</strong>: <span tal:replace="python:plone_view.toLocalizedTime(channel['updated'])">
+                <strong  i18n:translate="">
                   August 16, 2001 at 23:35:59
                   </span> <a href="" title="Original link for this report"
                              tal:attributes="href report/original_url;"
@@ -215,7 +215,7 @@
                 <div class="hiddenStructure">
                   <div id=""
                     tal:attributes="id python:source[1:]">
-                    <h3 i18n:translate="data-sources">Data sources</h3>
+                    <h3 i18n:translate="">Data sources</h3>
                     <dl tal:condition="folderContents">
                       <dt></dt>
                       <dd tal:repeat="dataSrc folderContents"><a href=""
@@ -227,7 +227,7 @@
 
                 <dl class="portlet">
 
-                  <dt class="portletHeader" i18n:translate="data-sources">Data sources</dt>
+                  <dt class="portletHeader" i18n:translate="">Data sources</dt>
                   <dd class="portletItem">
                     <a tal:attributes="
                       href source;
@@ -249,7 +249,7 @@
 
 
           <p tal:condition="python: not text and is_editable"
-            i18n:translate="no_body_text"
+            i18n:translate=""
             class="discreet">
             This item does not have any body text, click the edit tab to change it.
           </p>
@@ -291,7 +291,7 @@
             <a href="" title=""
               tal:attributes="href python:'%s/edit' % report.absolute_url();
               title report/Title"
-              i18n:translate="label_edit_sub_report">Edit sub report</a></tal:editLink>
+              i18n:translate="">Edit sub report</a></tal:editLink>
           <metal:subReport use-macro="report/commonality_report_view/macros/reportContent" />
         </metal:subReports>
 
@@ -302,8 +302,8 @@
     <metal:disclaimer fill-slot="sub">
       <metal:subsection define-macro="disclaimer">
         <div class="disclaimer">
-          <b i18n:translate="disclaimer">Disclaimer</b>
-          <p class="discreet" i18n:translate="disclaimer-country-assassments">The country assessments are the sole responsibility of the EEA member and cooperating countries supported by the EEA through guidance, translation and editing. </p>
+          <b i18n:translate="">Disclaimer</b>
+          <p class="discreet" i18n:translate="">The country assessments are the sole responsibility of the EEA member and cooperating countries supported by the EEA through guidance, translation and editing. </p>
         </div>
 
       </metal:subsection>
