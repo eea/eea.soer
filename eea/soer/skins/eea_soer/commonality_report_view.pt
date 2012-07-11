@@ -105,16 +105,16 @@
 
           <tal:anonymous tal:condition="python:isAnon and not report.isSubReport()">
             <div class="discreet documentByLine">
-              <strong  i18n:translate="">
+              <strong  i18n:translate="Published">Published</strong>: <span tal:replace="python:plone_view.toLocalizedTime(report.getEffectiveDate())">
                 August 16, 2001 at 23:35:59
               </span>
-              <strong  i18n:translate="">
+              <strong  i18n:translate="Modified">Modified</strong>: <span tal:replace="python:plone_view.toLocalizedTime(report.ModificationDate())">
                 August 16, 2001 at 23:35:59
               </span>
               <tal:syncdate define="cView context/@@soerCountryView;
                 channel cView/channel"
                 tal:condition="channel|nothing">
-                <strong  i18n:translate="">
+                 <strong  i18n:translate="Feed synced">Feed synced</strong>: <span tal:replace="python:plone_view.toLocalizedTime(channel['updated'])">
                   August 16, 2001 at 23:35:59
                   </span> <a href="" title="Original link for this report"
                              tal:attributes="href report/original_url;"
