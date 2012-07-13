@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<object name="part-c" meta_type="ATFolder">
+ <criteria>
+  <criterion name="c11">
+   <property name="widget">portlet</property>
+   <property name="title">Logo</property>
+   <property name="position">top</property>
+   <property name="section">default</property>
+   <property name="hidden">0</property>
+   <property name="macro">context/soercountry_view/macros/topinfo</property>
+  </criterion>
+  <criterion name="c7">
+   <property name="widget">geocoverage</property>
+   <property name="title">Reporting country</property>
+   <property name="position">left</property>
+   <property name="section">default</property>
+   <property name="hidden">0</property>
+   <property name="index">getSoerCountry</property>
+   <property name="operator">or</property>
+   <property name="vocabulary"></property>
+   <property name="catalog">portal_catalog</property>
+   <property name="maxitems">10</property>
+   <property name="sortreversed">0</property>
+   <property name="count">0</property>
+   <property name="hidezerocount">0</property>
+   <property name="default"/>
+  </criterion>
+  <criterion name="c5">
+   <property name="widget">radio</property>
+   <property name="title">Topic</property>
+   <property name="position">left</property>
+   <property name="section">default</property>
+   <property name="hidden">0</property>
+   <property name="index">getSoerTopic</property>
+   <property name="vocabulary">eea.soer.vocab.topics</property>
+   <property name="catalog"></property>
+   <property name="maxitems">0</property>
+   <property name="sortreversed">0</property>
+   <property name="count">1</property>
+   <property name="hidezerocount">0</property>
+   <property name="default"></property>
+  </criterion>
+  <criterion name="c8">
+   <property name="widget">checkbox</property>
+   <property name="title">Questions</property>
+   <property name="position">left</property>
+   <property name="section">default</property>
+   <property name="hidden">0</property>
+   <property name="index">getSoerQuestion</property>
+   <property name="operator">or</property>
+   <property name="vocabulary">eea.soer.vocab.all_questions</property>
+   <property name="catalog"></property>
+   <property name="maxitems">0</property>
+   <property name="sortreversed">0</property>
+   <property name="count">0</property>
+   <property name="hidezerocount">0</property>
+   <property name="default"/>
+  </criterion>
+  <criterion name="c9">
+   <property name="widget">text</property>
+   <property name="title">soer/part-c</property>
+   <property name="position">left</property>
+   <property name="section">default</property>
+   <property name="hidden">1</property>
+   <property name="index">path</property>
+   <property name="default"></property>
+  </criterion>
+  <criterion name="c12">
+   <property name="widget">tagscloud</property>
+   <property name="title">Keywords</property>
+   <property name="position">left</property>
+   <property name="section">default</property>
+   <property name="hidden">0</property>
+   <property name="index">Subject</property>
+   <property name="vocabulary"></property>
+   <property name="catalog">portal_catalog</property>
+   <property name="maxitems">50</property>
+   <property name="maxchars">0</property>
+   <property name="sortreversed">0</property>
+   <property name="cloud">list</property>
+   <property name="sizemin">10</property>
+   <property name="sizemax">20</property>
+   <property name="height">200</property>
+   <property name="count">0</property>
+   <property name="hidezerocount">1</property>
+   <property name="default"></property>
+  </criterion>
+  <criterion name="c6">
+   <property name="widget">checkbox</property>
+   <property name="title">Geo coverage</property>
+   <property name="position">left</property>
+   <property name="section">default</property>
+   <property name="hidden">0</property>
+   <property name="index">getGeographicCoverage</property>
+   <property name="operator">or</property>
+   <property name="vocabulary">eea.soer.vocab.NUTSRegions</property>
+   <property name="catalog"></property>
+   <property name="maxitems">5</property>
+   <property name="sortreversed">0</property>
+   <property name="count">1</property>
+   <property name="hidezerocount">1</property>
+   <property name="default"/>
+  </criterion>
+  <criterion name="c10">
+   <property name="widget">checkbox</property>
+   <property name="title">Language</property>
+   <property name="position">left</property>
+   <property name="section">advanced</property>
+   <property name="hidden">0</property>
+   <property name="index">Language</property>
+   <property name="vocabulary"></property>
+   <property name="catalog">portal_catalog</property>
+   <property name="maxitems">0</property>
+   <property name="sortreversed">0</property>
+   <property name="count">0</property>
+   <property name="hidezerocount">0</property>
+   <property name="default"/>
+  </criterion>
+  <criterion name="c3">
+   <property name="widget">criteria</property>
+   <property name="title">Current search</property>
+   <property name="position">center</property>
+   <property name="section">default</property>
+   <property name="hidden">0</property>
+  </criterion>
+  <criterion name="c0">
+   <property name="widget">resultsperpage</property>
+   <property name="title">Results per page</property>
+   <property name="position">right</property>
+   <property name="section">default</property>
+   <property name="hidden">1</property>
+   <property name="start">0</property>
+   <property name="end">20</property>
+   <property name="step">5</property>
+   <property name="default">20</property>
+  </criterion>
+  <criterion name="c1">
+   <property name="widget">checkbox</property>
+   <property name="title">Portal type</property>
+   <property name="position">right</property>
+   <property name="section">default</property>
+   <property name="hidden">1</property>
+   <property name="index">portal_type</property>
+   <property
+      name="vocabulary">eea.faceted.vocabularies.FacetedPortalTypes</property>
+   <property name="catalog"></property>
+   <property name="maxitems">5</property>
+   <property name="sortreversed">1</property>
+   <property name="count">1</property>
+   <property name="hidezerocount">0</property>
+   <property name="default">
+    <element value="SOERCountry"/>
+    <element value="FlexibilityReport"/>
+    <element value="DiversityReport"/>
+    <element value="CommonalityReport"/>
+   </property>
+  </criterion>
+  <criterion name="c2">
+   <property name="widget">sorting</property>
+   <property name="title">Sort on</property>
+   <property name="position">right</property>
+   <property name="section">default</property>
+   <property name="hidden">1</property>
+   <property name="vocabulary"></property>
+   <property name="default">effective(reverse)</property>
+  </criterion>
+  <criterion name="c4">
+   <property name="widget">checkbox</property>
+   <property name="title">Object provides</property>
+   <property name="position">right</property>
+   <property name="section">default</property>
+   <property name="hidden">1</property>
+   <property name="index">object_provides</property>
+   <property
+      name="vocabulary">eea.faceted.vocabularies.ObjectProvides</property>
+   <property name="catalog"></property>
+   <property name="maxitems">5</property>
+   <property name="sortreversed">0</property>
+   <property name="count">0</property>
+   <property name="hidezerocount">0</property>
+   <property name="default"></property>
+  </criterion>
+ </criteria>
+</object>
