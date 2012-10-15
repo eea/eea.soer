@@ -8,28 +8,29 @@ from Products.CMFCore.utils import getToolByName
 from eea.soer import vocab
 from eea.soer.content.interfaces import ISOERReport, IReportingCountry
 from eea.soer.content.interfaces import ISoerFigure, ISoerDataFile
-from eea.rdfmarshaller.interfaces import IArchetype2Surf, ISurfSession
-from eea.rdfmarshaller import marshaller
+from eea.rdfmarshaller.interfaces import IObject2Surf, ISurfSession
+from eea.rdfmarshaller.archetypes import Archetype2Surf
+from eea.rdfmarshaller.archetypes.interfaces import IArchetype2Surf
 
-class Soer2Surf(marshaller.ATCT2Surf):
+
+class Soer2Surf(Archetype2Surf):
     """ Base class for adapters
     """
     prefix = u'soer'
     field_map = {}
 
-    @property
-    def namespace(self):
-        """ Namespace
-        """
-        return surf.ns.SOER
+    _namespace = surf.ns.SOER
+
 
 class ReportingCountry2Surf(Soer2Surf):
     """ Adapter from eea.soer report AT types to surf resource and RDF
     """
+
     implements(IArchetype2Surf)
     adapts(IReportingCountry, ISurfSession)
 
-    def channel(self):
+    @property
+    def resource(self):
         """ Channel
         """
         resource = self.session.get_class(
@@ -59,15 +60,16 @@ class ReportingCountry2Surf(Soer2Surf):
         resource.save()
         return resource
 
-    def at2surf(self, **kwargs):
+    def write(self, *args, **kwargs):
         """ At to surf
         """
-        self.channel()
+        resource = self.resource    #this writes into the session
         for obj in self.context.objectValues():
-            atsurf = queryMultiAdapter((obj, self.session),
-                                       interface=IArchetype2Surf)
-            if atsurf is not None:
-                atsurf.at2surf()
+            obj2surf = queryMultiAdapter((obj, self.session),
+                                       interface=IObject2Surf)
+            if obj2surf is not None:
+                obj2surf.write()
+
 
 class NationalStory2Surf(Soer2Surf):
     """ Adapter from eea.soer report AT types to surf resource and RDF
@@ -93,10 +95,10 @@ class NationalStory2Surf(Soer2Surf):
         return super(NationalStory2Surf, self).blacklist_map + \
                         ['relatedItems', 'question', 'geoCoverage', 'id']
 
-    def at2surf(self, subReport=False, **kwargs):
+    def write(self, subReport=False, **kwargs):
         """ AT to surf
         """
-        resource = super(NationalStory2Surf, self).at2surf()
+        resource = self.resource
         context = self.context
         language = context.Language()
         question = context.getQuestion()
@@ -112,13 +114,13 @@ class NationalStory2Surf(Soer2Surf):
                   context.aq_parent.getObjectPosition(context.getId()) + 1
         for obj in context.objectValues():
             surfObj = queryMultiAdapter((obj, self.session),
-                                        interface = IArchetype2Surf)
+                                        interface = IObject2Surf)
             if surfObj is not None:
                 if obj.portal_type == 'Image':
-                    resource.soer_hasFigure.append(surfObj.at2surf())
+                    resource.soer_hasFigure.append(surfObj.resource)
                 elif obj.portal_type in ['DataSourceLink', 'Link']:
                     # We allowed normal links as data source pre 0.5
-                    resource.soer_dataSource.append(surfObj.at2surf())
+                    resource.soer_dataSource.append(surfObj.resource)
                 elif obj.portal_type == 'RelatedIndicatorLink':
                     resource.soer_relatedEuropeanIndicator.append(
                                (rdflib.URIRef(obj.getRemoteUrl()), language))
@@ -126,10 +128,11 @@ class NationalStory2Surf(Soer2Surf):
                     # Current resource has the sort order 0 since it is
                     # parent to the other reports
                     resource.soer_sortOrder = 0
-                    surfObj.at2surf(subReport=True)
+                    surfObj.write(subReport=True)
 
         resource.save()
         return resource
+
 
 class Image2Surf(Soer2Surf):
     """ Resource axtension for
@@ -146,6 +149,7 @@ class Image2Surf(Soer2Surf):
                                      ('relatedItems', 'dataSource'),
                                      ]))
         self.dc_map = {} # we don't want Dublin Core right now
+
 
 class Link2Surf(Soer2Surf):
     """ Resource axtension for
