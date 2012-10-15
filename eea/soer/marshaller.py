@@ -69,6 +69,7 @@ class ReportingCountry2Surf(Soer2Surf):
                                        interface=IObject2Surf)
             if obj2surf is not None:
                 obj2surf.write()
+        return resource
 
 
 class NationalStory2Surf(Soer2Surf):
