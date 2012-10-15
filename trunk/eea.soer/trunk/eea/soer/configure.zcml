@@ -56,10 +56,10 @@
                    zope.lifecycleevent.interfaces.IObjectModifiedEvent"
               handler=".content.SOERReport.reportUpdated" />
 
-  <adapter factory=".marshaller.ReportingCountry2Surf" />
-  <adapter factory=".marshaller.NationalStory2Surf" />
-  <adapter factory=".marshaller.Image2Surf" />
-  <adapter factory=".marshaller.Link2Surf" />
+  <adapter factory=".marshaller.ReportingCountry2Surf" provides="eea.rdfmarshaller.interfaces.IObject2Surf"/>
+  <adapter factory=".marshaller.NationalStory2Surf" provides="eea.rdfmarshaller.interfaces.IObject2Surf"/>
+  <adapter factory=".marshaller.Image2Surf" provides="eea.rdfmarshaller.interfaces.IObject2Surf"/>
+  <adapter factory=".marshaller.Link2Surf" provides="eea.rdfmarshaller.interfaces.IObject2Surf"/>
   <adapter factory=".sense.Surf2SOERReport" />
   <adapter factory=".sense.GetATSchema4SurfObj" />
 

@@ -1,8 +1,10 @@
-﻿Changelog
+Changelog
 =========
 
 4.9-dev - (unreleased)
 ----------------------
+* Bug fix: comform to eea.rdfmarshaller API changes
+  [tiberich #3981]
 
 4.8 - (2012-07-13)
 ------------------
