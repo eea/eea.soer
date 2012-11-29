@@ -1,0 +1,172 @@
+======================
+SENSE input and output
+======================
+
+SENSE is a sub project of SOER PART-C which has a goal to enable information
+sharing between countries using RDF. The content shared is the PART-C of SOER
+and is intended as first stage to put more data online and be able to update it
+continuesly.
+
+All content as part of eea.soer can be imported and exported as `SOER Feed <https://svn.eionet.europa.eu/projects/Zope/wiki/SOERFeedSpec>`_.
+
+  >>> self.setRoles(['Manager'])
+  >>> soer = self.portal.SOER
+  >>> country = soer[soer.invokeFactory('SOERCountry', id='no')]
+  >>> country.setLanguage('en')
+  >>> from eea.soer.config import examplerdf, evalrdf
+
+#from eea.soer.tests.base import examplerdf, evalrdf
+
+Lets load an RDF
+
+  >>> import surf
+  >>> from eea.soer import sense
+  >>> store = surf.Store(reader='rdflib',  writer='rdflib', rdflib_store = 'IOMemory')
+  >>> session = surf.Session(store, mapping={surf.ns.SOER.NationalStory : sense.NationalStory} )
+  >>> store.load_triples(source=examplerdf)
+  True
+  >>> country.setRdfFeed(examplerdf)
+
+We need to save transaction so backup export works
+
+  >>> import transaction
+  >>> savepoint = transaction.savepoint()
+  >>> country.updateFromFeed()
+
+Check that our broken related indicator has a default title.
+
+  >>> for b in self.portal.portal_catalog(portal_type='RelatedIndicatorLink'):
+  ...   if 'themes2' in b.getObject().getRemoteUrl():
+  ...    b.Title == 'Related indicator' or b.Title == 'OpenDNS' or b.Title == ''
+  ...    break
+  True
+
+Lets try our evaluation vocabulary
+
+  >>> store.load_triples(source=evalrdf)
+  True
+  >>> Evaluation = session.get_class(surf.ns.SOEREVALUATION['Evaluation'])
+  >>> for i in Evaluation.all().order():
+  ...   print i.subject
+  http://www.eea.europa.eu/soer/evaluations#FV
+  http://www.eea.europa.eu/soer/evaluations#U1
+  http://www.eea.europa.eu/soer/evaluations#U1+
+  http://www.eea.europa.eu/soer/evaluations#U1-
+  http://www.eea.europa.eu/soer/evaluations#U2
+  http://www.eea.europa.eu/soer/evaluations#U2+
+  http://www.eea.europa.eu/soer/evaluations#U2-
+  http://www.eea.europa.eu/soer/evaluations#XX
+
+
+Lets test geo coverage vocabulary
+
+  >>> from zope.schema.interfaces import IVocabularyFactory
+  >>> from zope.component import getUtility
+  >>> geovocab = getUtility(IVocabularyFactory, name=u"eea.soer.vocab.NUTSRegions")
+  >>> geovocabulary = geovocab()
+  >>> len(geovocabulary)
+  3598
+  >>> geovocab.getCode(u'http://rdfdata.eionet.europa.eu/ramon/nuts/SE')
+  u'SE'
+  >>> geovocab.getCode(u'http://rdfdata.eionet.europa.eu/ramon/countries/RS')
+  u'RS'
+  >>> geovocab.getCode(u'http://rod.eionet.europa.eu/spatial/20')
+  u'IE'
+  >>> geovocabulary.getTermByToken(u'countrycode_RS').value
+  u'http://rdfdata.eionet.europa.eu/ramon/countries/RS'
+
+  >>> evalvocab = getUtility(IVocabularyFactory, name=u"eea.soer.vocab.Evaluation")
+  >>> len(evalvocab())
+  8
+  >>> evalvocab.getCode('http://www.eea.europa.eu/soer/evaluations#U2-')
+  u'U2-'
+
+  >>> NationalStory = session.get_class(surf.ns.SOER['NationalStory'])
+  >>> obj = country['air-pollution-why-care-norway']
+
+  >>> obj.Subject()
+  ('human health', 'air', 'air pollution concentrations', 'SOER2010', 'country assessment', 'air pollution')
+
+
+  >>> indi1 = obj[obj.invokeFactory('RelatedIndicatorLink', id='indi1')]
+  >>> indi1.setTitle('Related indicator')
+  >>> indi1.setRemoteUrl('http://themes.eea.europa.eu/IMS/ISpecs/ISpecification20081014122413/IAssessment1250178117303/')
+
+  >>> ns = NationalStory(obj.absolute_url())
+  >>> ns.bind_namespaces(['SOER'])
+  >>> ns.session = session
+  >>> ns.subject
+  rdflib.URIRef('http://nohost/plone/SOER/no/air-pollution-why-care-norway')
+  >>> ns.save()
+  >>> session.commit()
+
+Serialization
+
+  >>> from zope.component import getMultiAdapter
+  >>> rdfdata = getMultiAdapter((country, country.REQUEST), name=u'rdf')()
+  >>> from StringIO import StringIO
+  >>> rdfio = StringIO(rdfdata)
+  >>> seCountry = soer[soer.invokeFactory('SOERCountry', id='se')]
+  >>> seCountry.setRdfFeed(rdfio)
+  >>> savepoint2 = transaction.savepoint()
+  >>> seCountry.updateFromFeed()
+  >>> seCountry.objectIds().sort() == country.objectIds().sort()
+  True
+
+Check links that we imported from our export if they are the same:
+
+  >>> store2 = surf.Store(reader='rdflib',  writer='rdflib', rdflib_store = 'IOMemory')
+  >>> session2 = surf.Session(store, mapping={surf.ns.SOER.NationalStory : sense.NationalStory} )
+  >>> store2.load_triples(source=StringIO(rdfdata))
+  True
+
+  >>> DataFile = session.get_class(surf.ns.SOER['DataFile'])
+  >>> originalDataFileUrls = [data.soer_dataURL.first.strip() for data in DataFile.all().order()]
+
+Check if datafile urls are the same as originally imported.
+
+  >>> DataFile = session2.get_class(surf.ns.SOER['DataFile'])
+  >>> exportedUrls = [data.soer_dataURL.first.strip() for data in DataFile.all().order()]
+  >>> originalDataFileUrls == exportedUrls
+  True
+
+Check if image sources have correct data sources.
+
+  >>> Figure = session.get_class(surf.ns.SOER['Figure'])
+  >>> originalUrls = [fig.soer_dataSource.first.soer_dataURL.first.strip() for fig in Figure.all().order()]
+  >>> Figure = session2.get_class(surf.ns.SOER['Figure'])
+  >>> exportedUrls = [fig.soer_dataSource.first.soer_dataURL.first.strip() for fig in Figure.all().order()]
+  >>> originalUrls == exportedUrls
+  True
+
+Lets add two more feeds to the country folder and update from them too.
+  >>> before = country.objectIds()
+  >>> len(country.objectIds())
+  7
+  >>> oldIds = country.objectIds()
+  >>> from eea.soer.config import soerrdf
+  >>> feed1 = country[country.invokeFactory('Link', id='feed1',
+  ...                      remoteUrl=soerrdf)]
+  >>> country.updateFromFeed()
+  >>> len(country.objectIds())
+  9
+  >>> for report in country.objectIds():
+  ...   if report not in oldIds and report != 'feed1':
+  ...     print report
+  national-and-regional-story-norwa...
+
+  >>> flexibility_report = country.objectValues('FlexibilityReport')[0]
+  >>> flexibility_report.getKeyMessage()
+  '<p>High concentrations of tropospheric ozone and its precursors<br />(e.g. NOx and NMVOC) have shown to adversely affect the human respiratory system,<br />cause eye, nose, and throat irritations and increase hospital admissions.<br />Tropospheric ozone also damages crops and other vegetation.</p>'
+  >>> flexibility_report.getQuestion()
+  'What are the state (S) and impacts (I) related to this theme, including impacts on the natural environment and human health/human well-being, both at national level as well as in transboundary terms?'
+  >>> flexibility_report.portal_type
+  'FlexibilityReport'
+
+Lets load the example rdf with updated modify date for some national stories.
+
+  >>> from eea.soer.config import updatedrdf
+  >>> country.setRdfFeed(updatedrdf)
+  >>> country.updateFromFeed()
+  >>> len(country.objectIds())
+  9
