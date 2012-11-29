@@ -1,8 +1,8 @@
 Changelog
 =========
 
-5.0-dev - (unreleased)
-----------------------
+5.0 - (2012-11-29)
+------------------
 * Bug fix: remove bad call to absolute_url super
   [tiberich #10130]
 
