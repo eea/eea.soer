@@ -287,15 +287,6 @@ class SOERReport(ATFolder, ATNewsItem):
             return self.aq_parent.getRdfFeed() and True or False
         return False
 
-    def absolute_url(self, **kwargs):
-        """ Absolute url
-        """
-        return super(SOERReport, self).absolute_url(**kwargs)
-        #parent = aq_inner(self).aq_parent
-        #if parent.portal_type == self.portal_type:
-            # we are subfolder lets fake url
-        #    return '%s#%s' % (parent.absolute_url(*args), self.getId())
-
     def isSubReport(self):
         """ Is sub report
         """
