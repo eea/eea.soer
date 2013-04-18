@@ -77,7 +77,7 @@ def setupATVocabularies(context):
                 continue
             atvm.manage_delObjects(ids=[vkey])
 
-        logger.info("Adding vocabulary %s" % vkey)
+        logger.info("Adding vocabulary %s", vkey)
 
         atvm.invokeFactory('SimpleVocabulary', vkey)
         simple = atvm.getVocabularyByName(vkey)
