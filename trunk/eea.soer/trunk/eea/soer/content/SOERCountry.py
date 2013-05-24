@@ -3,7 +3,7 @@
 from hashlib import md5
 from zope.interface import implements
 import urllib2
-from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import getToolByName
 from Products.ATContentTypes.content.folder import ATFolder
@@ -268,7 +268,7 @@ class SOERCountry(ATFolder):
                 title = u'Related indicator'
                 try:
                     url = urllib2.urlopen(indicatorUrl)
-                    soup = BeautifulSoup(url)
+                    soup = BeautifulSoup(url, 'lxml')
                     title = soup.title.string.encode('utf8').strip()
                 except Exception:
                     # We failed to get the title of

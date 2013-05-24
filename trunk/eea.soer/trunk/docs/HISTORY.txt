@@ -3,6 +3,8 @@ Changelog
 
 5.1-dev - (unreleased)
 ----------------------
+* Change: use BeautifulSoup4 instead of deprecated BS3
+  [tiberich #14584]
 
 5.0 - (2012-11-29)
 ------------------
