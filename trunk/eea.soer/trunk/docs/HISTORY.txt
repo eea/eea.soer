@@ -1,8 +1,8 @@
 Changelog
 =========
 
-5.1-dev - (unreleased)
-----------------------
+5.1 - (2013-06-17)
+------------------
 * Change: use BeautifulSoup4 instead of deprecated BS3
   [tiberich #14584]
 
