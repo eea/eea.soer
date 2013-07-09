@@ -4,7 +4,7 @@ import os
 import urllib2
 from Acquisition import aq_base
 from zope.interface import directlyProvides
-from zope.component import getUtility
+from zope.component import getUtility, getMultiAdapter
 from zope.event import notify
 from zope.lifecycleevent import ObjectModifiedEvent
 from Globals import package_home
@@ -13,7 +13,6 @@ from Products.CMFPlone import log
 from eea.soer.config import GLOBALS
 from eea.soer.content.interfaces import ISoerFigure, ISoerDataFile
 from eea.facetednavigation.browser.app.exportimport import FacetedExportImport
-from p4a.subtyper.interfaces import ISubtyper
 
 facetedMain = os.path.join(package_home(GLOBALS),
                     'browser', 'faceted-main.xml')
@@ -32,9 +31,9 @@ class Countries(object):
         context = self.context
         vocab = getToolByName(context, 'portal_vocabularies')
         european_countries = vocab['eea.soer.vocab.european_countries']
-        subtyper = getUtility(ISubtyper)
-        subtyper.change_type(context,
-                        'eea.facetednavigation.FolderFacetedNavigable')
+        subtyper = getMultiAdapter((context, self.request),
+                                   name=u'faceted_subtyper')
+        subtyper.enable()
         faceted = FacetedExportImport(context, context.REQUEST)
         faceted.import_xml(import_file=facetedMain)
         for country_code in european_countries.keys():
@@ -61,9 +60,9 @@ class Countries(object):
 
             folder.unmarkCreationFlag()
             folder.reindexObject()
-
-            subtyper.change_type(folder,
-                        'eea.facetednavigation.FolderFacetedNavigable')
+            subtyper = getMultiAdapter((folder, self.request),
+                                       name=u'faceted_subtyper')
+            subtyper.enable()
 
             faceted = FacetedExportImport(folder, folder.REQUEST)
             faceted.import_xml(import_file=facetedCountry.replace(
@@ -173,13 +172,13 @@ class MigrationFaceted(object):
     def reloadFacetedNavigation(self):
         """ Reload faceted configuration for all countries
         """
-        subtyper = getUtility(ISubtyper)
         for folder in self.context.getFolderContents(
                 contentFilter={ 'portal_type' : 'SOERCountry'},
                                             full_objects=True):
+            subtyper = getMultiAdapter((folder, self.request),
+                                       name=u'faceted_subtyper')
             country_code = folder.getId()
-            subtyper.change_type(folder,
-                    'eea.facetednavigation.FolderFacetedNavigable')
+            subtyper.enable()
             log.log('UPDATING facted configuration for %s'
                                 % folder.absolute_url())
             faceted = FacetedExportImport(folder, folder.REQUEST)
