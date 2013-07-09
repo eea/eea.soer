@@ -39,7 +39,6 @@ setup(name=NAME,
           'eea.faceted.inheritance',
           'Products.ATVocabularyManager',
           'Products.LinguaPlone',
-          'p4a.subtyper',
           'eea.themecentre',
       ],
       entry_points="""

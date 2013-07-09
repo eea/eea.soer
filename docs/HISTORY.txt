@@ -3,6 +3,8 @@ Changelog
 
 5.2-dev - (unreleased)
 ----------------------
+* Cleanup: Remove p4a.subtyper dependency
+  [voineali #15234]
 
 5.1 - (2013-06-17)
 ------------------
@@ -21,16 +23,16 @@ Changelog
 
 4.8 - (2012-07-13)
 ------------------
-* Bug Fix: Fixed i18n missing tags .pt 
+* Bug Fix: Fixed i18n missing tags .pt
   [prospchr refs #5162]
 
 4.7 - (2012-06-13)
 ------------------
-* Bug fix: fixes several layout issues with soer countries 
+* Bug fix: fixes several layout issues with soer countries
   portlets padding/margin.
   [demarant fixes #5265]
 * Bug fix: updated link of countries flexibility reports.
-  [demarant fixes #5266] 
+  [demarant fixes #5266]
 * Bug fix: fixed markup of HISTORY.txt file
   [ciobabog refs #5231]
 
@@ -49,7 +51,7 @@ Changelog
 
 4.3 - (2011-11-30)
 ------------------
-* Change: Disabled location portlet since discomap service is not working anymore. 
+* Change: Disabled location portlet since discomap service is not working anymore.
   [demarant]
 * Change: changed the link to faceted search since its location has moved,
   necessary since we now do not show navigation on faceted.
@@ -322,7 +324,7 @@ Changelog
 
 0.3 - 2010-06-15
 ----------------
-* Plone 3 fixes 
+* Plone 3 fixes
   [vincisas]
 * Report and Country views
   [vincisas]

@@ -26,7 +26,6 @@ def setup_soer():
     PloneTestCase.installPackage('eea.facetednavigation')
     PloneTestCase.installPackage('eea.faceted.inheritance')
     PloneTestCase.installPackage('eea.themecentre')
-    PloneTestCase.installPackage('p4a.subtyper')
 
 setup_soer()
 

@@ -9,7 +9,6 @@
   <include package="eea.faceted.inheritance" />
   <include package="Products.ATVocabularyManager" />
   <include package="Products.LinguaPlone" />
-  <include package="p4a.subtyper" />
   <include package="Products.Marshall" />
   <include package="eea.themecentre" />
   <include package="eea.rdfmarshaller" />
