@@ -4,7 +4,7 @@ import os
 import urllib2
 from Acquisition import aq_base
 from zope.interface import directlyProvides
-from zope.component import getUtility, getMultiAdapter
+from zope.component import getMultiAdapter
 from zope.event import notify
 from zope.lifecycleevent import ObjectModifiedEvent
 from Globals import package_home
