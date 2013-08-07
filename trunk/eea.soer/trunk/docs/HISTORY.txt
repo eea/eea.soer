@@ -1,6 +1,9 @@
 Changelog
 =========
 
+5.3-dev - (unreleased)
+----------------------
+
 5.2 - (2013-08-07)
 ------------------
 * Cleanup: Remove p4a.subtyper dependency
