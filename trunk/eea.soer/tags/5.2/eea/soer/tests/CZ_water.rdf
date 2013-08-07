@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xml:lang="en" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.eea.europa.eu/soer/1.0#">
+	<Channel rdf:about="">
+		<reportingCountryCode>CZ</reportingCountryCode>
+		<organisationName>CENIA</organisationName>		
+		<organisationURL>http://www.cenia.cz</organisationURL>
+		<organisationContactURL>http://www.cenia.cz/__C12571B20041E945.nsf/$pid/MZPMSFGQWV5Y</organisationContactURL>
+		<licence></licence>
+	</Channel>
+	
+	<NationalStory rdf:about="http://issar.cenia.cz/issar/page.php?id=1784">
+		<question>Why should we care?</question>
+		<topic>freshwater</topic>
+		<geoCoverage rdf:resource=" http://rod.eionet.europa.eu/spatial/10" />
+		<evaluation>Unknown (XX)</evaluation>
+		<keyMessage>
+		Clean water and its sufficient quantity is important how in light of nature, so also in the light of its utilization by humans.
+		</keyMessage>
+		<assessment>
+		The Czech Republic is located at the watershed of three different seas and most of Czech watercourses flow off to neighbouring countries. Freshwater priority issues are related particularly to water quality and discharged pollution. Even though surface water quality has improved significantly since 1990s, attention still needs to be paid to the discharged pollution, respectively further wastewater treatment. Water quality is also affected by increasing number and extremity of floods and droughts connected to climate changes, so that longer retention of water in landscape and flood-protection measures are supported. In connection with more frequent droughts, continuing decrease of water abstractions in public sector and industry is rewarding.
+		</assessment>
+		<pubDate>2010-04-15</pubDate>
+		<modified>2010-04-15</modified>
+		<relatedEuropeanIndicator>not relevant</relatedEuropeanIndicator>		
+	</NationalStory>
+	
+	<NationalStory rdf:about="http://issar.cenia.cz/issar/page.php?id=1785">
+		<question>What are the state and impacts?</question>
+		<topic>freshwater</topic>
+		<geoCoverage rdf:resource=" http://rod.eionet.europa.eu/spatial/10" />
+		<evaluation>Inadequate but improving (U1+)</evaluation>
+		<keyMessage>
+		The quality of surface water has markedly improved since 1991.
+		</keyMessage>
+		<assessment>
+		&lt;strong&gt;The development in the quality of watercourses&lt;/strong&gt;&lt;br&gt;&#13;&#10;A comparison of the maps from years 1991–1992 and 2007–2008 according to the national classification scheme makes it obvious that there has been a shift in water quality in watercourses from categories IV and V to categories I through III. Despite this rapid improvement there still exist a few sections of watercourses laying in the category V of water quality classification. &lt;br&gt;&#13;&#10;&lt;br&gt;&#13;&#10;Average nutrients concentrations in freshwater show a slightly decreasing trend overall since 1990. In the period over the last 10 years, there was a stagnation of nitrates and a moderate decrease in the concentrations of phosphorus. Biochemical oxygen demand and chemical oxygen demand concentrations decreased markedly and currently don’t present a problem. &lt;em&gt;Additional information: &lt;a href=&quot;http://issar.cenia.cz/issar/page.php?id=1775&quot;&gt;&lt;u&gt;http://issar.cenia.cz/issar/page.php?id=1775&lt;/u&gt;&lt;/a&gt;.&lt;/em&gt;&lt;br&gt;&#13;&#10;&lt;br&gt;&#13;&#10;&lt;strong&gt;Nitrates in drinking water&lt;/strong&gt;&lt;br&gt;&#13;&#10;The public water supply is of a good quality and has had no impacts on health in most cases. Problems with nitrates in drinking water are only casual in shallow water wells, usually because of agricultural activities. In 2002, the effect of huge floods affected the decline of groundwater quality. Since 2003, nitrogenous substances follow up to decrease. &lt;br&gt;&#13;&#10;&lt;br&gt;&#13;&#10;&#13;&#10;&lt;strong&gt;Bathing water quality&lt;/strong&gt;&lt;br&gt;&#13;&#10;Despite a general decrease of nutrients in tributaries, the long term trend of stagnant water quality cannot be estimated properly. Practically every year there are more or less problems with bathing water quality. Epidemic infection or health impairment wasn’t reported in the last few years. Bathing waters are continuously monitored by the Ministry of Health Care through the Public Health Service under the Bathing Water Directive 2006/7/ES. &lt;em&gt;Detailed information: &lt;a href=&quot;http://geoportal.cenia.cz&quot;&gt;&lt;u&gt;http://geoportal.cenia.cz&lt;/u&gt;&lt;/a&gt;.&lt;/em&gt;
+		</assessment>
+		<pubDate>2010-04-15</pubDate>
+		<modified>2010-04-15</modified>
+		<hasFigure>
+			<Figure rdf:about="http://issar.cenia.cz/issar/core/images/generate_image.php?idimage=110">
+				<mediaType>image/gif</mediaType>
+				<caption>A comparison of water quality in the Czech Republic’s watercourses, 1991–1992 and 2007–2008</caption>
+				<description>
+				Source: T.G.Masaryk Water Research Institute
+Methodology for the map: Traditionally, surface water quality is classified into 5 categories (shown in legend below). The basic classification for the maps below is the aggregate of the following indicators: BOD5, CODCr, N-NH4+, N-NO3-, Ptotal and the saprobic index of macroinvertebrate communities (the final class is the worst class of these indicators).
+				</description>
+			</Figure>
+			<Figure rdf:about="http://issar.cenia.cz/issar/core/images/generate_image.php?idimage=170">
+				<mediaType>image/gif</mediaType>
+				<caption>A comparison of water quality in the Czech Republic’s watercourses, 1991–1992 and 2007–2008</caption>
+				<description>
+				Source: T.G.Masaryk Water Research Institute
+Methodology for the map: Traditionally, surface water quality is classified into 5 categories (shown in legend below). The basic classification for the maps below is the aggregate of the following indicators: BOD5, CODCr, N-NH4+, N-NO3-, Ptotal and the saprobic index of macroinvertebrate communities (the final class is the worst class of these indicators).
+				</description>
+				<dataSource rdf:resource="http://issar.cenia.cz/issar/page.php?id=1787" />
+			</Figure>
+			<Figure rdf:about="http://issar.cenia.cz/issar/core/objects/generate_graph.php?id_document=1775&amp;id_object=Graf_3">
+				<mediaType>image/png</mediaType>
+				<caption>Average nitrate concentrations in rivers [mg. l-1], 1990–2008 (CSI 020)</caption>
+				<description>
+				Source: Czech Hydrometeorological Institute
+Note: The annual mean concentrations for 65–73 (according to data availibility) CZ Waterbase-River stations were averaged.
+				</description>
+			</Figure>
+			<Figure rdf:about="http://issar.cenia.cz/issar/core/objects/generate_graph.php?id_document=1775&amp;id_object=Graf_4">
+				<mediaType>image/png</mediaType>
+				<caption>Average total phosphorus concentrations in rivers [mg. l-1], 1990–2008 (CSI 020)</caption>
+				<description>
+				Source: Czech Hydrometeorological Institute
+Note: The annual mean concentrations for 62–73 (according to data availibility) CZ Waterbase-River stations were averaged.
+				</description>
+				<dataSource rdf:resource="http://issar.cenia.cz/issar/page.php?id=1789 " />
+			</Figure>
+		</hasFigure>		
+		<relatedEuropeanIndicator>CSI 020</relatedEuropeanIndicator>
+	</NationalStory>
+
+	<NationalStory rdf:about="http://issar.cenia.cz/issar/page.php?id=1786">
+		<question>What are the related key drivers (D) and pressures (P) at national level?</question>
+		<topic>freshwater</topic>
+		<geoCoverage rdf:resource=" http://rod.eionet.europa.eu/spatial/10" />
+		<evaluation>Favourable (FV)</evaluation>
+		<keyMessage>
+		Changes in industry, public sector and waste water treatment present the main positive drivers and pressures influencing water quality.
+		</keyMessage>
+		<assessment>
+		&lt;p class=&quot;btext_anot&quot;&gt;The reduction in water abstraction and relating amount of wastewater discharged into surface waters occurred in the context of declining industrial production due to the restructuring of the national economy and due to technological changes in the period after 1990. In the case of public water abstraction, decline was mainly due to reduced drinking water consumption and reduced losses in distribution systems. &lt;em&gt;Additional information: &lt;a href=&quot;http://issar.cenia.cz/issar/page.php?id=1772&quot;&gt;&lt;u&gt;http://issar.cenia.cz/issar/page.php?id=1772&lt;/u&gt;&lt;/a&gt;.&lt;/em&gt;&lt;br /&gt;&#13;&#10;&lt;br /&gt;&#13;&#10;Then the effects of &lt;strong&gt;construction and modernisation of waste water treatment (WWTPs) plants and sewerage systems&lt;/strong&gt; have helped significantly to decrease the pollution discharged into watercourses from point sources especially since the mid 1990s. The proportion of the population connected to public sewerage systems has increased from 72% in 1990 to 81.1% in 2008. The proportion of waste water (excluding rainwater) that is discharged into sewerage systems and that is treated increased from 75% to 95% between 1990 and 2008. Indeed, the percentage of tertiary treatment in new and modernized WWTPs, which helps to remove problematic nutrients, is increasing. The total number of WWTPs in the Czech Republic has more than tripled since 1990. At first, sewerage systems and WWTPs were completed in larger towns and cities. The coverage of smaller municipalities, where population density is lower, requires more financial resources, while the construction itself takes longer time. &lt;em&gt;Additional information: &lt;a href=&quot;http://issar.cenia.cz/issar/page.php?id=1776&quot;&gt;&lt;u&gt;http://issar.cenia.cz/issar/page.php?id=1776&lt;/u&gt;&lt;/a&gt;.&lt;/em&gt; &lt;br /&gt;&#13;&#10;&lt;br /&gt;&#13;&#10;The positive development in waste water treatment is supported by the obligation that follows from &lt;strong&gt;Council Directive 91/271/EEC concerning urban waste-water treatment&lt;/strong&gt;. The decrease in phosphorus emissions is also supported by the &lt;strong&gt;prohibition of phosphates in detergents&lt;/strong&gt; since October 2006. &lt;br /&gt;&#13;&#10;&lt;br /&gt;&#13;&#10;&lt;strong&gt;Agriculture&lt;/strong&gt; represents the other source of nutrients in freshwater. After 1990, the consumption of inorganic fertilisers decreased significantly in connection with the transformation of agriculture and the increase of the cost of fertilisers. Since 1993 the consumption of inorganic nitrogen fertilizers started to increase, mainly to compensate for the decrease in applicated N from livestock manure production, especially due to the reduction in cattle. Since 2000, balance in inputs minus outputs increased to 60–73 kg N per ha that is reasonable for our climatic conditions. However we can see the problem of one-sided nitrogen inorganic fertilising. The loss of nitrogen into water from agriculture is influenced by erosion, soil compaction, inappropriate agricultural techniques and storage of fertilisers and livestock manure. The average loss of nitrogen into water from agriculture in Czech conditions is approximately 2/3 of the balance. &lt;em&gt;Additional information: &lt;a href=&quot;http://issar.cenia.cz/issar/page.php?id=1700&quot;&gt;&lt;u&gt;Under construction, coming soon&lt;/u&gt;&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+		</assessment>
+		<pubDate>2010-04-15</pubDate>
+		<modified>2010-04-15</modified>
+		<hasFigure>
+			<Figure rdf:about="http://issar.cenia.cz/issar/core/objects/generate_graph.php?id_document=1776&amp;id_object=Graf_3">
+				<mediaType>image/png</mediaType>
+				<caption>Volume of wastewater discharged into municipal sewerage systems and their treatment [mil. m3], 2000–2008</caption>
+				<description>
+				Source: Czech Statistical Office
+Note: Waste and mine water discharge into surface water is only monitored if it exceeds 500 m3/month or 6 000 m3/year.
+				</description>
+				<dataSource rdf:resource="http://issar.cenia.cz/issar/page.php?id=1786" />
+			</Figure>
+			<Figure rdf:about="http://issar.cenia.cz/issar/core/objects/generate_graph.php?id_document=1776&amp;id_object=Graf_1">
+				<mediaType>image/png</mediaType>
+				<caption>Percentage of people connected to sewerage system [%], 2000–2008</caption>
+				<description>
+				Source: Czech Statistical Office
+				</description>
+				<dataSource rdf:resource="http://issar.cenia.cz/issar/page.php?id=1783" />
+			</Figure>
+			<Figure rdf:about="http://issar.cenia.cz/issar/core/objects/generate_graph.php?id_document=1776&amp;id_object=Graf_2">
+				<mediaType>image/png</mediaType>
+				<caption>Number of wastewater treatment plants, 2000–2008</caption>
+				<description>
+				Source: Czech Statistical Office
+				</description>
+				<dataSource rdf:resource="http://issar.cenia.cz/issar/page.php?id=1785" />
+			</Figure>
+			<Figure rdf:about="http://issar.cenia.cz/issar/core/objects/generate_graph.php?id_document=1774&amp;id_object=Graf_2">
+				<mediaType>image/png</mediaType>
+				<caption>Trend of emissions of nutrients from point sources to water, 2003–2008</caption>
+				<description>
+				Source: T. G. Masaryk Water Research Institute, P.R.I.
+				</description>
+				<dataSource rdf:resource="http://issar.cenia.cz/issar/page.php?id=1774" />
+			</Figure>
+		</hasFigure>
+		<relatedEuropeanIndicator>CSI 018</relatedEuropeanIndicator>
+		<relatedEuropeanIndicator>CSI 024</relatedEuropeanIndicator>
+		<keyword>water</keyword>
+		<keyword>Czech Republic</keyword>
+	</NationalStory>
+
+	<NationalStory rdf:about="http://issar.cenia.cz/issar/page.php?id=1787">
+		<question>Which responses (R) have been put in place or are planned at national level?</question>
+		<topic>freshwater</topic>
+		<geoCoverage rdf:resource=" http://rod.eionet.europa.eu/spatial/10" />
+		<evaluation>Favourable (FV)</evaluation>
+		<keyMessage>
+		Implementing EU directives and national legislation amendments response the problems in water quality and management.
+		</keyMessage>
+		<assessment>
+		&lt;p class=&quot;btext_anot&quot;&gt;&lt;strong&gt;Strategies&lt;/strong&gt;&lt;/p&gt;&#13;&#10;&lt;ul&gt;&#13;&#10;    &lt;li style=&quot;padding-left: 0pt; margin-left: 15pt; text-indent: 0pt; margin-right: 7pt; text-align: left&quot;&gt;Permissible surface and waste water pollution levels are laid down by &lt;strong&gt;Government Regulation No 61/2003 Coll.&lt;/strong&gt; as amended by Government Regulation No 229/2007 Coll.&lt;/li&gt;&#13;&#10;    &lt;li style=&quot;padding-left: 0pt; margin-left: 15pt; text-indent: 0pt; margin-right: 7pt; text-align: left&quot;&gt;The basic requirements for improving water quality are based on the Water Framework Directive 2000/60/EC. River Basin Management Plans 2009–2015 for all eight Czech main river basins were finalised in December 2009. &lt;em&gt;Additional information: &lt;a href=&quot;http://www.mzp.cz/en/water_planning&quot;&gt;&lt;u&gt;http://www.mzp.cz/en/water_planning&lt;/u&gt;&lt;/a&gt;.&lt;/em&gt;&lt;/li&gt;&#13;&#10;    &lt;li style=&quot;padding-left: 0pt; margin-left: 15pt; text-indent: 0pt; margin-right: 7pt; text-align: left&quot;&gt;Having recognised its responsibility for reducing the pollution flowing out of its territory, the &lt;strong&gt;Czech Republic has designated the whole country as a sensitive area&lt;/strong&gt; in which requirements under Council Directive 91/271/EEC concerning urban waste-water treatment must be met.&lt;/li&gt;&#13;&#10;    &lt;li style=&quot;padding-left: 0pt; margin-left: 15pt; text-indent: 0pt; margin-right: 7pt; text-align: left&quot;&gt;Nitrates Directive 91/676/EEC was implemented in the Czech Republic through Government Regulation No 103/2003 Coll. It defined vulnerable zones and the use and storage of fertilisers and livestock manure, crop rotation and implementation of anti-erosion measures in these zones. Revision of vulnerable zones was performed in 2007. The second action programme was established for the period 2008–2011. &lt;em&gt;Additional information: Report of the Czech Republic according to Council Directive 91/676/EEC, 2008.&lt;/em&gt;&lt;/li&gt;&#13;&#10;&lt;/ul&gt;
+		</assessment>
+		<pubDate>2010-04-15</pubDate>
+		<modified>2010-04-15</modified>
+		<relatedEuropeanIndicator>not relevant</relatedEuropeanIndicator>
+		<keyword>water</keyword>
+		<keyword>Czech Republic</keyword>	
+	</NationalStory>
+
+	<NationalStory rdf:about="http://issar.cenia.cz/issar/page.php?id=1789">
+		<question>What is the 2020 outlook (date flexible) and how will this affect possible impacts on the natural environment and human health/well-being?</question>
+		<topic>freshwater</topic>
+		<geoCoverage rdf:resource=" http://rod.eionet.europa.eu/spatial/10" />
+		<evaluation>Inadequate but improving (U1+)</evaluation>
+		<keyMessage>
+		Total 8% profiles of surface waters and groundwater sites require more than 15 years to overall reduction of the nitrate concentration below a level of 50 mg.l-1. 
+		</keyMessage>
+		<assessment>
+		&lt;p class=&quot;btext_anot&quot;&gt;&lt;strong&gt;Forecast of future evaluation in water quality&lt;/strong&gt;&lt;br /&gt;&#13;&#10;The information about achievement of a good status of water bodies until 2015 and the instruments to achieve the targets called Programmes of Measures are available for particular river basins in their area plans. &lt;em&gt;Links to the area plans: &lt;a href=&quot;http://www.mzp.cz/cz/plany_oblasti_povodi&quot;&gt;&lt;u&gt;http://www.mzp.cz/cz/plany_oblasti_povodi&lt;/u&gt;&lt;/a&gt;.&lt;/em&gt; &lt;br /&gt;&#13;&#10;&lt;br /&gt;&#13;&#10;The timetable for recovery of waters polluted or threatened by nitrogen pollution from agricultural sources is presented in Fig. 2. The presented estimate of future evaluation is only indicative because of the unavoidable uncertainty in the forecast and the delayed effect of measures on the aquatic environment. Surface water profiles and groundwater sites that exhibit a substantial delay in the decrease in nitrate concentrations below a level of 50 mg. l-1 or in which an increasing trend was even recorded represent a special category (IV) in the performed assessment. Most of these sites confirmed the justification of the revision of vulnerable zones in 2007. Consequently, greater attention in the application of action programmes will be focused on these monitoring sites and on their river basins or the relevant groundwater area. &lt;em&gt;Additional information: Report of the Czech Republic according to Council Directive 91/676/EEC, 2008.&lt;/em&gt;&lt;/p&gt;
+		</assessment>
+		<pubDate>2010-04-15</pubDate>
+		<modified>2010-04-15</modified>
+		<hasFigure>
+			<Figure rdf:about="http://issar.cenia.cz/issar/core/images/generate_image.php?idimage=215">
+				<mediaType>image/gif</mediaType>
+				<caption>Categorization of the profiles of surface waters and groundwater sites on the basis of the time required for overall reduction of the nitrate concentration below a level of 50 mg. l-1</caption>
+				<description>
+				Notes: CHMI surface waters monitoring – Czech Hydrometeorological Institute monitoring (river profiles)
+AWMA surface waters monitoring – Agriculture Water Management Administration monitoring (smaller watercources profiles)
+ Source: Report of the Czech Republic according to Council Directive 91/676/EEC, 2008
+				</description>
+			</Figure>
+		</hasFigure>
+		<relatedEuropeanIndicator>not relevant</relatedEuropeanIndicator>
+		<keyword>water</keyword>
+		<keyword>Czech Republic</keyword>
+	</NationalStory>
+
+</rdf:RDF>
