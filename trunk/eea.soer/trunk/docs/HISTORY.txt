@@ -3,6 +3,8 @@ Changelog
 
 5.3-dev - (unreleased)
 ----------------------
+* Change: Removed dependency to eea.rdfrepository
+  [szabozo0 #14323]
 
 5.2 - (2013-08-07)
 ------------------
