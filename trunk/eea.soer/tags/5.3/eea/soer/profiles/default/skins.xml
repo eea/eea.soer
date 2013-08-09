@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<object name="portal_skins">
+
+ <object name="eea_soer" meta_type="Filesystem Directory View"
+     directory="eea.soer:skins/eea_soer"/>
+
+  <skin-path name="*">
+   <layer name="eea_soer" insert-after="custom" />
+  </skin-path>
+
+</object>
