@@ -21,6 +21,12 @@ PAT0 = '(?P<pat0>'+PATA+')'
 PAT1 = '<(?:p|div)[^>]*>'+PAT0 + '</(?:p|div)>' + '|' + PAT0.replace('0>','1>')
 IMAGE_PATTERN = re.compile(PAT1, re.IGNORECASE)
 
+# Copied from Products.kupu.plone.config
+UID_PATTERN = re.compile('(?P<tag><(?:a|area|img|object|param)'
+                         '\\s[^>]*(?:src|href|data|value)\s*=\s'
+                         '*")(?P<url>[^"]*resolveuid/(?P<uid>[^/"#? ]*))', 
+                         re.DOTALL | re.IGNORECASE)
+
 # Regex to match stupid IE attributes. In IE generated HTML an
 # attribute may not be enclosed by quotes if it doesn't contain
 # certain punctuation.
