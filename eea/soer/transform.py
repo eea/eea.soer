@@ -5,7 +5,6 @@ from DocumentTemplate.DT_Util import html_quote
 from DocumentTemplate.DT_Var import newline_to_br
 import re
 from htmlentitydefs import name2codepoint
-from Products.kupu.plone.config import UID_PATTERN
 from zope.interface import implements
 from Products.PortalTransforms.interfaces import ITransform
 
@@ -24,7 +23,7 @@ IMAGE_PATTERN = re.compile(PAT1, re.IGNORECASE)
 # Copied from Products.kupu.plone.config
 UID_PATTERN = re.compile('(?P<tag><(?:a|area|img|object|param)'
                          '\\s[^>]*(?:src|href|data|value)\s*=\s'
-                         '*")(?P<url>[^"]*resolveuid/(?P<uid>[^/"#? ]*))', 
+                         '*")(?P<url>[^"]*resolveuid/(?P<uid>[^/"#? ]*))',
                          re.DOTALL | re.IGNORECASE)
 
 # Regex to match stupid IE attributes. In IE generated HTML an
