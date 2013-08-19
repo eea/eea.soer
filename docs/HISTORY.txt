@@ -4,7 +4,7 @@ Changelog
 5.4-dev - (unreleased)
 ----------------------
 * Change: remove hidden dependency on Products.kupu by copying
-  regular expression definition from that package]
+  regular expression definition from that package
   [tiberich #14323]
 
 5.3 - (2013-08-09)
