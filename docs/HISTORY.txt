@@ -1,6 +1,9 @@
 Changelog
 =========
 
+5.5-dev - (unreleased)
+----------------------
+
 5.4 - (2013-08-19)
 ------------------
 * Change: remove hidden dependency on Products.kupu by copying
