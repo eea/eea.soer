@@ -110,9 +110,9 @@ class ImageSource:
 
     def convert(self, data, idata, filename=None, **kwargs):
         """ Convert the data, store the result in idata and return that
-        optional argument filename may give the original file name of received data
-        additional arguments given to engine's convert, convertTo or __call__ are
-        passed back to the transform
+        optional argument filename may give the original file name of
+        received data additional arguments given to engine's convert,
+        convertTo or __call__ are passed back to the transform
 
         The object on which the translation was invoked is available as context
         (default: None)
