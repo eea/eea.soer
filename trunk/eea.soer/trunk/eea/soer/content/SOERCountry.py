@@ -177,30 +177,37 @@ class SOERCountry(ATFolder):
             """
             parentReport = None
             if nstory.portal_type in ['DiversityReport', 'CommonalityReport']:
-                questions = dict([[v, k] for k, v in vocab.old_long_diversity_questions.items()])
-                questions.update(dict([[v, k] for k, v in vocab.long_questions.items()]))
+                questions = dict(
+                    [[v, k] for k, v
+                     in vocab.old_long_diversity_questions.items()])
+                questions.update(
+                    dict([[v, k] for k, v in vocab.long_questions.items()]))
                 # Old labels before #3685
-                questions.update(dict([[v, k] for k, v in vocab.old_long_questions.items()]))
+                questions.update(
+                    dict([[v, k] for k, v in vocab.old_long_questions.items()]))
                 question = questions.get(nstory.question, nstory.question)
                 #original_url = nstory.subject.strip()
             else:
                 question = nstory.question
             if report is None:
-                parentReport = reports.get((nstory.topic, nstory.question), None)
+                parentReport = reports.get(
+                    (nstory.topic, nstory.question), None)
                 if parentReport:
-                    report = parentReport[parentReport.invokeFactory(nstory.portal_type, id='temp_report',
-                                                                     topic=nstory.topic,
-                                                                     question=question)]
+                    report = parentReport[parentReport.invokeFactory(
+                        nstory.portal_type, id='temp_report',
+                        topic=nstory.topic,
+                        question=question)]
 
                 else:
-                    report = self[self.invokeFactory(nstory.portal_type, id='temp_report',
-                                                     topic=nstory.topic,
-                                                     question=question)]
-            subject = nstory.keyword 
-            if isinstance(subject, (list, tuple)): 
-                subject = [k.decode('utf-8') for k in nstory.keyword] 
-            if isinstance(subject, basestring): 
-                subject = subject.decode('utf-8') 
+                    report = self[self.invokeFactory(
+                        nstory.portal_type, id='temp_report',
+                        topic=nstory.topic,
+                        question=question)]
+            subject = nstory.keyword
+            if isinstance(subject, (list, tuple)):
+                subject = [k.decode('utf-8') for k in nstory.keyword]
+            if isinstance(subject, basestring):
+                subject = subject.decode('utf-8')
             report.setLanguage(language)
             report.setDescription(nstory.description)
             report.setKeyMessage(tidyUp(nstory.keyMessage))
@@ -214,7 +221,8 @@ class SOERCountry(ATFolder):
             else:
                 report = parentReport[newId]
                 if hasattr(nstory,'sortOrder'):
-                    parentReport.moveObjectToPosition(newId, int(nstory.sortOrder))
+                    parentReport.moveObjectToPosition(
+                        newId, int(nstory.sortOrder))
                 else:
                     parentReport.moveObjectsToTop(ids=[newId])
 
@@ -241,20 +249,25 @@ class SOERCountry(ATFolder):
                     publishIfPossible(figure)
 
                     if fig['url'] in assessment.decode('utf8'):
-                        assessment = assessment.replace(fig['url'].encode('utf8'), 'resolveuid/%s' % figure.UID())
+                        assessment = assessment.replace(
+                            fig['url'].encode('utf8'),
+                            'resolveuid/%s' % figure.UID())
                     if fig.get('dataSource', None) is not None:
                         dataSrc = fig['dataSource']
-                        dataLink = report[report.invokeFactory('DataSourceLink', id='tmpdatalink',
-                                                               title=dataSrc['dataURL'],
-                                                    remoteUrl=dataSrc['dataURL'])]
+                        dataLink = report[report.invokeFactory(
+                            'DataSourceLink', id='tmpdatalink',
+                            title=dataSrc['dataURL'],
+                            remoteUrl=dataSrc['dataURL'])]
                         dataLink.setLanguage(language)
-                        newId = dataLink._renameAfterCreation(check_auto_id=False)
+                        newId = dataLink._renameAfterCreation(
+                            check_auto_id=False)
                         dataLink = report[newId]
                         figure.setRelatedItems([dataLink])
                         publishIfPossible(dataLink)
 
                     figure.setLanguage(language)
-                    report.moveObjectToPosition(figure.getId(), fig['sortOrder'])
+                    report.moveObjectToPosition(
+                        figure.getId(), fig['sortOrder'])
                     figure.reindexObject()
                 else:
                     log.log('FAILED: Figure is empty: %s' % fig['url'])
@@ -275,9 +288,10 @@ class SOERCountry(ATFolder):
                     # the indicator, use 'Related Indicator'
                     logger.info('Failed to get the title of the indicator')
 
-                indicator = report[report.invokeFactory('RelatedIndicatorLink', id='indicator%s' % i,
-                                                             remoteUrl=indicatorUrl,
-                                                             title=title)]
+                indicator = report[report.invokeFactory(
+                    'RelatedIndicatorLink', id='indicator%s' % i,
+                    remoteUrl=indicatorUrl,
+                    title=title)]
 
                 publishIfPossible(indicator)
 
@@ -291,9 +305,12 @@ class SOERCountry(ATFolder):
 
         # find old reports, update them or remove them
         catalog = getToolByName(self, 'portal_catalog')
-        toDeleteIds = [b.getId for b in catalog(path={'query' : '/'.join(self.getPhysicalPath()),
-                               'depth' : 1},
-                              portal_type=['CommonalityReport', 'DiversityReport','FlexibilityReport'])]
+        toDeleteIds = [b.getId for b in
+                       catalog(path={'query' : '/'.join(self.getPhysicalPath()),
+                                     'depth' : 1},
+                               portal_type=['CommonalityReport',
+                                            'DiversityReport',
+                                            'FlexibilityReport'])]
         if toDeleteIds:
             self.manage_delObjects(ids=toDeleteIds)
         # update the rest which should be all new reports

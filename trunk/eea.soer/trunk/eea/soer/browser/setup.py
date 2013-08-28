@@ -238,7 +238,8 @@ class SenseFeeds(object):
    'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-local-authorities/@@rdf',
    'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-organic-farming/@@rdf',
    'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-white-certificates/@@rdf'],
-                 'cz' : ['http://issar.cenia.cz/issar/add/CZ_SOER.rdf'], # Questions don't follow specification
+                 # Questions don't follow specification
+                 'cz' : ['http://issar.cenia.cz/issar/add/CZ_SOER.rdf'],
                  'de' : ['http://sites.uba.de/SOER/frm/Diversity.xml',
                          'http://sites.uba.de/SOER/frm/Air-pollution.xml',
                          'http://sites.uba.de/SOER/frm/Freshwater.xml',
@@ -246,10 +247,12 @@ class SenseFeeds(object):
                          'http://sites.uba.de/SOER/frm/Land.xml',
                          'http://sites.uba.de/SOER/frm/Waste.xml',
                          'http://sites.uba.de/SOER/frm/Biodiversity.xml',
-                         'http://sites.uba.de/SOER/frm/Flexibility.xml'], # Waiting for feeds
+                         'http://sites.uba.de/SOER/frm/Flexibility.xml'],
+                 # Waiting for feeds
                  'at' : ['http://www.umweltbundesamt.at/rdf_eea'],
                  'se' :
-  ['http://www.naturvardsverket.se/en/In-English/Menu/GlobalMenu/Sense---RDF'], # Unaccessible, password protected, they are working on it
+  ['http://www.naturvardsverket.se/en/In-English/Menu/GlobalMenu/Sense---RDF'],
+  # Unaccessible, password protected, they are working on it
                  'rs' :
   ['http://www.report.sepa.gov.rs/soer-2010-serbia/@@rdf'],
                                   }

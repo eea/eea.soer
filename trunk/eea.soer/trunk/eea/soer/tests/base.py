@@ -29,7 +29,9 @@ def setup_soer():
 
 setup_soer()
 
-PloneTestCase.setupPloneSite(extension_profiles=('eea.soer:default',), products=['kupu'])
+PloneTestCase.setupPloneSite(
+    extension_profiles=('eea.soer:default',),
+    products=['kupu'])
 
 
 class SOERFunctionalTestCase(PloneTestCase.FunctionalTestCase):
