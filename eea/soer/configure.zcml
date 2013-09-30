@@ -20,7 +20,7 @@
   <include package=".browser" />
 
   <subscriber for="eea.soer.content.interfaces.ICommonalityReport
-                   zope.app.container.interfaces.IObjectAddedEvent"
+                   zope.container.interfaces.IObjectAddedEvent"
               handler=".content.CommonalityReport.reportUpdated" />
 
   <subscriber for="eea.soer.content.interfaces.ICommonalityReport
@@ -28,7 +28,7 @@
               handler=".content.CommonalityReport.reportUpdated" />
 
   <subscriber for="eea.soer.content.interfaces.IFlexibilityReport
-                   zope.app.container.interfaces.IObjectAddedEvent"
+                   zope.container.interfaces.IObjectAddedEvent"
               handler=".content.FlexibilityReport.reportUpdated" />
 
   <subscriber for="eea.soer.content.interfaces.IFlexibilityReport
@@ -36,7 +36,7 @@
               handler=".content.FlexibilityReport.reportUpdated" />
 
   <subscriber for="eea.soer.content.interfaces.IDiversityReport
-                   zope.app.container.interfaces.IObjectAddedEvent"
+                   zope.container.interfaces.IObjectAddedEvent"
               handler=".content.DiversityReport.reportUpdated" />
 
   <subscriber for="eea.soer.content.interfaces.IDiversityReport
@@ -44,11 +44,11 @@
               handler=".content.DiversityReport.reportUpdated" />
 
   <subscriber for="Products.ATContentTypes.interface.link.IATLink
-                   zope.app.container.interfaces.IObjectAddedEvent"
+                   zope.container.interfaces.IObjectAddedEvent"
               handler=".content.SOERReport.soerLinkAdded" />
 
   <subscriber for="Products.ATContentTypes.interface.image.IATImage
-                   zope.app.container.interfaces.IObjectAddedEvent"
+                   zope.container.interfaces.IObjectAddedEvent"
               handler=".content.SOERReport.soerImageAdded" />
 
   <subscriber for="eea.soer.content.interfaces.ISOERReport
