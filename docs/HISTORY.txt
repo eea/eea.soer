@@ -1,8 +1,8 @@
 Changelog
 =========
 
-5.5-dev - (unreleased)
-----------------------
+5.5 - (2013-10-04)
+------------------
 * Change: updated zope imports with the versions that require minimum Plone 4.1
   for eea.soer
   [ichimdav refs #15651]
