@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+ <index name="getSoerTopic" meta_type="FieldIndex">
+  <indexed_attr value="getTopic"/>
+ </index>
+ <index name="getSoerSection" meta_type="FieldIndex">
+  <indexed_attr value="getSection"/>
+ </index>
+ <index name="getSoerQuestion" meta_type="FieldIndex">
+  <indexed_attr value="getQuestion"/>
+ </index>
+ <index name="getSoerContentType" meta_type="FieldIndex">
+  <indexed_attr value="getSoerContentType"/>
+ </index>
+ <index name="getSoerCountry" meta_type="FieldIndex">
+  <indexed_attr value="getSoerCountry"/>
+ </index>
+</object>
