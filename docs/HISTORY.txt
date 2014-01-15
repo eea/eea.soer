@@ -3,6 +3,8 @@ Changelog
 
 5.7-dev - (unreleased)
 ----------------------
+* Bug fix: Updated old URLs pointing Trac
+  [ghicaale refs #18003]
 
 5.6 - (2013-12-10)
 ------------------
@@ -364,7 +366,7 @@ Changelog
 ----------------
 * Geographical coverage values are fetched from http://rod.eionet.europa.eu/countries
   [vincisas]
-* Schema updated to `SOER RDF spec <https://svn.eionet.europa.eu/projects/Zope/wiki/SOERFeedSpec>`_
+* Schema updated to `SOER RDF spec <http://taskman.eionet.europa.eu/projects/zope/wiki/SOERFeedSpec>`_
   [vincisas]
 * Plone 3 compatibility
   [vincisas]
