@@ -1,6 +1,9 @@
 Changelog
 =========
 
+5.8-dev - (unreleased)
+----------------------
+
 5.7 - (2014-01-21)
 ------------------
 * Bug fix: Updated old URLs pointing Trac
