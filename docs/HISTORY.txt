@@ -1,8 +1,8 @@
 Changelog
 =========
 
-5.7-dev - (unreleased)
-----------------------
+5.7 - (2014-01-21)
+------------------
 * Bug fix: Updated old URLs pointing Trac
   [ghicaale refs #18003]
 
