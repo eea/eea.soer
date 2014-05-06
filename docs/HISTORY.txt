@@ -3,6 +3,8 @@ Changelog
 
 5.8-dev - (unreleased)
 ----------------------
+* Bug fix: fixed deprecation warning
+  [ghicaale refs #19289]
 
 5.7 - (2014-01-21)
 ------------------

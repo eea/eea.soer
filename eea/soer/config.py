@@ -1,7 +1,7 @@
 """ Config
 """
 import os
-from Globals import package_home
+from App.Common import package_home
 from Products.CMFCore.permissions import AddPortalContent
 import surf
 
