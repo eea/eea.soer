@@ -1,6 +1,9 @@
 Changelog
 =========
 
+5.9-dev - (unreleased)
+----------------------
+
 5.8 - (2014-05-13)
 ------------------
 * Bug fix: fixed deprecation warning
