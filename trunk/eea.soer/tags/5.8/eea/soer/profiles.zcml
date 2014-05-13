@@ -1,0 +1,26 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           i18n_domain="eea">
+
+  <genericsetup:registerProfile
+      name="default"
+      title="EEA Soer"
+      directory="profiles/default"
+      description="Extension profile for EEA Soer"
+      provides="Products.GenericSetup.interfaces.EXTENSION" />
+
+  <genericsetup:importStep
+        name="eea-soer-various"
+        title="EEA Soer setup"
+        description="Various setup for EEA Soer"
+        handler="eea.soer.setuphandlers.setupVarious">
+  </genericsetup:importStep>
+
+  <genericsetup:importStep
+        name="eea-soer-vocabularies"
+        title="EEA Soer setup"
+        description="Setup vocabularies for EEA Soer"
+        handler="eea.soer.setuphandlers.setupATVocabularies">
+  </genericsetup:importStep>
+
+</configure>
