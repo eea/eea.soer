@@ -1,8 +1,8 @@
 Changelog
 =========
 
-5.9-dev - (unreleased)
-----------------------
+5.9 - (2014-08-12)
+------------------
 * Change: added kupu_captioned_image from eea.design used
   by transform.py
   [ichimdav refs #17336]
