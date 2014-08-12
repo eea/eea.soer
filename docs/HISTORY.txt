@@ -1,6 +1,9 @@
 Changelog
 =========
 
+6.0-dev - (unreleased)
+----------------------
+
 5.9 - (2014-08-12)
 ------------------
 * Change: added kupu_captioned_image from eea.design used
