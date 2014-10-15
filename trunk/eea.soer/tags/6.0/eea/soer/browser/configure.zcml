@@ -1,0 +1,60 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           i18n_domain="eea">
+
+  <browser:page for="eea.soer.content.interfaces.IReportingCountry"
+                name="rdf"
+                class=".sense.RDFExport"
+                permission="zope.Public" />
+
+  <browser:page for="*"
+                name="soerReportView"
+                class=".report.ReportView"
+                permission="zope.Public"
+                allowed_interface="..interfaces.IReportView" />
+
+  <browser:page for="*"
+                name="reportQuestionsByTopic"
+                class=".report.ReportQuestionsByTopic"
+                permission="zope.Public"
+                allowed_interface="..interfaces.IReportQuestionsByTopic" />
+
+  <browser:page for="*"
+                name="soerCountryView"
+                class=".country.CountryView"
+                permission="zope.Public"
+                allowed_interface="..interfaces.ICountryView" />
+
+  <browser:page for="*"
+                name="initSoerCountries"
+                class=".setup.Countries"
+                permission="cmf.ManagePortal" />
+
+  <browser:page for="*"
+                name="soerMigration"
+                class=".setup.Migration"
+                permission="cmf.ManagePortal" />
+
+  <browser:page for="*"
+                name="soerMigrationFaceted"
+                class=".setup.MigrationFaceted"
+                permission="cmf.ManagePortal"
+                allowed_attributes="reloadFacetedNavigation" />
+
+  <browser:page for="*"
+                name="senseFeedUpdate"
+                class=".setup.FeedUpdater"
+                permission="cmf.ManagePortal" />
+
+  <browser:page for="*"
+                name="initSenseFeeds"
+                class=".setup.SenseFeeds"
+                permission="cmf.ManagePortal" />
+
+  <browser:page for="*"
+                  name="soer_admin_view"
+                  class=".admin.AdminView"
+                  permission="cmf.ManagePortal"
+                  allowed_interface=".admin.IAdminView" />
+
+</configure>
