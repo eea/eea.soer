@@ -3,6 +3,8 @@ Changelog
 
 6.1-dev - (unreleased)
 ----------------------
+* Bug fix: fixed tests
+  [ghicaale refs #21250]
 
 6.0 - (2014-10-15)
 ------------------
