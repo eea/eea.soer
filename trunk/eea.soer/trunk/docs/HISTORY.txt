@@ -5,6 +5,8 @@ Changelog
 ----------------------
 * Bug fix: fixed tests
   [ghicaale refs #21250]
+* Change: updated eea.geotags field labels
+  [ghicaale refs #21458]
 
 6.0 - (2014-10-15)
 ------------------
