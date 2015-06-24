@@ -3,12 +3,19 @@ Changelog
 
 6.3.dev0 - (unreleased)
 -----------------------
+* Upgrade step: Within "Plone > Site setup > Add-ons" click on
+  upgrade button available for eea.soer
+  [voineali refs #25901]
+* Cleanup: Removed getSoerSection catalog index
+  [voineali refs #25901]
+* Cleanup: Removed getSoerContentType catalog index
+  [voineali refs #25901]
 
 6.2 - (2015-03-17)
 ------------------
 * Change: Switched to curl in the jenkins build install script
   [olimpiurob refs #22402]
-* Change: Changed fetch url for jenkins build install script to the install 
+* Change: Changed fetch url for jenkins build install script to the install
   script from the main EEA CPB repository
   [olimpiurob refs #22402]
 
