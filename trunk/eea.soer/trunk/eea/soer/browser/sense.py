@@ -14,7 +14,7 @@ class RDFExport(object):
         marshaller = getComponent('surfrdf')
         _content_type, _length, data = marshaller.marshall(self.context)
         self.request.response.setHeader(
-                'Content-Type','application/rdf+xml; charset=utf-8')
+                'Content-Type', 'application/rdf+xml; charset=utf-8')
         return data
 
 class ChannelInfo(object):

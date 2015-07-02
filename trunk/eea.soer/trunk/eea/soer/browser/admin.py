@@ -28,22 +28,22 @@ class AdminView(BrowserView):
         #ret = []
         catalog = getToolByName(self.context, 'portal_catalog')
         countries = catalog(portal_type='SOERCountry')
-        result = {'unknown' : { 'title': 'Unknown',
-                                'url' : '',
-                                'id' : '',
-                                'common' : {'reports':[],
-                                            'stats': {}},
-                                'profile' : {'reports' : [],
-                                             'stats' : 0}}
+        result = {'unknown' : {'title': 'Unknown',
+                               'url' : '',
+                               'id' : '',
+                               'common' : {'reports':[],
+                                           'stats': {}},
+                               'profile' : {'reports' : [],
+                                            'stats' : 0}}
                  }
         for country in countries:
-            result[country.getId] = { 'title': country.Title,
-                                      'url' : country.getURL(),
-                                      'id' : country.getId,
-                                      'common' : {'reports':[],
-                                                  'stats': {}},
-                                      'profile' : {'reports' : [],
-                                                   'stats' : 0 }}
+            result[country.getId] = {'title': country.Title,
+                                     'url' : country.getURL(),
+                                     'id' : country.getId,
+                                     'common' : {'reports':[],
+                                                 'stats': {}},
+                                     'profile' : {'reports' : [],
+                                                  'stats' : 0}}
             countryIds = result.keys()
         reports = catalog(portal_type=['DiversityReport', 'CommonalityReport'],
                           sort_on='sortable_title',
@@ -61,13 +61,13 @@ class AdminView(BrowserView):
             country = result[country]
             if obj.portal_type == 'CommonalityReport':
                 country['common']['reports'].append(brain)
-                noQuestions =  country['common']['stats'].get(
+                noQuestions = country['common']['stats'].get(
                                                     obj.getTopic(), 0) + 1
                 country['common']['stats'][obj.getTopic()] = noQuestions
             else:
                 country['profile']['reports'].append(brain)
                 country['profile']['stats'] += 1
 
-        return [ c for _unused, c in result.items()]
+        return [c for _unused, c in result.items()]
 
     __call__ = ViewPageTemplateFile('admin.pt')

@@ -15,10 +15,10 @@ def initialize(context):
 
     cmfutils.ContentInit(
         PROJECTNAME + ' Content',
-        content_types      = all_content_types,
-        permission         = ADD_CONTENT_PERMISSION,
-        extra_constructors = all_constructors,
-        fti                = all_ftis,
+        content_types=all_content_types,
+        permission=ADD_CONTENT_PERMISSION,
+        extra_constructors=all_constructors,
+        fti=all_ftis,
         ).initialize(context)
 
     #TODO: plone4, investigate below code

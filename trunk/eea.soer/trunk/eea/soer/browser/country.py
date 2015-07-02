@@ -52,9 +52,9 @@ class CountryView(object):
         context = self.context
         if context.portal_type == 'SOERCountry':
             catalog = getToolByName(context, 'portal_catalog')
-            res = catalog( { 'path' :'/'.join( context.getPhysicalPath()),
-                             'portal_type' : 'DiversityReport',
-                             'getSoerTopic' : 'country introduction' } )
+            res = catalog({'path' :'/'.join(context.getPhysicalPath()),
+                           'portal_type' : 'DiversityReport',
+                           'getSoerTopic' : 'country introduction'})
             for report in  res:
                 obj = report.getObject()
                 if obj.getQuestion() == u'10':
@@ -63,8 +63,8 @@ class CountryView(object):
                     #index = text.lower().find('</p>', 1000)
                     #if index != -1:
                         #text = text[:index] +'</p>'
-                    return { 'title' : obj.Title(),
-                             'text' : text }
+                    return {'title' : obj.Title(),
+                            'text' : text}
         return None
 
     def channel(self):
@@ -99,11 +99,11 @@ class CountryView(object):
         catalog = getToolByName(context, 'portal_catalog')
         regions = []
         result = ''
-        for b in catalog( { 'path' :'/'.join( context.getPhysicalPath()),
-                            'portal_type' : [
-                                'DiversityReport',
-                                'CommonalityReport',
-                                'FlexibilityReport']} ):
+        for b in catalog({'path' :'/'.join(context.getPhysicalPath()),
+                          'portal_type' : [
+                              'DiversityReport',
+                              'CommonalityReport',
+                              'FlexibilityReport']}):
             obj = b.getObject()
             region = obj.getGeoCoverage()
             if region not in regions:

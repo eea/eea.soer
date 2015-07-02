@@ -19,7 +19,7 @@ from eea.themecentre.content.ThemeTaggable import ThemeTaggable_schema
 schema = Schema((
         StringField(
         name='topic',
-        required = False,
+        required=False,
         default=u'country introduction',
         widget=StringWidget(
             label='Topics',
