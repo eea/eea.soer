@@ -40,7 +40,7 @@ class GetATSchema4SurfObj(object):
         """ Field names
         """
         return [field.getName() for field in
-                         self.schema.fields() ] + ['relatedEuropeanIndicator']
+                         self.schema.fields()] + ['relatedEuropeanIndicator']
 
 class NationalStory(object):
     """ National Story
@@ -86,10 +86,10 @@ class Surf2SOERReport(object):
     implements(ISOERReport)
     adapts(INationalStory)
 
-    index_map = { 'text' : 'assessment',
-                  'effectiveDate' : 'pubDate',
-                  'subject' : 'keyword',
-                  'modification_date' : 'modified'}
+    index_map = {'text' : 'assessment',
+                 'effectiveDate' : 'pubDate',
+                 'subject' : 'keyword',
+                 'modification_date' : 'modified'}
 
     def __init__(self, context):
         self.context = context
@@ -108,8 +108,8 @@ class Surf2SOERReport(object):
                 if not field.first:
                     field = getattr(context, 'dc_Description')
             if fname in ['keyword']:
-                setattr(self, fname, [ value.strip().encode('utf8')
-                                                        for value in field ])
+                setattr(self, fname, [value.strip().encode('utf8')
+                                                        for value in field])
             elif field.first is not None:
                 setattr(self, fname, field.first.strip().encode('utf8'))
             else:
@@ -159,11 +159,11 @@ class Surf2SOERReport(object):
                 if hasattr(fig, 'soer_sortOrder'):
                     if fig.soer_sortOrder.first is not None:
                         sortOrder = int(str(fig.soer_sortOrder.first))
-                result =  { 'url' : fig.subject.strip(),
-                            'fileName' : fileName,
-                            'caption' : str(fig.soer_caption.first),
-                            'description' : str(fig.soer_description.first),
-                            'sortOrder' :  sortOrder }
+                result = {'url' : fig.subject.strip(),
+                          'fileName' : fileName,
+                          'caption' : str(fig.soer_caption.first),
+                          'description' : str(fig.soer_description.first),
+                          'sortOrder' :  sortOrder}
 
                 if fig.soer_mediaType.first is not None:
                     result['mediaType'] = fig.soer_mediaType.first.strip()
@@ -175,12 +175,12 @@ class Surf2SOERReport(object):
                         result['dataSource'] = {
                             'url' : dataSrc.subject.strip(),
                             'fileName' : fileName,
-                            'dataURL' : dataSrc.soer_dataURL.first.strip() }
+                            'dataURL' : dataSrc.soer_dataURL.first.strip()}
                     else:
                         result['dataSource'] = {
                             'url' : str(dataSrc),
                             'fileName' : fileName,
-                            'dataURL' : str(dataSrc) }
+                            'dataURL' : str(dataSrc)}
                         log.log('Data source without information %s' %
                                            dataSrc, severity=log.logging.WARN)
 
@@ -192,17 +192,17 @@ class Surf2SOERReport(object):
         context = self.context
         if context.soer_dataSource:
             for dataSrc in context.soer_dataSource:
-                yield { 'url' : dataSrc.subject.strip(),
-                        'fileName' : dataSrc.soer_fileName.first.strip(),
-                        'dataURL' : dataSrc.soer_dataURL.first.strip() }
+                yield {'url' : dataSrc.subject.strip(),
+                       'fileName' : dataSrc.soer_fileName.first.strip(),
+                       'dataURL' : dataSrc.soer_dataURL.first.strip()}
 
     def relatedIndicator(self):
         """ Related indicator
         """
         context = self.context
         if context.soer_relatedEuropeanIndicator:
-            return [ str(indicator) for indicator in
-                          context.soer_relatedEuropeanIndicator ]
+            return [str(indicator) for indicator in
+                          context.soer_relatedEuropeanIndicator]
         return []
 
 class SoerRDF2Surf(object):
@@ -214,7 +214,7 @@ class SoerRDF2Surf(object):
     def __init__(self, url):
         self.store = surf.Store(reader='rdflib',
                                 writer='rdflib',
-                                rdflib_store = 'IOMemory')
+                                rdflib_store='IOMemory')
         self.store.log.setLevel(logging.CRITICAL)
         self.store.writer.log.setLevel(logging.CRITICAL)
         self.session = surf.Session(self.store, mapping={
@@ -293,7 +293,7 @@ class SoerRDF2Surf(object):
         #subjectSize = len(nstory.subject)
         #if subjectSize > 20:
         #    subject = nstory.subject[subjectSize-20:]
-        result = self.nsFormating % ( nstory.subject,
+        result = self.nsFormating % (nstory.subject,
                                     'NationalStory',
                                     chk(nstory.topic),
                                     chk(nstory.question),
@@ -329,7 +329,7 @@ class SoerRDF2Surf(object):
         #if subjectSize > 20:
         #    subject = dataSrc['url'][subjectSize-20:]
         result = self.figFormating % (dataSrc['url'],
-                                      'DataSource','','',
+                                      'DataSource', '', '',
                                     chk(dataSrc['fileName']),
                                     chk(dataSrc['dataURL'])
                                     )

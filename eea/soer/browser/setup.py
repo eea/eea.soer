@@ -17,7 +17,7 @@ from eea.facetednavigation.browser.app.exportimport import FacetedExportImport
 facetedMain = os.path.join(package_home(GLOBALS),
                     'browser', 'faceted-main.xml')
 facetedCountry = open(os.path.join(package_home(GLOBALS),
-                    'browser', 'faceted-country.xml'),'r').read()
+                    'browser', 'faceted-country.xml'), 'r').read()
 
 class Countries(object):
     """ Countries
@@ -66,8 +66,8 @@ class Countries(object):
 
             faceted = FacetedExportImport(folder, folder.REQUEST)
             faceted.import_xml(import_file=facetedCountry.replace(
-                '<element value="se"/>','<element value="%s"/>' %
-                country_code).replace(' name="se" ',' name="%s" '
+                '<element value="se"/>', '<element value="%s"/>' %
+                country_code).replace(' name="se" ', ' name="%s" '
                                                     % country_code))
 
 class Migration(object):
@@ -143,7 +143,7 @@ class Migration(object):
             'FlexibilityReport', 'DiversityReport']):
             obj = b.getObject()
             log.log("UPDATING title '%s'" % obj.Title())
-            notify( ObjectModifiedEvent(obj) )
+            notify(ObjectModifiedEvent(obj))
 
     def removeOldCountryMaps(self):
         """ Removes Old Country Maps
@@ -173,7 +173,7 @@ class MigrationFaceted(object):
         """ Reload faceted configuration for all countries
         """
         for folder in self.context.getFolderContents(
-                contentFilter={ 'portal_type' : 'SOERCountry'},
+                contentFilter={'portal_type' : 'SOERCountry'},
                                             full_objects=True):
             subtyper = getMultiAdapter((folder, self.request),
                                        name=u'faceted_subtyper')
@@ -183,8 +183,8 @@ class MigrationFaceted(object):
                                 % folder.absolute_url())
             faceted = FacetedExportImport(folder, folder.REQUEST)
             faceted.import_xml(import_file=facetedCountry.replace(
-                '<element value="se"/>','<element value="%s"/>'
-                % country_code).replace(' name="se" ',' name="%s" '
+                '<element value="se"/>', '<element value="%s"/>'
+                % country_code).replace(' name="se" ', ' name="%s" '
                 % country_code))
 
 class SenseFeeds(object):
@@ -272,7 +272,7 @@ class SenseFeeds(object):
                     log.log("SENSE setup adding feed %s to '%s'" %
                                                      (urls[0], country_code))
                     for url in urls[1:]:
-                        feed = country[ country.invokeFactory(
+                        feed = country[country.invokeFactory(
                                                          'Link', id='tmplink',
                                                          title=url,
                                                          remoteUrl=url)]
@@ -302,7 +302,7 @@ class FeedUpdater(object):
             delete/create and publish content in /soer section.
         """
         context = self.context
-        query = { 'portal_type' :'SOERCountry' }
+        query = {'portal_type' :'SOERCountry'}
         country = self.request.get('country', country)
         if country is None:
             return 'provide countries or update=all to update all countries'
@@ -322,7 +322,7 @@ class FeedUpdater(object):
                 out.append({'country' : b.Title,
                                 'url' : b.getURL(),
                                 'feed' : obj.getRdfFeed(),
-                                'status' : 'OK' })
+                                'status' : 'OK'})
         msg = context.unrestrictedTraverse('mail_feed_update')
         msg = msg(status=out)
 

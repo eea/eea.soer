@@ -10,14 +10,14 @@ from Products.PortalTransforms.interfaces import ITransform
 
 name2codepoint = name2codepoint.copy()
 name2codepoint['apos'] = ord("'")
-
+# pylint: disable=W1401
 # IMAGE_PATTERN matches an image tag on its own, or an image tag
 # enclosed in a simple <p> or <div>. In the latter case we strip out
 # the enclosing tag since we are going to insert our own.
 PATIMG = '\\<img[^>]+class\s*=[^=>]*captioned[^>]+\\>'
 PATA = '(?:(?P<atag0>\\<a[^>]*\\>)'+PATIMG+'\\</a\\>)' + '|' + PATIMG
 PAT0 = '(?P<pat0>'+PATA+')'
-PAT1 = '<(?:p|div)[^>]*>'+PAT0 + '</(?:p|div)>' + '|' + PAT0.replace('0>','1>')
+PAT1 = '<(?:p|div)[^>]*>'+PAT0 + '</(?:p|div)>' + '|' + PAT0.replace('0>', '1>')
 IMAGE_PATTERN = re.compile(PAT1, re.IGNORECASE)
 
 # Copied from Products.kupu.plone.config
@@ -63,7 +63,7 @@ IMAGE_TEMPLATE = '''\
 <h2> Fjantit</h2>
 '''
 
-class ImageSource:
+class ImageSource(object):
     """ Transform which adds captions to images embedded in HTML
     """
     if ITransform is not None:

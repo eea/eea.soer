@@ -26,49 +26,49 @@ from Products.Archetypes.public import (
 
 schema = Schema((
     TextField('keyMessage',
-        required = False,
-        searchable = True,
-        primary = False,
-        storage = AnnotationStorage(migrate=True),
-        validators = ('isTidyHtmlWithCleanup',),
-        default_content_type = zconf.ATNewsItem.default_content_type,
-        default_output_type = 'text/x-html-safe',
-        allowable_content_types = ('text/html',),
-        widget = RichWidget(
-            description = "Optional",
-            description_msgid = "help_body_text",
-            label = "Key message",
-            label_msgid = "label_body_text",
-            rows = 5,
-            i18n_domain = "plone",
-            allow_file_upload = False,
+        required=False,
+        searchable=True,
+        primary=False,
+        storage=AnnotationStorage(migrate=True),
+        validators=('isTidyHtmlWithCleanup',),
+        default_content_type=zconf.ATNewsItem.default_content_type,
+        default_output_type='text/x-html-safe',
+        allowable_content_types=('text/html',),
+        widget=RichWidget(
+            description="Optional",
+            description_msgid="help_body_text",
+            label="Key message",
+            label_msgid="label_body_text",
+            rows=5,
+            i18n_domain="plone",
+            allow_file_upload=False,
         ),
     ),
 
     TextField('text',
-        required = True,
-        searchable = True,
-        primary = True,
-        storage = AnnotationStorage(migrate=True),
-        validators = ('isTidyHtmlWithCleanup',),
-        default_content_type = zconf.ATNewsItem.default_content_type,
-        default_output_type = 'text/x-html-safe',
-        allowable_content_types = ('text/html',),
-        widget = RichWidget(
-            description = "",
-            description_msgid = "help_body_text",
-            label = "Assessment",
-            label_msgid = "label_body_text",
-            rows = 25,
-            i18n_domain = "plone",
-            allow_file_upload = zconf.ATDocument.allow_document_upload
+        required=True,
+        searchable=True,
+        primary=True,
+        storage=AnnotationStorage(migrate=True),
+        validators=('isTidyHtmlWithCleanup',),
+        default_content_type=zconf.ATNewsItem.default_content_type,
+        default_output_type='text/x-html-safe',
+        allowable_content_types=('text/html',),
+        widget=RichWidget(
+            description="",
+            description_msgid="help_body_text",
+            label="Assessment",
+            label_msgid="label_body_text",
+            rows=25,
+            i18n_domain="plone",
+            allow_file_upload=zconf.ATDocument.allow_document_upload
         ),
     ),
 
     StringField(
         name='soerCountry',
-        required = False,
-        mode = 'r',
+        required=False,
+        mode='r',
         widget=SelectionWidget(
             label='Country',
             label_msgid='eea.soer_label_country',
@@ -81,7 +81,7 @@ schema = Schema((
 
     StringField(
         name='geoCoverage',
-        required = True,
+        required=True,
         widget=SelectionWidget(
             label='Geographic coverage',
             label_msgid='eea.soer_label_geocoverage',
@@ -95,7 +95,7 @@ schema = Schema((
 
     StringField(
         name='topic',
-        required = True,
+        required=True,
         widget=SelectionWidget(
             label='Topics',
             label_msgid='eea.soer_label_topics',
@@ -108,7 +108,7 @@ schema = Schema((
 
     StringField(
         name='question',
-        required = True,
+        required=True,
         widget=SelectionWidget(
             label='Question',
             label_msgid='eea.soer_label_questions',
@@ -145,7 +145,7 @@ schema['title'].widget.visible = {'edit' : 'invisible'}
 schema['description'].widget.description = \
                      '(Optional) ' + schema['description'].widget.description
 schema['soerCountry'].default_method = 'default_country'
-schema['relatedItems'].widget.visible =  {'edit' : 'visible'}
+schema['relatedItems'].widget.visible = {'edit' : 'visible'}
 schema['relatedItems'].schemata = 'metadata'
 
 class SOERReport(ATFolder, ATNewsItem):
@@ -188,8 +188,8 @@ class SOERReport(ATFolder, ATNewsItem):
     def getGeoCoverageVocabulary(self, content_instance=None, field=None):
         """ Get geo coverage vocabulary
         """
-        vocab =  getUtility(IVocabularyFactory,
-                            name=u"eea.soer.vocab.NUTSRegions")
+        vocab = getUtility(IVocabularyFactory,
+                           name=u"eea.soer.vocab.NUTSRegions")
         indent = u''
         parent = []
         displayList = DisplayList()
@@ -239,7 +239,7 @@ class SOERReport(ATFolder, ATNewsItem):
         """
         vocab = getUtility(IVocabularyFactory,
                            name=u"eea.soer.vocab.Evaluation")
-        return DisplayList([(t.value, t.title) for t in vocab(self) ])
+        return DisplayList([(t.value, t.title) for t in vocab(self)])
 
     def default_country(self):
         """ Default country
@@ -259,7 +259,7 @@ class SOERReport(ATFolder, ATNewsItem):
         assessment = self.getText()
         return Batch([fig for fig in
             self.getFolderContents(contentFilter={'portal_type': 'Image'})
-            if fig.getURL(1) not in assessment ],
+            if fig.getURL(1) not in assessment],
             10)
 
     def dataSources(self):

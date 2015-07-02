@@ -50,7 +50,7 @@ def hideFromNavigation(context):
                    'FlexibilityReport',
                    'DiversityReport',
                    'RelatedIndicatorLink']
-    hidden =  list(props.navtree_properties.metaTypesNotToList)
+    hidden = list(props.navtree_properties.metaTypesNotToList)
     for t in portalTypes:
         if t not in hidden:
             hidden.append(t)

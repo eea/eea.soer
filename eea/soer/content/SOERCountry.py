@@ -35,7 +35,7 @@ schema = Schema((
     StringField(
         name='rdfFeed',
         languageIndependent=False,
-        widget= StringWidget(
+        widget=StringWidget(
             size=70,
             label='RDF feed',
             label_msgid='label_feed_rdf_url',
@@ -49,7 +49,7 @@ schema = Schema((
 )
 
 schema = getattr(ATFolder, 'schema', Schema(())).copy() + schema.copy()
-schema['relatedItems'].widget.visible =  {'edit' : 'visible'}
+schema['relatedItems'].widget.visible = {'edit' : 'visible'}
 
 def tidyUp(value):
     """ Tidy up
@@ -84,7 +84,7 @@ class SOERCountry(ATFolder):
     meta_type = 'SOERCountry'
     portal_type = 'SOERCountry'
     allowed_content_types = ['Image', 'CommonalityReport', 'DiversityReport',
-                             'FlexibilityReport','DataSourceLink']
+                             'FlexibilityReport', 'DataSourceLink']
     _at_rename_after_creation = True
 
     schema = schema
@@ -128,7 +128,7 @@ class SOERCountry(ATFolder):
                     logger.info('Clienthome has a wrong path')
 
             soer = sense.SoerRDF2Surf(url)
-            for link in self.contentValues(filter={ 'portal_type' :'Link'}):
+            for link in self.contentValues(filter={'portal_type' :'Link'}):
                 url = link.getRemoteUrl()
                 if url:
                     soer.loadUrl(url)
@@ -220,7 +220,7 @@ class SOERCountry(ATFolder):
                 reports[(nstory.topic, nstory.question)] = report
             else:
                 report = parentReport[newId]
-                if hasattr(nstory,'sortOrder'):
+                if hasattr(nstory, 'sortOrder'):
                     parentReport.moveObjectToPosition(
                         newId, int(nstory.sortOrder))
                 else:

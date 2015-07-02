@@ -9,25 +9,25 @@ from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 
 PARTC_TOPIC_MAP = {
-    'climate change': { 'topic' : 'climate change',
+    'climate change': {'topic' : 'climate change',
                         'image' : '/themes/climate/theme_image/image_icon',
-                        'title' : 'Climate change' },
-    'biodiversity': { 'topic' : 'nature and biodiversity',
+                        'title' : 'Climate change'},
+    'biodiversity': {'topic' : 'nature and biodiversity',
                         'image' : '/themes/biodiversity/theme_image/image_icon',
-                        'title' : 'Nature and biodiversity' },
-    'land': { 'topic' : 'land use',
+                        'title' : 'Nature and biodiversity'},
+    'land': {'topic' : 'land use',
                         'image' : '/themes/landuse/theme_image/image_icon',
-                        'title' : 'Land' },
-    'waste': { 'topic' : 'material resources, natural resources, waste',
+                        'title' : 'Land'},
+    'waste': {'topic' : 'material resources, natural resources, waste',
                         'image' : '/themes/waste/theme_image/image_icon',
-                        'title' : 'Waste' },
-    'freshwater': { 'topic' : 'freshwater quality, water resources',
+                        'title' : 'Waste'},
+    'freshwater': {'topic' : 'freshwater quality, water resources',
                         'image' : '/themes/water/theme_image/image_icon',
-                        'title' : 'Freshwater' },
-    'air pollution': { 'topic' :'air pollution',
+                        'title' : 'Freshwater'},
+    'air pollution': {'topic' :'air pollution',
                         'image' : '/themes/air/theme_image/image_icon',
-                        'title' : 'Air pollution' },
-    }
+                        'title' : 'Air pollution'},
+   }
 
 class ReportView(object):
     """ ReportView class
@@ -62,14 +62,14 @@ class ReportView(object):
         result = PARTC_TOPIC_MAP.get(topic, None)
         if result is not None:
             result['url'] = '%s/soer_topic_search?topic=%s' % (
-                                        parent.absolute_url(),result['topic'])
+                                        parent.absolute_url(), result['topic'])
             return [result]
         return []
 
     def getGeoCoverageMapUrl(self):
         """ Get Geo Coverage Map URl
         """
-        v =  getUtility(IVocabularyFactory,
+        v = getUtility(IVocabularyFactory,
                 name=u"eea.soer.vocab.NUTSRegions")
         if self.context.getGeoCoverage():
             return u'http://discomap.eea.europa.eu/map/getmap/getMap.aspx?' \
@@ -112,9 +112,9 @@ class ReportQuestionsByTopic(object):
         catalog = getToolByName(context, 'portal_catalog')
         query = {'portal_type': ['DiversityReport', 'CommonalityReport'],
                  'sort_on': 'getSoerQuestion',
-                 'path': { 'query' : '/'.join(context.getPhysicalPath()),
+                 'path': {'query' : '/'.join(context.getPhysicalPath()),
                            'depth' : 1},
-                 }
+                }
         if self.topic:
             query['getSoerTopic'] = self.topic
         return catalog(query)

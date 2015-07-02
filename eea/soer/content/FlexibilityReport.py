@@ -15,7 +15,7 @@ from Products.Archetypes.public import (
 schema = Schema((
         StringField(
         name='topic',
-        required = True,
+        required=True,
         widget=StringWidget(
             label='Topics',
             label_msgid='eea.soer_label_topics',
@@ -27,7 +27,7 @@ schema = Schema((
 
     StringField(
         name='question',
-        required = True,
+        required=True,
         widget=StringWidget(
             label='Title',
             label_msgid='eea.soer_label_questions',

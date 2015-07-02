@@ -3,11 +3,11 @@
 from zope.component import queryAdapter
 from eea.themecentre.interfaces import IThemeTagging
 
-eeaThemes = { u'air pollution' : 'air',
-              u'climate change' : 'climate',
-              u'land' : 'landuse',
-              u'freshwater' : 'water',
-              u'waste' : 'waste' }
+eeaThemes = {u'air pollution' : 'air',
+             u'climate change' : 'climate',
+             u'land' : 'landuse',
+             u'freshwater' : 'water',
+             u'waste' : 'waste'}
 
 def reportUpdated(obj, event):
     """ Report updated

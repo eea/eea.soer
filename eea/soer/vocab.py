@@ -87,7 +87,7 @@ atvocabs['eea.soer.vocab.all_questions'] = \
 
 geostore = surf.Store(reader='rdflib',
                       writer='rdflib',
-                      rdflib_store = 'IOMemory')
+                      rdflib_store='IOMemory')
 geosession = surf.Session(geostore)
 surf.ns.register(ROD="http://rod.eionet.europa.eu/schema.rdf#")
 #geostore.load_triples(source="http://rod.eionet.europa.eu/countries")
@@ -180,7 +180,7 @@ NUTSVocabularyFactory = NUTSRegions()
 
 regions = {'alpine' : u'Alpine',
            'carpathian' : u'Carpathian',
-           'baltic' : u'Baltic' }
+           'baltic' : u'Baltic'}
 
 class UsedGeoCoverage(object):
     """ Only used regions
@@ -287,10 +287,10 @@ class PortalTypesVocabulary(object):
         ttool = getToolByName(context, 'portal_types', None)
         if ttool is None:
             return None
-        items = [ SimpleTerm(t, t, ttool[t].Title())
-                  for t in ['CommonalityReport',
-                            'DiversityReport',
-                            'FlexibilityReport']]
+        items = [SimpleTerm(t, t, ttool[t].Title())
+                 for t in ['CommonalityReport',
+                           'DiversityReport',
+                           'FlexibilityReport']]
         return SimpleVocabulary(items)
 
 PortalTypesVocabularyFactory = PortalTypesVocabulary()

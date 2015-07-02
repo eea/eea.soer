@@ -85,8 +85,8 @@ class NationalStory2Surf(Soer2Surf):
         self.field_map = dict([('text', 'assessment'),
                       ('subject', 'keyword'),
                       ('modification_date', 'modified'),
-                      ('effectiveDate','pubDate'),
-                      ('description','description'),
+                      ('effectiveDate', 'pubDate'),
+                      ('description', 'description'),
                       ])
 
     @property
@@ -115,7 +115,7 @@ class NationalStory2Surf(Soer2Surf):
                   context.aq_parent.getObjectPosition(context.getId()) + 1
         for obj in context.objectValues():
             surfObj = queryMultiAdapter((obj, self.session),
-                                        interface = IObject2Surf)
+                                        interface=IObject2Surf)
             if surfObj is not None:
                 if obj.portal_type == 'Image':
                     resource.soer_hasFigure.append(surfObj.resource)
@@ -145,10 +145,10 @@ class Image2Surf(Soer2Surf):
 
     def __init__(self, context, session):
         super(Image2Surf, self).__init__(context, session)
-        self.field_map.update( dict([('id', 'fileName'),
-                                     ('title', 'caption'),
-                                     ('relatedItems', 'dataSource'),
-                                     ]))
+        self.field_map.update(dict([('id', 'fileName'),
+                                    ('title', 'caption'),
+                                    ('relatedItems', 'dataSource'),
+                                   ]))
         self.dc_map = {} # we don't want Dublin Core right now
 
 
@@ -162,9 +162,9 @@ class Link2Surf(Soer2Surf):
 
     def __init__(self, context, session):
         super(Link2Surf, self).__init__(context, session)
-        self.field_map.update( dict([('id', 'fileName'),
-                                     ('remoteUrl', 'dataURL'),
-                                     ]))
+        self.field_map.update(dict([('id', 'fileName'),
+                                    ('remoteUrl', 'dataURL'),
+                                   ]))
         self.dc_map = {} # we don't want Dublin Core right now
 
     @property
