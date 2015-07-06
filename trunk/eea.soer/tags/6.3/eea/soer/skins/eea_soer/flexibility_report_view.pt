@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="eea">
+<body>
+
+<metal:main metal:fill-slot="content-core">
+<tal:main-macro metal:define-macro="content-core">
+
+
+<metal:isFromFeed use-macro="context/commonality_report_view/macros/content-core" />
+
+
+</tal:main-macro>
+</metal:main>
+
+<metal:disclaimer fill-slot="sub">
+  <metal:discmacro use-macro="context/commonality_report_view/macros/disclaimer" />
+</metal:disclaimer>
+
+</body>
+</html>
+
