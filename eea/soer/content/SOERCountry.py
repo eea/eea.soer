@@ -280,7 +280,7 @@ class SOERCountry(ATFolder):
                     continue
                 title = u'Related indicator'
                 try:
-                    url = urllib2.urlopen(indicatorUrl)
+                    url = urllib2.urlopen(indicatorUrl, timeout=2.0)
                     soup = BeautifulSoup(url, 'lxml')
                     title = soup.title.string.encode('utf8').strip()
                 except Exception:
