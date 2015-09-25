@@ -47,8 +47,12 @@ class Countries(object):
                                                     id=country_code)]
             folder.setTitle(european_countries[country_code].title)
             mapurl = mapurl % country_code
-            image = urllib2.urlopen(mapurl)
-            image_data = image.read()
+            try:
+                image = urllib2.urlopen(mapurl, timeout=5.0)
+                image_data = image.read()
+            except Exception, err:
+                image_data = None
+                
             if image_data:
                 mapimage = folder[folder.invokeFactory('Image', id='%s_map.png'
                                             % country_code, image=image_data)]
