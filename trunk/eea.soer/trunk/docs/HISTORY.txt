@@ -3,7 +3,9 @@ Changelog
 
 6.4.dev0 - (unreleased)
 -----------------------
-
+* Bugfix: set socket timeout to prevent Zope instances hanging out when the external service is not responding
+  [lucas refs #29063]
+  
 6.3 - (2015-07-06)
 ------------------
 * Upgrade step: Within "Plone > Site setup > Add-ons" click on
