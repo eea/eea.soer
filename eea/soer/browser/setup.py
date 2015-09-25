@@ -50,9 +50,9 @@ class Countries(object):
             try:
                 image = urllib2.urlopen(mapurl, timeout=5.0)
                 image_data = image.read()
-            except Exception, err:
+            except Exception:
                 image_data = None
-                
+
             if image_data:
                 mapimage = folder[folder.invokeFactory('Image', id='%s_map.png'
                                             % country_code, image=image_data)]
