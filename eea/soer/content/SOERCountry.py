@@ -159,7 +159,8 @@ class SOERCountry(ATFolder):
 
         if channel and channel.get('organisationLogoURL', None):
             try:
-                image = urllib2.urlopen(channel['organisationLogoURL'])
+                image = urllib2.urlopen(
+                    channel['organisationLogoURL'], timeout=10.0)
                 image_data = image.read()
             except Exception:
                 image_data = None
@@ -231,7 +232,7 @@ class SOERCountry(ATFolder):
                 log.log('Fetching Figure: %s' % fig['url'])
                 # read figure
                 try:
-                    image = urllib2.urlopen(fig['url'])
+                    image = urllib2.urlopen(fig['url'], timeout=10.0)
                 except Exception:
                     log.log('FAILED: Fetching Figure: %s' % fig['url'])
                     continue
