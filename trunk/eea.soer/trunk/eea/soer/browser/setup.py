@@ -1,7 +1,7 @@
 """ Browser setup module
 """
 import os
-import urllib2
+from eventlet.green import urllib2
 from Acquisition import aq_base
 from zope.interface import directlyProvides
 from zope.component import getMultiAdapter
