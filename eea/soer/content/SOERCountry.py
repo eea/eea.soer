@@ -2,7 +2,7 @@
 """
 from hashlib import md5
 from zope.interface import implements
-import urllib2
+from eventlet.green import urllib2
 from bs4 import BeautifulSoup
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import getToolByName

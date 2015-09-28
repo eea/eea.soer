@@ -40,6 +40,7 @@ setup(name=NAME,
           'Products.ATVocabularyManager',
           'Products.LinguaPlone',
           'eea.themecentre',
+          'eventlet',
       ],
       entry_points="""
       # -*- Entry points: -*-
