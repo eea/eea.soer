@@ -1,6 +1,9 @@
 Changelog
 =========
 
+6.5.dev0 - (unreleased)
+-----------------------
+
 6.4 - (2015-10-05)
 ------------------
 * Bugfix: set socket timeout to prevent Zope instances hanging out when the external service is not respondingi with eventlet
