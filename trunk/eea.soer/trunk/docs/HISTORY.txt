@@ -3,6 +3,8 @@ Changelog
 
 6.5.dev0 - (unreleased)
 -----------------------
+* Change: removed photoAlbumEntry padding change for non soer sections
+  [ichimdav refs #28967]
 
 6.4 - (2015-10-05)
 ------------------
