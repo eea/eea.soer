@@ -1,6 +1,9 @@
 Changelog
 =========
 
+6.6.dev0 - (unreleased)
+-----------------------
+
 6.5 - (2015-11-03)
 ------------------
 * Change: removed photoAlbumEntry padding change for non soer sections
