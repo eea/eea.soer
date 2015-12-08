@@ -148,7 +148,7 @@ Lets add two more feeds to the country folder and update from them too.
   ...                      remoteUrl=soerrdf)]
   >>> country.updateFromFeed()
   >>> len(country.objectIds())
-  9
+  8
   >>> for report in country.objectIds():
   ...   if report not in oldIds and report != 'feed1':
   ...     print report
@@ -168,4 +168,4 @@ Lets load the example rdf with updated modify date for some national stories.
   >>> country.setRdfFeed(updatedrdf)
   >>> country.updateFromFeed()
   >>> len(country.objectIds())
-  9
+  8
