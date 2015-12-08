@@ -141,7 +141,7 @@ Check if image sources have correct data sources.
 Lets add two more feeds to the country folder and update from them too.
   >>> before = country.objectIds()
   >>> len(country.objectIds())
-  7
+  6
   >>> oldIds = country.objectIds()
   >>> from eea.soer.config import soerrdf
   >>> feed1 = country[country.invokeFactory('Link', id='feed1',
