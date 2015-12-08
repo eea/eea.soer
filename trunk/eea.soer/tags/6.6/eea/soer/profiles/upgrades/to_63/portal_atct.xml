@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<atcttool>
+ <topic_indexes>
+  <index name="getSoerContentType" remove="True" />
+  <index name="getSoerSection" remove="True" />
+ </topic_indexes>
+</atcttool>
