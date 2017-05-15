@@ -2,6 +2,7 @@
 """
 import surf
 import rdflib
+import logging
 from zope.interface import implements
 from zope.component import adapts
 from eea.soer import vocab
@@ -11,7 +12,6 @@ from eea.soer.content.interfaces import ISOERReport
 from DateTime import DateTime
 from Products.Archetypes import interfaces as atinterfaces
 from Products.CMFPlone import log
-import logging
 
 def getSingleValue(value, language=u"en"):
     """ Get single value

@@ -1,7 +1,7 @@
 """ EEA Soer installer
 """
-from setuptools import setup, find_packages
 import os
+from setuptools import setup, find_packages
 
 NAME = 'eea.soer'
 PATH = NAME.split('.') + ['version.txt']

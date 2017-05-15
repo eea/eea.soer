@@ -1,5 +1,6 @@
 """ Setup
 """
+import logging
 from plone.i18n.locales.interfaces import ICountryAvailability
 from zope.component import queryUtility
 from Products.CMFCore.utils import getToolByName
@@ -7,7 +8,6 @@ from eea.soer.vocab import atvocabs as vocabs
 from eea.vocab import countries
 from eea.soer import transform
 from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
-import logging
 
 logger = logging.getLogger('eea.soer.setuphandlers')
 

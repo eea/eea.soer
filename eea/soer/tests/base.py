@@ -4,8 +4,8 @@ from Products.PloneTestCase import PloneTestCase
 from Products.PloneTestCase.layer import onsetup
 from Products.Five import zcml
 from Products.Five import fiveconfigure
-import eea.soer
 import sys, logging
+import eea.soer
 from Products.CMFPlone.log import logger
 
 PloneTestCase.installProduct('ATVocabularyManager')

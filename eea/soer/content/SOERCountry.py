@@ -7,11 +7,13 @@ from bs4 import BeautifulSoup
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import getToolByName
 from Products.ATContentTypes.content.folder import ATFolder
+from types import UnicodeType
+import logging
 from eea.soer.content.interfaces import IReportingCountry
 from eea.soer.config import PROJECTNAME, ADD_CONTENT_PERMISSION
 from eea.soer import vocab
 from eea.soer import sense
-from types import UnicodeType
+
 from Products.Archetypes.public import (
     registerType,
     Schema,
@@ -19,7 +21,7 @@ from Products.Archetypes.public import (
     StringWidget
 )
 from Products.CMFPlone import log
-import logging
+
 
 logger = logging.getLogger('eea.soer.content.SOERCountry')
 __all__ = [registerType, Schema, StringField, StringWidget]
