@@ -1,5 +1,6 @@
 """ SOER Country
 """
+import logging
 from hashlib import md5
 from zope.interface import implements
 from eventlet.green import urllib2
@@ -8,19 +9,17 @@ from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import getToolByName
 from Products.ATContentTypes.content.folder import ATFolder
 from types import UnicodeType
-import logging
 from eea.soer.content.interfaces import IReportingCountry
 from eea.soer.config import PROJECTNAME, ADD_CONTENT_PERMISSION
 from eea.soer import vocab
 from eea.soer import sense
-
+from Products.CMFPlone import log
 from Products.Archetypes.public import (
     registerType,
     Schema,
     StringField,
     StringWidget
 )
-from Products.CMFPlone import log
 
 
 logger = logging.getLogger('eea.soer.content.SOERCountry')

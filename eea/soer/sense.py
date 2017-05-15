@@ -2,9 +2,9 @@
 """
 import surf
 import rdflib
-import logging
 from zope.interface import implements
 from zope.component import adapts
+import logging
 from eea.soer import vocab
 from eea.soer.interfaces import ISoerRDF2Surf, INationalStory
 from eea.soer.content import SOERReport
