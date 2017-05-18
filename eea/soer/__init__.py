@@ -21,7 +21,7 @@ def initialize(context):
         fti=all_ftis,
         ).initialize(context)
 
-    #TODO: plone4, investigate below code
+    #plone4, investigate below code
     ## Give it some extra permissions to control them on a per class limit
     #for i in range(0, len(all_content_types)):
         #context.registerClass(meta_type   = all_ftis[i]['meta_type'],

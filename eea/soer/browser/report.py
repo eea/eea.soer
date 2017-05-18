@@ -76,10 +76,9 @@ class ReportView(object):
             'layers=0&c=0:ICC:%s:100,20,40&size=300,300&m=http://cow1/ArcGIS/' \
             'services/Internal/EuroBoundaries_Dyna_WM/MapServer' % \
                     v.getCode(self.context.getGeoCoverage())
-        else:
-            return u'http://discomap.eea.europa.eu/map/getmap/getMap.aspx' \
-            '?layers=0&c=0:ICC::100,20,40&size=300,300&m=http://cow1/ArcGIS' \
-            '/services/Internal/EuroBoundaries_Dyna_WM/MapServer'
+        return u'http://discomap.eea.europa.eu/map/getmap/getMap.aspx' \
+        '?layers=0&c=0:ICC::100,20,40&size=300,300&m=http://cow1/ArcGIS' \
+        '/services/Internal/EuroBoundaries_Dyna_WM/MapServer'
 
 class ReportQuestionsByTopic(object):
     """ Group all reports from a country py a topic and sort them by question.
@@ -101,8 +100,7 @@ class ReportQuestionsByTopic(object):
                 'portal_vocabularies')['eea.soer.vocab.topics']
         if self.topic in v.keys():
             return v[self.topic].Title()
-        else:
-            return 'Requested topic not found'
+        return 'Requested topic not found'
 
     @property
     def reports(self):

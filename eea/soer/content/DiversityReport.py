@@ -2,10 +2,6 @@
 """
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
-from eea.soer.content.interfaces import IDiversityReport
-from eea.soer.content.SOERReport import schema as  SOERReportSchema, SOERReport
-from eea.soer.config import PROJECTNAME
-from eea.soer import vocab
 from Products.ATVocabularyManager import NamedVocabulary
 from Products.Archetypes.public import (
     Schema,
@@ -15,6 +11,11 @@ from Products.Archetypes.public import (
 )
 from eea.themecentre.content.ThemeTaggable import ThemeTaggable
 from eea.themecentre.content.ThemeTaggable import ThemeTaggable_schema
+
+from eea.soer.content.interfaces import IDiversityReport
+from eea.soer.content.SOERReport import schema as  SOERReportSchema, SOERReport
+from eea.soer.config import PROJECTNAME
+from eea.soer import vocab
 
 schema = Schema((
         StringField(

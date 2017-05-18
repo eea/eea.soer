@@ -234,14 +234,18 @@ class SenseFeeds(object):
   ['http://www.sense.sinanet.isprambiente.it/Plone/air-pollution/@@rdf',
    'http://www.sense.sinanet.isprambiente.it/Plone/climate-change/@@rdf',
    'http://www.sense.sinanet.isprambiente.it/Plone/waste/@@rdf',
-   'http://www.sense.sinanet.isprambiente.it/Plone/nature-protection-and-biodiversity/@@rdf',
+   'http://www.sense.sinanet.isprambiente.it/Plone/'
+       'nature-protection-and-biodiversity/@@rdf',
    'http://www.sense.sinanet.isprambiente.it/Plone/land/@@rdf',
    'http://www.sense.sinanet.isprambiente.it/Plone/diversity/@@rdf',
    'http://www.sense.sinanet.isprambiente.it/Plone/freshwater/@@rdf',
    'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-alps/@@rdf',
-   'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-local-authorities/@@rdf',
-   'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-organic-farming/@@rdf',
-   'http://www.sense.sinanet.isprambiente.it/Plone/flexibility-white-certificates/@@rdf'],
+   'http://www.sense.sinanet.isprambiente.it/Plone/'
+       'flexibility-local-authorities/@@rdf',
+   'http://www.sense.sinanet.isprambiente.it/Plone/'
+       'flexibility-organic-farming/@@rdf',
+   'http://www.sense.sinanet.isprambiente.it/Plone/'
+       'flexibility-white-certificates/@@rdf'],
                  # Questions don't follow specification
                  'cz' : ['http://issar.cenia.cz/issar/add/CZ_SOER.rdf'],
                  'de' : ['http://sites.uba.de/SOER/frm/Diversity.xml',

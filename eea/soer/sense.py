@@ -1,10 +1,11 @@
 """ Sense
 """
+import logging
+
 import surf
 import rdflib
 from zope.interface import implements
 from zope.component import adapts
-import logging
 from eea.soer import vocab
 from eea.soer.interfaces import ISoerRDF2Surf, INationalStory
 from eea.soer.content import SOERReport
@@ -149,8 +150,8 @@ class Surf2SOERReport(object):
             #i = 0
             for fig in context.soer_hasFigure:
                 try:
-                    fileName = fig.soer_fileName.first and \
-                                    str(fig.soer_fileName.first) or 'tempfile'
+                    fileName = str(fig.soer_fileName.first) if \
+                        fig.soer_fileName.first else 'tempfile'
                 except Exception:
                     log.log('Figure resource without information %s' %
                                               fig, severity=log.logging.WARN)
@@ -170,8 +171,8 @@ class Surf2SOERReport(object):
                 if fig.soer_dataSource.first is not None:
                     dataSrc = fig.soer_dataSource.first
                     if not isinstance(dataSrc, rdflib.URIRef):
-                        fileName = dataSrc.soer_fileName.first and \
-                                str(dataSrc.soer_fileName.first) or 'tempfile'
+                        fileName = str(dataSrc.soer_fileName.first) if \
+                            dataSrc.soer_fileName.first else 'tempfile'
                         result['dataSource'] = {
                             'url' : dataSrc.subject.strip(),
                             'fileName' : fileName,
@@ -338,4 +339,4 @@ class SoerRDF2Surf(object):
 def chk(context):
     """ Check
     """
-    return context and 'OK' or 'Miss'
+    return 'OK' if context else'Miss'

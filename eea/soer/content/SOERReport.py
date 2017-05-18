@@ -10,8 +10,6 @@ from Products.Archetypes.utils import DisplayList
 from Products.ATContentTypes.configuration import zconf
 from Products.ATContentTypes.content.folder import ATFolder
 from Products.ATContentTypes.content.newsitem import ATNewsItem
-from eea.soer.content.interfaces import ISOERReport
-from eea.soer.content.interfaces import ISoerFigure, ISoerDataFile
 from Products.ATVocabularyManager import NamedVocabulary
 from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
 from Products.CMFPlone.PloneBatch import Batch
@@ -23,6 +21,9 @@ from Products.Archetypes.public import (
     StringField,
     SelectionWidget
 )
+
+from eea.soer.content.interfaces import ISOERReport
+from eea.soer.content.interfaces import ISoerFigure, ISoerDataFile
 
 schema = Schema((
     TextField('keyMessage',
@@ -171,7 +172,7 @@ class SOERReport(ATFolder, ATNewsItem):
         atvm = getToolByName(portal, ATVOCABULARYTOOL, None)
         vocab = atvm.getVocabularyByName(vocab_name)
         term = getattr(vocab, term_key, None)
-        if term == None:
+        if term is None:
             return ''
         return term.title
 
@@ -221,7 +222,7 @@ class SOERReport(ATFolder, ATNewsItem):
                         parent = parent[:-1]
                         indent = indent[:-1]
 
-            elif len(parent) > 0:
+            elif parent:
                 indent = u''
                 parent = []
             title = u'%s %s' % (indent, region.nuts_name.first.strip())
@@ -284,7 +285,7 @@ class SOERReport(ATFolder, ATNewsItem):
         """ Return True if SOERCountry has a feed url
         """
         if hasattr(self.aq_parent, 'getRdfFeed'):
-            return self.aq_parent.getRdfFeed() and True or False
+            return True if self.aq_parent.getRdfFeed() else False
         return False
 
     def isSubReport(self):

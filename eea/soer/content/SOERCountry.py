@@ -2,17 +2,13 @@
 """
 import logging
 from hashlib import md5
+from types import UnicodeType
 from zope.interface import implements
 from eventlet.green import urllib2
 from bs4 import BeautifulSoup
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import getToolByName
 from Products.ATContentTypes.content.folder import ATFolder
-from types import UnicodeType
-from eea.soer.content.interfaces import IReportingCountry
-from eea.soer.config import PROJECTNAME, ADD_CONTENT_PERMISSION
-from eea.soer import vocab
-from eea.soer import sense
 from Products.CMFPlone import log
 from Products.Archetypes.public import (
     registerType,
@@ -21,6 +17,10 @@ from Products.Archetypes.public import (
     StringWidget
 )
 
+from eea.soer.content.interfaces import IReportingCountry
+from eea.soer.config import PROJECTNAME, ADD_CONTENT_PERMISSION
+from eea.soer import vocab
+from eea.soer import sense
 
 logger = logging.getLogger('eea.soer.content.SOERCountry')
 __all__ = [registerType, Schema, StringField, StringWidget]
@@ -109,13 +109,13 @@ class SOERCountry(ATFolder):
         url = self.getRdfFeed()
         if url:
 
-            #TODO: plone4, we dont use portal_squid anymore
+            #BBB: plone4, we dont use portal_squid anymore
             #squidt = getToolByName(self, 'portal_squid', None)
             #if squidt is not None:
                 #urlexpr = squidt.getUrlExpression()
                 ## use squid default url calculation during update due
                 ## acquisition problem to find the url expression script
-                ## TODO: maybe we should disable invalidation all together
+                ## BBB: maybe we should disable invalidation all together
                 ##      during update?
                 #squidt.manage_setSquidSettings(squidt.getSquidURLs(),
                                                 #url_expression='')
@@ -124,7 +124,7 @@ class SOERCountry(ATFolder):
                 try:
                     self.aq_parent.manage_exportObject(id=self.getId())
                 except IOError:
-                    #TODO: plone4, running tests clienthome has a wrong path
+                    #BBB: plone4, running tests clienthome has a wrong path
                     #      but zexp gets created anyway in the right location
                     logger.info('Clienthome has a wrong path')
 
@@ -135,7 +135,7 @@ class SOERCountry(ATFolder):
                     soer.loadUrl(url)
             self._updateFromFeed(soer)
 
-            #TODO: plone4, we dont use portal_squid anymore
+            #BBB: plone4, we dont use portal_squid anymore
             #if squidt is not None:
                 ## restore the url expression
                 #squidt.manage_setSquidSettings(squidt.getSquidURLs(),
@@ -277,7 +277,7 @@ class SOERCountry(ATFolder):
             for indicatorUrl in nstory.relatedIndicator():
                 i += 1
                 if not indicatorUrl.startswith('http'):
-                    #TODO: need to find out which indicator url
+                    #BBB: need to find out which indicator url
                     #      it is for i.e CSI 018
                     continue
                 title = u'Related indicator'

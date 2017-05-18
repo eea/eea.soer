@@ -1,12 +1,12 @@
 """ Transform
 """
-from Products.PortalTransforms.interfaces import itransform
-from DocumentTemplate.DT_Util import html_quote
-from DocumentTemplate.DT_Var import newline_to_br
 import re
 from htmlentitydefs import name2codepoint
-from zope.interface import implements
+from Products.PortalTransforms.interfaces import itransform
 from Products.PortalTransforms.interfaces import ITransform
+from DocumentTemplate.DT_Util import html_quote
+from DocumentTemplate.DT_Var import newline_to_br
+from zope.interface import implements
 
 name2codepoint = name2codepoint.copy()
 name2codepoint['apos'] = ord("'")

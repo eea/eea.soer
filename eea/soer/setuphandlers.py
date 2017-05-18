@@ -1,13 +1,13 @@
 """ Setup
 """
+import logging
 from plone.i18n.locales.interfaces import ICountryAvailability
 from zope.component import queryUtility
 from Products.CMFCore.utils import getToolByName
-import logging
+from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
 from eea.soer.vocab import atvocabs as vocabs
 from eea.vocab import countries
 from eea.soer import transform
-from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
 
 logger = logging.getLogger('eea.soer.setuphandlers')
 
@@ -71,7 +71,7 @@ def setupATVocabularies(context):
     if atvm is None:
         return
     setupCountriesVocabulary(context)
-    for vkey in vocabs.keys():
+    for vkey in vocabs:
         if hasattr(atvm, vkey):
             if not replace:
                 continue

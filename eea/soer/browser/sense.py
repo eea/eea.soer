@@ -29,4 +29,3 @@ class ChannelInfo(object):
         """ Return channel info
         """
         pass
-

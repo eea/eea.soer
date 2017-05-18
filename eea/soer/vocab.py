@@ -7,6 +7,8 @@ from zope.schema.vocabulary import SimpleTerm
 from Products.CMFCore.utils import getToolByName
 import surf
 
+from eea.soer.config import nutsrdf, evalrdf, spatialrdf
+
 # Maps values from eea.soer.vocab.topics to their full description
 long_topics = {
     u'air pollution': (u"Air pollution - urban and rural air quality, "
@@ -104,7 +106,6 @@ for loc in Locality.all().order():
 
 #geostore.load_triples(source="http://rdfdata.eionet.europa.eu/ramon/send_all")
 # use local file to speed up for now
-from eea.soer.config import nutsrdf, evalrdf, spatialrdf
 geostore.load_triples(source=nutsrdf)
 geostore.load_triples(source=evalrdf)
 geostore.load_triples(source=spatialrdf)
