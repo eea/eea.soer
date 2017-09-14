@@ -1,10 +1,8 @@
 ========
 EEA SOER
 ========
-.. image:: http://ci.eionet.europa.eu/job/eea.soer-www/badge/icon
-  :target: http://ci.eionet.europa.eu/job/eea.soer-www/lastBuild
-.. image:: http://ci.eionet.europa.eu/job/eea.soer-plone4/badge/icon
-  :target: http://ci.eionet.europa.eu/job/eea.soer-plone4/lastBuild
+.. image:: http://ci.eionet.europa.eu/job/eea/job/eea.soer/job/master/badge/icon
+  :target: http://ci.eionet.europa.eu/job/eea/job/eea.soer/job/master/display/redirect
 
 Contents
 ========
