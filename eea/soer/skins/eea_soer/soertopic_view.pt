@@ -28,7 +28,7 @@
           </div>
         </div>
 
-        <div tal:condition="not:context/REQUEST/topic | nothing" tal:omit-tag="">
+        <div tal:condition="not:context/REQUEST/topic | nothing" tal:omit-tag="" i18n:translate="">
           No topic specified.
         </div>
 
