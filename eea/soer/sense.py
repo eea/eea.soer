@@ -1,7 +1,5 @@
 """ Sense
 """
-import logging
-
 import surf
 import rdflib
 from zope.interface import implements
@@ -14,6 +12,7 @@ from DateTime import DateTime
 from Products.Archetypes import interfaces as atinterfaces
 from Products.CMFPlone import log
 
+
 def getSingleValue(value, language=u"en"):
     """ Get single value
     """
@@ -21,6 +20,7 @@ def getSingleValue(value, language=u"en"):
         if isinstance(v, rdflib.Literal) and v.language == language:
             return v
     return value.first or ''
+
 
 class GetATSchema4SurfObj(object):
     """ Get AT Schema for Surf Obj
@@ -42,6 +42,7 @@ class GetATSchema4SurfObj(object):
         """
         return [field.getName() for field in
                          self.schema.fields()] + ['relatedEuropeanIndicator']
+
 
 class NationalStory(object):
     """ National Story
@@ -80,6 +81,7 @@ class NationalStory(object):
         else:
             # log missing assesment
             pass
+
 
 class Surf2SOERReport(object):
     """ Surf to SOER Report
@@ -206,6 +208,7 @@ class Surf2SOERReport(object):
                           context.soer_relatedEuropeanIndicator]
         return []
 
+
 class SoerRDF2Surf(object):
     """ Read a rdf and verify that the feed is correct before content is updated
         in Plone.
@@ -216,8 +219,6 @@ class SoerRDF2Surf(object):
         self.store = surf.Store(reader='rdflib',
                                 writer='rdflib',
                                 rdflib_store='IOMemory')
-        self.store.log.setLevel(logging.CRITICAL)
-        self.store.writer.log.setLevel(logging.CRITICAL)
         self.session = surf.Session(self.store, mapping={
                                   surf.ns.SOER.NationalStory: NationalStory})
         self.loadUrl(url)
@@ -335,6 +336,7 @@ class SoerRDF2Surf(object):
                                     chk(dataSrc['dataURL'])
                                     )
         return result
+
 
 def chk(context):
     """ Check
