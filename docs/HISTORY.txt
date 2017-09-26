@@ -1,6 +1,9 @@
 Changelog
 =========
 
+7.1.dev0 - (unreleased)
+-----------------------
+
 7.0 - (2017-09-26)
 ------------------
 * Change: Update to work with eea.rdfmarshaller 10.1 and rdflib 4.2.2
