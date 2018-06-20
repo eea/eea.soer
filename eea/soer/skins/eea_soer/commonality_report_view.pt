@@ -159,7 +159,7 @@
                         <p>
                             <strong i18n:translate="">Data source</strong><br/>
                             <span i18n:translate="">This figure has no data source. For further information contact</span>&nbsp; 
-                            <a href="http://www.eea.europa.eu/enquiries" 
+                            <a href="https://www.eea.europa.eu/enquiries" 
                                title="Request data source" 
                                i18n:attributes="title" 
                                i18n:translate="">EEA enquiry service</a>.

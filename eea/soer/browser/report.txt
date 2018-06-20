@@ -1,4 +1,4 @@
-All content as part of eea.soer can be imported and exported as `SOER Feed <http://taskman.eionet.europa.eu/projects/zope/wiki/SOERFeedSpec>`_.
+All content as part of eea.soer can be imported and exported as `SOER Feed <https://taskman.eionet.europa.eu/projects/zope/wiki/SOERFeedSpec>`_.
 
   >>> self.setRoles(['Manager'])
   >>> soer = self.portal.SOER

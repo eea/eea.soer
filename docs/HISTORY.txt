@@ -3,6 +3,8 @@ Changelog
 
 7.2.dev0 - (unreleased)
 -----------------------
+* Change: updated URLs pointing to eea.europa.eu with https://
+  [alecghica refs #95849]
 
 7.1 - (2017-12-12)
 ------------------
@@ -450,7 +452,7 @@ Changelog
 ----------------
 * Geographical coverage values are fetched from http://rod.eionet.europa.eu/countries
   [vincisas]
-* Schema updated to `SOER RDF spec <http://taskman.eionet.europa.eu/projects/zope/wiki/SOERFeedSpec>`_
+* Schema updated to `SOER RDF spec <https://taskman.eionet.europa.eu/projects/zope/wiki/SOERFeedSpec>`_
   [vincisas]
 * Plone 3 compatibility
   [vincisas]

@@ -97,4 +97,4 @@ Let's fill in the add form:
 SENSE feeds update process
 --------------------------
 
-See http://taskman.eionet.europa.eu/projects/zope/wiki/SENSEfeedUpdate
+See https://taskman.eionet.europa.eu/projects/zope/wiki/SENSEfeedUpdate
