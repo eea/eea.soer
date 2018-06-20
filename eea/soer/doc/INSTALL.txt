@@ -11,8 +11,8 @@ product running on a basic Plone 2.5 installation (3.x has yet not been
 tested).
 
  1. Copy these lines to your src/EXTERNALS.txt file:
-   eea.soer https://svn.eionet.europa.eu/repositories/Zope/trunk/eea.soer
-   eea.vocab https://svn.eionet.europa.eu/repositories/Zope/trunk/eea.vocab
+   eea.soer https://github.com/eea/eea.soer
+   eea.vocab https://github.com/eea/eea.vocab
 
  2. Tell SVN to use these on your src folder by running the command:
    svn ps svn:externals -F src/EXTERNALS.txt src
