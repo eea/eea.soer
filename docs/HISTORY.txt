@@ -8,7 +8,7 @@ Changelog
   [ichim-david refs #106884]
 
 7.3 - (2019-01-28)
----------------------
+--------------------------
 * Jenkins: Add sonarqube step
   [avoinea refs #101552]
 
