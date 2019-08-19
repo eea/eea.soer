@@ -187,10 +187,7 @@
                         <img class="imagesource-box" src="tag_green_right.png" tal:condition="dataSources|source|nothing"
                           tal:attributes="src python:'%s/tag_green_right.png' % portal_url" alt="Source"  i18n:attributes="alt"/>
                         <tal:multiplefigures condition="not: singleFigure">
-                          <img style="border: none" tal:attributes="
-                            title python:desc_or_title;
-                            alt obj/pretty_title_or_id;
-                            src string:${obj/absolute_url}/image_thumb"/>
+                            <span class="photoAlbumEntryWrapperImg lazy" tal:attributes="data-src string:${obj/absolute_url}/image_mini"><!--?--></span>
                         </tal:multiplefigures>
                         <tal:singlefigure condition="singleFigure">
                           <img style="border: none" tal:attributes="

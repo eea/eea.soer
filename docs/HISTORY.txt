@@ -1,8 +1,14 @@
 Changelog
 =========
 
+7.4 - (2019-08-16)
+-----------------------
+* Change: commonality_report_view photoAlbumEntry now uses a background image
+  for better image scaling
+  [ichim-david refs #106884]
+
 7.3 - (2019-01-28)
----------------------
+--------------------------
 * Jenkins: Add sonarqube step
   [avoinea refs #101552]
 
