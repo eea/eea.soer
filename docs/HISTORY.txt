@@ -1,6 +1,9 @@
 Changelog
 =========
 
+7.5-dev0 - (unreleased)
+---------------------------
+
 7.4 - (2019-08-16)
 -----------------------
 * Change: commonality_report_view photoAlbumEntry now uses a background image
