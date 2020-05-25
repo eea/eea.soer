@@ -112,11 +112,6 @@
 .soer-topicview h2 {
    font-size: 150%;
 }
-.soer-topicview .documentByLine,
-.section-soer .documentByLine {
-   clear: none;
-   margin: -0.83em 0 1em 0;
-}
 
 .soer-topicview .documentByLine a {
    color: #76797C;
