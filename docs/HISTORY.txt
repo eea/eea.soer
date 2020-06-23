@@ -1,6 +1,9 @@
 Changelog
 =========
 
+7.6-dev0 - (unreleased)
+---------------------------
+
 7.5 - (2020-06-23)
 ---------------------------
 * Change: removed margin customization from documentByLine since soer now has
