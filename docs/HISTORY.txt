@@ -3,6 +3,10 @@ Changelog
 
 7.5-dev0 - (unreleased)
 ---------------------------
+* Change: removed margin customization from documentByLine since soer now has
+  a redesign
+  [ichim-david refs #117295]
+
 
 7.4 - (2019-08-16)
 -----------------------
